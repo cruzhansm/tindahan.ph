@@ -1,0 +1,13 @@
+/* BORDER COLOR HELPER CLASSES */
+
+.border-primary {
+  color: var(--tph-primary) !important;
+}
+
+.border-secondary {
+  color: var(--tph-secondary) !important;
+}
+
+.border-tertiary {
+  color: var(--tph-tertiary) !important;
+}

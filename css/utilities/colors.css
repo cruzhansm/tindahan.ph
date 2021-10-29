@@ -1,0 +1,23 @@
+/* TEXT COLOR HELPER CLASSES */
+
+.text-primary {
+  color: var(--tph-text-primary) !important;
+}
+
+.text-secondary {
+  color: var(--tph-text-secondary) !important;
+}
+
+/* BACKGROUND COLOR HELPER CLASSES */
+
+.bg-primary {
+  background-color: var(--tph-primary) !important;
+}
+
+.bg-secondary {
+  background-color: var(--tph-secondary) !important;
+}
+
+.bg-tertiary {
+  background-color: var(--tph-tertiary) !important;
+}

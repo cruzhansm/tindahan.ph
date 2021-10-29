@@ -1,0 +1,18 @@
+/* COLOR THEME VARIABLES */
+:root {
+  --tph-primary: #122333 !important;
+  --tph-text-primary: #FFFFFF !important;
+  --tph-secondary: #162738 !important;
+  --tph-text-secondary: #64798B;
+  --tph-tertiary: #21374A !important;
+  --tph-highlight: #2EAC68 !important;
+}
+
+* {
+  color: var(--tph-text-primary) !important;
+  font-family: 'Poppins'; 
+}
+
+input {
+  color: #B9C8D3;
+}
