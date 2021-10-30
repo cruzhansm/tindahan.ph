@@ -1,4 +1,3 @@
-/* COLOR THEME VARIABLES */
 :root {
   --tph-primary: #122333 !important;
   --tph-text-primary: #FFFFFF !important;
@@ -7,6 +6,8 @@
   --tph-tertiary: #21374A !important;
   --tph-highlight: #2EAC68 !important;
 }
+
+/* COLOR THEME VARIABLES */
 
 * {
   color: var(--tph-text-primary) !important;

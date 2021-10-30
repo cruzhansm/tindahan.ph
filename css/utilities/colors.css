@@ -1,5 +1,3 @@
-/* TEXT COLOR HELPER CLASSES */
-
 .text-primary {
   color: var(--tph-text-primary) !important;
 }
@@ -7,6 +5,7 @@
 .text-secondary {
   color: var(--tph-text-secondary) !important;
 }
+/* TEXT COLOR HELPER CLASSES */
 
 /* BACKGROUND COLOR HELPER CLASSES */
 
