@@ -1,0 +1,25 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+  width: inherit;
+  height: 45px;
+}
+
+.header-icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 30px;
+  width: 167px;
+  height: 41px;
+}
+
+.user-image-icon {
+  background-color: var(--placeholder);
+  border-radius: 50%;
+  width: 41px;
+  height: 41px;
+}
