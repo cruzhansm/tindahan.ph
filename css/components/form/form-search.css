@@ -1,0 +1,14 @@
+.form-search {
+  background-color: var(--tph-tertiary);
+  border-radius: 73px;
+  border: none;
+  font-size: 18px;
+  width: 420px;
+  height: 45px;
+  position: fixed;
+  padding-left: 26px;
+}
+
+.form-search:focus {
+  outline: none;
+}

@@ -1,0 +1,95 @@
+.sidenav {
+  background-color: var(--tph-secondary) !important;
+  border-radius: 12px;
+  width: 310px;
+  height: 477px;
+  left: 126px;
+  top: 71px;
+  position: fixed;
+}
+
+.sidenav-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24px;
+  width: 208px;
+  height: 41px;
+  left: 57px;
+  top: 51px;
+  position: absolute;
+}
+
+.sidenav-header-img {
+  background-color: var(--placeholder) !important;
+  border-radius: 50%;
+  height: 41px;
+  width: 41px;
+}
+
+.sidenav-header-text {
+  color: var(--tph-highlight) !important;
+  line-height: 36px;
+  font-weight: 700;
+}
+
+.sidenav-links {
+  height: max-content;
+  left: 31px;
+  top: 137px;
+  position: absolute;
+}
+
+.sidenav-link {
+  border-radius: 30px 0 0 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 35px;
+  width: 278px;
+  height: 56px;
+}
+
+.sidenav-link-text {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 36px;
+}
+
+.sidenav-link-icon {
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  margin-right: 25px;
+}
+
+.sidenav-link:hover {
+  cursor: pointer;
+}
+
+.sidenav-link:hover .sidenav-link-icon {
+  color: var(--tph-text-highlight) !important;
+}
+
+.sidenav-link:hover .sidenav-link-text {
+  color: var(--tph-text-highlight) !important;
+}
+
+.sidenav .active {
+  background-color: var(--tph-tertiary) !important;
+  color: var(--tph-text-highlight) !important;
+}
+
+.sidenav .active:hover {
+  cursor: default;
+}
+
+.sidenav .active > .sidenav-link-icon {
+  color: var(--tph-text-highlight);
+}
+
+.sidenav .active > .sidenav-link-text {
+  color: var(--tph-text-tertiary) !important;
+  font-weight: 700;
+}

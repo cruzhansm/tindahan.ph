@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'Poppins-Regular';
-  src: url('../assets/fonts/Poppins-Regular.eot');
-  src: url('../assets/fonts/Poppins-Regular.eot?#iefix') format('embedded-opentype'),
-       url('../assets/fonts/Poppins-Regular.svg#Poppins-Regular') format('svg'),
-       url('../assets/fonts/Poppins-Regular.ttf') format('truetype'),
-       url('../assets/fonts/Poppins-Regular.woff') format('woff'),
-       url('../assets/fonts/Poppins-Regular.woff2') format('woff2');
+  src: url('../../assets/fonts/Poppins-Regular.eot');
+  src: url('../../assets/fonts/Poppins-Regular.eot?#iefix') format('embedded-opentype'),
+       url('../../assets/fonts/Poppins-Regular.svg#Poppins-Regular') format('svg'),
+       url('../../assets/fonts/Poppins-Regular.ttf') format('truetype'),
+       url('../../assets/fonts/Poppins-Regular.woff') format('woff'),
+       url('../../assets/fonts/Poppins-Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }

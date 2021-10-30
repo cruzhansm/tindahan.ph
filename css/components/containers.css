@@ -1,0 +1,15 @@
+.container-display {
+  left: 496px !important;
+  top: 72px !important;
+  max-width: calc(100% - 622px) !important;
+  padding: 0px;
+  position: fixed;
+}
+
+/* .container-home-slideshow {
+  background-color: green;
+  margin-top: 65px !important;
+  width: 760px;
+  height: 200px;
+  margin: auto;
+} */

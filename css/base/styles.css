@@ -5,15 +5,21 @@
   --tph-text-secondary: #64798B;
   --tph-tertiary: #21374A !important;
   --tph-highlight: #2EAC68 !important;
+  --tph-text-highlight: #2CAD69 !important;
+  --placeholder: #C4C4C4 !important;
 }
 
 /* COLOR THEME VARIABLES */
 
 * {
-  color: var(--tph-text-primary) !important;
-  font-family: 'Poppins'; 
+  color: var(--tph-text-primary);
+  font-family: 'Poppins-Regular'; 
 }
 
 input {
   color: #B9C8D3;
+}
+
+.fa {
+  font-family: "Font Awesome 6 Free" !important;
 }
