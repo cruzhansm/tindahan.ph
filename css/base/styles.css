@@ -13,7 +13,7 @@
 
 * {
   color: var(--tph-text-primary);
-  font-family: 'Poppins-Regular'; 
+  font-family: 'Poppins-Regular';
 }
 
 input {
@@ -22,4 +22,10 @@ input {
 
 .fa {
   font-family: "Font Awesome 6 Free" !important;
+}
+
+.fa,
+.fa-solid:hover {
+  color: var(--tph-text-highlight) !important;
+  cursor: pointer;
 }

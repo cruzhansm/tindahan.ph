@@ -23,3 +23,7 @@
   width: 41px;
   height: 41px;
 }
+
+.user-image-icon:hover {
+  cursor: pointer;
+}
