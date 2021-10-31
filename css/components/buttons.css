@@ -12,6 +12,10 @@
   box-shadow: none;
 }
 
+.btn:active:focus{
+  box-shadow:none;
+}
+
 .btn-tertiary {
   background-color: var(--tph-tertiary);
   color: var(--tph-text-secondary);

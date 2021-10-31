@@ -1,0 +1,73 @@
+.body{
+  display:flex;
+  flex-direction: row;
+  margin-left:254px;
+  height:687px;
+}
+
+.body-banner{
+  width:798px;
+  height:465px;
+  background-color: var(--placeholder);
+  margin-top:71px;
+}
+
+.body-login, .body-signup{
+  margin-top:52px;
+  margin-left:181px;
+  width:461px;
+  height:496px;
+  background-color:var(--tph-secondary);
+  box-shadow: -2px -2px 47px -3px rgba(0, 0, 0, 0.25);
+  padding:70px 68px;
+  text-align: center;
+  justify-content: center;
+  display:inline;
+}
+
+.body-login-title, .body-signup-title{
+  font-size:30px;
+  font-weight:700;
+  margin-bottom:36px;
+}
+
+.btn-primary{
+  margin-top:5px;
+}
+
+.body-login-signup-link{
+  margin-top:60px;
+  font-size: 18px;
+}
+
+.body-signup-login-link{
+  font-size:18px;
+}
+
+.body-login-signup-link > span, .body-signup-login-link > span{
+  color: var(--tph-highlight);
+}
+
+.body-login-signup-link > span:hover, .body-signup-login-link > span:hover{
+  color: var(--tph-text-highlight);
+  cursor:pointer;
+}
+
+.body-signup{
+  height: 687px;
+  width: 461px;
+  margin-top:0;
+  padding:50px 68px;
+}
+
+.body-signup-terms{
+  margin-top:18px;
+  margin-bottom:35px;
+  font-size:12px;
+}
+
+.copyright{
+  margin-bottom:50px;
+  margin-top:50px;
+  justify-content: center;
+}
