@@ -1,11 +1,11 @@
 .sidenav {
   background-color: var(--tph-secondary) !important;
+  box-shadow: -4px -4px 47px -3px rgba(0, 0, 0, 0.25);
   border-radius: 12px;
   width: 310px;
-  height: 477px;
-  left: 126px;
-  top: 71px;
-  position: fixed;
+  margin-top: 71px;
+  margin-left: 126px;
+  padding-top: 51px;
 }
 
 .sidenav-header {
@@ -16,9 +16,7 @@
   font-size: 24px;
   width: 208px;
   height: 41px;
-  left: 57px;
-  top: 51px;
-  position: absolute;
+  margin-left: 57px;
 }
 
 .sidenav-header-img {
@@ -28,17 +26,27 @@
   width: 41px;
 }
 
-.sidenav-header-text {
+.sidebar-header-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidenav-header-text > div {
   color: var(--tph-highlight) !important;
   line-height: 36px;
-  font-weight: 700;
+  font-weight: 800;
+}
+
+.sidenav-header-text > div:nth-child(2) {
+  line-height: 10px;
+  height: 18px;
+  font-size: 14px !important;
 }
 
 .sidenav-links {
-  height: max-content;
-  left: 31px;
-  top: 137px;
-  position: absolute;
+  margin-top: 33px;
+  margin-left: 31px;
+  padding-bottom: 82px;
 }
 
 .sidenav-link {
@@ -52,7 +60,6 @@
 }
 
 .sidenav-link-text {
-  font-weight: 400;
   font-size: 24px;
   line-height: 36px;
 }

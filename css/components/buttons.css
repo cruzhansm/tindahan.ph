@@ -1,0 +1,23 @@
+.btn {
+  border-radius: 12px;
+  font-size: 20px;
+  line-height: 30px;
+  width: 250px !important;
+  height: 50px !important;
+  margin: 0;
+  margin-top: 54px;
+}
+
+.btn:focus {
+  box-shadow: none;
+}
+
+.btn-tertiary {
+  background-color: var(--tph-tertiary);
+  color: var(--tph-text-secondary);
+}
+
+.btn-tertiary:hover {
+  background-color: #2C4962;
+  color: #8FA9BF;
+}
