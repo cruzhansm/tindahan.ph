@@ -34,11 +34,11 @@
 .sidenav-header-text > div {
   color: var(--tph-highlight) !important;
   line-height: 36px;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .sidenav-header-text > div:nth-child(2) {
-  line-height: 21px;
+  line-height: 10px;
   height: 18px;
   font-size: 14px !important;
 }
