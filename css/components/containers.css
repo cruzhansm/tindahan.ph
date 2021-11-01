@@ -9,3 +9,13 @@
   max-width: calc(100% - 435px) !important;
   min-height: 100vh;
 }
+
+.container-display {
+  height: min-content;
+  margin-bottom: 86px;
+}
+
+.container-product-feed {
+  width: 1130px !important;
+  padding-left: 82px;
+}

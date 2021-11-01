@@ -1,13 +1,10 @@
-.rounded {
+.rounded,
+.rounded-content {
     border-radius: 12px !important;
 }
 
 .circle {
     border-radius: 50%;
-}
-
-.border-content {
-    border-radius: 12px;
 }
   
 .border-input {

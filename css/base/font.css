@@ -10,3 +10,15 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Poppins-Regular';
+  src: url('../../assets/fonts/Poppins-Bold.eot');
+  src: url('../../assets/fonts/Poppins-Bold.eot?#iefix') format('embedded-opentype'),
+       url('../../assets/fonts/Poppins-Bold.svg#Poppins-Bold') format('svg'),
+       url('../../assets/fonts/Poppins-Bold.ttf') format('truetype'),
+       url('../../assets/fonts/Poppins-Bold.woff') format('woff'),
+       url('../../assets/fonts/Poppins-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+

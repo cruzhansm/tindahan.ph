@@ -1,10 +1,4 @@
-.container-display {
-  height: min-content;
-  margin-bottom: 86px;
-}
-
 .container-carousel {
-  margin-top: 65px !important;
   width: 1130px;
 }
 
@@ -28,9 +22,4 @@
 .container-home-carousel .fa-solid:hover {
   color: #647A8C !important;
   cursor: pointer;
-}
-
-.container-product-feed {
-  width: 1130px !important;
-  padding-left: 82px;
 }
