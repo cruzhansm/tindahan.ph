@@ -34,7 +34,7 @@
 .sidenav-header-text > div {
   color: var(--tph-highlight) !important;
   line-height: 36px;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .sidenav-header-text > div:nth-child(2) {
