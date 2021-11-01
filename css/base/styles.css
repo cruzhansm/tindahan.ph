@@ -22,12 +22,9 @@ input {
   color: #B9C8D3;
 }
 
-.fa {
-  font-family: "Font Awesome 6 Free" !important;
-}
-
 .fa,
 .fa-solid:hover {
+  font-family: "Font Awesome 6 Free" !important;
   color: var(--tph-text-highlight) !important;
   cursor: pointer;
 }
