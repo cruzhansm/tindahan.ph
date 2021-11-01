@@ -13,6 +13,9 @@
   <link rel="stylesheet" href="css/base/base.css">
   <link rel="stylesheet" href="css/components/components.css">
   <link rel="stylesheet" href="css/utilities/utilities.css">
+  <link rel="stylesheet" href="../../css/partner/shop-profile.css">
+
+  <script src="/js/common/user-logout.js"></script>
 </head>
 
 <script>
@@ -70,7 +73,18 @@
           <div class="header-icons">
             <i class="fa-solid fa-inbox"></i>
             <i class="fa-solid fa-gear"></i>
-            <div class="user-image-icon"></div>
+            <div class="user-image-icon" onclick="displayUserActions()">
+              <div class="user-image-actions visually-hidden">
+                <div class="user-image-action no-hover">
+                  <i class="fa-solid fa-user"></i>
+                  <div>userFirstName</div>
+                </div>
+                <div class="user-image-action">
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  <div>LOG OUT</div>
+                </div>
+              </div>
+            </div>
           </div>
         </header>
       </div>

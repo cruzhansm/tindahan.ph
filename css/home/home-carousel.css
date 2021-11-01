@@ -1,0 +1,36 @@
+.container-display {
+  height: min-content;
+  margin-bottom: 86px;
+}
+
+.container-carousel {
+  margin-top: 65px !important;
+  width: 1130px;
+}
+
+.container-home-carousel {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 806px;
+  height: 200px;
+  margin: auto;
+  margin-bottom: 2.5rem;
+}
+
+.container-home-carousel .fa-solid {
+  color: #20374A !important;
+  font-size: 38px;
+  font-weight: 700;
+}
+
+.container-home-carousel .fa-solid:hover {
+  color: #647A8C !important;
+  cursor: pointer;
+}
+
+.container-product-feed {
+  width: 1130px !important;
+  padding-left: 82px;
+}
