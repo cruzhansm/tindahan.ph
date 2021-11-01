@@ -20,10 +20,56 @@
 .user-image-icon {
   background-color: var(--placeholder);
   border-radius: 50%;
-  width: 41px;
-  height: 41px;
+  width: 40px;
+  height: 40px;
+  position: relative;
 }
 
 .user-image-icon:hover {
   cursor: pointer;
+}
+
+.user-image-actions {
+  cursor: default !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--tph-tertiary);
+  border-radius: 12px;
+  width: 210px;
+  height: 100px;
+  top: 50px;
+  right: 170px; /* parent width: 40px, elem width: 210px; 210px - 40px */
+  position: relative;
+  padding: 20px;
+}
+
+.user-image-action {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  align-items: center;
+}
+
+.user-image-action > .fa-solid {
+  margin-right: 20px;
+}
+
+.user-image-action > .fa-solid, 
+.user-image-action > div {
+  font-size: 18px;
+}
+
+.user-image-action:hover > i {
+  color: var(--tph-text-highlight);
+  cursor: pointer;
+}
+
+.user-image-action:hover > div {
+  color: var(--tph-text-highlight);
+  cursor: pointer;
+}
+
+.no-hover {
+  pointer-events: none;
 }

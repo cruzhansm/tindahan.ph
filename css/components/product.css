@@ -19,6 +19,11 @@
   line-height: 30px;
 }
 
+.product-feed-price {
+  color: var(--tph-text-highlight) !important; 
+  font-weight: 700; 
+}
+
 .product-feed-store {
   font-size: 18px !important;
   line-height: 27px;

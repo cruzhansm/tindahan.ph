@@ -15,6 +15,10 @@
   margin-bottom: 86px;
 }
 
+.container-carousel {
+  width: 1130px;
+}
+
 .container-home-carousel {
   display: flex;
   flex-direction: row;
