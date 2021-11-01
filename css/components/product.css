@@ -1,0 +1,31 @@
+.product-feed-block {
+  display: block;
+}
+
+.product-feed-img {
+  background-color: var(--placeholder) !important;
+  border-radius: 12px;
+  width: 230px;
+  height: 230px;
+  margin-bottom: 6px;
+}
+
+.product-feed-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 20px !important;
+  height: 26px;
+  line-height: 30px;
+}
+
+.product-feed-price {
+  color: var(--tph-text-highlight) !important; 
+  font-weight: 700; 
+}
+
+.product-feed-store {
+  font-size: 18px !important;
+  line-height: 27px;
+}
+

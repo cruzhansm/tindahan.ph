@@ -1,10 +1,18 @@
 .text-primary {
   color: var(--tph-text-primary) !important;
+  font-size: 24px;
 }
 
 .text-secondary {
   color: var(--tph-text-secondary) !important;
+  font-size: 24px;
 }
+
+.text-highlight {
+  color: var(--tph-text-highlight) !important;
+  font-size: 24px;
+}
+
 /* TEXT COLOR HELPER CLASSES */
 
 /* BACKGROUND COLOR HELPER CLASSES */
