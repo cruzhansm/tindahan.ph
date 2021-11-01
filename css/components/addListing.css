@@ -1,0 +1,62 @@
+.container-upload {
+  width: 805px;
+  height: 255px;
+  margin-left: 217px;
+  margin-top: 31px;
+
+  background: #C4C4C4;
+  border-radius: 10px;
+}
+
+.container-upload-caption {
+  width: 206px;
+  height: 20px;
+  margin-left: 217px;
+  margin-top: 8px;
+
+  font-family: Poppins-Regular;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+
+  color: #2CAD69;
+}
+
+.addListing-form-row {
+  width: 609px;
+  margin-left: 243px;
+  margin-top: 28px;
+}
+
+.addListing-form-star {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: #21374A;
+  width: 39px;
+  height: 39px;
+}
+
+.addListing-form-star > i {
+  color: var(--tph-text-secondary);
+  font-size: 20px;
+}
+
+.addListing-form-lngInput {
+  width: 515px;
+  height: 45px;
+  margin-bottom: 24px;
+}
+
+.addListing-form-caption {
+  font-size: 16px;
+  color: #64798B;
+}
+
+/* .addListing-form-checkbox {
+  -webkit-appearance: none;
+  background: #21374A;
+  border-radius: 3px;
+} */
