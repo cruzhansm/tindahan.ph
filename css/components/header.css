@@ -17,6 +17,13 @@
   height: 41px;
 }
 
+.header-text {
+  color: var(--tph-highlight) !important;
+  line-height: 36px;
+  font-weight: 700;
+  font-size: 24px;
+}
+
 .user-image-icon {
   background-color: var(--placeholder);
   border-radius: 50%;
