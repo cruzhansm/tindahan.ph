@@ -1,20 +1,19 @@
-.login-header{
+.login-header {
   display: flex;
   justify-content: flex-start;
-  margin-top:47px;
-  margin-left:53px;
+  margin-top: 47px;
+  margin-left: 53px;
   align-items: center;
 }
 
-.login-header-text{
-  font-weight:800;
-  font-size:29px;
+.login-header-text {
+  font-size: 29px;
   color: var(--tph-highlight);
 }
 
-.circle{
-  width:48px;
-  height:48px;
+.circle {
+  width: 48px;
+  height: 48px;
   background-color: var(--placeholder);
-  margin-right:17px;
+  margin-right: 17px;
 }

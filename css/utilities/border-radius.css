@@ -1,7 +1,15 @@
-.rounded{
+.rounded {
     border-radius: 12px !important;
 }
 
-.circle{
-    border-radius:50%;
+.circle {
+    border-radius: 50%;
 }
+
+.border-content {
+    border-radius: 12px;
+  }
+  
+  .border-input {
+    border-radius: 73px;
+  }
