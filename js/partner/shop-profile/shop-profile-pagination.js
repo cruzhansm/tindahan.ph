@@ -23,7 +23,6 @@ function goToPredecessor() {
   cpage = parseInt(cpage);
 
   if(cpage != 1) {
-    let prevBtn = Array.from(document.querySelectorAll('a'))[0];
     let npage = document.querySelector('.pagination');
     let current = document.querySelector('.page-link.current');
     let next = Array.from(npage.querySelectorAll('.page-link'))[cpage - 1];
@@ -49,7 +48,6 @@ function goToSuccessor() {
   cpage = parseInt(cpage);
 
   if(cpage != 3) {
-    let nextBtn = Array.from(document.querySelectorAll('a'))[4];
     let npage = document.querySelector('.pagination');
     let current = document.querySelector('.page-link.current');
     let next = Array.from(npage.querySelectorAll('.page-link'))[cpage + 1];
