@@ -38,12 +38,15 @@
 }
 
 .form-select,
-.form-select:focus {
+.form-select:focus
+.form-select > select {
   background-color: var(--tph-tertiary);
   color: var(--input);
   font-size: 18px;
   border: none;
   box-shadow: none;
+  padding-left: 26px;
+  outline: none;
 }
 
 .form-check-input,
