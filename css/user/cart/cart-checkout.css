@@ -1,0 +1,26 @@
+.container-checkout {
+  background-color: var(--tph-secondary) !important;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 320px;
+  height: 175px;
+  padding: 38px 40px 28px 40px;
+}
+
+.cart-checkout-total {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 26px;
+}
+
+.cart-checkout-total > span {
+  font-size: 18px;
+}
+
+.cart-checkout-btn {
+  width: 100% !important;
+}
+

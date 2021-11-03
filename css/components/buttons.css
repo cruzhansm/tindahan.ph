@@ -21,12 +21,9 @@
   background-color: var(--tph-highlight);
 }
 
-.btn-primary:hover {
-  background-color: var(--tph-button-hover);
-}
-
+.btn-primary:hover,
 .btn-primary:focus {
-  background-color: var(--tph-text-highlight);
+  background-color: var(--tph-button-hover);
   outline: 0;
 }
 

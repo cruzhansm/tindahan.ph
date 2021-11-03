@@ -15,6 +15,31 @@
   outline: none;
 }
 
+.form-check {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 0;
+  min-height: max-content;
+}
+
+.form-label,
+.form-check-label {
+  color: var(--tph-text-primary) !important;
+  font-size: 18px;
+  line-height: 18px;
+  margin-top: 0;
+}
+
+.form-check-input {
+  background-color: var(--tph-tertiary) !important;
+  border: none;
+  border-radius: 0 !important;
+  width: 20px;
+  height: 20px;
+  margin-top: 0;
+  margin-right: 12px !important;
+}
+
 .form-search {
   width: 420px;
   height: 45px;
