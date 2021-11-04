@@ -57,18 +57,20 @@
 }
 
 .user-image-action > .fa-solid, 
-.user-image-action > div {
+.user-image-action > div,
+.user-image-action > a  {
+  color: var(--tph-text-primary) !important;
   font-size: 18px;
+  text-decoration: none;
 }
 
 .user-image-action:hover > i {
-  color: var(--tph-text-highlight);
+  color: var(--tph-text-highlight) !important;
   cursor: pointer;
 }
 
-.user-image-action:hover > div {
-  color: var(--tph-text-highlight);
-  cursor: pointer;
+.user-image-action:hover > a {
+  color: var(--tph-text-highlight) !important;
 }
 
 .no-hover {

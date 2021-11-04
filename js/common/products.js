@@ -1,10 +1,12 @@
 class Product {
+  pid;
   pname;
   pprice;
   pstore;
   pimg;
 
-  constructor(pname, pprice, pstore, pimg) {
+  constructor(pid, pname, pprice, pstore, pimg) {
+    this.pid = pid;
     this.pname = pname;
     this.pprice = pprice;
     this.pstore = pstore;
@@ -14,9 +16,13 @@ class Product {
 
 class FeedProduct extends Product {
 
-  constructor(pname, pprice, pstore, pimg) {
-    super(pname, pprice, pstore, pimg);
-    
+  constructor(pid, pname, pprice, pstore, pimg) {
+    super(pid, pname, pprice, pstore, pimg);
+
+    return this.#createFeedProduct();
+  }
+
+  #createFeedProduct() {
     let feedBlock = document.createElement('div');
     let feedImg = document.createElement('div');
     let feedInfo = document.createElement('div');

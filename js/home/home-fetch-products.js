@@ -24,7 +24,8 @@ function fetchBatchProducts() {
   }
 
   while(PRODUCT_START_POS < limit && PRODUCT_FETCH_MAX === false) {
-    let product = new FeedProduct('Product', 
+    let product = new FeedProduct('1',
+                                  'Product', 
                                   '0', 
                                   'Partner', 
                                   '../../assets/images');

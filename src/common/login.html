@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tindahan.ph — Log in</title>
+
+  <link rel="icon" type="image/png" href="/assets/images/tph-logo-128px.png"/>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://kit.fontawesome.com/056f419e6a.js" crossorigin="anonymous"></script> 
+
+  <link rel="stylesheet" href="/css/base/base.css">
+  <link rel="stylesheet" href="/css/components/components.css">
+  <link rel="stylesheet" href="/css/utilities/utilities.css">
+  <link rel="stylesheet" href="/css/login/login.css">
+</head>
+
+<script>
+  window.onload = () => {
+
+    let loginBox = document.getElementById('login-box');
+    let signupBox = document.getElementById('signup-box');
+    let password = true;
+    let loginPassword = document.getElementById('login-password');
+    let signupPassword = document.getElementById('signup-password');
+    let signupConfirm = document.getElementById('signup-confirm');
+    
+    
+    document.getElementById('switch-login').addEventListener('click', () => {
+      loginBox.classList.toggle('visually-hidden');
+      signupBox.classList.toggle('visually-hidden');
+    });
+
+    document.getElementById('switch-signup').addEventListener('click', () => {
+      loginBox.classList.toggle('visually-hidden');
+      signupBox.classList.toggle('visually-hidden');
+    });
+
+    loginPassword.querySelector('i').addEventListener('click', () => {
+      if(password) {
+        loginPassword.querySelector("input").setAttribute('type','text');
+        loginPassword.querySelector("i").style.color = '#B9C8D3';
+      }
+      else {
+        loginPassword.querySelector("input").setAttribute('type','password');
+        loginPassword.querySelector("i").style.color = 'var(--tph-text-secondary)';
+      }
+      password = !password;
+    });
+
+    signupPassword.querySelector('i').addEventListener('click', () => {
+      if(password) {
+        signupPassword.querySelector("input").setAttribute('type','text');
+        signupPassword.querySelector("i").style.color = '#B9C8D3';
+      }
+      else {
+        signupPassword.querySelector("input").setAttribute('type','password');
+        signupPassword.querySelector("i").style.color = 'var(--tph-text-secondary)';
+      }
+      password = !password;
+    });
+
+    signupConfirm.querySelector('i').addEventListener('click', () => {
+      if(password) {
+        signupConfirm.querySelector("input").setAttribute('type','text');
+        signupConfirm.querySelector("i").style.color = '#B9C8D3';
+      }
+      else {
+        signupConfirm.querySelector("input").setAttribute('type','password');
+        signupConfirm.querySelector("i").style.color = 'var(--tph-text-secondary)';
+      }
+      password = !password;
+    });
+  }
+</script>
+
+<body class="bg-primary">
+  <div class="login-header">
+    <img src="../../assets/images/tph-logo-512px.png" class="login-header-img"></img>
+    <div class="login-header-text fw-bolder">tindahan.ph</div>
+  </div>
+  <div class="body">
+      <div class="body-banner"></div>
+      <div class="body-login rounded" id="login-box">
+          <div class="body-login-title">log in</div>
+          <input type="email" placeholder="email" class="form-control border-input" required>
+          <div class="form-password border-input" id="login-password">
+            <input type="password" placeholder="password" class="form-control border-input password" required>
+            <i class="fas fa-eye"></i>
+          </div>
+          <button class="btn btn-primary border-content">log in</button>
+          <div class="body-login-signup-link">
+              New here? <span id="switch-login">Sign up</span>
+          </div>
+          
+      </div>
+      <div class="body-signup rounded visually-hidden" id="signup-box">
+        <div class="body-signup-title">sign up</div>
+        <input type="email" placeholder="email" class="form-control border-input" required>
+        <input type="text" placeholder="first name" class="form-control border-input" required>
+        <input type="text" placeholder="last name" class="form-control border-input" required>
+        <div class="form-password border-input" id="signup-password">
+          <input type="password" placeholder="password" id="passwordInput" class="form-control border-input password" required>
+          <i id="text-toggle" class="fas fa-eye"></i>
+        </div>
+        <div class="form-password border-input" id="signup-confirm">
+          <input type="password" placeholder="confirm password" id="password-input" class="form-control border-input password" required>
+          <i id="text-toggle" class="fas fa-eye"></i>
+        </div>
+        <button class="btn btn-primary border-content">sign up</button>
+        <div class="body-signup-terms">
+          By signing up, you agree to tindahan.ph's</br>
+          Terms of Service and Privacy Policy
+        </div>
+        <div class="body-signup-login-link">
+          Have an account? <span id="switch-signup">Log in</span>
+        </div>
+      </div>
+  </div>
+  <div class="copyright mx-auto">
+    <div class="text-highlight">about tindahan.ph</div>
+    <div class="text-secondary">&copy 2021 tindahan.ph. All Rights Reserved.</div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
