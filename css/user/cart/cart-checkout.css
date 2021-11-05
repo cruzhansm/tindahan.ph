@@ -1,3 +1,16 @@
+/* TEMPORARY, DELETE AFTER TESTING */
+.checkout {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.checkout-area {
+  height: 700px;
+}
+
+/* END OF TEMPORARY */
+
 .container-checkout {
   background-color: var(--tph-secondary) !important;
   border-radius: 12px;

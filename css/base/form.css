@@ -30,15 +30,21 @@
   margin-top: 0;
 }
 
-.form-check-input {
+.form-check-input,
+.form-check-input:checked,
+.form-check-input:active,
+.form-check-input:focus  {
   background-color: var(--tph-tertiary) !important;
   border: none;
   border-radius: 0 !important;
+  box-shadow: none;
   width: 20px;
   height: 20px;
   margin-top: 0;
   margin-right: 12px !important;
+  outline: none;
 }
+
 
 .form-search {
   width: 420px;

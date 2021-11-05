@@ -27,17 +27,17 @@ function updateProduct(operation, store, product) {
     totalPriceElem.innerText = `P ${(currentTotal - target.price).toString()}`;
     target.quantity--;
     
-    if(currentNumber == 0) {
-      promptProductRemoval();
-    }
+    if(currentNumber == 0) { promptProductRemoval(); }
   }
   else if(operation == 2) {
     quantityElem.innerText = (++currentNumber).toString();
     totalPriceElem.innerText = `P ${(currentTotal + target.price).toString()}`;
     target.quantity++;
   }
+
+  USER_CART.updateTotalPrice(USER_CART.getTotalPrice());
   
-  console.log(`AFTER: Q: ${target.quantity} P: ${(target.quantity * target.price)}`);
+  // console.log(`AFTER: Q: ${target.quantity} P: ${(target.quantity * target.price)}`);
 }
 
 function promptProductRemoval() {
@@ -56,19 +56,18 @@ function removeProduct() {
 
   // Destroy product element
   removeProduct.remove();
-  if(store.childNodes[1].childElementCount == 0) {
-    store.remove();
-  }
+
+  if(store.childNodes[1].childElementCount == 0) { store.remove(); }
 
   // Remove from cart
   target.splice(CURRENT_PRODUCT, 1);
 
   // Dismiss modal
   modal.hide();
-
 }
 
 function cancelRemoval() {
+
   let target = USER_CART.cartStores[CURRENT_STORE].sproducts;
   let store = document.querySelector(`#s${CURRENT_STORE + 1}`);
   let product = store.querySelector(`#p${CURRENT_PRODUCT + 1}`);

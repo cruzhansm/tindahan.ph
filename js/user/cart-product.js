@@ -2,6 +2,7 @@ class Cart {
   ownerID;
   storeList;
   cartStores;
+  checkoutPrice;
   checkoutProducts;
 
   constructor(ownerID) {
@@ -19,6 +20,7 @@ class Cart {
   }
 
   createCart() {
+
     let cart = document.querySelector('.container-form');
 
     this.storeList.forEach((store, index) => {
@@ -27,33 +29,50 @@ class Cart {
     });
   }
 
-  selectAll() {
-
-  }
-
   checkout() {
-    
+
+    this.checkoutProducts = [];
+
+    let products = Array.from(document.querySelectorAll('.form-check-input:not([id]):checked'));
+
+    products.forEach((product) => {
+      let sindex = product.value.slice(1, 2);
+      let pindex = product.value.slice(3);
+
+      product = this.cartStores
+                  .filter((store) => { 
+                    if(store.sid == sindex) { return store; } 
+                  })[0]
+                  .sproducts.filter((item) => {
+                    if(item.id == pindex) { return item; }
+                  })[0];
+
+      console.log(product);
+      this.checkoutProducts.push(product);
+    });
   }
 
-  addToProductList(product) {
-    this.checkoutProducts.push(product);
+  getTotalPrice() {
+    return Array.from(document.querySelectorAll('.form-check-input'))
+                .filter((checkbox) => {
+                  if(checkbox.checked) { return checkbox; }
+                })
+                .filter((checkbox) => {
+                  if(!checkbox.hasAttribute('id')) { return checkbox; }
+                })
+                .map((checkbox) => { 
+                  return checkbox.parentElement.parentElement
+                        .nextElementSibling.lastElementChild 
+                })
+                .map((priceDiv) => { return priceDiv.innerText.slice(2) })
+                .map((price) => { return parseInt(price) })
+                .reduce((a, b) => { return a + b }, 0);
   }
 
-  addProductToCart() {
-    // BACKEND PUSH TO CART
-  }
+  updateTotalPrice(totalPrice) {
 
-  removeProductFromCart(product) {
-    // UPDATE FRONTEND
-    // BACKEND REMOVE FROM CART
-  }
-
-  removeStoreFromCart() {
-    // BACKEND REMOVE ALL OCCURENCES OF PRODUCTS BELONG TO THIS STORE
-  }
-
-  updateTotalPrice() {
-
+    this.checkoutPrice = totalPrice;
+    setTotalCheckoutPrice(totalPrice);
   }
 }
 
@@ -61,18 +80,16 @@ class CartStore {
   sid;
   sname;
   sproducts;
-  // cart;
 
   constructor(sid, sname) {
     this.sid = sid;
     this.sname = sname;
-    // this.cart = cart;
     this.sproducts = [
       {
         'id': 1,
-        'name': 'Abu Name',
+        'name': 'Overpriced Fries',
         'price': 100,
-        'store': 'Partner',
+        'store': this.sid,
         'img': '/assets/images/fries.jpg',
         'variation': 1,
         'quantity': 5,
@@ -80,9 +97,9 @@ class CartStore {
       },
       {
         'id': 2,
-        'name': 'Dhabi Name',
-        'price': 75,
-        'store': 'Partner',
+        'name': 'Okay-ish Fries',
+        'price': 25,
+        'store': this.sid,
         'img': '/assets/images/fries.jpg',
         'variation': 1,
         'quantity': 1,
@@ -143,7 +160,7 @@ class CartStore {
                                        product.variation,
                                        product.quantity,
                                        product.cart);
-      store.innerHTML += (newProduct.createCartProduct(this.sid));
+      store.innerHTML += (newProduct.createCartProduct());
     });
     
     // Store container
@@ -168,13 +185,13 @@ class CartProduct extends Product {
     this.cart = cart;
   }
 
-  createCartProduct(sid) {
+  createCartProduct() {
 
     return `
       <div class="cart-product-group" id="p${this.pid}">
         <div class="cart-product">
           <div class="cart-product-select">
-            <input class="form-check-input" type="checkbox" value="product${this.pid}">
+            <input class="form-check-input" type="checkbox" value="s${this.pstore}p${this.pid}">
             <img class="cart-product-img" src="${this.pimg}">
           </div>
           <div class="cart-product-info">
@@ -185,11 +202,11 @@ class CartProduct extends Product {
         <div class="cart-product-misc">
           <div>P ${this.pprice}</div>
           <div class="cart-product-quantity">
-            <i class="fa-solid fa-circle-minus" onclick="updateProduct(1, ${sid}, ${this.pid})"></i>
+            <i class="fa-solid fa-circle-minus" onclick="updateProduct(1, ${this.pstore}, ${this.pid})"></i>
             <span>${this.pquantity.toString()}</span>
-            <i class="fa-solid fa-circle-plus" onclick="updateProduct(2, ${sid}, ${this.pid})"></i>
+            <i class="fa-solid fa-circle-plus" onclick="updateProduct(2, ${this.pstore}, ${this.pid})"></i>
           </div>
-          <div>P ${this.pprice * this.pquantity}</div>
+          <div>P ${(this.pprice * this.pquantity).toString()}</div>
         </div>
       </div>`;
 
@@ -267,12 +284,4 @@ class CartProduct extends Product {
 
     // return container;
   }
-
-  // addToCart() {
-  //   this.cart.addToProductList(this);
-  // }
-
-  // removeFromCart() {
-  //   this.cart.removeProductFromCart(product);
-  // }
 }
