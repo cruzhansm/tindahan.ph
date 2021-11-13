@@ -68,16 +68,47 @@
   color: var(--tph-text-secondary)
 }
 
+.order-status-list {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  width: 100%;
+  margin-top: 27px;
+}
+
+.order-status-list > * {
+  margin-left: 15px;
+}
+
 .order-product-status {
-  background-color: var(--tph-text-highlight);
-  border-radius: 6px;
+  font-size: 18px;
+  width: max-content;
+  padding: 10px;
+}
+
+.order-product-status.active,
+.order-product-status.rate {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 18px;
-  width: max-content;
+  background-color: var(--tph-text-highlight);
+  border-radius: 6px;
+  min-width: 172px;
   height: 45px;
-  padding: 10px;
   text-transform: uppercase;
-  margin-top: 27px;
+}
+
+.order-product-status.rate {
+  background-color: var(--tph-tertiary);
+}
+
+.order-product-status.cancelled {
+  font-size: 21px;
+  text-transform: uppercase;
+}
+
+.order-product-status.deliver {
+  color: var(--tph-text-secondary);
 }
