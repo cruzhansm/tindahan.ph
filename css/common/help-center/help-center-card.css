@@ -1,0 +1,10 @@
+.help-card {
+  background-color: var(--tph-secondary);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 318px;
+  height: 100%;
+}

@@ -1,0 +1,31 @@
+.header {
+  margin-bottom: 34px;
+}
+
+.container-help {
+  width: 100%;
+  padding-left: 33px;
+}
+
+.container-help-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 410px;
+  gap: 30px;
+}
+
+.container-help-group:nth-child(1) {
+  margin-bottom: 53px;
+}
+
+.container-help-cards {
+  background-color: yellow;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: max-content;
+  height: 340px;
+  padding-left: 40px;
+  gap: 48px;
+}
