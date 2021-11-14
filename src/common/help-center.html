@@ -19,6 +19,7 @@
 
   <script src="../../js/common/auto-resizer.js"></script>
   <script src="../../js/common/user-logout.js"></script>
+  <script src="../../js/common/modal.js"></script>
 </head>
 
 <script>
@@ -28,7 +29,67 @@
   }
 </script>
 
+<!-- TODO: -->
+<!-- 1. Styling of individual modals for Report a Problem and Feedback. -->
+<!-- 2. Hide the help cards and show the accordions for Account Settings. -->
+<!-- 2. (cont) element.classList.toggle('visually-hidden') for hide/no hide -->
+<!-- 3. You can refer to the Bootstrap 5 component Accordion documentation. -->
+<!-- 4. Styles can be found in css/common/help-center/ -->
+<!-- 5. The structure of the modal is already created, just needs styling. -->
+<!-- 6. If you find that the modal lacks certain elements, feel free to add. -->
+<!-- 7. Create the third modal "Sent" that appears as modal is submitted. -->
+<!-- 8. Define all JS behavior for the forms and accordions, if possible. -->
+<!-- 9. Acc. to hannah, accordions as well as for the Privacy/Transactions. -->
+<!-- 10. Delete this once done. Thanks! -->
+
 <body class="bg-primary">
+
+  <!-- This is the modal for the Report a Problem -->
+  <!-- Modal behavior such as show/dismiss is found in js/common/modal.js -->
+  <!-- Modal styles can be found at common/help-center/help-center-modal.css -->
+  <!-- Press ESC to temporarily dismiss the modal if no Cancel button -->
+  <div class="modal" id="reportProblem" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h5 class="modal-title">How can we help?</h5>
+      </div>
+      <div class="modal-body">
+        <form action="">
+          <input type="text" class="form-control">
+          <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+          <input type="file" class="form-control">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" onclick="dismissModal(reportProblem)">Cancel</button>
+        <button type="submit" class="btn">Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- This is the modal for the Feedback -->
+  <!-- Modal behavior such as show/dismiss is found in js/common/modal.js -->
+  <!-- Modal styles can be found at common/help-center/help-center-modal.css -->
+  <!-- Press ESC to temporarily dismiss the modal if no Cancel button -->
+  <div class="modal" id="feedback" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h5 class="modal-title">How can we improve?</h5>
+      </div>
+      <div class="modal-body">
+        <form action="">
+          <input type="text" class="form-control">
+          <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+          <input type="file" class="form-control">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" onclick="dismissModal(feedback)">Cancel</button>
+        <button type="submit" class="btn">Submit</button>
+      </div>
+    </div>
+  </div>
+
   <div class="row m-0">
     <div class="col left">
       <div class="sidenav">
@@ -94,16 +155,36 @@
           <div class="container-help-group">
             <div class="fs-24 text-highlight fw-bold">Popular Topics</div>
             <div class="container-help-cards">
-              <div class="help-card"></div>
-              <div class="help-card"></div>
-              <div class="help-card"></div>
+              <div class="help-card">
+                <i class="fa-solid fa-user help-card-icon"></i>
+                <div class="help-card-title">Account Settings</div>
+                <div class="help-card-detail">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+              </div>
+              <div class="help-card">
+                <i class="fa-solid fa-lock help-card-icon"></i>
+                <div class="help-card-title">Privacy & Security</div>
+                <div class="help-card-detail">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+              </div>
+              <div class="help-card">
+                <i class="fa-solid fa-cash-register help-card-icon"></i>
+                <div class="help-card-title">Transactions</div>
+                <div class="help-card-detail">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+              </div>
             </div>
           </div>
           <div class="container-help-group">
             <div class="fs-24 text-highlight fw-bold">Support</div>
             <div class="container-help-cards">
-              <div class="help-card"></div>
-              <div class="help-card"></div>
+              <div class="help-card" onclick="showModal(reportProblem)">
+                <i class="fa-solid fa-bug help-card-icon"></i>
+                <div class="help-card-title">Report a Problem</div>
+                <div class="help-card-detail">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+              </div>
+              <div class="help-card" onclick="showModal(feedback)">
+                <i class="fa-solid fa-envelope-open-text help-card-icon"></i>
+                <div class="help-card-title">Feedback</div>
+                <div class="help-card-detail">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+              </div>
             </div>
           </div>
         </div>

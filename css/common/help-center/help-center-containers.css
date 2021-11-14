@@ -20,7 +20,6 @@
 }
 
 .container-help-cards {
-  background-color: yellow;
   display: flex;
   flex-direction: row;
   align-items: center;
