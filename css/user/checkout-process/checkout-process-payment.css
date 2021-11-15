@@ -1,0 +1,63 @@
+.checkout-process-payment {
+  width: 324px;
+  margin-left: 30px;
+}
+
+.checkout-process-payment > input {
+  width: 324px;
+  margin-bottom: 20px;
+}
+
+.checkout-process-payment > label {
+  color: #B9C7D3;
+  padding: 0;
+  margin-left: 12px;
+}
+
+.checkout-process-payment-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 43px;
+  width: calc(100% - 16px);
+}
+
+.checkout-payment-expiry,
+.checkout-payment-cvv {
+  display: block;
+}
+
+.checkout-process-payment > label,
+.checkout-payment-expiry > label,
+.checkout-payment-cvv > label {
+  margin-bottom: 5px;
+}
+
+.checkout-payment-expiry-fields {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 173px;
+}
+
+.checkout-process-payment-inline input,
+.checkout-process-payment-inline * input:focus {
+  width: 71px;
+  padding-left: 15px;
+}
+
+#cccvv {
+  width: 93px;
+}
+
+#cccvv,
+#ccdetails {
+  -moz-appearance: textfield;
+}
+
+#cccvv::-webkit-outer-spin-button,
+#cccvv::-webkit-inner-spin-button,
+#ccdetails::-webkit-outer-spin-button,
+#ccdetails::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

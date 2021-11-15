@@ -21,10 +21,10 @@ CREATE TABLE users_info(
 
 CREATE TABLE users_address(
   user_id           INT(6)            AUTO_INCREMENT,
-  street            VARCHAR(100)      NOT NULL,
-  city              VARCHAR(50)       NOT NULL,
-  region            INT(2)            NOT NULL,
-  zipcode           INT(4)            NOT NULL,
+  street            VARCHAR(100)                    ,
+  city              VARCHAR(50)                     ,
+  region            INT(2)                          ,
+  zipcode           INT(4)                          ,
 
   CONSTRAINT Users_Address_PK PRIMARY KEY(user_id),
   CONSTRAINT Users_Address_FK FOREIGN KEY(user_id) REFERENCES users(user_id)
