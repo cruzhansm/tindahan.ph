@@ -9,14 +9,15 @@
   padding-right: 126px;
   max-width: calc(100% - 435px) !important;
   min-height: calc(100% - 72px);
+  margin-bottom: 64px;
 }
 
 .container-display {
   height: min-content;
-  margin-bottom: 86px;
 }
 
 .container-product-feed {
   width: 1130px !important;
   padding-left: 82px;
+  margin-bottom: 60px;
 }

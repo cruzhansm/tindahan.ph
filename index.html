@@ -17,20 +17,14 @@
   <link rel="stylesheet" href="css/utilities/utilities.css">
   <link rel="stylesheet" href="css/home/home.css">
 
+  <script src="js/common/auto-resizer.js"></script>
   <script src="js/common/products.js"></script>
   <script src="js/common/user-logout.js"></script>
   <script src="js/home/home-fetch-products.js"></script>
 </head>
 
 <script>
-  window.onload = () => {
-    fetchBatchProducts();
-  }
-
-  function noSubmit(e) {
-    
-    e.preventDefault();
-  }
+  window.onload = () => { fetchBatchProducts(); }
 </script>
 
 <body class="bg-primary">
@@ -48,7 +42,7 @@
             <i class="fa-solid fa-house-chimney sidenav-link-icon"></i>
             <div class="sidenav-link-text">Home</div>
           </a>
-          <a href="#" class="sidenav-link">
+          <a href="src/common/categories.html" class="sidenav-link">
             <i class="fa-solid fa-cubes sidenav-link-icon"></i>
             <div class="sidenav-link-text">Categories</div>
             </a>
@@ -56,15 +50,15 @@
             <i class="fa-solid fa-cart-shopping sidenav-link-icon"></i>
             <div class="sidenav-link-text">Cart</div>
           </a>
-          <a href="/src/user/user-purchases.html" class="sidenav-link">
+          <a href="src/user/user-purchases.html" class="sidenav-link">
             <i class="fa-solid fa-bag-shopping sidenav-link-icon"></i>
             <div class="sidenav-link-text">My Purchases</div>
           </a>
-          <a href="#" class="sidenav-link">
+          <a href="src/common/help-center.html" class="sidenav-link">
             <i class="fa-solid fa-headset sidenav-link-icon"></i>
             <div class="sidenav-link-text">Help Center</div>
           </a>
-          <a href="/src/user/user-register-partner.html" class="sidenav-link">
+          <a href="src/user/user-register-partner.html" class="sidenav-link">
             <i class="fa-solid fa-handshake sidenav-link-icon"></i>
             <div class="sidenav-link-text">Be a Partner</div>
           </a>
@@ -88,7 +82,7 @@
                 </div>
                 <div class="user-image-action">
                   <i class="fa-solid fa-right-from-bracket"></i>
-                  <a href="/src/common/login.html">LOG OUT</a>
+                  <a href="src/common/login.html">LOG OUT</a>
                 </div>
               </div>
             </div>

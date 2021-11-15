@@ -90,7 +90,7 @@ class CartStore {
         'name': 'Overpriced Fries',
         'price': 100,
         'store': this.sid,
-        'img': '/assets/images/fries.jpg',
+        'img': '../../assets/images/fries.jpg',
         'variation': 1,
         'quantity': 5,
         'cart': 1
@@ -100,7 +100,7 @@ class CartStore {
         'name': 'Okay-ish Fries',
         'price': 25,
         'store': this.sid,
-        'img': '/assets/images/fries.jpg',
+        'img': '../../assets/images/fries.jpg',
         'variation': 1,
         'quantity': 1,
         'cart': 1

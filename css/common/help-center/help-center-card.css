@@ -1,0 +1,38 @@
+.help-card {
+  background-color: var(--tph-secondary);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 318px;
+  height: 100%;
+}
+
+.help-card:hover,
+.help-card:hover .help-card-icon {
+  color: var(--tph-text-highlight);
+  cursor: pointer;
+}
+
+.help-card-icon {
+  color: #B9C7D3;
+  font-size: 168px;
+  margin-bottom: 20px;
+}
+
+.help-card-title {
+  color: var(--tph-text-highlight);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 27px;
+  margin-bottom: 5px;
+}
+
+.help-card-detail {
+  color: var(--tph-text-secondary);
+  width: 222px;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+}
