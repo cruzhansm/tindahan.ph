@@ -1,0 +1,42 @@
+.register-hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 510px;
+}
+
+.register-hero-top, 
+.register-hero-message {
+  height: min-content;
+}
+
+.register-hero-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 333px;
+  width: inherit;
+}
+
+.register-hero-bold {
+  color: var(--tph-text-highlight);
+  font-size: 96px;
+  font-weight: 700;
+  line-height: 100px;
+  width: 45%;
+  text-align: right;
+}
+
+.register-hero-img {
+  width: 528px;
+  height: 333px;
+}
+
+.register-hero-message {
+  color: var(--tph-text-secondary);
+  font-size: 18px;
+  text-align: center;
+  width: 911px;
+}

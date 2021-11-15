@@ -8,7 +8,7 @@
   margin-left: 61px;
   padding-right: 126px;
   max-width: calc(100% - 435px) !important;
-  /* min-height: max-content; */
+  min-height: calc(100% - 72px);
   margin-bottom: 64px;
 }
 
