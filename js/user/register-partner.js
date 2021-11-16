@@ -1,3 +1,5 @@
+window.onload = () => { attachCharCountListener(shdesc, charcount, 200); }
+
 function showRegisterForm() {
 
   const registerPrompt = document.querySelector('.register-prompt');
@@ -11,16 +13,6 @@ function showRegisterForm() {
   right.style.marginBottom = '90px';
   registerPrompt.classList.toggle('visually-hidden');
   registerForm.classList.toggle('visually-hidden');
-}
-
-function updateCharacterCount() {
-
-  const field = document.querySelector('.character-count');
-  let count = document.querySelector('#shdesc').value.length;
-
-  if(count <= 300) {
-    field.innerText = count;
-  }
 }
 
 function proceedToReview(e) {
