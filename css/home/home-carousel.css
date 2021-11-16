@@ -27,3 +27,7 @@
   color: #647A8C !important;
   cursor: pointer;
 }
+
+.carousel-item.active {
+  cursor: pointer;
+}
