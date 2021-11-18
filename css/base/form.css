@@ -132,6 +132,7 @@ textarea.form-control:focus {
   display: inline-block;
   width: 100%;
   position: relative;
+  margin-bottom: 20px;
 }
 
 .form-contact-number > input,
