@@ -18,13 +18,16 @@
   <link rel="stylesheet" href="css/home/home.css">
 
   <script src="js/common/auto-resizer.js"></script>
+  <script src="js/common/fetch-products.js"></script>
+  <script src="js/common/search.js"></script>
   <script src="js/common/products.js"></script>
   <script src="js/common/user-logout.js"></script>
-  <script src="js/home/home-fetch-products.js"></script>
 </head>
 
 <script>
-  window.onload = () => { fetchBatchProducts(); }
+
+  window.onload = () => { fetchProductsByBatch(); }
+
 </script>
 
 <body class="bg-primary">
@@ -68,7 +71,7 @@
     <div class="col right">
       <div class="container-display">
         <header class="header">
-          <form action="noSubmit(event)">
+          <form onsubmit="search(event)">
             <input type="search" class="form-control form-search border-input" placeholder="Search">
           </form>
           <div class="header-icons">
