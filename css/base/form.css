@@ -88,8 +88,8 @@ input.form-control:focus {
 }
 
 .btn-primary {
-  width: 316px !important;
-  height: 48px !important;
+  width: 316px;
+  height: 48px;
 }
 
 .form-select,
