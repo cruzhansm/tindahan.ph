@@ -1,3 +1,7 @@
+.register-form {
+  border-radius: 12px;
+}
+
 .register-form > form {
   display: flex;
   flex-direction: column;

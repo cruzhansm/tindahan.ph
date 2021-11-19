@@ -159,4 +159,8 @@ function checkoutCart() {
       `
     });
   }
+
+  window.setTimeout(() => {
+    window.location.href = '../../src/user/user-checkout-process.html';
+  }, 1000);
 }

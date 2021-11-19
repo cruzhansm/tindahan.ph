@@ -1,0 +1,140 @@
+.shop-modal-dialog {
+  padding-top: 131px;
+}
+
+.shop-modal-content {
+  display: block;
+  width: 503px;
+  height: 703px;
+}
+
+.shop-modal-header {
+  background-color: var(--tph-tertiary);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 28px;
+  margin-left: 36px;
+  width: 30px;
+  height: 30px;
+}
+
+.shop-modal-header:hover {
+  cursor: pointer;
+}
+
+.shop-modal-header > i {
+  color: #64798B;
+  font-size: 13px;
+}
+
+.shop-modal-body {
+  margin: 0;
+  width: 100%;
+  height: 637px;
+}
+
+.shop-modal-body-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 324px;
+  height: inherit;
+}
+
+.shop-modal-form-title {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.shop-modal-form-upload {
+  height: 148px;
+  width: 148px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.shop-modal-form-img {
+  background-color: var(--placeholder);
+  border-radius: 50%;
+  height: 148px;
+  width: 148px;
+}
+
+.shop-modal-form-icon {
+  background-color: var(--tph-highlight);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 27px;
+  height: 27px;
+  position: absolute;
+  bottom: 0;
+  right: 6px;
+}
+
+.shop-modal-form-icon > i {
+  font-size: 15px;
+}
+
+.shop-modal-form-icon > i:hover {
+  color: var(--tph-text-primary) !important;
+}
+
+.shop-modal-form-icon > input[type=file] {
+  display: none;
+}
+
+.shop-modal-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.shop-modal-form-desc {
+  color: #64798B;
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.shop-modal-form-desc > label,
+.shop-modal-form > label {
+  color: #64798B;
+  width: max-content;
+  margin-left: 13px;
+  margin-bottom: 5px;
+}
+
+.shop-modal-form > input,
+.shop-modal-form > textarea {
+  margin-bottom: 20px;
+}
+
+.shop-modal-form-count {
+  margin-bottom: 3px;
+  margin-right: 20px;
+}
+
+.shop-modal-form-count > span {
+  color: #64798B;
+  font-size: 12px;
+}
+
+.shop-modal-button-group {
+  display: flex;
+  justify-content: space-between;
+  width: 378px;
+  padding-bottom: 20px;
+}
+
+.shop-modal-button-group > button,
+.shop-modal-button-group > button:hover {
+  color: var(--tph-text-primary);
+  width: 172px;
+}

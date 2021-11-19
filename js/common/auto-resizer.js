@@ -1,5 +1,5 @@
 // window.onload = () => {
-  
+
 //   const right = document.querySelector('.col.right');
 //   const lastElem = right.lastElementChild;
 

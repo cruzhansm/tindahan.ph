@@ -1,0 +1,40 @@
+.checkout-progress {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  height: 70px;
+  position: relative;
+}
+
+.checkout-progress-step {
+  background-color: var(--input);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  color: var(--tph-text-primary);
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.checkout-progress-step.done {
+  background-color: var(--tph-highlight);
+}
+
+.checkout-progress-process {
+  color: var(--tph-text-primary);
+  font-size: 13px;
+  position: absolute;
+  bottom: -20px;
+}
+
+.checkout-progress-bar {
+  background-color: #21374A;
+  width: 310px;
+  height: 3px;
+}
