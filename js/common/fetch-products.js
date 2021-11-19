@@ -3,7 +3,7 @@ var PRODUCT_INCREMENT = 12;
 var PRODUCT_TOTAL_NUM = 60;
 var PRODUCT_FETCH_MAX = false;
 
-function fetchBatchProducts() {
+function fetchProductsByBatch() {
   let productFeed = document.querySelector('.container-product-feed');
   let productFetchBtn = document.createElement('button');
   let limit = PRODUCT_START_POS + PRODUCT_INCREMENT;
@@ -15,7 +15,7 @@ function fetchBatchProducts() {
   catch { }
 
   productFetchBtn.classList.add('btn', 'btn-tertiary', 'mx-auto');
-  productFetchBtn.setAttribute('onclick', 'fetchBatchProducts()');
+  productFetchBtn.setAttribute('onclick', 'fetchProductsByBatch()');
   productFetchBtn.style.marginTop = '54px';
   productFetchBtn.innerText = 'VIEW MORE';
 
