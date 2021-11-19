@@ -24,6 +24,13 @@ input.form-control:focus {
   outline: none;
 }
 
+label.form-control {
+  background-color: transparent;
+  border: 0;
+  color: var(--tph-text-primary);
+  width: max-content;
+}
+
 .form-check {
   display: inline-flex;
   align-items: center;

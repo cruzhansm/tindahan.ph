@@ -1,0 +1,42 @@
+.container-checkout-progress {
+  display: flex;
+  align-items: center;
+  width: 828px;
+  height: 48px;
+  margin-top: 12px;
+  margin-bottom: 56px;
+}
+
+.container-checkout-process {
+  width: 828px;
+}
+
+.container-checkout-process-title {
+  color: var(--tph-text-highlight);
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 23px;
+}
+
+.container-checkout-done {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  height: 370px;
+  width: 100%;
+  margin-top: 118px;
+}
+
+.container-button-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 763px;
+  padding-left: 10px;
+  height: max-content;
+}
+
+.container-button-group > button {
+  width: 173px !important;
+}

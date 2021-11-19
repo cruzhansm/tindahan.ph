@@ -18,11 +18,19 @@
   <link rel="stylesheet" href="../../css/user/user.css">
 
   <script src="../../js/common/input.js"></script>
-  <!-- <script src="../../js/common/form.cs"></script> -->
+  <script src="../../js/common/form.cs"></script>
   <script src="../../js/common/user-logout.js"></script>
   <script src="../../js/user/register-partner.js"></script>
 </head>
+  
+<script>
+  window.onload = () => {
+    const text = document.querySelector('#shdesc');
 
+    text.addEventListener('input', () => { updateCharacterCount(); });
+  }
+</script>
+  
 <body class="bg-primary">
   <div class="row m-0">
     <div class="col left">
@@ -38,7 +46,7 @@
             <i class="fa-solid fa-house-chimney sidenav-link-icon"></i>
             <div class="sidenav-link-text">Home</div>
           </a>
-          <a href="#" class="sidenav-link">
+          <a href="../../src/common/categories.html" class="sidenav-link">
             <i class="fa-solid fa-cubes sidenav-link-icon"></i>
             <div class="sidenav-link-text">Categories</div>
             </a>

@@ -1,0 +1,34 @@
+.checkout-process-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-left: 23px;
+}
+
+.checkout-process-form > input.form-control {
+  border-radius: 73px;
+  width: 389px;
+  height: 45px;
+}
+
+.checkout-process-form > button {
+  margin-top: 23px;
+}
+
+.inline-form {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.inline-form > input.form-control {
+  border-radius: 73px;
+  width: 324px;
+  height: 45px;
+}
+
+#street {
+  width: 668px;
+}
+
