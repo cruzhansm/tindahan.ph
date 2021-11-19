@@ -17,11 +17,12 @@
   <link rel="stylesheet" href="../../css/utilities/utilities.css">
   <link rel="stylesheet" href="../../css/user/user.css">
 
-  <script src="../../js/common/form.js"></script>
+  <script src="../../js/common/input.js"></script>
+  <script src="../../js/common/form.cs"></script>
   <script src="../../js/common/user-logout.js"></script>
-  <script src="../../js/user/register-partner.js"></script>i
+  <script src="../../js/user/register-partner.js"></script>
 </head>
-
+  
 <script>
   window.onload = () => {
     const text = document.querySelector('#shdesc');
@@ -29,7 +30,7 @@
     text.addEventListener('input', () => { updateCharacterCount(); });
   }
 </script>
-
+  
 <body class="bg-primary">
   <div class="row m-0">
     <div class="col left">
@@ -148,13 +149,13 @@
           </div> 
           
           <div class="register-form-input-desc">
-            <label for="" class="form-control">Short description of shop (Max of 300 characters)</label>
+            <label for="" class="form-control">Short description of shop (Max of 200 characters)</label>
             <div class="register-form-textarea">
-              <textarea name="" id="shdesc" cols="30" rows="10" class="form-control" maxlength="300"></textarea>
+              <textarea id="shdesc" cols="30" rows="10" class="form-control" maxlength="200"></textarea>
               <div class="character-count-area">
                 <span>Max characters:</span>
-                <span class="character-count">0</span>
-                <span> / 300</span>
+                <span class="character-count" id="charcount">0</span>
+                <span> / 200</span>
               </div>
             </div>
           </div>

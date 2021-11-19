@@ -1,21 +1,17 @@
 .carousel {
-  background-color: var(--placeholder) !important;
+  background-color: transparent;
   border-radius: 12px;
   width: 720px;
   height: inherit; 
 }
 
-.carousel-item {
-  height: 200px;
+.carousel-inner {
+  border-radius: 17px;
 }
 
-/* DELETE THIS ONCE BANNERS ARE DONE */
-.carousel-item > div {
-  background-color: var(--tph-placeholder) !important;
-  display: flex !important;
-  justify-content: center;
-  align-items: center;
-  color: #647A8C !important;
+.carousel-item {
+  border-radius: 17px;
+  height: 200px;
 }
 
 .carousel-control-next,

@@ -1,10 +1,10 @@
 window.onload = () => {
   
   const right = document.querySelector('.col.right');
-  const lastElem = right.lastElementChild;
+  const rightHeight = right.offsetHeight;
+  const lastElemHeight = right.lastElementChild.offsetHeight;
 
-  if(right.offsetHeight > 1080) {
-    const height = (right.offsetHeight - lastElem.offsetHeight);
-    right.style.height = `${height.toString()}px`;
+  if(rightHeight > 1080 && rightHeight != lastElemHeight) {
+    right.style.height = `${rightHeight - lastElemHeight.toString()}px`;
   }
 }
