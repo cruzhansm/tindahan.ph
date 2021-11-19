@@ -119,7 +119,7 @@
       <div class="container-display">
         <header class="header">
           <form action="noSubmit(event)">
-            <input type="search" class="form-control form-search border-input" placeholder="Search">
+            <input type="search" class="form-control form-search border-input" placeholder="Search products">
           </form>
           <div class="header-icons">
             <i class="fa-solid fa-inbox"></i>
@@ -476,20 +476,20 @@
         <!-- products, where N = no. of products / 12-> max display -->
         <!-- per page. -->
         <ul class="pagination justify-content-center shop-pagination">
-          <li class="page-item">
-            <a class="page-link" href="#">Previous</a>
+          <li class="page-item" onclick="goToPredecessor()">
+            <a class="page-link" href="#aproducts">Previous</a>
           </li>
-          <li class="page-item">
-            <a class="page-link current" href="#">1</a>
+          <li class="page-item" onclick="goToNextPage(1)">
+            <a class="page-link current" href="#aproducts">1</a>
           </li>
-          <li class="page-item">
-            <a class="page-link" href="#">2</a>
+          <li class="page-item" onclick="goToNextPage(2)">
+            <a class="page-link" href="#aproducts">2</a>
           </li>
-          <li class="page-item")">
-            <a class="page-link" href="#">3</a>
+          <li class="page-item" onclick="goToNextPage(3)">
+            <a class="page-link" href="#aproducts">3</a>
           </li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
+          <li class="page-item" onclick="goToSuccessor()">
+            <a class="page-link" href="#aproducts">Next</a>
           </li>
         </ul>
   

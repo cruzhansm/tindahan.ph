@@ -1,0 +1,21 @@
+.messages-conversation-area::-webkit-scrollbar {
+  width: 10px;
+}
+
+.message-chat-attachments::-webkit-scrollbar {
+  height: 10px;
+  width: 5px;
+  margin-left: 10px;
+}
+
+.message-chat-msg-input::-webkit-scrollbar {
+  width: 5px;
+}
+
+.message-chat-msg-input::-webkit-scrollbar-thumb {
+  background-color: var(--placeholder); */
+}
+
+.message-chat-area::-webkit-scrollbar {
+  width: 5px;
+}
