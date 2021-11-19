@@ -88,8 +88,8 @@ input.form-control:focus {
 }
 
 .btn-primary {
-  width: 316px !important;
-  height: 48px !important;
+  width: 316px;
+  height: 48px;
 }
 
 .form-select,
@@ -114,4 +114,36 @@ option {
 .form-check-input:checked {
   background: #21374A;
   border-radius: 3px;
+}
+
+textarea.form-control,
+textarea.form-control:focus {
+  background-color: var(--tph-tertiary);
+  border-radius: 25px;
+  border: 0;
+  box-shadow: none;
+  color: var(--input);
+  font-size: 18px;
+  padding: 10px 27px;
+  resize: none;
+}
+
+.form-contact-number {
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.form-contact-number > input,
+.form-contact-number > input:focus {
+  padding-left: 64px;
+}
+
+.form-contact-number .prefix {
+  color: var(--input);
+  left: 26px;
+  top: 5px;
+  font-size: 18px;
+  position: absolute;
 }
