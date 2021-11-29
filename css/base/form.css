@@ -92,6 +92,7 @@ label.form-control {
   cursor: pointer;
   height: 10px;
   width: 10px;
+  margin-left: 10px;
 }
 
 .btn-primary {
