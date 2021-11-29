@@ -1,0 +1,114 @@
+.order-header {
+  border-bottom: 1px solid #21374A;
+  padding-left: 15px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.order-header-details {
+  display: inline-flex;
+  align-items: baseline;
+  margin-bottom: 5px;
+}
+
+.order-header-count {
+  color: var(--tph-text-secondary);
+  margin-left: 8px; 
+  font-style: 16px;
+  line-height: 27px;
+}
+
+.order-header-price {
+  color: var(--tph-text-highlight);
+  font-weight: 700;
+}
+
+.order-product-group {
+  border-bottom: 1px solid #21374A;
+}
+
+.order-product {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #21374A;
+  border-bottom: 1px solid #21374A;
+  width: 100%;
+  padding: 12px 40px 12px 75px;
+}
+
+.order-product-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+
+.order-product-img {
+  width: 50px;
+  height: 50px;
+}
+
+.order-product-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 22px;
+  height: inherit;
+}
+
+.order-product-name,
+.order-product-variation,
+.order-product-quantity {
+  line-height: 16px;;
+}
+
+.order-product-variation {
+  color: var(--tph-text-secondary)
+}
+
+.order-status-list {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  width: 100%;
+  margin-top: 27px;
+}
+
+.order-status-list > * {
+  margin-left: 15px;
+}
+
+.order-product-status {
+  font-size: 18px;
+  width: max-content;
+  padding: 10px;
+}
+
+.order-product-status.active,
+.order-product-status.rate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--tph-text-highlight);
+  border-radius: 6px;
+  min-width: 172px;
+  height: 45px;
+  text-transform: uppercase;
+}
+
+.order-product-status.rate {
+  background-color: var(--tph-tertiary);
+}
+
+.order-product-status.cancelled {
+  font-size: 21px;
+  text-transform: uppercase;
+}
+
+.order-product-status.deliver {
+  color: var(--tph-text-secondary);
+}

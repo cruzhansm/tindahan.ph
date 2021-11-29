@@ -4,7 +4,7 @@
   justify-content: space-between;
   width: 1215px;
   height: max-content;
-  margin-bottom: 82px;
+  /* margin-bottom: 82px; */
 }
 
 .container-form {
@@ -19,6 +19,10 @@
   height: max-content;
   margin-bottom: 17px;
   padding: 32px 0;
+}
+
+.cart-form-group.cart-select {
+  padding: 20px 0;
 }
 
 .cart-form-header {

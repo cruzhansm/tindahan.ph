@@ -20,8 +20,6 @@
 }
 
 .sidenav-header-img {
-  background-color: var(--placeholder) !important;
-  border-radius: 50%;
   height: 41px;
   width: 41px;
 }
@@ -46,7 +44,7 @@
 .sidenav-links {
   margin-top: 33px;
   margin-left: 31px;
-  padding-bottom: 82px;
+  padding-bottom: 34px;
 }
 
 .sidenav-link {
@@ -57,9 +55,11 @@
   padding-left: 35px;
   width: 278px;
   height: 56px;
+  text-decoration: none;
 }
 
 .sidenav-link-text {
+  color: var(--tph-text-primary) !important;
   font-size: 24px;
   line-height: 36px;
 }
@@ -83,20 +83,21 @@
   color: var(--tph-text-highlight) !important;
 }
 
-.sidenav .active {
+.sidenav-link.active {
   background-color: var(--tph-tertiary) !important;
   color: var(--tph-text-highlight) !important;
+  pointer-events: none;
 }
 
-.sidenav .active:hover {
+.sidenav-link.active:hover {
   cursor: default;
 }
 
-.sidenav .active > .sidenav-link-icon {
+.sidenav-link.active > .sidenav-link-icon {
   color: var(--tph-text-highlight);
 }
 
-.sidenav .active > .sidenav-link-text {
+.sidenav-link.active > .sidenav-link-text {
   color: var(--tph-text-tertiary) !important;
   font-weight: 700;
 }

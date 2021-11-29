@@ -5,7 +5,7 @@
   position: relative;
   width: inherit;
   height: 45px;
-  margin-bottom: 65px;
+  margin-bottom: 34px;
 }
 
 .header-icons {
@@ -16,6 +16,13 @@
   font-size: 30px;
   width: 167px;
   height: 41px;
+}
+
+.header-text {
+  color: var(--tph-highlight) !important;
+  line-height: 36px;
+  font-weight: 700;
+  font-size: 24px;
 }
 
 .user-image-icon {
@@ -57,18 +64,20 @@
 }
 
 .user-image-action > .fa-solid, 
-.user-image-action > div {
+.user-image-action > div,
+.user-image-action > a  {
+  color: var(--tph-text-primary) !important;
   font-size: 18px;
+  text-decoration: none;
 }
 
 .user-image-action:hover > i {
-  color: var(--tph-text-highlight);
+  color: var(--tph-text-highlight) !important;
   cursor: pointer;
 }
 
-.user-image-action:hover > div {
-  color: var(--tph-text-highlight);
-  cursor: pointer;
+.user-image-action:hover > a {
+  color: var(--tph-text-highlight) !important;
 }
 
 .no-hover {

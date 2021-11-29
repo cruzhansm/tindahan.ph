@@ -1,0 +1,23 @@
+.categories-box {
+	text-decoration: none;
+	justify-items:center;
+	display: inline-grid;
+	grid-column-gap: 66px;
+}
+
+.categories-box-img{
+  border-radius: 10px;
+  width: 293px;
+  height: 165px;
+  background-color: var(--placeholder);
+	margin-bottom: 10px;
+}
+
+.categories-box-title {
+	text-transform: uppercase;
+	font-size: 24px;
+}
+
+.categories-box-title:hover {
+	color: var(--tph-text-highlight);
+}

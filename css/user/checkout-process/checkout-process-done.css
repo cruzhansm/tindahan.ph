@@ -1,0 +1,15 @@
+.checkout-process-done-img {
+  width: 244px;
+  height: 249px;
+  margin-right: 50px;
+}
+
+.checkout-process-done-status {
+  text-align: center;
+  display: block;
+}
+
+.checkout-process-done-msg {
+  color: var(--tph-text-secondary);
+  font-size: 18px;
+}

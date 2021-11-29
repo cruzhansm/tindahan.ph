@@ -1,0 +1,30 @@
+.container-messages {
+  background-color: var(--tph-secondary);
+  border-radius: 12px 12px 0 0;
+  width: 700px;
+  height: 430px;
+  position: fixed;
+  bottom: 150px;
+  right: 30px;
+  z-index: 11;
+}
+
+.container-messages-content {
+  display: flex;
+  width: 100%;
+  height: 380px;
+}
+
+.container-messages-chat {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-start;
+  width: 440px;
+  height: 100%;
+}
+
+.container-messages-conversations {
+  border-left: 1px solid var(--tph-text-secondary);
+  width: 260px;
+  height: 100%;
+}
