@@ -1,10 +1,11 @@
 .container-shop-banner {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
-  width: 1130px;
+  width: 1020px;
+  margin-top: 67px; 
   margin-bottom: 65px;
+  margin-left: 77.5px;
 }
 
 .shop-banner {
@@ -12,7 +13,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
-  width: 800px;
+  width: 1020px;
   height: 150px;
 }
 
@@ -26,8 +27,24 @@
   display: flex;
   flex-direction: column;
   justify-content: end;
-  width: 610px;
+  width: 830px;
   height: 150px;
+  position: relative;
+}
+
+.shop-banner-edit {
+  background-color: transparent;
+  border: 1.5px solid #B9C7D3;
+  border-radius: 73px;
+  color: #B9C7D3;
+  width: 168px;
+  height: 30px;
+  letter-spacing: 0.16rem;
+  text-align: center;
+  text-transform: uppercase;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .shop-banner-header {
@@ -36,6 +53,7 @@
   align-items: center;
   width: 300px;
   height: 26px;
+  margin-bottom: 20px;
 }
 
 .shop-banner-name {
@@ -66,9 +84,12 @@
 
 .shop-banner-description {
   color: #B9C7D3;
-  width: 600px;
+  width: 800px;
   display: flex;
   flex-wrap: wrap;
+  /* height: 48px; */
+  /* min-height: 48px; */
+  max-height: 48px;
 }
 
 .shop-banner-actions {
@@ -92,4 +113,8 @@
 
 .shop-banner-action > span {
   color: #B9C7D3;
+}
+
+.shop-pagination {
+  width: 1130px !important;
 }

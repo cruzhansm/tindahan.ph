@@ -1,5 +1,6 @@
 .btn {
   border: none;
+  border-radius: 6px;
   font-size: 21px;
   line-height: 30px;
   width: 250px;

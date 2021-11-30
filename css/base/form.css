@@ -24,6 +24,13 @@ input.form-control:focus {
   outline: none;
 }
 
+label.form-control {
+  background-color: transparent;
+  border: 0;
+  color: var(--tph-text-primary);
+  width: max-content;
+}
+
 .form-check {
   display: inline-flex;
   align-items: center;
@@ -85,11 +92,12 @@ input.form-control:focus {
   cursor: pointer;
   height: 10px;
   width: 10px;
+  margin-left: 10px;
 }
 
 .btn-primary {
-  width: 316px !important;
-  height: 48px !important;
+  width: 316px;
+  height: 48px;
 }
 
 .form-select,
