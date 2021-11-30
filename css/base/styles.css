@@ -1,14 +1,14 @@
 :root {
   --tph-primary: #122333 !important;
-  --tph-text-primary: #FFFFFF !important;
+  --tph-text-primary: #ffffff !important;
   --tph-secondary: #162738 !important;
-  --tph-text-secondary: #64798B;
-  --tph-tertiary: #21374A !important;
-  --tph-highlight: #2EAC68 !important;
-  --tph-text-highlight: #2CAD69 !important;
-  --tph-button-hover: #2DD67B !important;
-  --placeholder: #C4C4C4 !important;
-  --input:#B9C8D3 !important;
+  --tph-text-secondary: #64798b;
+  --tph-tertiary: #21374a !important;
+  --tph-highlight: #2eac68 !important;
+  --tph-text-highlight: #2cad69 !important;
+  --tph-button-hover: #2dd67b !important;
+  --placeholder: #c4c4c4 !important;
+  --input: #b9c8d3 !important;
 }
 
 /* COLOR THEME VARIABLES */
@@ -19,12 +19,17 @@
 }
 
 input {
-  color: #B9C8D3;
+  color: #b9c8d3;
 }
 
 .fa:hover,
 .fa-solid:hover {
-  font-family: "Font Awesome 6 Free" !important;
+  font-family: 'Font Awesome 6 Free' !important;
   color: var(--tph-text-highlight);
   cursor: pointer;
+}
+
+a,
+a:visited {
+  text-decoration: none;
 }

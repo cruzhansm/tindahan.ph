@@ -36,13 +36,13 @@
 }
 
 .msg-bottom-left {
-  padding-right: 120px;
+  /* padding-right: 120px; */
   float: left;
 }
 
 .msg-bottom-right {
-  /* padding-left: 54px; */
-  padding-right: 120px;
+  padding-left: 54px;
+  /* padding-right: 120px; */
   float: right;
 }
 

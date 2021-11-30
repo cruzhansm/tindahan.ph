@@ -1,3 +1,12 @@
+<?php
+  session_start();
+
+  if(!isset($_SESSION['user_id'])) {
+    header('Location: /tindahan.ph/src/common/login.php');
+    exit();
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,8 +30,8 @@
   <script src="js/common/fetch-products.js"></script>
   <script src="js/common/search.js"></script>
   <script src="js/common/products.js"></script>
-  <script src="js/common/user-logout.js"></script>
   <script src="js/common/messaging.js"></script>
+  <script src="/tindahan.ph/js/common/auth/logout.js"></script>
 </head>
 
 <script>
@@ -89,7 +98,7 @@
                 </div>
                 <div class="user-image-action">
                   <i class="fa-solid fa-right-from-bracket"></i>
-                  <a href="src/common/login.html">LOG OUT</a>
+                  <span onclick="logout()">LOG OUT</span>
                 </div>
               </div>
             </div>
@@ -350,7 +359,7 @@
   </div>
   
   <div class="copyright mx-auto">
-    <div class="text-highlight">about tindahan.ph</div>
+    <a href="/src/common/about-us.html">about tindahan.ph</a>
     <div class="text-secondary">&copy 2021 tindahan.ph. All Rights Reserved.</div>
   </div>
   
