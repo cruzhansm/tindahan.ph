@@ -18,11 +18,22 @@ CREATE TABLE users(
   CONSTRAINT Users_PK PRIMARY KEY(user_id)
 );
 
+-- USE THESE FOR THE ADMIN USERS 
+INSERT INTO `users` (`fname`, `lname`, `password`, `email`, `image`, `phone`, `role`, `active`, `suspended`, `last_login`) VALUES
+('Hans Maco', 'Cruz', '$2y$10$nFa3XOdT5LKlQ2FR53l/EuRDE5VfMJcSzgQS48oh3KMrdu8VFUsuC', '18103205@usc.edu.ph', NULL, NULL, 'admin', 'true', 'false', '2021-12-01 05:01:03'),
+('Roque', 'Gelacio', '$2y$10$LGOaYoqXlK7SJfw73w3S9uOrp4C2yoxNqe.OZuUQyYc.jbPlrYrAC', '20100987@gmail.com', NULL, NULL, 'admin', 'true', 'false', '2021-11-30 23:23:12'),
+('Hannah Ruth', 'Labana', '$2y$10$LGOaYoqXlK7SJfw73w3S9uOrp4C2yoxNqe.OZuUQyYc.jbPlrYrAC', '20102712@gmail.com', NULL, NULL, 'admin', 'true', 'false', '2021-11-30 23:23:12');
+
+-- USE THIS TO UPDATE THE AUTO_INCREMENT OF USERS, IF AUTO_INCREMENT FAILS
+ALTER TABLE `users`
+  MODIFY `user_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+COMMIT;
+
 CREATE TABLE users_address(
   user_id           INT(5)            AUTO_INCREMENT,
   street            VARCHAR(150)                    ,
   city              VARCHAR(50)                     ,
-  barangay          VARHCAR(50)                     ,
+  barangay          VARCHAR(50)                     ,
   region            VARCHAR(20)                     ,
   zipcode           INT(4)                          ,
 
