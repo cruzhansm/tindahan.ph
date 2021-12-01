@@ -1,12 +1,10 @@
-// TODO
-// 3. AJAX call to DB, register new account
-// 4. Redirect user to Login
-
 import { noSubmit } from '../input/form.js';
 import { validateIfExists } from '../input/validation.js';
-import { validateIfPasswordsMatch } from '../input/validation.js';
 import { userAlreadyExists } from '../input/validation.js';
 
+// Attempts to register new account by checking if user exists; If exists,
+// throw error (exists = email is found in database); else, redirect to login.
+// PARAMS: The current event being handled (submit event)
 window.attemptSignup = function attemptSignup(event) {
   noSubmit(event);
 
@@ -20,16 +18,11 @@ window.attemptSignup = function attemptSignup(event) {
     cpassword: form.querySelector('#cpassword').value,
   };
 
-  if (validateIfPasswordsMatch(user.password, user.cpassword)) {
-    validateIfExists(user)
-      .then(userAlreadyExists)
-      .catch((error) => createNewUser(user, error));
-  } else {
-    alert('Passwords do not match.');
-  }
+  validateIfExists(user)
+    .then(userAlreadyExists)
+    .catch((error) => createNewUser(user, error));
 };
 
-// MOVE TO DATABASE METHODS
 function createNewUser(user, notFound) {
   if (notFound == false) {
     $.ajax({

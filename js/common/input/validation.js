@@ -1,3 +1,6 @@
+// Checks the database to see if user with given credentials exists.
+// WHEN: Call this function during logging in / signing up.
+// PARAMS: User object that has email and password members.
 export function validateIfExists(user) {
   return new Promise(function (resolve, reject) {
     $.ajax({
@@ -10,6 +13,7 @@ export function validateIfExists(user) {
       },
       success: (result) => {
         result = JSON.parse(result);
+
         if (result) {
           resolve(result);
         } else {
@@ -18,9 +22,6 @@ export function validateIfExists(user) {
       },
     });
   });
-}
-export function validateIfPasswordsMatch(password, confirm) {
-  return password.localeCompare(confirm) === 0 ? true : false;
 }
 
 export function redirectUser(utype) {
@@ -34,12 +35,12 @@ export function redirectUser(utype) {
   }, 1000);
 }
 
+// TODO Convert to custom error (modal)
 export function userAlreadyExists() {
   alert('User already exists.');
 }
 
+// TODO Convert to custom error (modal)
 export function userDoesNotExist() {
-  alert(
-    `User does not exist. Please check your email or password and try again.`
-  );
+  alert('Error! That email is not associated with any account.');
 }

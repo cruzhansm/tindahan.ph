@@ -11,6 +11,7 @@
 .form-password:focus {
   margin-bottom: 28px;
   align-items: center;
+  padding-right: 38px;
 }
 
 .btn-primary {

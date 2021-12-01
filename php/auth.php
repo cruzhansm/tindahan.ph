@@ -35,7 +35,7 @@
       }
       else { return new CustomError('password', 'You entered the wrong password.'); }
     }
-    else { return ; }
+    else { return new CustomError('email', 'That email is not associated with any account.'); }
 
     if($user->verifyActive() == false) {
       $error = new CustomError('inactive', 'Account does not exist.');
@@ -45,12 +45,6 @@
 
     if($user->verifyNotSuspended() == false) {
       $error = new CustomError('suspended', 'Your account is currently suspended.');
-
-      return $error;
-    }
-
-    if($user->verifyEmail($user->getEmail()) != 0) {
-      $error = new CustomError('email', 'That email is not associated with any account.');
 
       return $error;
     }

@@ -65,18 +65,22 @@
         id="login-box"
       >
         <div class="body-login-title">log in</div>
-        <input
-          type="email"
-          placeholder="email"
-          class="form-control border-input"
-          required
-        />
-        <input
-          type="password"
-          placeholder="password"
-          class="form-control form-password border-input"
-          required
-        />
+        <div class="for-validation">
+          <input
+            type="email"
+            placeholder="email"
+            class="form-control border-input"
+            required
+          />
+        </div>
+        <div class="for-validation">
+          <input
+            type="password"
+            placeholder="password"
+            class="form-control form-password border-input"
+            required
+          />
+        </div>
         <button type="submit" class="btn btn-primary border-content">
           log in
         </button>
@@ -93,40 +97,50 @@
         id="signup-box"
       >
         <div class="body-signup-title">sign up</div>
-        <input
-          type="email"
-          placeholder="email"
-          class="form-control border-input"
-          required
-        />
-        <input
-          type="text"
-          id="fname"
-          placeholder="first name"
-          class="form-control border-input"
-          required
-        />
-        <input
-          type="text"
-          id="lname"
-          placeholder="last name"
-          class="form-control border-input"
-          required
-        />
-        <input
-          type="password"
-          placeholder="password"
-          id="password"
-          class="form-control border-input password"
-          required
-        />
-        <input
-          type="password"
-          placeholder="confirm password"
-          id="cpassword"
-          class="form-control border-input password"
-          required
-        />
+        <div class="for-validation">
+          <input
+            type="email"
+            placeholder="email"
+            class="form-control border-input"
+            required
+          />
+        </div>
+        <div class="for-validation">
+          <input
+            type="text"
+            id="fname"
+            placeholder="first name"
+            class="form-control border-input"
+            required
+          />
+        </div>
+        <div class="for-validation">
+          <input
+            type="text"
+            id="lname"
+            placeholder="last name"
+            class="form-control border-input"
+            required
+          />
+        </div>
+        <div class="for-validation">
+          <input
+            type="password"
+            placeholder="password"
+            id="password"
+            class="form-control form-password border-input password"
+            required
+          />
+        </div>
+        <div class='for-validation'>
+          <input
+            type="password"
+            placeholder="confirm password"
+            id="cpassword"
+            class="form-control form-password border-input password"
+            required
+          />
+        </div>
         <button type="submit" class="btn btn-primary border-content">
           sign up
         </button>
