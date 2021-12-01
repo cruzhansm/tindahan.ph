@@ -43,11 +43,13 @@
 .admin-user-role {
   font-size: 18px;
   margin-right: 70px;
+  width: max-content;
 }
 
 .admin-user-id {
   color: var(--tph-text-secondary);
   font-size: 18px;
+  width: max-content;
 }
 
 .admin-user-actions {
