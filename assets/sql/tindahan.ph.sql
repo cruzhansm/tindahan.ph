@@ -4,30 +4,84 @@ USE `tindahan.ph`;
 
 CREATE TABLE users(
   user_id           INT(5)            AUTO_INCREMENT,
-  username          VARCHAR(50)       NOT NULL,
   fname             VARCHAR(50)       NOT NULL,
-  password          VARCHAR(72)       NOT NULL,
   lname             VARCHAR(50)       NOT NULL,
+  password          VARCHAR(72)       NOT NULL,
   email             VARCHAR(320)      NOT NULL,
-  phone             INT(9)            NOT NULL,
-  role              ENUM('admin', 'user', 'partner') NOT NULL,
-  active            ENUM('true', 'false') NOT NULL DEFAULT 'true',
-  last_login        DATETIME                  ,
+  image             VARCHAR(260)              ,
+  phone             INT(9)                    ,
+  role              ENUM('admin', 'user', 'partner') DEFAULT 'user',
+  active            ENUM('true', 'false') DEFAULT 'true',
+  suspended         ENUM('true', 'false') DEFAULT 'false',
+  last_login        DATETIME          DEFAULT NOW(),
 
   CONSTRAINT Users_PK PRIMARY KEY(user_id)
 );
+
+-- USE THESE FOR THE ADMIN USERS 
+INSERT INTO `users` (`fname`, `lname`, `password`, `email`, `image`, `phone`, `role`, `active`, `suspended`, `last_login`) VALUES
+('Hans Maco', 'Cruz', '$2y$10$nFa3XOdT5LKlQ2FR53l/EuRDE5VfMJcSzgQS48oh3KMrdu8VFUsuC', '18103205@usc.edu.ph', NULL, NULL, 'admin', 'true', 'false', '2021-12-01 05:01:03'),
+('Roque', 'Gelacio', '$2y$10$LGOaYoqXlK7SJfw73w3S9uOrp4C2yoxNqe.OZuUQyYc.jbPlrYrAC', '20100987@gmail.com', NULL, NULL, 'admin', 'true', 'false', '2021-11-30 23:23:12'),
+('Hannah Ruth', 'Labana', '$2y$10$LGOaYoqXlK7SJfw73w3S9uOrp4C2yoxNqe.OZuUQyYc.jbPlrYrAC', '20102712@gmail.com', NULL, NULL, 'admin', 'true', 'false', '2021-11-30 23:23:12');
+
+-- USE THIS TO UPDATE THE AUTO_INCREMENT OF USERS, IF AUTO_INCREMENT FAILS
+ALTER TABLE `users`
+  MODIFY `user_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+COMMIT;
 
 CREATE TABLE users_address(
   user_id           INT(5)            AUTO_INCREMENT,
   street            VARCHAR(150)                    ,
   city              VARCHAR(50)                     ,
-  barangay          VARHCAR(50)                     ,
+  barangay          VARCHAR(50)                     ,
   region            VARCHAR(20)                     ,
   zipcode           INT(4)                          ,
 
   CONSTRAINT Users_Address_PK PRIMARY KEY(user_id),
   CONSTRAINT Users_Address_FK FOREIGN KEY(user_id) REFERENCES users(user_id)
 );  
+
+CREATE TABLE support_inbox(
+  ticket_id         INT(7)            AUTO_INCREMENT,
+  user_id           INT(5)            NOT NULL,
+  ticket_type       ENUM('report', 'bug', 'feedback'),
+  ticket_title      VARCHAR(50)       NOT NULL,
+  ticket_message    VARCHAR(500)      NOT NULL,
+  CONSTRAINT Support_Inbox_PK PRIMARY KEY(ticket_id),
+  CONSTRAINT Support_Inbox_Fk FOREIGN KEY(user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE user_reports(
+  report_id         INT(7)            AUTO_INCREMENT,
+  ticket_id         INT(7)            NOT NULL,
+  report_status     ENUM('approved', 'rejected', 'appealed')
+  CONSTRAINT User_Reports_PK PRIMARY KEY(report_id),
+  CONSTRAINT User_Reports_FK FOREIGN KEY(ticket_id) REFERENCES support_inbox(ticket_id)
+);
+
+CREATE TABLE user_suspensions(
+  suspension_id     INT(7)            AUTO_INCREMENT,
+  img_collection_id INT(7)            NOT NULL
+  report_id         INT(7)            NOT NULL,
+  start_date        DATETIME          NOT NULL,
+  end_date          DATETIME          NOT NULL,
+  message           VARCHAR(500)      NOT NULL,
+  CONSTRAINT User_Suspensions_PK PRIMARY KEY(suspension_id),
+  CONSTRAINT Suspensions_Img_FK FOREIGN KEY(img_collection_id) REFERENCES image_collection(img_collection_id),
+  CONSTRAINT Suspensions_Report_FK FOREIGN KEY(report_id) REFERENCES user_reports(report_id),
+);
+
+CREATE TABLE uploaded_img(
+  uploaded_img_id           INT(7)              AUTO_INCREMENT,
+  img_path                  VARCHAR(260)        NOT NULL,
+);
+
+CREATE TABLE image_collection(
+  img_collection_id         INT(7)              NOT NULL,
+  uploaded_img_id           INT(7)              NOT NULL,
+  CONSTRAINT Image_Collection_PK PRIMARY KEY(img_collection_id, uploaded_img_id,),
+  CONSTRAINT Image_Collection_FK FOREIGN(uploaded_img_id) REFERENCES uploaded_img(uploaded_img_id)
+);
 
 -- CREATE TABLE PARTNER_STORE(
 --     store_id                INT(5)              AUTO_INCREMENT,
@@ -79,14 +133,6 @@ CREATE TABLE users_address(
 --     review_msg      VARCHAR(250)                ,
 --     CONSTRAINT Product_Review_PK PRIMARY KEY(review_id),
 --     CONSTRAINT User_Review_FK FOREIGN KEY(user_id) REFERENCES USERS(user_id)
--- );
-
--- CREATE TABLE PRODUCT_REVIEW_IMAGES(
---   review_id         INT(7)              NOT NULL,
---   review_img_id             INT(1)              AUTO_INCREMENT,
---   review_img_path           VARCHAR(260)        NOT NULL,
---   CONSTRAINT Review_Images_PK PRIMARY KEY(review_id, review_img_id),
---   CONSTRAINT Review_Images_FK FOREIGN KEY(review_id)
 -- );
 
 -- CREATE TABLE STORE_INVENTORY(

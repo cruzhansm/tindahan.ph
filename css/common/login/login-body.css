@@ -9,25 +9,25 @@
 .body-banner {
   width: 798px;
   height: 465px;
-  background-color: var(--placeholder);
   margin-top: 108px;
 }
 
-.body-login, .body-signup {
+.body-login,
+.body-signup {
   margin-top: 90px;
   margin-left: 178px;
   width: 461px;
   height: 496px;
   background-color: var(--tph-secondary);
-  box-shadow: -2px -2px 47px -3px 
-            rgba(0, 0, 0, 0.25);
+  box-shadow: -2px -2px 47px -3px rgba(0, 0, 0, 0.25);
   padding: 65px 68px;
   text-align: center;
   justify-content: center;
   display: inline;
 }
 
-.body-login-title, .body-signup-title {
+.body-login-title,
+.body-signup-title {
   font-size: 30px;
   font-weight: 700;
   margin-bottom: 41px;
@@ -42,12 +42,12 @@
   font-size: 18px;
 }
 
-.body-login-signup-link > span, 
-.body-signup-login-link > span {
+.body-login-signup-link > a,
+.body-signup-login-link > a {
   color: var(--tph-text-highlight);
 }
 
-.body-login-signup-link > span:hover, 
+.body-login-signup-link > span:hover,
 .body-signup-login-link > span:hover {
   color: var(--tph-button-hover);
   cursor: pointer;
@@ -67,6 +67,6 @@
 }
 
 .copyright {
-  margin-top: 160px;
+  margin-top: 150px;
   justify-content: center;
 }

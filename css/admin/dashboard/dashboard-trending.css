@@ -1,0 +1,72 @@
+.trending-title {
+  margin-top: 74px;
+  margin-bottom: 14px;
+}
+
+.trending {
+  margin-left: 196px;
+}
+
+.trending-header {
+  display: flex;
+  margin-left: 155px;
+  margin-bottom: 4px;
+}
+
+.trending-header > span {
+  color: var(--tph-text-secondary) !important;
+  font-size: 18px;
+}
+
+.trending-header > span:nth-child(2) {
+  margin-left: 526px;
+}
+
+.trending-tab {
+  width: 907px;
+  height: 94px;
+  box-shadow: -4px -4px 47px rgba(0, 0, 0, 0.15);
+  background-color: var(--tph-secondary);
+  display: flex;
+  padding-left: 45px;
+  padding-top: 21px;
+  margin-bottom: 17px;
+}
+
+.trending-tab-product {
+  display: flex;
+  width: 752px;
+}
+
+.trending-tab-product-img {
+  width: 50px;
+  height: 50px;
+  background-color: var(--placeholder);
+
+}
+
+.trending-tab-product-data {
+  display: flex;
+  flex-direction: column;
+  margin-left: 24px;
+  margin-top: 3px;
+}
+
+.trending-tab-product-data > div:nth-child(1){
+  color: var(--tph-highlight);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.trending-tab-product-data > div:nth-child(2) {
+  color: var(--tph-text-secondary);
+  margin-top: -5px;
+}
+
+.trending-tab-sales {
+  text-align: center;
+  justify-content: center;
+  margin-top: 12px;
+  font-size: 19px;
+  font-weight: 600; 
+}
