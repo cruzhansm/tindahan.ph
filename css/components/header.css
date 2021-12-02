@@ -63,9 +63,9 @@
   margin-right: 20px;
 }
 
-.user-image-action > .fa-solid, 
+.user-image-action > .fa-solid,
 .user-image-action > div,
-.user-image-action > a  {
+.user-image-action > span {
   color: var(--tph-text-primary) !important;
   font-size: 18px;
   text-decoration: none;
@@ -76,7 +76,8 @@
   cursor: pointer;
 }
 
-.user-image-action:hover > a {
+.user-image-action:hover > span {
+  cursor: pointer;
   color: var(--tph-text-highlight) !important;
 }
 
