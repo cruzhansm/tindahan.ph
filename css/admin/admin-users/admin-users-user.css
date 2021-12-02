@@ -1,0 +1,62 @@
+.admin-user {
+  background-color: var(--tph-secondary);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: max-content;
+  min-height: 90px;
+  padding: 15px 33px;
+}
+
+.admin-user-info {
+  display: flex;
+  align-items: center;
+  width: 475px;
+  height: max-content;
+}
+
+.admin-user-info-highlight {
+  display: inline-flex;
+  gap: 15px;
+  align-items: center;
+  width: 215px;
+  margin-right: 50px;
+}
+
+.admin-user-img {
+  background-color: var(--placeholder);
+  border-radius: 50%;
+  width: 58px;
+  height: 58px;
+}
+
+.admin-user-name {
+  color: var(--tph-text-highlight);
+  font-weight: 700;
+  font-size: 18px;
+  width: 140px;
+  max-width: 140px;
+}
+
+.admin-user-role {
+  font-size: 18px;
+  margin-right: 70px;
+}
+
+.admin-user-id {
+  color: var(--tph-text-secondary);
+  font-size: 18px;
+}
+
+.admin-user-actions {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  width: 575px;
+}
+
+.admin-user-actions > .btn-tertiary {
+  color: var(--tph-text-primary);
+}

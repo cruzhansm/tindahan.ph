@@ -15,14 +15,18 @@
 
 * {
   color: var(--tph-text-primary);
-  font-family: 'Poppins-Regular';
+  font-family: 'Poppins-Regular' !important;
 }
 
 input {
   color: #b9c8d3;
 }
 
-.fa:hover,
+i {
+  font-family: 'Font Awesome 6 Free' !important;
+}
+
+i:hover,
 .fa-solid:hover {
   font-family: 'Font Awesome 6 Free' !important;
   color: var(--tph-text-highlight);
