@@ -1,0 +1,30 @@
+.admin-user-search {
+  width: 420px;
+}
+
+.admin-user-inline-search {
+  background-color: var(--tph-secondary);
+  border-radius: 73px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 696px;
+  padding: 10px 30px;
+}
+
+.admin-user-inline-search > .input-group {
+  align-items: center;
+  flex-wrap: nowrap;
+  margin: 0;
+  padding: 0;
+  width: max-content;
+  height: min-content;
+}
+
+.admin-user-inline-search > .input-group > label {
+  padding-left: 0;
+}
+
+.admin-user-inline-search > .input-group > input[type='checkbox'] {
+  border-radius: 3px !important;
+}

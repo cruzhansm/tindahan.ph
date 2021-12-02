@@ -52,7 +52,7 @@ label.form-control {
 .form-check-input:focus  {
   background-color: var(--tph-tertiary) !important;
   border: none;
-  border-radius: 0 !important;
+  /* border-radius: 0 !important; */
   box-shadow: none;
   width: 20px;
   height: 20px;
