@@ -32,7 +32,7 @@ export function redirectUser(utype) {
         : utype === 'partner'
         ? '/tindahan.ph/index.php?u=partner'
         : '/tindahan.ph/index.php?u=user';
-  }, 1000);
+  }, 500); //CHANGED FOR TESTING
 }
 
 // TODO Convert to custom error (modal)

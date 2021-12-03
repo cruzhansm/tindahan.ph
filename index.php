@@ -32,13 +32,14 @@
   <link rel="stylesheet" href="css/common/common.css">
 
   <script src="js/common/auto-resizer.js"></script>
+  <script src="js/common/search.js"></script>
   <script src="js/common/fetch-products.js"></script>
   <script src="js/common/search.js"></script>
   <script src="js/common/products.js"></script>
   <script src="js/common/messaging.js"></script>
   <script src="js/common/modal.js"></script>
   <script src="js/common/account-settings.js"></script>
-  <script src="/tindahan.ph/js/common/auth/logout.js"></script>
+  <script src="js/common/auth/logout.js"></script>
 </head>
 
 <script>
@@ -231,7 +232,7 @@
             <input type="search" class="form-control form-search border-input" placeholder="Search products">
           </form>
           <div class="header-icons">
-            <i class="fa-solid fa-inbox"></i>
+            <i class="fa-solid fa-inbox" onclick="showMessages()"></i>
             <i class="fa-solid fa-gear" onclick="showModal(settingsModal)"></i>
             <div class="user-image-icon" onclick="displayUserActions()">
               <div class="user-image-actions visually-hidden">
@@ -504,7 +505,7 @@
   </div>
 
   <div class="copyright mx-auto">
-    <a href="/src/common/about-us.html">about tindahan.ph</a>
+    <a href="src/common/about-us.html">about tindahan.ph</a>
     <div class="text-secondary">&copy 2021 tindahan.ph. All Rights Reserved.</div>
   </div>
 
