@@ -21,6 +21,49 @@ export function noSubmit(event) {
   event.preventDefault();
 }
 
+// Resets the input validation state to untracked / not validating anything
+// WHEN: Use this when closing a modal, or switching between different forms
+// (call this function, then make the other form appear and init validation).
+// PARAMS: none
+export function resetFlags() {
+  SELECTED_FORM = null;
+  FORM_HAS_EMPTY = FORM_HAS_INVALID = true;
+  FORM_INPUTS = [];
+
+  return Promise.resolve();
+}
+
+// Strips / disables the attached input validation event listeners to the
+// form that is discarded / hidden from view.
+// WHEN: Call this function in conjunction with resetFlags() to ensure
+// that when switching between different forms or dismissing a form,
+// it is not being validated anymore. This will prevent conflicts in the case
+// that you want to validate another form.
+// PARAMS: The form of type HTMLFormElement which you want to discard
+export function stripInputListeners(form) {
+  const inputs = Array.from(form.elements);
+
+  inputs.forEach((input) => {
+    input.removeEventListener('input', attachEmptyFieldListeners, true);
+  });
+
+  form.reset();
+}
+
+// Removes all the valid/invalid styling for all inputs in the form.
+// WHEN: Call this function when you dismiss a form or switch to another form
+// or finish using that form.
+// PARAMS: The form you wish to discard.
+export function removeAllValidation(form) {
+  const validInputs = form.querySelectorAll('.is-valid');
+  const invalidInputs = form.querySelectorAll('.is-invalid');
+  const customErrors = form.querySelectorAll('.invalid-feedback');
+
+  validInputs.forEach((input) => input.classList.remove('is-valid'));
+  invalidInputs.forEach((input) => input.classList.remove('is-invalid'));
+  customErrors.forEach((error) => (error.innerText = ''));
+}
+
 // Disables the submit button of form when one or more fields are empty
 // WHEN: Call this function on window.onload of page that contains a form
 // PARAMS: the form itself (typeof HTMLElement)

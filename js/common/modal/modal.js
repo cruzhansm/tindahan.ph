@@ -2,6 +2,9 @@ import {
   noSubmit,
   disableSubmitBtn,
   attachEmptyFieldListeners,
+  resetFlags,
+  stripInputListeners,
+  removeAllValidation,
 } from '../input/form.js';
 
 import { attachCharCountListener } from '../input/input.js';
@@ -35,6 +38,9 @@ window.showModal = function showModal(selectedModal) {
 
 window.dismissModal = function dismissModal(selectedModal) {
   const modal = bootstrap.Modal.getInstance(selectedModal);
+  const form = selectedModal.querySelector('form');
+
+  resetFlags().then(stripInputListeners(form)).then(removeAllValidation(form));
 
   modal.hide();
 };
