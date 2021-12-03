@@ -2,6 +2,7 @@
   width: 1130px;
   margin-top: 57px;
   margin-bottom: 36px;
+  justify-content: center;
 }
 
 .pagination > li {

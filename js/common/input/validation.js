@@ -25,14 +25,14 @@ export function validateIfExists(user) {
 }
 
 export function redirectUser(utype) {
-  window.setTimeout(() => {
-    window.location.href =
-      utype == 'admin'
-        ? '/tindahan.ph/index.php?u=admin'
-        : utype === 'partner'
-        ? '/tindahan.ph/index.php?u=partner'
-        : '/tindahan.ph/index.php?u=user';
-  }, 500); //CHANGED FOR TESTING
+  // window.setTimeout(() => {
+  window.location.href =
+    utype == 'admin'
+      ? '/tindahan.ph/src/admin/admin-dashboard.html'
+      : utype === 'partner'
+      ? '/tindahan.ph/index.php?u=partner'
+      : '/tindahan.ph/index.php?u=user';
+  // }, 500); //CHANGED FOR TESTING
 }
 
 // TODO Convert to custom error (modal)

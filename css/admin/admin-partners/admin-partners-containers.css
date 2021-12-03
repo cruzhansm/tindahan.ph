@@ -1,0 +1,21 @@
+.container-admin-pending {
+  display: flex;
+  gap: 45px;
+  width: 1180px;
+  margin-left: 25px;
+  margin-bottom: 36px;
+}
+
+.container-pending-half {
+  width: 50%;
+}
+
+.container-pending-items-list {
+  background-color: var(--tph-secondary);
+  border-radius: 12px;
+  width: 530px;
+  height: 600px;
+  margin-top: 20px;
+  margin-left: 35px;
+  padding: 30px 25px 30px 40px;
+}
