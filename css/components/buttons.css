@@ -4,7 +4,7 @@
   font-size: 21px;
   line-height: 30px;
   width: 250px;
-  height: 50px ;
+  height: 50px;
   margin: 0;
   text-transform: uppercase;
   transition: none !important;
@@ -41,10 +41,15 @@
 }
 
 .btn-tertiary:hover {
-  background-color: #2C4962;
-  color: #8FA9BF;
+  background-color: #2c4962;
+  color: #8fa9bf;
 }
 
 .btn-tertiary:focus {
   background-color: var(--tph-tph-tertiary);
+}
+
+.tph-disabled {
+  opacity: 50% !important;
+  pointer-events: none !important;
 }

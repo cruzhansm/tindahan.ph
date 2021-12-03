@@ -1,5 +1,5 @@
-::placeholder, 
-::-ms-input-placeholder, 
+::placeholder,
+::-ms-input-placeholder,
 :-ms-input-placeholder {
   color: var(--placeholder);
 }
@@ -12,7 +12,7 @@ label.form-control {
   font-size: 18px;
 }
 
-input.form-control, 
+input.form-control,
 input.form-control:focus {
   background-color: var(--tph-tertiary);
   border-radius: 73px;
@@ -49,10 +49,10 @@ label.form-control {
 .form-check-input,
 .form-check-input:checked,
 .form-check-input:active,
-.form-check-input:focus  {
+.form-check-input:focus {
   background-color: var(--tph-tertiary) !important;
   border: none;
-  border-radius: 0 !important;
+  /* border-radius: 0 !important; */
   box-shadow: none;
   width: 20px;
   height: 20px;
@@ -61,19 +61,19 @@ label.form-control {
   outline: none;
 }
 
-.form-check-input[type=radio],
-.form-check-input[type=radio]:checked,
-.form-check-input[type=radio]:active,
-.form-check-input[type=radio]:focus {
+.form-check-input[type='radio'],
+.form-check-input[type='radio']:checked,
+.form-check-input[type='radio']:active,
+.form-check-input[type='radio']:focus {
   border-radius: 50% !important;
   border: 0;
   margin-right: 17px;
   box-shadow: none;
 }
 
-.form-check-input[type=radio]:checked,
-.form-check-input[type=radio]:active,
-.form-check-input[type=radio]:focus  {
+.form-check-input[type='radio']:checked,
+.form-check-input[type='radio']:active,
+.form-check-input[type='radio']:focus {
   filter: brightness(80%);
 }
 
@@ -88,10 +88,12 @@ label.form-control {
   background-image: url('/assets/icons/x-solid.svg');
   background-size: contain;
   background-repeat: no-repeat;
-  filter: invert(48%) sepia(5%) saturate(1812%) hue-rotate(166deg) brightness(94%) contrast(84%);
+  filter: invert(48%) sepia(5%) saturate(1812%) hue-rotate(166deg)
+    brightness(94%) contrast(84%);
   cursor: pointer;
   height: 10px;
   width: 10px;
+  margin-left: 10px;
 }
 
 .btn-primary {
@@ -100,8 +102,7 @@ label.form-control {
 }
 
 .form-select,
-.form-select:focus
-.form-select:active {
+.form-select:focus .form-select:active {
   background-color: var(--tph-tertiary);
   color: var(--input);
   font-size: 18px;
@@ -112,14 +113,14 @@ label.form-control {
 }
 
 option {
-  background-color: #2C465C;
+  background-color: #2c465c;
   border: 0;
   box-shadow: none;
 }
 
 .form-check-input,
 .form-check-input:checked {
-  background: #21374A;
+  background: #21374a;
   border-radius: 3px;
 }
 
@@ -153,4 +154,27 @@ textarea.form-control:focus {
   top: 5px;
   font-size: 18px;
   position: absolute;
+}
+
+.form-control.is-invalid,
+.form-control.is-invalid:focus {
+  border: 1.5px solid #de3445 !important;
+}
+
+.form-control.is-valid {
+  border: 1.5px solid #2eac68 !important;
+}
+
+.for-validation {
+  width: max-content;
+  height: max-content;
+  position: relative;
+}
+
+.invalid-feedback {
+  position: absolute;
+  bottom: -20px;
+  text-align: left;
+  padding-left: 10px;
+  font-size: 13px;
 }

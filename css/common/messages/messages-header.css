@@ -1,0 +1,19 @@
+.messages-header {
+  background-color: var(--tph-tertiary);
+  border-radius: 12px 12px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  padding: 10px 20px;
+}
+
+.messages-header-title {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.messages-header-close {
+  font-size: 15px;
+}
+

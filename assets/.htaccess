@@ -1,7 +1,7 @@
 RewriteEngine On
-ErrorDocument 404 /2104/tindahan.ph/src/common/404.html
+ErrorDocument 404 /tindahan.ph/src/common/404.html
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-l
-RewriteRule ^ /2104/tindahan.ph/src/common/404.html [L,R]
+RewriteRule ^ /tindahan.ph/src/common/404.html [L,R]

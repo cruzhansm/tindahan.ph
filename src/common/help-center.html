@@ -1,203 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>tindahan.ph - Categories</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tindahan.ph - Categories</title>
 
-  <link rel="icon" type="image/png" href="../../assets/images/tph-logo-128px.png"/>
+    <link
+      rel="icon"
+      type="image/png"
+      href="../../assets/images/tph-logo-128px.png"
+    />
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://kit.fontawesome.com/056f419e6a.js" crossorigin="anonymous"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/056f419e6a.js"
+      crossorigin="anonymous"
+    ></script>
 
-  <link rel="stylesheet" href="../../css/base/base.css">
-  <link rel="stylesheet" href="../../css/components/components.css">
-  <link rel="stylesheet" href="../../css/utilities/utilities.css">
-  <link rel="stylesheet" href="../../css/common/common.css">
+    <link rel="stylesheet" href="../../css/base/base.css" />
+    <link rel="stylesheet" href="../../css/components/components.css" />
+    <link rel="stylesheet" href="../../css/utilities/utilities.css" />
+    <link rel="stylesheet" href="../../css/common/common.css" />
 
-  <script src="../../js/common/auto-resizer.js"></script>
-  <script src="../../js/common/user-logout.js"></script>
-  <script src="../../js/common/modal.js"></script>
-</head>
+    <script src="../../js/common/auto-resizer.js"></script>
+    <script src="../../js/common/auth/logout.js"></script>
+    <script src="../../js/common/modal.js"></script>
+  </head>
 
-<script>
-  function noSubmit(e) {
-    
-    e.preventDefault();
-  }
-</script>
+  <script>
+    function noSubmit(e) {
+      e.preventDefault();
+    }
+  </script>
 
-<!-- TODO: -->
-<!-- 1. Styling of individual modals for Report a Problem and Feedback. -->
-<!-- 2. Hide the help cards and show the accordions for Account Settings. -->
-<!-- 2. (cont) element.classList.toggle('visually-hidden') for hide/no hide -->
-<!-- 3. You can refer to the Bootstrap 5 component Accordion documentation. -->
-<!-- 4. Styles can be found in css/common/help-center/ -->
-<!-- 5. The structure of the modal is already created, just needs styling. -->
-<!-- 6. If you find that the modal lacks certain elements, feel free to add. -->
-<!-- 7. Create the third modal "Sent" that appears as modal is submitted. -->
-<!-- 8. Define all JS behavior for the forms and accordions, if possible. -->
-<!-- 9. Acc. to hannah, accordions as well as for the Privacy/Transactions. -->
-<!-- 10. Delete this once done. Thanks! -->
+  <!-- TODO: -->
+  <!-- 1. Styling of individual modals for Report a Problem and Feedback. -->
+  <!-- 2. Hide the help cards and show the accordions for Account Settings. -->
+  <!-- 2. (cont) element.classList.toggle('visually-hidden') for hide/no hide -->
+  <!-- 3. You can refer to the Bootstrap 5 component Accordion documentation. -->
+  <!-- 4. Styles can be found in css/common/help-center/ -->
+  <!-- 5. The structure of the modal is already created, just needs styling. -->
+  <!-- 6. If you find that the modal lacks certain elements, feel free to add. -->
+  <!-- 7. Create the third modal "Sent" that appears as modal is submitted. -->
+  <!-- 8. Define all JS behavior for the forms and accordions, if possible. -->
+  <!-- 9. Acc. to hannah, accordions as well as for the Privacy/Transactions. -->
+  <!-- 10. Delete this once done. Thanks! -->
 
-<body class="bg-primary">
-
-  <!-- This is the modal for the Report a Problem -->
-  <!-- Modal behavior such as show/dismiss is found in js/common/modal.js -->
-  <!-- Modal styles can be found at common/help-center/help-center-modal.css -->
-  <!-- Press ESC to temporarily dismiss the modal if no Cancel button -->
-  <div class="modal" id="reportProblem" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-header">
-        <h5 class="modal-title">How can we help?</h5>
-      </div>
-      <div class="modal-body">
-        <form action="">
-          <input type="text" class="form-control">
-          <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
-          <input type="file" class="form-control">
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn" onclick="dismissModal(reportProblem)">Cancel</button>
-        <button type="submit" class="btn">Submit</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- This is the modal for the Feedback -->
-  <!-- Modal behavior such as show/dismiss is found in js/common/modal.js -->
-  <!-- Modal styles can be found at common/help-center/help-center-modal.css -->
-  <!-- Press ESC to temporarily dismiss the modal if no Cancel button -->
-  <div class="modal" id="feedback" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-header">
-        <h5 class="modal-title">How can we improve?</h5>
-      </div>
-      <div class="modal-body">
-        <form action="">
-          <input type="text" class="form-control">
-          <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
-          <input type="file" class="form-control">
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn" onclick="dismissModal(feedback)">Cancel</button>
-        <button type="submit" class="btn">Submit</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="row m-0">
-    <div class="col left">
-      <div class="sidenav">
-        <div class="sidenav-header">
-          <img src="../../assets/images/tph-logo-512px.png" class="sidenav-header-img">
-          <div class="sidenav-header-text">
-            <div class="fw-bolder">tindahan.ph</div>
-          </div>
+  <body class="bg-primary">
+    <!-- This is the modal for the Report a Problem -->
+    <!-- Modal behavior such as show/dismiss is found in js/common/modal.js -->
+    <!-- Modal styles can be found at common/help-center/help-center-modal.css -->
+    <!-- Press ESC to temporarily dismiss the modal if no Cancel button -->
+    <div
+      class="modal"
+      id="reportProblem"
+      data-bs-backdrop="static"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <h5 class="modal-title">How can we help?</h5>
         </div>
-        <div class="sidenav-links">
-          <a href="../../index.html" class="sidenav-link">
-            <i class="fa-solid fa-house-chimney sidenav-link-icon"></i>
-            <div class="sidenav-link-text">Home</div>
-          </a>
-          <a href="../../src/common/categories.html" class="sidenav-link">
-            <i class="fa-solid fa-cubes sidenav-link-icon"></i>
-            <div class="sidenav-link-text">Categories</div>
-            </a>
-          <a href="../../src/user/user-cart.html" class="sidenav-link">
-            <i class="fa-solid fa-cart-shopping sidenav-link-icon"></i>
-            <div class="sidenav-link-text">Cart</div>
-          </a>
-          <a href="../../src/user/user-purchases.html" class="sidenav-link">
-            <i class="fa-solid fa-bag-shopping sidenav-link-icon"></i>
-            <div class="sidenav-link-text">My Purchases</div>
-          </a>
-          <a href="#" class="sidenav-link active">
-            <i class="fa-solid fa-headset sidenav-link-icon"></i>
-            <div class="sidenav-link-text">Help Center</div>
-          </a>
-          <a href="../../src/user/user-register-partner.html" class="sidenav-link">
-            <i class="fa-solid fa-handshake sidenav-link-icon"></i>
-            <div class="sidenav-link-text">Be a Partner</div>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="col right">
-      <div class="container-display">
-        <header class="header">
-          <form action="noSubmit(event)">
-            <input type="search" class="form-control form-search border-input" placeholder="Search">
+        <div class="modal-body">
+          <form action="">
+            <input type="text" class="form-control" />
+            <textarea
+              name=""
+              id=""
+              cols="30"
+              rows="10"
+              class="form-control"
+            ></textarea>
+            <input type="file" class="form-control" />
           </form>
-          <div class="header-icons">
-            <i class="fa-solid fa-inbox"></i>
-            <i class="fa-solid fa-gear"></i>
-            <div class="user-image-icon" onclick="displayUserActions()">
-              <div class="user-image-actions visually-hidden">
-                <div class="user-image-action no-hover">
-                  <i class="fa-solid fa-user"></i>
-                  <div>userFirstName</div>
-                </div>
-                <div class="user-image-action">
-                  <i class="fa-solid fa-right-from-bracket"></i>
-                  <a href="../../src/common/login.html">LOG OUT</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn"
+            onclick="dismissModal(reportProblem)"
+          >
+            Cancel
+          </button>
+          <button type="submit" class="btn">Submit</button>
+        </div>
+      </div>
+    </div>
 
-        <div class="container-help">
-          <div class="container-help-group">
-            <div class="fs-24 text-highlight fw-bold">Popular Topics</div>
-            <div class="container-help-cards">
-              <div class="help-card">
-                <i class="fa-solid fa-user help-card-icon"></i>
-                <div class="help-card-title">Account Settings</div>
-                <div class="help-card-detail">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-              </div>
-              <div class="help-card">
-                <i class="fa-solid fa-lock help-card-icon"></i>
-                <div class="help-card-title">Privacy & Security</div>
-                <div class="help-card-detail">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-              </div>
-              <div class="help-card">
-                <i class="fa-solid fa-cash-register help-card-icon"></i>
-                <div class="help-card-title">Transactions</div>
-                <div class="help-card-detail">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-              </div>
+    <!-- This is the modal for the Feedback -->
+    <!-- Modal behavior such as show/dismiss is found in js/common/modal.js -->
+    <!-- Modal styles can be found at common/help-center/help-center-modal.css -->
+    <!-- Press ESC to temporarily dismiss the modal if no Cancel button -->
+    <div
+      class="modal"
+      id="feedback"
+      data-bs-backdrop="static"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <h5 class="modal-title">How can we improve?</h5>
+        </div>
+        <div class="modal-body">
+          <form action="">
+            <input type="text" class="form-control" />
+            <textarea
+              name=""
+              id=""
+              cols="30"
+              rows="10"
+              class="form-control"
+            ></textarea>
+            <input type="file" class="form-control" />
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" onclick="dismissModal(feedback)">
+            Cancel
+          </button>
+          <button type="submit" class="btn">Submit</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row m-0">
+      <div class="col left">
+        <div class="sidenav">
+          <div class="sidenav-header">
+            <img
+              src="../../assets/images/tph-logo-512px.png"
+              class="sidenav-header-img"
+            />
+            <div class="sidenav-header-text">
+              <div class="fw-bolder">tindahan.ph</div>
             </div>
           </div>
-          <div class="container-help-group">
-            <div class="fs-24 text-highlight fw-bold">Support</div>
-            <div class="container-help-cards">
-              <div class="help-card" onclick="showModal(reportProblem)">
-                <i class="fa-solid fa-bug help-card-icon"></i>
-                <div class="help-card-title">Report a Problem</div>
-                <div class="help-card-detail">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+          <div class="sidenav-links">
+            <a href="../../index.php" class="sidenav-link">
+              <i class="fa-solid fa-house-chimney sidenav-link-icon"></i>
+              <div class="sidenav-link-text">Home</div>
+            </a>
+            <a href="../../src/common/categories.html" class="sidenav-link">
+              <i class="fa-solid fa-cubes sidenav-link-icon"></i>
+              <div class="sidenav-link-text">Categories</div>
+            </a>
+            <a href="../../src/user/user-cart.html" class="sidenav-link">
+              <i class="fa-solid fa-cart-shopping sidenav-link-icon"></i>
+              <div class="sidenav-link-text">Cart</div>
+            </a>
+            <a href="../../src/user/user-purchases.html" class="sidenav-link">
+              <i class="fa-solid fa-bag-shopping sidenav-link-icon"></i>
+              <div class="sidenav-link-text">My Purchases</div>
+            </a>
+            <a href="#" class="sidenav-link active">
+              <i class="fa-solid fa-headset sidenav-link-icon"></i>
+              <div class="sidenav-link-text">Help Center</div>
+            </a>
+            <a
+              href="../../src/user/user-register-partner.html"
+              class="sidenav-link"
+            >
+              <i class="fa-solid fa-handshake sidenav-link-icon"></i>
+              <div class="sidenav-link-text">Be a Partner</div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col right">
+        <div class="container-display">
+          <header class="header">
+            <form action="noSubmit(event)">
+              <input
+                type="search"
+                class="form-control form-search border-input"
+                placeholder="Search products"
+              />
+            </form>
+            <div class="header-icons">
+              <i class="fa-solid fa-inbox"></i>
+              <i class="fa-solid fa-gear"></i>
+              <div class="user-image-icon" onclick="displayUserActions()">
+                <div class="user-image-actions visually-hidden">
+                  <div class="user-image-action no-hover">
+                    <i class="fa-solid fa-user"></i>
+                    <div>userFirstName</div>
+                  </div>
+                  <div class="user-image-action">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <a href="../../src/common/login.html">LOG OUT</a>
+                  </div>
+                </div>
               </div>
-              <div class="help-card" onclick="showModal(feedback)">
-                <i class="fa-solid fa-envelope-open-text help-card-icon"></i>
-                <div class="help-card-title">Feedback</div>
-                <div class="help-card-detail">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+            </div>
+          </header>
+
+          <div class="container-help">
+            <div class="container-help-group">
+              <div class="fs-24 text-highlight fw-bold">Popular Topics</div>
+              <div class="container-help-cards">
+                <div class="help-card">
+                  <i class="fa-solid fa-user help-card-icon"></i>
+                  <div class="help-card-title">Account Settings</div>
+                  <div class="help-card-detail">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </div>
+                </div>
+                <div class="help-card">
+                  <i class="fa-solid fa-lock help-card-icon"></i>
+                  <div class="help-card-title">Privacy & Security</div>
+                  <div class="help-card-detail">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </div>
+                </div>
+                <div class="help-card">
+                  <i class="fa-solid fa-cash-register help-card-icon"></i>
+                  <div class="help-card-title">Transactions</div>
+                  <div class="help-card-detail">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="container-help-group">
+              <div class="fs-24 text-highlight fw-bold">Support</div>
+              <div class="container-help-cards">
+                <div class="help-card" onclick="showModal(reportProblem)">
+                  <i class="fa-solid fa-bug help-card-icon"></i>
+                  <div class="help-card-title">Report a Problem</div>
+                  <div class="help-card-detail">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </div>
+                </div>
+                <div class="help-card" onclick="showModal(feedback)">
+                  <i class="fa-solid fa-envelope-open-text help-card-icon"></i>
+                  <div class="help-card-title">Feedback</div>
+                  <div class="help-card-detail">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
-  </div>
-  
-  <div class="copyright mx-auto">
-    <div class="text-highlight">about tindahan.ph</div>
-    <div class="text-secondary">&copy 2021 tindahan.ph. All Rights Reserved.</div>
-  </div>
-  
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-</body>
+
+    <div class="copyright mx-auto">
+      <a href="src/common/about-us.html">about tindahan.ph</a>
+      <div class="text-secondary">
+        &copy 2021 tindahan.ph. All Rights Reserved.
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

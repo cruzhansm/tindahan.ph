@@ -1,0 +1,23 @@
+.container-admin-user {
+  width: 100%;
+}
+
+.container-admin-user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.container-admin-user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.pagination {
+  margin: 42px 0 0 0;
+  width: 100%;
+}
