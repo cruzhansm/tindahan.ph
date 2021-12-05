@@ -136,6 +136,44 @@ textarea.form-control:focus {
   resize: none;
 }
 
+.form-textarea {
+  position: relative;
+}
+
+.form-textarea > textarea,
+.form-textarea > textarea:focus {
+  background-color: var(--tph-tertiary);
+  border: 0;
+  box-shadow: none;
+  border-radius: 12px;
+  color: var(--tph-text-primary);
+  width: 100%;
+  height: max-content;
+  resize: none;
+  padding: 10px;
+  padding-left: 26px;
+  margin-top: 22px;
+}
+
+.form-textarea > textarea::-webkit-scrollbar {
+  width: 7px;
+}
+
+.form-textarea > textarea::-webkit-scrollbar-thumb {
+  background-color: var(--tph-text-secondary);
+}
+
+.character-count-area {
+  font-size: 12px;
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
+
+.character-count-area > span {
+  color: var(--tph-text-secondary);
+}
+
 .form-contact-number {
   display: inline-block;
   width: 100%;
@@ -166,7 +204,7 @@ textarea.form-control:focus {
 }
 
 .for-validation {
-  width: max-content;
+  width: 100%;
   height: max-content;
   position: relative;
 }

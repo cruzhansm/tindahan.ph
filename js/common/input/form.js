@@ -6,17 +6,62 @@ import {
   updateInputState,
   isCorrectFormat,
   passwordMismatchError,
+  isWithinMaxCharCount,
 } from './input.js';
 
 var SELECTED_FORM; // Current form being evaluated
 var FORM_HAS_EMPTY = true; // Determines if current form has empty fields
 var FORM_HAS_INVALID = true; // Determines if current form has invalid inputs
+var FORM_INPUTS = [];
 
 // Prevent form submission, used for AJAX requests
 // WHEN: Call this during form submission / clicking of submit button
 // PARAMS: current event (simply pass event)
 export function noSubmit(event) {
   event.preventDefault();
+}
+
+// Resets the input validation state to untracked / not validating anything
+// WHEN: Use this when closing a modal, or switching between different forms
+// (call this function, then make the other form appear and init validation).
+// PARAMS: none
+export function resetFlags() {
+  SELECTED_FORM = null;
+  FORM_HAS_EMPTY = FORM_HAS_INVALID = true;
+  FORM_INPUTS = [];
+
+  return Promise.resolve();
+}
+
+// Strips / disables the attached input validation event listeners to the
+// form that is discarded / hidden from view.
+// WHEN: Call this function in conjunction with resetFlags() to ensure
+// that when switching between different forms or dismissing a form,
+// it is not being validated anymore. This will prevent conflicts in the case
+// that you want to validate another form.
+// PARAMS: The form of type HTMLFormElement which you want to discard
+export function stripInputListeners(form) {
+  const inputs = Array.from(form.elements);
+
+  inputs.forEach((input) => {
+    input.removeEventListener('input', attachEmptyFieldListeners, true);
+  });
+
+  form.reset();
+}
+
+// Removes all the valid/invalid styling for all inputs in the form.
+// WHEN: Call this function when you dismiss a form or switch to another form
+// or finish using that form.
+// PARAMS: The form you wish to discard.
+export function removeAllValidation(form) {
+  const validInputs = form.querySelectorAll('.is-valid');
+  const invalidInputs = form.querySelectorAll('.is-invalid');
+  const customErrors = form.querySelectorAll('.invalid-feedback');
+
+  validInputs.forEach((input) => input.classList.remove('is-valid'));
+  invalidInputs.forEach((input) => input.classList.remove('is-invalid'));
+  customErrors.forEach((error) => (error.innerText = ''));
 }
 
 // Disables the submit button of form when one or more fields are empty
@@ -52,18 +97,30 @@ function enableSubmitBtn() {
 // PARAMS: HTML tag of element to wat
 export function attachEmptyFieldListeners(watch) {
   const specialInput = ['radio', 'checkbox'];
-  const textInput = 'input:not([type=checkbox]):not([type=radio])';
-  let inputs = new Array();
+  const textInput =
+    'input:not([type=checkbox]):not([type=radio]):not([type=file])';
 
   if (specialInput.includes(watch)) {
-    inputs = Array.from(SELECTED_FORM.querySelectorAll(`input[type=${watch}]`));
-  } else if (watch.localeCompare('select') === 0) {
-    inputs = Array.from(SELECTED_FORM.querySelectorAll(watch));
+    FORM_INPUTS = [
+      ...FORM_INPUTS,
+      ...Array.from(SELECTED_FORM.querySelectorAll(`input[type=${watch}]`)),
+    ];
+  } else if (
+    watch.localeCompare('select') === 0 ||
+    watch.localeCompare('textarea') === 0
+  ) {
+    FORM_INPUTS = [
+      ...FORM_INPUTS,
+      ...Array.from(SELECTED_FORM.querySelectorAll(watch)),
+    ];
   } else {
-    inputs = Array.from(SELECTED_FORM.querySelectorAll(textInput));
+    FORM_INPUTS = [
+      ...FORM_INPUTS,
+      ...Array.from(SELECTED_FORM.querySelectorAll(textInput)),
+    ];
   }
 
-  console.log(inputs);
+  console.log(FORM_INPUTS);
 
   switch (watch) {
     case 'input':
@@ -71,12 +128,12 @@ export function attachEmptyFieldListeners(watch) {
       let timeout = setTimeout(function () {}, 0);
       let state = new Array();
 
-      for (let i = 0; i < inputs.length; i++) {
+      for (let i = 0; i < FORM_INPUTS.length; i++) {
         state.push(true);
         // true -> empty / invalid
       }
 
-      inputs.forEach((input, index) => {
+      FORM_INPUTS.forEach((input, index) => {
         input.addEventListener('input', () => {
           clearTimeout(timeout);
           let error = new String();
@@ -86,7 +143,10 @@ export function attachEmptyFieldListeners(watch) {
           FORM_HAS_EMPTY = state.some((s) => s === true);
 
           if (!inputIsEmpty(input)) {
-            error = isCorrectFormat(input);
+            error =
+              input.localName.localeCompare('textarea') == 0
+                ? isWithinMaxCharCount(input)
+                : isCorrectFormat(input);
 
             state[index] = error != '' ? true : false;
 
@@ -109,7 +169,7 @@ export function attachEmptyFieldListeners(watch) {
             }
 
             FORM_HAS_INVALID = state[index];
-          } else {
+          } else if (FORM_HAS_EMPTY) {
             error = 'empty';
           }
 
@@ -139,6 +199,8 @@ export function attachEmptyFieldListeners(watch) {
 // to true, then disable the submit button; else, enable it.
 // WHEN: Call this function when all inputs have been verified.
 function updateButtonState() {
+  console.log(FORM_HAS_EMPTY, FORM_HAS_INVALID);
+
   FORM_HAS_EMPTY
     ? disableSubmitBtn()
     : FORM_HAS_INVALID

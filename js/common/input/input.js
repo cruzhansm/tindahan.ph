@@ -1,13 +1,13 @@
 // Attach a character count listener to a textarea
 // WHEN: Call this function when there's a textarea that needs to be watched.
 // PARAMS: id of textarea | id of char counter div/span | max char count
-function attachCharCountListener(listeningTo, countField, maxChar) {
+export function attachCharCountListener(listeningTo, countField) {
+  console.log(listeningTo);
+
   listeningTo.addEventListener('input', () => {
     let charCount = listeningTo.value.length;
 
-    if (charCount <= maxChar) {
-      countField.innerText = charCount;
-    }
+    countField.innerText = charCount;
   });
 }
 
@@ -44,7 +44,7 @@ export function isCorrectFormat(input) {
   let error = new String();
 
   switch (type) {
-    case 'text':
+    case 'name':
       error = isValidAlphabetic(input.value) ? '' : 'alpha';
       break;
     case 'email':
@@ -59,6 +59,23 @@ export function isCorrectFormat(input) {
   }
 
   return error;
+}
+
+// Checks if the given textarea's text length is within the maximum
+// character count specified. Note that the maximum count is not a parameter,
+// rather it is being searched within the DOM. Please wrap your textarea
+// inside a div with class="form-textarea", and attach a div with class
+// ="character-count-area" with three span children.
+// The first span child is the initial char count (0) and must have a unique
+// id in this format: modalIDMsgCount. The second span is just the /, while
+// the third span is the actual maximum character count; it must have a class
+// of "charLimit".
+// WHEN: When you want to validate a textarea's character length.
+// PARAMS: event (submit event)
+export function isWithinMaxCharCount(text) {
+  const limit = text.parentElement.querySelector('.charLimit').innerText;
+
+  return text.value.length <= limit ? '' : 'textover';
 }
 
 function isValidAlphabetic(input) {
@@ -146,6 +163,9 @@ export function updateInputState(elem, state, check) {
       case 'passmatch':
         errorMsg = 'Passwords do not match.';
         break;
+      case 'textover':
+        errorMsg = 'Please limit your message to the maximum character count.';
+        break;
     }
 
     elem.classList.remove('is-valid');
@@ -155,6 +175,6 @@ export function updateInputState(elem, state, check) {
     parent.append(errorElem);
   } else {
     elem.classList.remove('is-invalid');
-    elem.classList.add('is-valid');
+    elem.classList.contains('no-success') ? '' : elem.classList.add('is-valid');
   }
 }

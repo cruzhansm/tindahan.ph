@@ -1,0 +1,117 @@
+.modal-dialog.help-center {
+  align-items: flex-start;
+  padding-top: 165px;
+}
+
+.modal-content.help-center {
+  width: 625px;
+  height: 600px;
+  padding: 30px 50px;
+}
+
+.modal-header.help-center {
+  border-bottom: none;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 0;
+}
+
+.modal-title.help-center {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+form.form-modal {
+  width: 100%;
+  height: max-content;
+}
+
+.modal-body.help-center {
+  width: 100%;
+  height: max-content;
+}
+
+.modal-body.help-center > .for-validation > input,
+.modal-body.help-center > .for-validation > .form-textarea > textarea {
+  width: 100%;
+}
+
+.modal-body.help-center > .for-validation > .form-textarea > textarea {
+  border-radius: 25px;
+  height: 250px;
+  padding-right: 30px;
+}
+
+.modal-body.help-center > .register-form-upload {
+  position: relative;
+}
+
+.modal-body.help-center
+  > .register-form-upload
+  > .register-form-custom-upload
+  > span {
+  background-color: var(--tph-tertiary);
+  border-radius: 6px;
+  color: var(--input);
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 45px;
+  text-align: left;
+  padding: 0.375rem 0.75rem;
+  padding-left: 26px;
+}
+
+.modal-body.help-center
+  > .register-form-upload
+  > .register-form-custom-upload
+  > .custom-upload {
+  border-radius: 6px;
+  width: 144px;
+  height: 45px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-body.help-center
+  > .register-form-upload
+  > .register-form-custom-upload
+  > .btn {
+  background-color: var(--tph-text-secondary);
+  color: var(--tph-secondary);
+  width: 144px;
+  height: 45px;
+  margin: 0;
+}
+
+.modal-body.help-center
+  > .register-form-upload
+  > .register-form-custom-upload
+  > .btn:hover {
+  color: var(--tph-text-primary);
+}
+
+.modal-body.help-center
+  > .register-form-upload
+  > .register-form-custom-upload
+  > .btn
+  > input {
+  display: none !important;
+}
+
+.modal-footer.help-center {
+  width: 100%;
+  height: 45px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  align-items: center;
+}
+
+.modal-footer.help-center > .btn {
+  width: 172px;
+}
