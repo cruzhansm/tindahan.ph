@@ -2,8 +2,6 @@
 // WHEN: Call this function when there's a textarea that needs to be watched.
 // PARAMS: id of textarea | id of char counter div/span | max char count
 export function attachCharCountListener(listeningTo, countField) {
-  console.log(listeningTo);
-
   listeningTo.addEventListener('input', () => {
     let charCount = listeningTo.value.length;
 
@@ -15,6 +13,12 @@ export function attachCharCountListener(listeningTo, countField) {
 // PARAMS: Array of input elements of type HTMLElement
 export function inputIsEmpty(input) {
   return input.value.length === 0 ? true : false;
+}
+
+export function fileHasNotBeenUploaded(upload) {
+  const limit = document.querySelector('#fileLimit');
+
+  return upload.files.length == 0 ? true : false;
 }
 
 // Returns true if at least one checkbox is checked
@@ -51,7 +55,13 @@ export function isCorrectFormat(input) {
       error = isValidEmail(input.value) ? '' : 'email';
       break;
     case 'number':
-      error = isValidNumber(input.value) ? '' : 'numner';
+      error = isValidNumber(input)
+        ? isWithinMinNumberCount(input)
+          ? isWithinMaxNumberCount(input)
+            ? ''
+            : 'numexceed'
+          : 'numbelow'
+        : 'number';
       break;
     case 'password':
       error = isMatchingPasswords(input) ? '' : 'passmatch';
@@ -90,8 +100,26 @@ function isValidEmail(email) {
 
 function isValidNumber(number) {
   const regExp = /^[0-9]+$/;
-  number = typeof number === 'string' ? number : number.toString();
+
+  number = number.value.toString();
+
   return regExp.test(number);
+}
+
+function isWithinMinNumberCount(number) {
+  const min = number.getAttribute('minlength');
+
+  number = number.value.toString();
+
+  return number.length >= min ? true : false;
+}
+
+function isWithinMaxNumberCount(number) {
+  const limit = number.getAttribute('maxlength');
+
+  number = number.value.toString();
+
+  return number.length <= limit ? true : false;
 }
 
 export function passwordMismatchError(password) {
@@ -146,6 +174,10 @@ export function updateInputState(elem, state, check) {
 
   error != null ? error.remove() : '';
 
+  if (!parent.classList.contains('for-validation')) {
+    return;
+  }
+
   if (state) {
     let errorMsg = new String();
     const errorElem = document.createElement('div');
@@ -165,6 +197,15 @@ export function updateInputState(elem, state, check) {
         break;
       case 'textover':
         errorMsg = 'Please limit your message to the maximum character count.';
+        break;
+      case 'number':
+        errorMsg = 'No letters allowed. Please enter numbers only.';
+        break;
+      case 'numexceed':
+        errorMsg = `Please don't exceed the max allowed digits.`;
+        break;
+      case 'numbelow':
+        errorMsg = `The number does not meet length requirement.`;
         break;
     }
 

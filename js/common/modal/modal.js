@@ -20,19 +20,18 @@ window.showModal = function showModal(selectedModal) {
 
   modal.show();
 
-  console.log(selectedModal);
-
   disableSubmitBtn(form)
     .then(attachEmptyFieldListeners('input'))
     .then(attachEmptyFieldListeners('textarea'))
+    // .then(attachEmptyFieldListeners('number'))
     .then(
       attachCharCountListener(
         form.querySelector(`#${selectedModal.id}Msg`),
         form.querySelector(`#${selectedModal.id}MsgCount`)
       )
     )
-    .catch(() => {
-      console.log('BOOHOO');
+    .catch((reject) => {
+      console.log(reject);
     });
 };
 

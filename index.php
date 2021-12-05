@@ -28,18 +28,17 @@
   <link rel="stylesheet" href="css/base/base.css">
   <link rel="stylesheet" href="css/components/components.css">
   <link rel="stylesheet" href="css/utilities/utilities.css">
+  <link rel="stylesheet" href="css/common/common.css">
   <link rel="stylesheet" href="css/common/home/home.css">
 
-  <script src="js/common/auto-resizer.js"></script>
-  <script src="js/common/search.js"></script>
   <script src="js/common/fetch-products.js"></script>
   <script src="js/common/search.js"></script>
   <script src="js/common/products.js"></script>
   <script src="js/common/messaging.js"></script>
-  <script src="js/common/modal.js"></script>
   <script src="js/common/account-settings.js"></script>
   <script src="js/common/auth/logout.js"></script>
-  <script src="js/index.js"></script>
+  <script type="module" src="js/common/modal/modal.js"></script>
+  <script type="module" src="js/index.js"></script>
 </head>
 
 <body class="bg-primary">
@@ -194,66 +193,10 @@
           </div>
         </div>
         <div class="sidenav-links">
-          <?php
-            if(strcmp($_SESSION['role'], 'user') == 0) {
-              echo '<a href="#" class="sidenav-link active">
-              <i class="fa-solid fa-house-chimney sidenav-link-icon"></i>
-              <div class="sidenav-link-text">Home</div>
-            </a>
-            <a href="src/common/categories.html" class="sidenav-link">
-              <i class="fa-solid fa-cubes sidenav-link-icon"></i>
-              <div class="sidenav-link-text">Categories</div>
-            </a>
-            <a href="src/user/user-cart.html" class="sidenav-link">
-              <i class="fa-solid fa-cart-shopping sidenav-link-icon"></i>
-              <div class="sidenav-link-text">Cart</div>
-            </a>
-            <a href="src/user/user-purchases.html" class="sidenav-link">
-              <i class="fa-solid fa-bag-shopping sidenav-link-icon"></i>
-              <div class="sidenav-link-text">My Purchases</div>
-            </a>
-            <a href="src/common/help-center.html" class="sidenav-link">
-              <i class="fa-solid fa-headset sidenav-link-icon"></i>
-              <div class="sidenav-link-text">Help Center</div>
-            </a>
-            <a href="src/user/user-register-partner.html" class="sidenav-link">
-              <i class="fa-solid fa-handshake sidenav-link-icon"></i>
-              <div class="sidenav-link-text">Be a Partner</div>
-            </a>';
-            }
-            if(strcmp($_SESSION['role'], 'partner') == 0) {
-              echo '<a href="/tindahan.ph/index.php" class="sidenav-link active">
-              <i class="fa-solid fa-house-chimney sidenav-link-icon"></i>
-              <div class="sidenav-link-text">Home</div>
-            </a>
-            <a href="src/common/categories.html" class="sidenav-link">
-              <i class="fa-solid fa-cubes sidenav-link-icon"></i>
-              <div class="sidenav-link-text">Categories</div>
-            </a>
-            <a
-              href="src/partner/partner-shop-profile.html"
-              class="sidenav-link"
-            >
-              <i class="fa-solid fa-shop sidenav-link-icon"></i>
-              <div class="sidenav-link-text">Shop Profile</div>
-            </a>
-            <a href="src/partner/partner-add-listing.html" class="sidenav-link">
-              <i class="fa-solid fa-circle-plus sidenav-link-icon"></i>
-              <div class="sidenav-link-text">Add Listing</div>
-            </a>
-            <a href="src/partner/partner-orders.html" class="sidenav-link">
-              <i class="fa-solid fa-receipt sidenav-link-icon"></i>
-              <div class="sidenav-link-text">Orders</div>
-            </a>
-            <a href="src/common/help-center.html" class="sidenav-link">
-              <i class="fa-solid fa-headset sidenav-link-icon"></i>
-              <div class="sidenav-link-text">Help Center</div>
-            </a>';
-            }
-          ?>
         </div>
       </div>
     </div>
+
     <div class="col right">
       <div class="container-display">
         <header class="header">
