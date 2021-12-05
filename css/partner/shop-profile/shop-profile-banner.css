@@ -3,7 +3,7 @@
   flex-direction: row;
   align-items: center;
   width: 1020px;
-  margin-top: 67px; 
+  margin-top: 67px;
   margin-bottom: 65px;
   margin-left: 77.5px;
 }
@@ -34,9 +34,9 @@
 
 .shop-banner-edit {
   background-color: transparent;
-  border: 1.5px solid #B9C7D3;
+  border: 1.5px solid #b9c7d3;
   border-radius: 73px;
-  color: #B9C7D3;
+  color: #b9c7d3;
   width: 168px;
   height: 30px;
   letter-spacing: 0.16rem;
@@ -48,10 +48,10 @@
 }
 
 .shop-banner-header {
-  display: inline-flex;
-  justify-content: space-between;
+  display: flex;
+  gap: 20px;
   align-items: center;
-  width: 300px;
+  width: 75%;
   height: 26px;
   margin-bottom: 20px;
 }
@@ -59,6 +59,8 @@
 .shop-banner-name {
   color: var(--tph-text-highlight);
   font-weight: 700;
+  width: max-content;
+  line-height: 24px;
 }
 
 .shop-banner-message {
@@ -74,16 +76,16 @@
 }
 
 .shop-banner-message:hover {
-  background-color: #2DD67B;
+  background-color: #2dd67b;
 }
 
 .shop-banner-message:hover > i,
 .shop-banner-message:hover > span {
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 
 .shop-banner-description {
-  color: #B9C7D3;
+  color: #b9c7d3;
   width: 800px;
   display: flex;
   flex-wrap: wrap;
@@ -94,8 +96,9 @@
 
 .shop-banner-actions {
   display: inline-flex;
-  justify-content: space-between;
-  width: 600px;
+  /* justify-content: space-between; */
+  gap: 30px;
+  width: max-content;
   height: 25px;
   margin-top: 10px;
 }
@@ -112,7 +115,7 @@
 }
 
 .shop-banner-action > span {
-  color: #B9C7D3;
+  color: #b9c7d3;
 }
 
 .shop-pagination {

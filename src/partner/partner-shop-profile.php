@@ -34,12 +34,15 @@
     <link rel="stylesheet" href="../../css/utilities/utilities.css" />
     <link rel="stylesheet" href="../../css/partner/partner.css" />
 
-    <script src="../../js/common/input.js"></script>
+    <!-- <script src="../../js/common/pagination.js"></script> -->
+    <!-- <script src="../../js/common/products.js"></script> -->
+    <script src="../../js/common/auth/logout.js"></script>
     <script type="module" src="../../js/common/modal/modal.js"></script>
-    <script src="../../js/common/pagination.js"></script>
-    <script src="../../js/common/products.js"></script>
-    <script src="../../js/partner/shop-profile/shop-profile.js"></script>
-    <script src="../../js/common/user-logout.js"></script>
+    <script type="module" src="../../js/common/input/form.js"></script>
+    <script
+      type="module"
+      src="../../js/partner/shop-profile/shop-profile.js"
+    ></script>
   </head>
 
   <body class="bg-primary">
@@ -59,60 +62,97 @@
           >
             <i class="fa-solid fa-x"></i>
           </div>
-          <div class="modal-body shop-modal-body">
-            <div class="shop-modal-body-form mx-auto">
-              <div class="shop-modal-form-title">edit profile</div>
-              <div class="shop-modal-form-upload">
-                <div class="shop-modal-form-img"></div>
-                <label class="shop-modal-form-icon">
-                  <i class="fa-solid fa-plus"></i>
-                  <input accept="image/*" type="file" />
-                </label>
-              </div>
-              <form onsubmit="" class="shop-modal-form">
-                <label for="" class="form-control">partner name</label>
-                <input id="partnerName" type="text" class="form-control" />
-                <div class="shop-modal-form-desc">
-                  <label for="" class="form-control">short description</label>
-                  <div class="shop-modal-form-count">
-                    <span id="description">0</span>
-                    <span> / </span>
-                    <span>200</span>
+          <form onsubmit="attemptEditProfile(event)">
+            <div class="modal-body shop-modal-body">
+              <div class="shop-modal-body-form mx-auto">
+                <div class="shop-modal-form-title">edit profile</div>
+                <div class="shop-modal-form-upload">
+                  <div class="shop-modal-form-img"></div>
+                  <label class="shop-modal-form-icon">
+                    <i class="fa-solid fa-plus"></i>
+                    <input id="partnerImg" accept="image/*" type="file" />
+                  </label>
+                </div>
+                <div class="shop-modal-form">
+                  <!-- <div class="for-validation"> -->
+                  <label for="partnerName" class="form-control"
+                    >store name</label
+                  >
+                  <input id="partnerName" type="text" class="form-control" />
+                  <!-- </div> -->
+                  <div class="for-validation">
+                    <div class="shop-modal-form-desc">
+                      <label for="editProfileMsg" class="form-control"
+                        >short description</label
+                      >
+                      <textarea
+                        id="editProfileMsg"
+                        cols="30"
+                        rows="9"
+                        class="form-control"
+                        maxlength="200"
+                      ></textarea>
+                      <div class="character-count-area">
+                        <span id="editProfileMsgCount">0</span>
+                        <span> / </span>
+                        <span class="charLimit">200</span>
+                      </div>
+                    </div>
                   </div>
+                  <!-- <div class="for-validation"> -->
+                  <label for="partnerCity" class="form-control">city</label>
+                  <input id="partnerCity" type="text" class="form-control" />
+                  <!-- </div> -->
+                  <!-- <div class="for-validation"> -->
+                  <label for="partnerBarangay" class="form-control">
+                    barangay
+                  </label>
+                  <input
+                    id="partnerBarangay"
+                    type="text"
+                    class="form-control"
+                  />
+                  <!-- </div> -->
+                  <!-- <div class="for-validation"> -->
+                  <label for="partnerContact" class="form-control">
+                    contact number (10 digits)
+                  </label>
+                  <div class="form-contact-number">
+                    <input
+                      id="partnerContact"
+                      type="number"
+                      maxlength="10"
+                      minlength="10"
+                      class="form-control"
+                    />
+                    <span class="form-control-number prefix">+63</span>
+                  </div>
+                  <!-- </div> -->
+                  <!-- <div class="for-validation">
+                    <label for="" class="form-control">email</label>
+                    <input type="email" class="form-control" />
+                  </div> -->
                 </div>
-                <textarea
-                  id="shopProfileDesc"
-                  cols="30"
-                  rows="9"
-                  class="form-control"
-                  maxlength="200"
-                ></textarea>
-                <label for="" class="form-control">city</label>
-                <input type="text" class="form-control" />
-                <label for="" class="form-control">barangay</label>
-                <input type="text" class="form-control" />
-                <label for="" class="form-control">contact number</label>
-                <div class="form-contact-number">
-                  <input type="text" maxlength="11" class="form-control" />
-                  <span class="form-control-number prefix">+63</span>
+                <div class="shop-modal-button-group">
+                  <button
+                    type="button"
+                    class="btn btn-tertiary"
+                    data-bs-dismiss="modal"
+                    onclick="dismissModal(editProfile)"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    onclick="showModal(editProfile)"
+                  >
+                    Save
+                  </button>
                 </div>
-                <label for="" class="form-control">email</label>
-                <input type="text" class="form-control" />
-              </form>
-              <div class="shop-modal-button-group">
-                <button
-                  class="btn btn-tertiary"
-                  data-bs-dismiss="modal"
-                  onclick="dismissModal(editProfile)"
-                >
-                  Cancel
-                </button>
-                <button class="btn btn-primary" onclick="updateShopProfile()">
-                  Save
-                </button>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
@@ -185,7 +225,7 @@
                   </div>
                   <div class="user-image-action">
                     <i class="fa-solid fa-right-from-bracket"></i>
-                    <a href="../common/login.html">LOG OUT</a>
+                    <span onclick="logout()">LOG OUT</span>
                   </div>
                 </div>
               </div>
@@ -195,33 +235,28 @@
 
         <div class="container-shop-banner">
           <div class="shop-banner">
-            <div class="shop-banner-img circle"></div>
+            <img id="shopImg" class="shop-banner-img circle" />
             <div class="shop-banner-info">
               <div class="shop-banner-header">
-                <div class="shop-banner-name fs-24">Partner Name</div>
+                <div id="shopName" class="shop-banner-name fs-24"></div>
                 <div class="shop-banner-message">
                   <i class="fa-solid fa-inbox"></i>
                   <span>message</span>
                 </div>
               </div>
-              <div class="shop-banner-description">
-                This is a test short description. The maximum allowable length
-                for the shop short description shall be 200 characters. The rest
-                of the text shall be random text to fill up the remaining
-                characters ...
-              </div>
+              <div id="shopDesc" class="shop-banner-description"></div>
               <div class="shop-banner-actions">
                 <div class="shop-banner-action">
+                  <i class="fa-solid fa-star"></i>
+                  <span id="shopRating"></span>
+                </div>
+                <div class="shop-banner-action">
                   <i class="fa-solid fa-location-dot"></i>
-                  <span>Barangay, City</span>
+                  <span id="shopAddress"></span>
                 </div>
                 <div class="shop-banner-action">
                   <i class="fa-solid fa-phone-flip"></i>
-                  <span>+63 900 000 0000</span>
-                </div>
-                <div class="shop-banner-action">
-                  <i class="fa-solid fa-envelope"></i>
-                  <span>email@gmail.com</span>
+                  <span id="shopContact"></span>
                 </div>
               </div>
               <button
@@ -378,101 +413,6 @@
             <div class="product-feed-img"></div>
             <div class="product-feed-info">
               <div>Product Name2</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          id="pagination3"
-          class="
-            container-product-feed
-            row row-cols-4 row-cols-md-4
-            g-4
-            visually-hidden
-          "
-        >
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name3</div>
               <div class="product-feed-price">P 0</div>
             </div>
           </div>

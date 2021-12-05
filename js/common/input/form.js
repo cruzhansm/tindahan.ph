@@ -3,9 +3,10 @@ import {
   checkboxesNotSelcted,
   radiosNotSelected,
   selectNotSelected,
+  fileHasNotBeenUploaded,
   updateInputState,
-  isCorrectFormat,
   passwordMismatchError,
+  isCorrectFormat,
   isWithinMaxCharCount,
 } from './input.js';
 
@@ -71,14 +72,16 @@ export function disableSubmitBtn(form) {
   form = form || SELECTED_FORM;
   const submit = form.querySelector('button[type=submit]');
 
+  const forValidation = form.querySelectorAll('.for-validation');
+
   SELECTED_FORM = form;
 
   if (!submit.classList.contains('tph-disabled')) {
     submit.classList.add('tph-disabled'); // css/components/button.css
   }
 
-  return form == undefined || submit == undefined
-    ? Promise.reject('Non-existent form or button.')
+  return form == undefined || submit == undefined || forValidation.length == 0
+    ? Promise.reject('Nothing to validate.')
     : Promise.resolve();
 }
 
@@ -96,7 +99,7 @@ function enableSubmitBtn() {
 // WHEN: Call this function after disableSubmitBtn()
 // PARAMS: HTML tag of element to wat
 export function attachEmptyFieldListeners(watch) {
-  const specialInput = ['radio', 'checkbox'];
+  const specialInput = ['radio', 'checkbox', 'file'];
   const textInput =
     'input:not([type=checkbox]):not([type=radio]):not([type=file])';
 
@@ -120,7 +123,11 @@ export function attachEmptyFieldListeners(watch) {
     ];
   }
 
-  console.log(FORM_INPUTS);
+  FORM_INPUTS = FORM_INPUTS.filter(
+    (input) => !input.parentElement.classList.contains('disabled')
+  );
+
+  // console.log(FORM_INPUTS);
 
   switch (watch) {
     case 'input':
@@ -128,19 +135,30 @@ export function attachEmptyFieldListeners(watch) {
       let timeout = setTimeout(function () {}, 0);
       let state = new Array();
 
-      for (let i = 0; i < FORM_INPUTS.length; i++) {
+      const inputs = FORM_INPUTS.filter((input) => () => {
+        return ['file', 'radio', 'checkbox'].every((s) => s != input.type);
+      });
+
+      for (let i = 0; i < inputs.length; i++) {
         state.push(true);
         // true -> empty / invalid
       }
 
-      FORM_INPUTS.forEach((input, index) => {
+      inputs.forEach((input, index) => {
         input.addEventListener('input', () => {
           clearTimeout(timeout);
           let error = new String();
+          const upload = FORM_INPUTS.filter((i) => i.type == 'file')[0];
 
           state[index] = inputIsEmpty(input);
 
           FORM_HAS_EMPTY = state.some((s) => s === true);
+
+          if (upload != null) {
+            FORM_HAS_EMPTY = fileHasNotBeenUploaded(upload)
+              ? true
+              : FORM_HAS_EMPTY;
+          }
 
           if (!inputIsEmpty(input)) {
             error =
@@ -158,12 +176,12 @@ export function attachEmptyFieldListeners(watch) {
               if (passwords.length == 2 && error == 'passmatch') {
                 passwordMismatchError(input);
               } else if (passwords.length == 2 && error == '') {
-                console.log('hello');
                 const index1 = inputs.findIndex((x) => x == passwords[0]);
                 const index2 = inputs.findIndex((x) => x == passwords[1]);
 
                 state[index1] = false;
                 state[index2] = false;
+
                 FORM_HAS_EMPTY = state.some((s) => s === true);
               }
             }
@@ -183,24 +201,50 @@ export function attachEmptyFieldListeners(watch) {
         });
       });
       break;
-    case 'checkbox':
-      FORM_HAS_EMPTY = checkboxesNotSelcted(inputs);
+    case 'file':
+      const upload = FORM_INPUTS.filter((input) => input.type == 'file')[0];
+
+      upload.addEventListener('change', () => {
+        FORM_HAS_EMPTY = fileHasNotBeenUploaded(upload);
+        showPreviewImage(upload);
+        updateButtonState();
+      });
+
       break;
-    case 'radio':
-      FORM_HAS_EMPTY = radiosNotSelected(inputs);
-      break;
-    case 'select':
-      FORM_HAS_EMTPY = selectNotSelected(inputs);
-      break;
+    // case 'checkbox':
+    //   FORM_HAS_EMPTY = checkboxesNotSelcted(FORM_INPUTS);
+    //   break;
+    // case 'radio':
+    //   const radios = FORM_INPUTS.filter((input) => input.type == 'radio');
+
+    //   FORM_HAS_EMPTY = radiosNotSelected(FORM_INPUTS);
+
+    //   radios.forEach((radio) => {
+    //     radio.addEventListener('click', () => {
+    //       FORM_HAS_EMPTY = radiosNotSelected(FORM_INPUTS);
+    //     });
+    //   });
+
+    //   // console.log(radiosNotSelected(FORM_INPUTS));
+    //   break;
+    // case 'select':
+    //   FORM_HAS_EMTPY = selectNotSelected(FORM_INPUTS);
+    //   break;
   }
+}
+
+function showPreviewImage(image) {
+  const preview = URL.createObjectURL(image.files[0]);
+  const target = document.querySelector('#previewImg');
+
+  target.classList.remove('visually-hidden');
+  target.setAttribute('src', preview);
 }
 
 // Checks the FORM_HAS_EMPTY and FORM_HAS_INVALID flags; if both evaluate
 // to true, then disable the submit button; else, enable it.
 // WHEN: Call this function when all inputs have been verified.
 function updateButtonState() {
-  console.log(FORM_HAS_EMPTY, FORM_HAS_INVALID);
-
   FORM_HAS_EMPTY
     ? disableSubmitBtn()
     : FORM_HAS_INVALID
