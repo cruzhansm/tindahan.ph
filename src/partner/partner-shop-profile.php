@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="../../css/utilities/utilities.css" />
     <link rel="stylesheet" href="../../css/partner/partner.css" />
 
+<<<<<<< HEAD:src/partner/partner-shop-profile.php
     <!-- <script src="../../js/common/pagination.js"></script> -->
     <!-- <script src="../../js/common/products.js"></script> -->
     <script src="../../js/common/auth/logout.js"></script>
@@ -43,6 +44,14 @@
       type="module"
       src="../../js/partner/shop-profile/shop-profile.js"
     ></script>
+=======
+    <script src="../../js/common/input.js"></script>
+    <script type="module" src="../../js/common/modal/modal.js"></script>
+    <script src="../../js/common/pagination.js"></script>
+    <script src="../../js/common/products.js"></script>
+    <script src="../../js/partner/shop-profile/shop-profile.js"></script>
+    <script src="../../js/common/user-logout.js"></script>
+>>>>>>> master:src/partner/partner-shop-profile.html
   </head>
 
   <body class="bg-primary">

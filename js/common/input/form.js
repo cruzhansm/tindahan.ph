@@ -144,7 +144,7 @@ export function attachEmptyFieldListeners(watch) {
         // true -> empty / invalid
       }
 
-      inputs.forEach((input, index) => {
+      FORM_INPUTS.forEach((input, index) => {
         input.addEventListener('input', () => {
           clearTimeout(timeout);
           let error = new String();
@@ -245,6 +245,8 @@ function showPreviewImage(image) {
 // to true, then disable the submit button; else, enable it.
 // WHEN: Call this function when all inputs have been verified.
 function updateButtonState() {
+  console.log(FORM_HAS_EMPTY, FORM_HAS_INVALID);
+
   FORM_HAS_EMPTY
     ? disableSubmitBtn()
     : FORM_HAS_INVALID

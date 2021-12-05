@@ -203,7 +203,7 @@ textarea.form-control:focus {
 }
 
 .for-validation {
-  width: max-content;
+  width: 100%;
   height: max-content;
   position: relative;
 }
