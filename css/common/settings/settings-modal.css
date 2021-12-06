@@ -6,11 +6,11 @@
 }
 
 .modal-content {
-  background-color: transparent !important;
+  background-color: transparent;
 }
 
 .modal-dialog {
-  margin: 1.75rem auto !important;
+  margin: 1.75rem auto;
 }
 
 .tab-content {

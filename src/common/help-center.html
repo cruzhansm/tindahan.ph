@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tindahan.ph - Categories</title>
+    <title>tindahan.ph - Help Center</title>
 
     <link
       rel="icon"
@@ -36,74 +36,72 @@
 
     <script src="../../js/common/auto-resizer.js"></script>
     <script src="../../js/common/auth/logout.js"></script>
-    <script src="../../js/common/modal.js"></script>
+    <script type="module" src="../../js/common/input/form.js"></script>
+    <script type="module" src="../../js/common/modal/modal.js"></script>
+    <script src="../../js/common/help-center/accordion.js"></script>
   </head>
 
-  <script>
-    function noSubmit(e) {
-      e.preventDefault();
-    }
-  </script>
-
-  <!-- TODO: -->
-  <!-- 1. Styling of individual modals for Report a Problem and Feedback. -->
-  <!-- 2. Hide the help cards and show the accordions for Account Settings. -->
-  <!-- 2. (cont) element.classList.toggle('visually-hidden') for hide/no hide -->
-  <!-- 3. You can refer to the Bootstrap 5 component Accordion documentation. -->
-  <!-- 4. Styles can be found in css/common/help-center/ -->
-  <!-- 5. The structure of the modal is already created, just needs styling. -->
-  <!-- 6. If you find that the modal lacks certain elements, feel free to add. -->
-  <!-- 7. Create the third modal "Sent" that appears as modal is submitted. -->
-  <!-- 8. Define all JS behavior for the forms and accordions, if possible. -->
-  <!-- 9. Acc. to hannah, accordions as well as for the Privacy/Transactions. -->
-  <!-- 10. Delete this once done. Thanks! -->
-
   <body class="bg-primary">
-    <!-- This is the modal for the Report a Problem -->
-    <!-- Modal behavior such as show/dismiss is found in js/common/modal.js -->
-    <!-- Modal styles can be found at common/help-center/help-center-modal.css -->
-    <!-- Press ESC to temporarily dismiss the modal if no Cancel button -->
+    <!-- REPORT A PROBLEM MODAL -->
     <div
       class="modal"
-      id="reportProblem"
+      id="report"
       data-bs-backdrop="static"
       tabindex="-1"
       aria-hidden="true"
     >
-      <div class="modal-dialog">
-        <div class="modal-header">
-          <h5 class="modal-title">How can we help?</h5>
-        </div>
-        <div class="modal-body">
-          <form action="">
-            <input type="text" class="form-control" />
-            <textarea
-              name=""
-              id=""
-              cols="30"
-              rows="10"
-              class="form-control"
-            ></textarea>
-            <input type="file" class="form-control" />
+      <div class="modal-dialog help-center">
+        <div class="modal-content help-center">
+          <div class="modal-header help-center">
+            <h5 class="modal-title help-center">How can we help?</h5>
+          </div>
+          <form onsubmit="attemptSendReport(event)" class="form-modal">
+            <div class="modal-body help-center">
+              <div class="for-validation">
+                <input type="text" class="form-control" placeholder="Subject" />
+              </div>
+              <div class="for-validation">
+                <div class="form-textarea">
+                  <textarea
+                    id="reportMsg"
+                    cols="30"
+                    rows="10"
+                    class="form-control"
+                    placeholder="Details"
+                  ></textarea>
+                  <div class="character-count-area">
+                    <span id="reportMsgCount">0</span>
+                    <span> / </span>
+                    <span class="charLimit">250</span>
+                  </div>
+                </div>
+              </div>
+              <div class="register-form-upload">
+                <div class="register-form-custom-upload">
+                  <span>No file chosen</span>
+                  <label class="btn btn-primary custom-upload">
+                    Upload
+                    <input type="file" accept="image/*" multiple />
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer help-center">
+              <button
+                type="button"
+                class="btn btn-tertiary"
+                onclick="dismissModal(report)"
+              >
+                Cancel
+              </button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
           </form>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn"
-            onclick="dismissModal(reportProblem)"
-          >
-            Cancel
-          </button>
-          <button type="submit" class="btn">Submit</button>
         </div>
       </div>
     </div>
 
-    <!-- This is the modal for the Feedback -->
-    <!-- Modal behavior such as show/dismiss is found in js/common/modal.js -->
-    <!-- Modal styles can be found at common/help-center/help-center-modal.css -->
-    <!-- Press ESC to temporarily dismiss the modal if no Cancel button -->
+    <!-- FEEDBACK MODAL -->
     <div
       class="modal"
       id="feedback"
@@ -111,28 +109,53 @@
       tabindex="-1"
       aria-hidden="true"
     >
-      <div class="modal-dialog">
-        <div class="modal-header">
-          <h5 class="modal-title">How can we improve?</h5>
-        </div>
-        <div class="modal-body">
-          <form action="">
-            <input type="text" class="form-control" />
-            <textarea
-              name=""
-              id=""
-              cols="30"
-              rows="10"
-              class="form-control"
-            ></textarea>
-            <input type="file" class="form-control" />
+      <div class="modal-dialog help-center">
+        <div class="modal-content help-center">
+          <div class="modal-header help-center">
+            <h5 class="modal-title help-center">How can we improve?</h5>
+          </div>
+          <form onsubmit="attemptSendFeedback(event)" class="form-modal">
+            <div class="modal-body help-center">
+              <div class="for-validation">
+                <input type="text" class="form-control" placeholder="Subject" />
+              </div>
+              <div class="for-validation">
+                <div class="form-textarea">
+                  <textarea
+                    id="feedbackMsg"
+                    cols="30"
+                    rows="10"
+                    class="form-control"
+                    placeholder="Details"
+                  ></textarea>
+                  <div class="character-count-area">
+                    <span id="feedbackMsgCount">0</span>
+                    <span> / </span>
+                    <span class="charLimit">250</span>
+                  </div>
+                </div>
+              </div>
+              <div class="register-form-upload">
+                <div class="register-form-custom-upload">
+                  <span>No file chosen</span>
+                  <label class="btn btn-primary custom-upload">
+                    Upload
+                    <input type="file" accept="image/*" multiple />
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer help-center">
+              <button
+                type="button"
+                class="btn btn-tertiary"
+                onclick="dismissModal(feedback)"
+              >
+                Cancel
+              </button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
           </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn" onclick="dismissModal(feedback)">
-            Cancel
-          </button>
-          <button type="submit" class="btn">Submit</button>
         </div>
       </div>
     </div>
@@ -171,7 +194,7 @@
               <div class="sidenav-link-text">Help Center</div>
             </a>
             <a
-              href="../../src/user/user-register-partner.html"
+              href="../../src/user/user-register-partner.php"
               class="sidenav-link"
             >
               <i class="fa-solid fa-handshake sidenav-link-icon"></i>
@@ -212,21 +235,21 @@
             <div class="container-help-group">
               <div class="fs-24 text-highlight fw-bold">Popular Topics</div>
               <div class="container-help-cards">
-                <div class="help-card">
+                <div class="help-card" onclick="showAccordion(faq)">
                   <i class="fa-solid fa-user help-card-icon"></i>
                   <div class="help-card-title">Account Settings</div>
                   <div class="help-card-detail">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   </div>
                 </div>
-                <div class="help-card">
+                <div class="help-card" onclick="showAccordion(privacy)">
                   <i class="fa-solid fa-lock help-card-icon"></i>
                   <div class="help-card-title">Privacy & Security</div>
                   <div class="help-card-detail">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   </div>
                 </div>
-                <div class="help-card">
+                <div class="help-card" onclick="showAccordion(transactions)">
                   <i class="fa-solid fa-cash-register help-card-icon"></i>
                   <div class="help-card-title">Transactions</div>
                   <div class="help-card-detail">
@@ -238,7 +261,7 @@
             <div class="container-help-group">
               <div class="fs-24 text-highlight fw-bold">Support</div>
               <div class="container-help-cards">
-                <div class="help-card" onclick="showModal(reportProblem)">
+                <div class="help-card" onclick="showModal(report)">
                   <i class="fa-solid fa-bug help-card-icon"></i>
                   <div class="help-card-title">Report a Problem</div>
                   <div class="help-card-detail">
@@ -250,6 +273,364 @@
                   <div class="help-card-title">Feedback</div>
                   <div class="help-card-detail">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container-help-accordion-group visually-hidden">
+            <div id="faq" class="help-center-accordion visually-hidden">
+              <div class="fs-24 fw-bold text-highlight">Account Settings</div>
+              <div class="help-center-accordion-title">
+                Frequently Asked Questions
+              </div>
+              <div class="accordion help-center" id="faqAccordion">
+                <div class="accordion-item help-center">
+                  <h2 class="accordion-header help-center" id="headingOne">
+                    <button
+                      class="accordion-button collapsed help-center"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne"
+                      aria-expanded="true"
+                      aria-controls="collapseOne"
+                    >
+                      Accordion Item #1
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseOne"
+                    class="accordion-collapse collapse help-center"
+                    aria-labelledby="headingOne"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body help-center">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item help-center">
+                  <h2 class="accordion-header help-center" id="headingTwo">
+                    <button
+                      class="accordion-button collapsed help-center"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo"
+                      aria-expanded="true"
+                      aria-controls="collapseTwo"
+                    >
+                      Accordion Item #2
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseTwo"
+                    class="accordion-collapse collapse help-center"
+                    aria-labelledby="headingTwo"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body help-center">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item help-center">
+                  <h2 class="accordion-header help-center" id="headingThree">
+                    <button
+                      class="accordion-button collapsed help-center"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree"
+                      aria-expanded="true"
+                      aria-controls="collapseThree"
+                    >
+                      Accordion Item #3
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseThree"
+                    class="accordion-collapse collapse help-center"
+                    aria-labelledby="headingThree"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body help-center">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item help-center">
+                  <h2 class="accordion-header help-center" id="headingFour">
+                    <button
+                      class="accordion-button collapsed help-center"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseFour"
+                      aria-expanded="true"
+                      aria-controls="collapseFour"
+                    >
+                      Accordion Item #4
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseFour"
+                    class="accordion-collapse collapse help-center"
+                    aria-labelledby="headingFour"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body help-center">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="privacy" class="help-center-accordion visually-hidden">
+              <div class="fs-24 fw-bold text-highlight">
+                Privacy and Security
+              </div>
+              <div class="help-center-accordion-title">
+                Frequently Asked Questions
+              </div>
+              <div class="accordion help-center" id="privacysec">
+                <div class="accordion-item help-center">
+                  <h2 class="accordion-header help-center" id="headingOne">
+                    <button
+                      class="accordion-button collapsed help-center"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne"
+                      aria-expanded="true"
+                      aria-controls="collapseOne"
+                    >
+                      Accordion Item #1
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseOne"
+                    class="accordion-collapse collapse help-center"
+                    aria-labelledby="headingOne"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body help-center">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item help-center">
+                  <h2 class="accordion-header help-center" id="headingTwo">
+                    <button
+                      class="accordion-button collapsed help-center"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo"
+                      aria-expanded="true"
+                      aria-controls="collapseTwo"
+                    >
+                      Accordion Item #2
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseTwo"
+                    class="accordion-collapse collapse help-center"
+                    aria-labelledby="headingTwo"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body help-center">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item help-center">
+                  <h2 class="accordion-header help-center" id="headingThree">
+                    <button
+                      class="accordion-button collapsed help-center"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree"
+                      aria-expanded="true"
+                      aria-controls="collapseThree"
+                    >
+                      Accordion Item #3
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseThree"
+                    class="accordion-collapse collapse help-center"
+                    aria-labelledby="headingThree"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body help-center">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item help-center">
+                  <h2 class="accordion-header help-center" id="headingFour">
+                    <button
+                      class="accordion-button collapsed help-center"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseFour"
+                      aria-expanded="true"
+                      aria-controls="collapseFour"
+                    >
+                      Accordion Item #4
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseFour"
+                    class="accordion-collapse collapse help-center"
+                    aria-labelledby="headingFour"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body help-center">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              id="transactions"
+              class="help-center-accordion visually-hidden"
+            >
+              <div class="fs-24 fw-bold text-highlight">Transactions</div>
+              <div class="help-center-accordion-title">
+                Frequently Asked Questions
+              </div>
+              <div class="accordion help-center" id="privacysec">
+                <div class="accordion-item help-center">
+                  <h2 class="accordion-header help-center" id="headingOne">
+                    <button
+                      class="accordion-button collapsed help-center"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne"
+                      aria-expanded="true"
+                      aria-controls="collapseOne"
+                    >
+                      Accordion Item #1
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseOne"
+                    class="accordion-collapse collapse help-center"
+                    aria-labelledby="headingOne"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body help-center">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item help-center">
+                  <h2 class="accordion-header help-center" id="headingTwo">
+                    <button
+                      class="accordion-button collapsed help-center"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo"
+                      aria-expanded="true"
+                      aria-controls="collapseTwo"
+                    >
+                      Accordion Item #2
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseTwo"
+                    class="accordion-collapse collapse help-center"
+                    aria-labelledby="headingTwo"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body help-center">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item help-center">
+                  <h2 class="accordion-header help-center" id="headingThree">
+                    <button
+                      class="accordion-button collapsed help-center"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree"
+                      aria-expanded="true"
+                      aria-controls="collapseThree"
+                    >
+                      Accordion Item #3
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseThree"
+                    class="accordion-collapse collapse help-center"
+                    aria-labelledby="headingThree"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body help-center">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item help-center">
+                  <h2 class="accordion-header help-center" id="headingFour">
+                    <button
+                      class="accordion-button collapsed help-center"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseFour"
+                      aria-expanded="true"
+                      aria-controls="collapseFour"
+                    >
+                      Accordion Item #4
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseFour"
+                    class="accordion-collapse collapse help-center"
+                    aria-labelledby="headingFour"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body help-center">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
                   </div>
                 </div>
               </div>

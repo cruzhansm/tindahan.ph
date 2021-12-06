@@ -1,4 +1,4 @@
-export async function navigation() {
+export async function navigateToHome() {
   return new Promise(function (resolve, reject) {
     $.ajax({
       type: 'GET',

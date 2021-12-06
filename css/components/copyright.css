@@ -13,7 +13,7 @@
 
 .copyright > a,
 .copyright > a:visited {
-  color: var(--tph-text-higlight);
+  color: var(--tph-text-highlight);
   text-decoration: none;
   margin: 0;
 }
