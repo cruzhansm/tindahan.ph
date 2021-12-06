@@ -43,6 +43,32 @@
       return $store;
     }
 
+    function updateStoreDetails($details) {
+      include('../connect.php');
+
+      $user = $this->store_owner;
+
+      $query = "UPDATE partner_store
+                SET store_name = ?, store_img = ?, store_description = ?
+                WHERE user_id = $user;";
+
+      $stmt = mysqli_prepare($conn, $query);
+      mysqli_stmt_bind_param($stmt, 'sss',
+                             $store_name,
+                             $store_img,
+                             $store_description);
+        
+      $store_name = $details['storeName'];
+      $store_img = $details['storeImg'];
+      $store_description = $details['storeDesc'];
+
+      $result = mysqli_stmt_execute($stmt);
+
+      mysqli_close($conn);
+
+      return $result;
+    }
+
     function jsonSerialize() {
       $data = get_object_vars($this);
 

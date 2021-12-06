@@ -20,7 +20,6 @@ export function insertPartnerApplication(application) {
         const test = new StatusModal('Sent!');
         test.show();
         test.dismissAfter(500);
-        console.log('HOY BAHOG BILAT');
       } else {
         alert(result.error_msg);
       }
