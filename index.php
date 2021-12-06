@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="css/base/base.css">
   <link rel="stylesheet" href="css/components/components.css">
   <link rel="stylesheet" href="css/utilities/utilities.css">
+  <link rel="stylesheet" href="css/common/common.css">
   <link rel="stylesheet" href="css/common/home/home.css">
 
   <script src="js/common/auto-resizer.js"></script>
