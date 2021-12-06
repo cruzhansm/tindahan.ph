@@ -23,7 +23,7 @@ INSERT INTO `users` (`fname`, `lname`, `password`, `email`, `image`, `phone`, `r
 ('Hans Maco', 'Cruz', '$2y$10$nFa3XOdT5LKlQ2FR53l/EuRDE5VfMJcSzgQS48oh3KMrdu8VFUsuC', '18103205@usc.edu.ph', NULL, NULL, 'admin', 'true', 'false', '2021-12-01 05:01:03'),
 ('Roque', 'Gelacio', '$2y$10$LGOaYoqXlK7SJfw73w3S9uOrp4C2yoxNqe.OZuUQyYc.jbPlrYrAC', '20100987@usc.edu.ph', NULL, NULL, 'admin', 'true', 'false', '2021-11-30 23:23:12'),
 ('Hannah Ruth', 'Labana', '$2y$10$LGOaYoqXlK7SJfw73w3S9uOrp4C2yoxNqe.OZuUQyYc.jbPlrYrAC', '20102712@usc.edu.ph', NULL, NULL, 'admin', 'true', 'false', '2021-11-30 23:23:12');
-('Nicholai', 'Oblina', '$2y$10$7rnCmYacPxaJrGV6eRuQJecIJGr18jXYzQqyfNZO9etWJU98bCBtO', '20102511@usc.edu.ph', NULL, NULL, 'admin', 'true', 'false', '2021-12-05 04:18:06');
+('Nicholai Julian', 'Oblina', '$2y$10$7rnCmYacPxaJrGV6eRuQJecIJGr18jXYzQqyfNZO9etWJU98bCBtO', '20102511@usc.edu.ph', NULL, NULL, 'admin', 'true', 'false', '2021-12-05 04:18:06');
 
 -- USE THIS TO UPDATE THE AUTO_INCREMENT OF USERS, IF AUTO_INCREMENT FAILS
 ALTER TABLE `users`
