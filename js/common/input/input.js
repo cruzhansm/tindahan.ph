@@ -85,8 +85,6 @@ export function isCorrectFormat(input) {
 export function isWithinMaxCharCount(text) {
   const limit = text.parentElement.querySelector('.charLimit').innerText;
 
-  console.log(limit);
-
   return text.value.length <= limit ? '' : 'textover';
 }
 
@@ -211,22 +209,11 @@ export function updateInputState(elem, state, check) {
         break;
     }
 
-    const showError =
-      check.localeCompare('empty') != 0
-        ? true
-        : elem.classList.contains('not-required')
-        ? false
-        : true;
-
-    if (showError) {
-      elem.classList.remove('is-valid');
-      elem.classList.add('is-invalid');
-      errorElem.classList.add('invalid-feedback');
-      errorElem.innerText = errorMsg;
-      parent.append(errorElem);
-    } else {
-      elem.classList.remove('is-invalid');
-    }
+    elem.classList.remove('is-valid');
+    elem.classList.add('is-invalid');
+    errorElem.classList.add('invalid-feedback');
+    errorElem.innerText = errorMsg;
+    parent.append(errorElem);
   } else {
     elem.classList.remove('is-invalid');
     elem.classList.contains('no-success') ? '' : elem.classList.add('is-valid');

@@ -42,6 +42,10 @@
       return strcmp($this->suspended, 'false') == 0 ? true : false;
     }
 
+    function getFullName() {
+      return $this->fname . ' ' . $this->lname;
+    }
+
     function updateLastLogin() {
       include('connect.php');
 
@@ -52,23 +56,6 @@
                 WHERE email = '$this->email';";
 
       mysqli_query($conn, $query);
-    }
-
-    static function updateContact($user_id, $updated) {
-      include('connect.php');
-
-      $query = "UPDATE users
-                SET phone = ?
-                WHERE user_id = $user_id;";
-
-      $stmt = mysqli_prepare($conn, $query);
-      mysqli_stmt_bind_param($stmt, 'i', $contact);
-
-      $contact = $updated;
-
-      $result = mysqli_stmt_execute($stmt);
-
-      return $result;
     }
 
     function exists() {
@@ -106,10 +93,6 @@
       else {
         return false;
       }
-    }
-
-    function getFullName() {
-      return $this->fname . ' ' . $this->lname;
     }
 
     function getEmail() {

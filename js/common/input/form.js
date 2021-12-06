@@ -13,7 +13,6 @@ import {
 var SELECTED_FORM; // Current form being evaluated
 var FORM_HAS_EMPTY = true; // Determines if current form has empty fields
 var FORM_HAS_INVALID = true; // Determines if current form has invalid inputs
-var FORM_HAS_REQUIRED = true;
 var FORM_INPUTS = [];
 
 // Prevent form submission, used for AJAX requests
@@ -77,8 +76,6 @@ export function disableSubmitBtn(form) {
 
   SELECTED_FORM = form;
 
-  FORM_HAS_REQUIRED = form.classList.contains('not-required') ? false : true;
-
   if (!submit.classList.contains('tph-disabled')) {
     submit.classList.add('tph-disabled'); // css/components/button.css
   }
@@ -130,11 +127,6 @@ export function attachEmptyFieldListeners(watch) {
     (input) => !input.parentElement.classList.contains('disabled')
   );
 
-  if (FORM_INPUTS.every((input) => input.value != null)) {
-    FORM_HAS_EMPTY = FORM_HAS_INVALID = false;
-    updateButtonState();
-  }
-
   // console.log(FORM_INPUTS);
 
   switch (watch) {
@@ -143,22 +135,20 @@ export function attachEmptyFieldListeners(watch) {
       let timeout = setTimeout(function () {}, 0);
       let state = new Array();
 
-      const inputs = FORM_INPUTS.filter((input) =>
-        ['file', 'radio', 'checkbox'].every((s) => s != input.type)
-      );
+      const inputs = FORM_INPUTS.filter((input) => () => {
+        return ['file', 'radio', 'checkbox'].every((s) => s != input.type);
+      });
 
       for (let i = 0; i < inputs.length; i++) {
-        state.push(inputIsEmpty(inputs[i]));
+        state.push(true);
         // true -> empty / invalid
       }
 
-      // console.log(inputs);
-
-      inputs.forEach((input, index) => {
+      FORM_INPUTS.forEach((input, index) => {
         input.addEventListener('input', () => {
           clearTimeout(timeout);
           let error = new String();
-          const upload = inputs.filter((i) => i.type == 'file')[0];
+          const upload = FORM_INPUTS.filter((i) => i.type == 'file')[0];
 
           state[index] = inputIsEmpty(input);
 
@@ -195,18 +185,16 @@ export function attachEmptyFieldListeners(watch) {
                 FORM_HAS_EMPTY = state.some((s) => s === true);
               }
             }
+
             FORM_HAS_INVALID = state[index];
           } else if (FORM_HAS_EMPTY) {
             error = 'empty';
           }
 
-          // console.log(FORM_HAS_INVALID);
-
           let isErroneous =
             inputIsEmpty(input) || FORM_HAS_INVALID ? true : false;
 
           timeout = setTimeout(() => {
-            // console.log(state);
             updateInputState(input, isErroneous, error);
             updateButtonState();
           }, 200);
@@ -247,7 +235,6 @@ export function attachEmptyFieldListeners(watch) {
 
 function showPreviewImage(image) {
   const preview = URL.createObjectURL(image.files[0]);
-  console.log(image.files[0]);
   const target = document.querySelector('#previewImg');
 
   target.classList.remove('visually-hidden');
@@ -258,14 +245,10 @@ function showPreviewImage(image) {
 // to true, then disable the submit button; else, enable it.
 // WHEN: Call this function when all inputs have been verified.
 function updateButtonState() {
-  // console.log(FORM_HAS_EMPTY, FORM_HAS_INVALID, FORM_HAS_REQUIRED);
+  console.log(FORM_HAS_EMPTY, FORM_HAS_INVALID);
 
   FORM_HAS_EMPTY
-    ? FORM_HAS_REQUIRED
-      ? disableSubmitBtn()
-      : FORM_HAS_INVALID
-      ? disableSubmitBtn()
-      : enableSubmitBtn()
+    ? disableSubmitBtn()
     : FORM_HAS_INVALID
     ? disableSubmitBtn()
     : enableSubmitBtn();

@@ -21,9 +21,9 @@ window.showModal = function showModal(selectedModal) {
   modal.show();
 
   disableSubmitBtn(form)
-    .then(attachEmptyFieldListeners('file'))
     .then(attachEmptyFieldListeners('input'))
     .then(attachEmptyFieldListeners('textarea'))
+    // .then(attachEmptyFieldListeners('number'))
     .then(
       attachCharCountListener(
         form.querySelector(`#${selectedModal.id}Msg`),
