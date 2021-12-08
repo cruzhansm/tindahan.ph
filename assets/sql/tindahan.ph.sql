@@ -137,7 +137,6 @@ CREATE TABLE product_review(
     CONSTRAINT Review_Product_FK FOREIGN KEY(product_id) REFERENCES products(product_id)
 );
 
-
 CREATE TABLE uploaded_img(
   uploaded_img_id           INT(7)              AUTO_INCREMENT,
   img_path                  VARCHAR(260)        NOT NULL,
@@ -175,7 +174,6 @@ CREATE TABLE cart_items(
   CONSTRAINT Cart_Variation_FK FOREIGN KEY(variation_id) REFERENCES product_variation(variation_id)
 );
 
-
 -- CREATE TABLE review_list(
 --     review_list_id          INT(7)              NOT NULL,
 --     product_id              INT(5)              NOT NULL,
@@ -184,8 +182,6 @@ CREATE TABLE cart_items(
 --     CONSTRAINT Review_List_FK FOREIGN KEY(product_id) REFERENCES products(product_id),
 --     CONSTRAINT Review_List_Product_FK FOREIGN KEY(product_review_id) REFERENCES product_review(review_id)
 -- );
-
-
 
 
 -- CREATE TABLE support_inbox(
