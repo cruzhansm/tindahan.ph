@@ -1,0 +1,228 @@
+import { Pagination } from '../pagination.js';
+import { getProductDetails } from './db-methods/retrieve.js';
+import { StatusModal } from '../modal/status-modal.js';
+import { addToCart } from './db-methods/insert.js';
+
+var PRODUCT = new Object();
+
+window.onload = async () => {
+  const productID = new URLSearchParams(window.location.search);
+
+  console.log(productID.get('id'));
+
+  const product = JSON.parse(await getProductDetails(productID.get('id')));
+
+  console.log(product);
+
+  if (await product.error) {
+    alert(`${product.error} \n${product.error_msg}`);
+    window.location.href = '/tindahan.ph/src/common/404.html';
+  } else {
+    PRODUCT = product;
+    const pagination = new Pagination(
+      'paginationContainer',
+      product.product_reviews.length / 3,
+      product.product_reviews.length > 0 ? true : false
+    );
+    appendProductDetails(product);
+    appendVariations(product.product_variations);
+    updateAddToCart(product.product_variations[0].quantity > 0 ? true : false);
+    attachQuantityChangeListeners();
+    appendReviews(product.product_reviews);
+  }
+};
+
+function appendProductDetails(product) {
+  const productPageTitle = document.querySelector('#productPageTitle');
+  const productImg = document.querySelector('#productImg');
+  const productName = document.querySelector('#productName');
+  const productPrice = document.querySelector('#productPrice');
+  const productRating = document.querySelector('#productRating');
+  const productRatingCount = document.querySelector('#productRatingCount');
+  const productStore = document.querySelector('#productStore');
+  const productCategories = document.querySelector('#productCategories');
+  const productBrand = document.querySelector('#productBrand');
+  const productQuantity = document.querySelector('#productQuantity');
+  const productDesc = document.querySelector('#productDesc');
+
+  productPageTitle.innerText = product.product_name;
+  productImg.setAttribute('src', product.product_img);
+  productName.innerText = product.product_name;
+  productPrice.innerText = `P${product.product_price}`;
+  productRating.innerText = product.product_rating;
+  productRatingCount.innerText = product.review_count;
+  productStore.setAttribute(
+    'href',
+    `/tindahan.ph/src/partner/partner-shop-profile.php?id=${product.product_store.store_id}`
+  );
+  productStore.innerText = product.product_store.store_name;
+  productCategories.innerHTML += `<div>${product.product_categories
+    .reduce((c, s) => [...c, s], [])
+    .join(', ')}</div>`;
+  productBrand.innerText = `Brand: ${product.product_brand}`;
+  productQuantity.innerText = `${product.product_quantity} pieces left`;
+  productDesc.innerText = product.product_desc;
+}
+
+function appendVariations(variations) {
+  const select = document.querySelector('#productVariation');
+
+  variations.forEach((variation, index) => {
+    select.innerHTML += `
+      <option value="${variation.variation_id}">${variation.variation}</option>;
+    `;
+  });
+
+  attachVariationChangeListeners(select, variations);
+}
+
+function attachVariationChangeListeners(select, variations) {
+  const price = document.querySelector('#productPrice');
+  const quantity = document.querySelector('#productQuantity');
+
+  select.addEventListener('change', () => {
+    let updated = variations.find((v) => v.variation_id == select.value);
+
+    price.innerText = `P${updated.price}`;
+    quantity.innerText = `${updated.quantity} pieces left.`;
+
+    updateAddToCart(updated.quantity > 0 ? true : false);
+  });
+}
+
+function attachQuantityChangeListeners() {
+  const minus = document.querySelector('#minus');
+  const plus = document.querySelector('#plus');
+  const quantityArea = document
+    .querySelector('#inStock')
+    .querySelector('#buyCount');
+  let limit = parseInt(
+    document.querySelector('#inStock').querySelector('#productQuantity')
+      .innerText
+  );
+  let actualQuantity = parseInt(quantityArea.innerText);
+
+  minus.addEventListener('click', () => {
+    limit = parseInt(
+      document.querySelector('#inStock').querySelector('#productQuantity')
+        .innerText
+    );
+    actualQuantity = parseInt(quantityArea.innerText);
+    quantityArea.innerText =
+      actualQuantity > 1 ? --actualQuantity : actualQuantity;
+  });
+
+  plus.addEventListener('click', () => {
+    limit = parseInt(
+      document.querySelector('#inStock').querySelector('#productQuantity')
+        .innerText
+    );
+    actualQuantity = parseInt(quantityArea.innerText);
+    quantityArea.innerText =
+      actualQuantity < limit ? ++actualQuantity : actualQuantity;
+  });
+}
+
+function updateAddToCart(state) {
+  const inStock = document.querySelector('#inStock');
+  const outStock = document.querySelector('#outStock');
+  const quantityArea = document
+    .querySelector('#inStock')
+    .querySelector('#buyCount');
+
+  if (state == false) {
+    if (!inStock.classList.contains('visually-hidden')) {
+      inStock.classList.add('visually-hidden');
+    }
+    outStock.classList.remove('visually-hidden');
+  } else {
+    if (!outStock.classList.contains('visually-hidden')) {
+      outStock.classList.add('visually-hidden');
+    }
+    inStock.classList.remove('visually-hidden');
+  }
+
+  quantityArea.innerText = 1;
+}
+
+function appendReviews(reviews) {
+  const pages = Math.ceil(reviews.length / 3);
+  const reviewContainer = document.querySelector('.product-page-reviews');
+  const noReviews = document.querySelector('#noReviews');
+  const reviewList = document.querySelector('.product-page-review-list');
+  const pagination = document.querySelector('.pagination-container');
+
+  if (reviews.length == 0) {
+    reviewContainer.classList.add('unpopulated');
+    noReviews.classList.remove('visually-hidden');
+    reviewList.classList.add('visually-hidden');
+    pagination.classList.add('visually-hidden');
+  } else {
+    reviewContainer.classList.add('populated');
+
+    let limit = 3;
+    let idx = 0;
+
+    for (let currentPage = 0; currentPage < pages; currentPage++) {
+      let target = document.querySelector(`#page${currentPage + 1}`);
+
+      for (let num = 1; num <= limit && idx < reviews.length; num++) {
+        let productReview = document.createElement('div');
+        let review = reviews[idx++];
+
+        productReview.classList.add('product-page-review');
+
+        productReview.innerHTML = `
+            <div class="product-page-review-header">
+              <div id="user${
+                review.user_id
+              }" class="product-page-review-reviewer">${review.user_name}</div>
+              <div class="product-page-review-date">${review.timestamp
+                .split(' ')[0]
+                .split('-')
+                .reverse()
+                .join('/')}</div>
+            </div>
+            <div class="product-page-review-rating">
+              <i class="fa-solid fa-star"></i>
+              ${parseInt(review.rating)}
+            </div>
+            <div class="product-page-review-details">${review.review_msg}</div>
+            <div
+              class="product-page-review-attachments ${
+                review.images != null
+                  ? review.images.length > 0
+                    ? ''
+                    : 'visually-hidden'
+                  : ''
+              }">${
+          review.images != null ? appendReviewImages(review.images) : ''
+        }</div>`;
+        target.append(productReview);
+      }
+    }
+  }
+}
+
+function appendReviewImages(images) {
+  let list = new String();
+
+  images.forEach((image) => {
+    list += `<img src="${image}" class="product-page-review-attachment" />`;
+  });
+
+  return list;
+}
+
+window.attemptAddToCart = function attemptAddToCart() {
+  const cartItem = {
+    productID: PRODUCT.product_id,
+    storeID: PRODUCT.product_store.store_id,
+    variationID: parseInt(document.querySelector('#productVariation').value),
+    quantity: parseInt(
+      document.querySelector('#inStock').querySelector('#buyCount').innerText
+    ),
+  };
+
+  addToCart(cartItem);
+};

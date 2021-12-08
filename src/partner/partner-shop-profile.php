@@ -260,10 +260,6 @@
               <div id="shopDesc" class="shop-banner-description"></div>
               <div class="shop-banner-actions">
                 <div class="shop-banner-action">
-                  <i class="fa-solid fa-star"></i>
-                  <span id="shopRating"></span>
-                </div>
-                <div class="shop-banner-action">
                   <i class="fa-solid fa-location-dot"></i>
                   <span id="shopAddress"></span>
                 </div>

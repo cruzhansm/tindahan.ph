@@ -69,14 +69,18 @@
 #productVariation {
   border-radius: 73px;
   color: var(--tph-text-secondary);
-  width: 200px;
+  cursor: pointer;
+  width: 300px;
   height: 45px;
 }
 
-#productVariation > option {
-  background-color: var(--tph-text-secondary);
-  color: var(--tph-text-secondary);
+#productVariation > * {
+  background-color: var(--tph-tertiary);
   width: 100%;
+}
+
+#productStore {
+  width: max-content;
 }
 
 .product-purchase-area {
@@ -112,5 +116,8 @@
 }
 
 .product-purchase-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 315px;
 }

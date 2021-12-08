@@ -4,9 +4,7 @@
     private $store_id;
     private $store_owner;
     private $store_name;
-    private $store_followers;
     private $store_img;
-    private $store_rating;
     private $store_description;
     private $store_active;
     private $store_suspended;
@@ -19,9 +17,7 @@
       $this->store_id = $store['store_id'];
       $this->store_owner = $store['user_id'];
       $this->store_name = $store['store_name'];
-      $this->store_followers = $store['store_followers'];
       $this->store_img = $store['store_img'];
-      $this->store_rating = $store['store_rating'];
       $this->store_description = $store['store_description'];
       $this->store_active = $store['active'];
       $this->store_suspended = $store['suspended'];
