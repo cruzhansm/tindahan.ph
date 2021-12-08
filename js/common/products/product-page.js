@@ -19,6 +19,14 @@ window.onload = async () => {
     window.location.href = '/tindahan.ph/src/common/404.html';
   } else {
     PRODUCT = product;
+
+    // PAGINATION:: A class representing the pagination controller
+    // WHEN: Create a new instance of a Pagination object when you have
+    // a pagination in your page.
+    // CONSTRUCTOR: String form of the pagination container ID | the number
+    // of pages to be generated for pagination (num of items / max) |
+    // visibility of pagination (true - visible; false - hidden)
+    // REFER TO appendReviews() function below for implementation
     const pagination = new Pagination(
       'paginationContainer',
       product.product_reviews.length / 3,
@@ -145,6 +153,13 @@ function updateAddToCart(state) {
   quantityArea.innerText = 1;
 }
 
+// This function is generally how you would use pagination.
+// When creating a new instance of a pagination, it will automatically
+// create and append (num of items / max items per page) number of divs
+// to the pagination pages container. Each div has an id of #page{num}
+// starting at page#1. You have to manually append the items you want to
+// append (such as products, reviews, etc) per pagination page, and following
+// the max number of items per page. Example of which is below:
 function appendReviews(reviews) {
   const pages = Math.ceil(reviews.length / 3);
   const reviewContainer = document.querySelector('.product-page-reviews');

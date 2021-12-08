@@ -229,9 +229,15 @@
             <div id="noReviews" class="fs-18 text-secondary visually-hidden">
               No ratings yet
             </div>
-
+            
+            <!-- THIS IS THE CONTAINER FOR THE PAGINATION PAGES -->
+            <!-- YOU CAN ADD ANY CLASS TO THE DIV, SO LONG AS YOU -->
+            <!-- GIVE IT THE SAME ID AS THE ONE HERE -->
             <div id="paginationPages" class="product-page-review-list"></div>
 
+            <!-- THIS IS THE CONTAINER FOR THE PAGINATION ITSELF -->
+            <!-- PLEASE USE THE SAME ID HERE AS WELL FOR YOUR OWN -->
+            <!-- PAGINATION. USE THE SAME AS WELL, OR FEEL FREE TO STYLE IT -->
             <nav id="paginationContainer" class="pagination-container"></nav>
           </div>
         </div>
