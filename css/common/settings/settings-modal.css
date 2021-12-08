@@ -1,0 +1,25 @@
+.settings-modal-content {
+  display: block;
+  width: 503px;
+  height: 760px;
+  padding: 0px;
+}
+
+.modal-content {
+  background-color: transparent;
+}
+
+.modal-dialog {
+  margin: 1.75rem auto;
+}
+
+.tab-content {
+  background: var(--tph-secondary) !important;
+}
+
+.tab-content {
+  border-radius: 0px 12px 12px 12px !important;
+  border-collapse: separate !important;
+  width: 503px;
+  height: 703px;
+}

@@ -1,0 +1,96 @@
+.admin-pending-items {
+  width: 100%;
+  height: 530px;
+  max-height: 530px;
+  overflow-x: none;
+  overflow-y: scroll;
+}
+
+.admin-pending-item {
+  border-bottom: 1px solid var(--tph-tertiary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 97.5%;
+  padding: 10px;
+}
+
+.admin-pending-item:hover {
+  background-color: var(--tph-tertiary);
+  cursor: pointer;
+}
+
+.admin-pending-item:last-child {
+  border-bottom: 0;
+}
+
+.admin-pending-item-info {
+  display: inline-flex;
+  align-items: flex-end;
+  width: 80%;
+  height: 58px;
+}
+
+.admin-pending-item-img {
+  background-color: var(--placeholder);
+  width: 58px;
+  height: 58px;
+  margin-right: 20px;
+}
+
+.admin-pending-item-img.partner {
+  border-radius: 50%;
+}
+
+.admin-pending-item-info > .details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 85%;
+  margin-bottom: 5px;
+}
+
+.admin-pending-item-main {
+  color: var(--tph-text-highlight);
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.admin-pending-item-sub {
+  color: var(--tph-text-secondary);
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.admin-pending-item-actions {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 20%;
+  height: 58px;
+}
+
+.admin-pending-item-actions > div {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  padding: 5px;
+}
+
+.admin-pending-item-actions > div > i,
+.admin-pending-item-actions > div > i:hover {
+  color: var(--tph-text-primary);
+  font-size: 16px;
+}
+
+.admin-pending-item-actions > .admin-reject {
+  background-color: var(--tph-text-secondary);
+}
+
+.admin-pending-item-actions > .admin-accept {
+  background-color: var(--tph-highlight);
+}

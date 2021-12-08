@@ -1,0 +1,62 @@
+.account-modal-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 450px;
+  height: 50px;
+}
+
+.account-modal-header:hover {
+  cursor: pointer;
+}
+
+.account-modal-header > i {
+  font-size: 16px;
+  transform: scale(1.15,1);
+}
+
+.account-label {
+  color: #64798B !important;
+  width: max-content;
+  height: auto !important;
+  margin-left: 13px;
+  margin-bottom: 5px;
+}
+
+.form-control:disabled {
+  background-color: var(--tph-tertiary);
+  color: var(--tph-text-secondary);
+}
+
+.account-data-email > input,
+.account-data-password > input {
+  display: inline-block;
+}
+
+.account-data-email > span,
+.account-data-password > span {
+  display: inline-block;
+  color: var(--tph-text-highlight) !important;
+  font-size: 18px;
+  font-weight:800;
+  margin-left: 13px;
+}
+
+.account-data-email > span:hover,
+.account-data-password > span:hover {
+  cursor: pointer;
+}
+
+.account-forms {
+  margin-left: 84px;
+  justify-content: center;
+  align-items: center;
+}
+
+.account-data {
+  margin-left: 44px;
+}
+
+.account-data-password > input {
+  width: 324px !important;
+}
