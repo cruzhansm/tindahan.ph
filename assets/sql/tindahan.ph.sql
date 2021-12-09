@@ -99,8 +99,21 @@ CREATE TABLE listing_variations(
 CREATE TABLE product_category(
   category_id     INT(1)              AUTO_INCREMENT,
   category_name   VARCHAR(30)         NOT NULL,
+  category_img    VARCHAR(260)        NOT NULL,
   CONSTRAINT Product_Category_PK PRIMARY KEY(category_id)
 );
+
+-- CATEGORY ENTRIES
+INSERT INTO product_category(category_name, category_img) VALUES
+("Food", "../../assets/images/categories/category-food.jpg"),
+("Cosmetics", "../../assets/images/categories/category-cosmetics.jpg"),
+("Furniture", "../../assets/images/categories/category-furniture.jpg"),
+("Women's","../../assets/images/categories/category-womens.jpg"),
+("Men's","../../assets/images/categories/category-mens.jpg"),
+("Accessories","../../assets/images/categories/category-accessories.jpg"),
+("Electronics","../../assets/images/categories/category-electronics.jpg"),
+("Kids","../../assets/images/categories/category-kids.jpg"),
+("Stationery","../../assets/images/categories/category-stationery.jpg");
 
 CREATE TABLE products(
   product_id              INT(5)              AUTO_INCREMENT,
@@ -298,3 +311,5 @@ CREATE TABLE cart_items(
 --     CONSTRAINT Transaction_PK PRIMARY KEY(transaction_id),
 --     CONSTRAINT User_Logs_FK FOREIGN KEY(user_id) REFERENCES USERS(user_id)
 -- );
+
+
