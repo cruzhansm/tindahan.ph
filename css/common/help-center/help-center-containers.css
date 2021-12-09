@@ -28,3 +28,7 @@
   padding-left: 40px;
   gap: 48px;
 }
+
+.container-help-accordion-group {
+  width: 95%;
+}

@@ -1,0 +1,39 @@
+.help-center-accordion-title {
+  font-size: 24px;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  margin-left: 30px;
+}
+
+.accordion.help-center {
+  margin-left: 70px;
+  width: 1130px;
+}
+
+.accordion-item.help-center {
+  background-color: var(--tph-primary);
+  border: 0;
+}
+
+.accordion-button.help-center {
+  background-color: var(--tph-primary);
+  border-top: 1px solid var(--tph-text-secondary);
+  color: var(--tph-text-primary);
+  font-size: 24px;
+  box-shadow: none;
+}
+
+.accordion-button::after {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%)
+    contrast(103%);
+}
+
+.accordion-collapse.help-center {
+  border-bottom: 1px solid var(--tph-text-secondary);
+  padding-bottom: 30px;
+}
+
+.accordion-body.help-center {
+  color: var(--tph-text-secondary);
+  padding: 0 100px;
+}

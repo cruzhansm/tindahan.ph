@@ -76,6 +76,14 @@
   margin-top: 22px;
 }
 
+.register-form-textarea > textarea::-webkit-scrollbar {
+  width: 7px;
+}
+
+.register-form-textarea > textarea::-webkit-scrollbar-thumb {
+  background-color: var(--tph-text-secondary);
+}
+
 .character-count-area {
   font-size: 12px;
   position: absolute;
@@ -113,5 +121,5 @@
 }
 
 .custom-upload > input {
-  display: none;
+  display: none !important;
 }
