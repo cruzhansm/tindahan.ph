@@ -36,7 +36,6 @@
   line-height: 32px;
 }
 
-
 .product-reviews-rating-filter {
   display: flex;
   flex-direction: column;
@@ -80,7 +79,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  gap: 5px;
+  gap: 10px;
   width: 100%;
   height: min-content;
   padding: 20px 30px;
@@ -112,7 +111,7 @@
   font-size: 18px;
 }
 
-.product-page-review-rating, {
+.product-page-review-rating {
   display: inline-flex;
   gap: 5px;
   height: 17px;
@@ -136,14 +135,8 @@
 
 .product-page-review-attachment {
   background-color: var(--placeholder);
+  cursor: pointer;
   width: 82px;
   height: 82px;
+  object-fit: cover;
 }
-
-.temporary-toggle-button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: max-content;
-}
-

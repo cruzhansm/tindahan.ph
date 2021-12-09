@@ -28,9 +28,9 @@
       $this->product_quantity = $product['product_quantity'];
       $this->product_store = $this->fetchProductStore();
       $this->product_categories = $this->fetchProductCategories();
-      // $this->product_variations = $this->fetchProductVariations();
-      // $this->product_reviews = $this->fetchProductReviews();
-      // $this->review_count = $this->fetchProductReviewCount();
+      $this->product_variations = $this->fetchProductVariations();
+      $this->product_reviews = $this->fetchProductReviews();
+      $this->review_count = $this->fetchProductReviewCount();
     }
 
     private function fetchProductStore() {
@@ -43,8 +43,8 @@
                 JOIN products p ON p.product_store = ps.store_id
                 WHERE p.product_id = $product_id;";
 
-      $result = mysqli_fetch_assoc(mysqli_query($conn, $query));
-
+      $result = mysqli_fetch_assoc(mysqli_query($conn, $query));   
+     
       return $result;
     }
 

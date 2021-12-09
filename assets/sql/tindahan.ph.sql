@@ -150,15 +150,6 @@ CREATE TABLE product_review(
     CONSTRAINT Review_Product_FK FOREIGN KEY(product_id) REFERENCES products(product_id)
 );
 
--- CREATE TABLE review_list(
---     review_list_id          INT(7)              NOT NULL,
---     product_id              INT(5)              NOT NULL,
---     product_review_id       INT(7)              NOT NULL,
---     CONSTRAINT Review_List_PK PRIMARY KEY(review_list_id),
---     CONSTRAINT Review_List_FK FOREIGN KEY(product_id) REFERENCES products(product_id),
---     CONSTRAINT Review_List_Product_FK FOREIGN KEY(product_review_id) REFERENCES product_review(review_id)
--- );
-
 CREATE TABLE uploaded_img(
   uploaded_img_id           INT(7)              AUTO_INCREMENT,
   img_path                  VARCHAR(260)        NOT NULL,
@@ -166,9 +157,10 @@ CREATE TABLE uploaded_img(
 );
 
 CREATE TABLE image_collection(
+  collection_id             INT(7)              AUTO_INCREMENT,
   uploaded                  DATETIME            NOT NULL,             
   uploaded_img_id           INT(7)              NOT NULL,
-  CONSTRAINT Image_Collection_PK PRIMARY KEY(uploaded),
+  CONSTRAINT Image_Collection_PK PRIMARY KEY(collection_id),
   CONSTRAINT Image_Collection_FK FOREIGN KEY(uploaded_img_id) REFERENCES uploaded_img(uploaded_img_id)
 );
 
@@ -182,8 +174,27 @@ CREATE TABLE product_variation(
   CONSTRAINT Product_Variation_FK FOREIGN KEY(product_id) REFERENCES products(product_id)
 );
 
+CREATE TABLE cart_items(
+  cart_item_id            INT(7)              AUTO_INCREMENT,
+  user_id                 INT(5)              NOT NULL,
+  product_id              INT(5)              NOT NULL,
+  variation_id            INT(7)              NOT NULL,
+  quantity                INT(3)              NOT NULL,
+  status                  ENUM('cart', 'ordered', 'removed') DEFAULT 'cart',
+  CONSTRAINT Cart_PK PRIMARY KEY(cart_item_id),
+  CONSTRAINT Cart_User_FK FOREIGN KEY(user_id) REFERENCES users(user_id),
+  CONSTRAINT Cart_Product_FK FOREIGN KEY(product_id) REFERENCES products(product_id),
+  CONSTRAINT Cart_Variation_FK FOREIGN KEY(variation_id) REFERENCES product_variation(variation_id)
+);
 
-
+-- CREATE TABLE review_list(
+--     review_list_id          INT(7)              NOT NULL,
+--     product_id              INT(5)              NOT NULL,
+--     product_review_id       INT(7)              NOT NULL,
+--     CONSTRAINT Review_List_PK PRIMARY KEY(review_list_id),
+--     CONSTRAINT Review_List_FK FOREIGN KEY(product_id) REFERENCES products(product_id),
+--     CONSTRAINT Review_List_Product_FK FOREIGN KEY(product_review_id) REFERENCES product_review(review_id)
+-- );
 
 
 -- CREATE TABLE support_inbox(
@@ -291,16 +302,6 @@ CREATE TABLE product_variation(
 -- ALTER TABLE INVOICE
 -- ADD CONSTRAINT Order_Invoice_FK FOREIGN KEY(order_id) REFERENCES ORDERS(order_id);
 
--- CREATE TABLE CART(
---     cart_id                 INT(5)              AUTO_INCREMENT,
---     cart_contents_id        INT(5)              NOT NULL
---     CONSTRAINT Cart_PK PRIMARY KEY(cart_id),
--- );
-
--- CREATE TABLE CART_CONTENTS(
---   cart_contents_id          INT(5)              AUTO_INCREMENT,
---   product_id
--- );
 
 -- CREATE TABLE USER_LOGS(
 --     transaction_id          INT(10)             AUTO_INCREMENT,
