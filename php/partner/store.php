@@ -4,9 +4,7 @@
     private $store_id;
     private $store_owner;
     private $store_name;
-    private $store_followers;
     private $store_img;
-    private $store_rating;
     private $store_description;
     private $store_active;
     private $store_suspended;
@@ -19,9 +17,7 @@
       $this->store_id = $store['store_id'];
       $this->store_owner = $store['user_id'];
       $this->store_name = $store['store_name'];
-      $this->store_followers = $store['store_followers'];
       $this->store_img = $store['store_img'];
-      $this->store_rating = $store['store_rating'];
       $this->store_description = $store['store_description'];
       $this->store_active = $store['active'];
       $this->store_suspended = $store['suspended'];
@@ -43,11 +39,57 @@
       return $store;
     }
 
+    function updateStoreDetails($details) {
+      include('../connect.php');
+
+      $user = $this->store_owner;
+
+      $query = "UPDATE partner_store
+                SET store_name = ?, store_img = ?, store_description = ?
+                WHERE user_id = $user;";
+
+      $stmt = mysqli_prepare($conn, $query);
+      mysqli_stmt_bind_param($stmt, 'sss',
+                             $store_name,
+                             $store_img,
+                             $store_description);
+        
+      $store_name = $details['storeName'];
+      $store_img = $details['storeImg'];
+      $store_description = $details['storeDesc'];
+
+      $result = mysqli_stmt_execute($stmt);
+
+      mysqli_close($conn);
+
+      return $result;
+    }
+
     function jsonSerialize() {
       $data = get_object_vars($this);
 
       return $data;
     }
-  } 
 
+    static function createStore($details) {
+      include('../connect.php');
+
+      $user_id = $details['user_id'];
+      $store_name = $details['store_name'];
+      $store_img = $details['store_img'];
+      $store_desc = $details['store_desc'];
+
+
+      $insertStore = "INSERT INTO 
+                      partner_store(user_id, store_name,
+                                    store_img, store_description)
+                      VALUES ($user_id, '$store_name', 
+                              '$store_img', '$store_desc')";
+                          
+      $query = mysqli_query($conn, $insertStore);
+
+      return $query ? true : new CustomError("Insert Error: ", "Not inserted"); 
+    }
+  }
+  
 ?>

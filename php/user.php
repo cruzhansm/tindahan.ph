@@ -114,5 +114,18 @@
 
       return $data;
     }
+
+    static function changeRole($userId, $role) {
+      include('../connect.php');
+      
+      $changeRole = "UPDATE users u
+                     SET u.role = '$role' 
+                     WHERE u.user_id = $userId";
+  
+      $query = mysqli_query($conn, $changeRole);
+
+      return $query ? true : new CustomError("Update Error: ", "Role not changed");
+    }
   }
+
 ?>

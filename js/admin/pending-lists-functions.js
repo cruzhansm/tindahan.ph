@@ -7,7 +7,7 @@ function createPPList() {
   let ppList = document.getElementById('pending-partners-list');
 
   $.ajax({
-    url: '../../php/admin/crud.php',
+    url: '/tindahan.ph/php/partner-applications/crud.php',
     data: {
       type: 'create-pending-partners-list'
     },
@@ -19,7 +19,7 @@ function createPPList() {
         <div class="admin-pending-item-info">
           <img src='${x.store_img}' class="admin-pending-item-img partner">
           <div class="details">
-            <span class="admin-pending-item-main">${x.store_name}</span>
+            <span class="admin-pending-item-main" onclick="showModal(pendingPartnerProfile, ${x.application_id})">${x.store_name}</span>
             <span class="admin-pending-item-sub">${x.store_main_categ}</span>
           </div>
         </div>

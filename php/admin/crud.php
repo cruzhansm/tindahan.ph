@@ -4,11 +4,14 @@
 
   $type = $_REQUEST['type'];
 
+  if(isset($_REQUEST['partnerId'])) {
+    $applicationId = $_REQUEST['partnerId'];
+  }
+
   switch($type) {
     case 'count-users': echo countUsers(); break;
     case 'count-pending-partners': echo countPendingPartners(); break;
     case 'count-pending-listings': echo countPendingListings(); break;
-    case 'create-pending-partners-list': echo json_encode(createPendingPartners()); break;
     case 'create-pending-listings-list': echo json_encode(createPendingListings()); break;
     // case 'reject-pending-partners': break;
   }
@@ -62,27 +65,6 @@
     }
   }
 
-  function createPendingPartners() {
-    include('../connect.php');
-    include('../error.php');
-
-    $rows = array();
-
-    $pendingPartnersInfo = "SELECT *
-                            FROM partner_applications pa
-                            WHERE pa.application_status = 'pending'";
-
-    $query = mysqli_query($conn, $pendingPartnersInfo);
-
-    if (mysqli_num_rows($query) > 0) {
-      while ($data = mysqli_fetch_assoc($query)) {
-        $rows[] = $data;
-      }
-    }
-
-    return $rows;
-  }
-
   function createPendingListings() {
     include('../connect.php');
     include('../error.php');
@@ -103,12 +85,5 @@
 
     return $rows;
   }
-
-  // function rejectPendingPartners() {
-  //   include('../connect.php');
-  //   include('../error.php');
-
-
-  // }
 
 ?>

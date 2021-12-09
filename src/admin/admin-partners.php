@@ -42,11 +42,76 @@
     <link rel="stylesheet" href="../../css/components/components.css" />
     <link rel="stylesheet" href="../../css/utilities/utilities.css" />
     <link rel="stylesheet" href="../../css/admin/admin.css" />
+    
 
     <script src="../../js/admin/pending-lists-functions.js"></script>
+    <script src="../../js/admin/pending-modals/pending-partner-modal.js" type="module"></script>
   </head>
 
   <body class="bg-primary">
+  <div
+      class="modal fade"
+      id="pendingPartnerProfile"
+      data-bs-backdrop="static"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable shop-modal-dialog">
+        <div class="modal-content listing-modal-content">
+          <div
+            class="shop-modal-header"
+            data-bs-dismiss="modal"
+            onclick="dismissModal(pendingPartnerProfile)"
+          >
+            <i class="fa-solid fa-x"></i>
+          </div>
+          
+            <div class="modal-body partner-modal-body">
+              <div class="partner-modal-body mx-auto">
+                <div class="partner-modal-top">
+                  <div class="partner-modal-top-image"></div>
+                  <div class="partner-modal-top-title">
+                    <p class="shop-name">Shop Name</p>
+                    <p>Category</p>
+                  </div>
+                </div>
+                <div class="partner-modal-details">
+                  <div class="new-to-selling">
+                    <p>New to Selling? <span></span></p>
+                    <p>Shopee</p>
+                  </div>
+                  <div class="short-description">
+                    <p>Short Description:</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, rerum. Numquam animi corrupti dolore totam aut nulla consectetur nesciunt eveniet!</p>
+                  </div>
+                  <div class="partner-pictures">
+                    <p>Picture:</p>
+                    <span></span>
+                  </div>
+                  <div class="shop-modal-button-group">
+                    <button
+                      type="button"
+                      class="btn btn-tertiary"
+                      data-bs-dismiss="modal"
+                      onclick="dismissModal(pendingPartnerProfile)"
+                    >
+                      Reject
+                    </button>
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                      onclick="showModal(pendingPartnerProfile)"
+                    >
+                      Approve
+                    </button>
+                  </div>
+                </div>
+              </div>
+           </div>  
+        </div>
+      </div>
+    </div>
+
     <div class="row m-0">
       <div class="col left">
         <div class="sidenav">
