@@ -1,25 +1,21 @@
-window.onload = () => {
+import { retrieveCategories } from '../common/db-methods/retrieve.js'
 
-  let container = document.getElementById('categories-table');
-  
-  $.ajax({
-    type: 'POST',
-    url: '../../php/common/crud.php',
-    data: {
-      type: 'retrieve'
-    },
-    success: (data) => {
-      console.log('hello');
-      let resultData = JSON.parse(data);
-      console.log(resultData);
-      resultData.forEach ( x => {
-        container.innerHTML +=
-        `<a href='../common/categories-results.php?c=${x.category_id}' class='categories-box'>
-            <img src='${x.category_img}' class='categories-box-img'>
-            <div class='categories-box-title'>${x.category_name}</div>
-          </a>`
-          
-      })
-    }
-  })
+window.onload = () => {
+  retrieveCategories();
+
+  new Promise(function (resolve, reject) {
+    $.ajax({
+      type: 'GET',
+      url: '/tindahan.ph/php/utype.php',
+      success: (result) => {
+        resolve(result);
+      },
+    });
+  }).then((resolve) => {
+    const test = document.querySelector(`#${resolve}1`);
+    const test2 = document.querySelector(`#${resolve}1`);
+
+    test.classList.remove('visually-hidden');
+    test2.classList.remove('visually-hidden');
+  });
 }

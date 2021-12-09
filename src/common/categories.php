@@ -45,26 +45,8 @@
 
     <script src="../../js/common/auto-resizer.js"></script>
     <script src="../../js/common/auth/logout.js"></script>
-    <script src="../../js/common/categories.js"></script>
+    <script type="module" src="../../js/common/categories.js"></script>
   </head>
-
-  <script>
-    new Promise(function (resolve, reject) {
-      $.ajax({
-        type: 'GET',
-        url: '/tindahan.ph/php/utype.php',
-        success: (result) => {
-          resolve(result);
-        },
-      });
-    }).then((resolve) => {
-      const test = document.querySelector(`#${resolve}1`);
-      const test2 = document.querySelector(`#${resolve}1`);
-
-      test.classList.remove('visually-hidden');
-      test2.classList.remove('visually-hidden');
-    });
-  </script>
 
   <body class="bg-primary">
     <div class="row m-0">

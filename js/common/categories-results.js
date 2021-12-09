@@ -1,55 +1,26 @@
+import { retrieveTitle } from '../common/db-methods/retrieve.js'
+import { retrieveProducts } from '../common/db-methods/retrieve.js'
+
 window.onload = () => {
   const data = new URLSearchParams(window.location.search);
-
   let ctype = data.get('c');
 
   retrieveTitle(ctype);
   retrieveProducts(ctype);
-  
-}
 
-function retrieveTitle(category) {
-  const title = document.querySelector('.product-title');
+  new Promise(function(resolve, reject) {
+    $.ajax({
+      type: 'GET',
+      url: '/tindahan.ph/php/utype.php',
+      success: (result) => {
+        resolve(result);
+      },
+    });
+  }).then((resolve) => {
+    const test = document.querySelector(`#${resolve}1`);
+    const test2 = document.querySelector(`#${resolve}1`);
 
-  $.ajax({
-    type: 'POST',
-    url: '../../php/common/crud.php',
-    data: {
-      type: 'title',
-      id: category
-    },
-    success: (data) => {
-      console.log(data);
-      title.innerHTML += `${data}`;
-    }
-  });
-}
-
-function retrieveProducts(category) {
-  const productFeed = document.querySelector('.container-product-feed');
-
-  $.ajax({
-    type: 'POST',
-    url: '../../php/common/crud.php',
-    data: {
-      type: 'products-results',
-      category: category
-    },
-    success: (data) => {
-      console.log(data);
-      let results = JSON.parse(data);
-      
-      results.forEach( x => {
-        productFeed.innerHTML +=
-        `<a href='/tindahan.ph/src/common/product-page.php?id=${x.product_id}' class="product-feed-block">
-        <img src="${x.product_img}" class="product-feed-img" />
-        <div class="product-feed-info">
-          <div>${x.product_name}</div>
-          <div class="product-feed-price">${x.product_price}</div>
-        </div>
-        <div class="product-feed-store">${x.product_store.store_name}</div>
-      </a>`
-      })
-    }
+    test.classList.remove('visually-hidden');
+    test2.classList.remove('visually-hidden');
   });
 }
