@@ -13,14 +13,12 @@ function appendShopDetails(store) {
   const shopName = document.querySelector('#shopName');
   const shopImg = document.querySelector('#shopImg');
   const shopDesc = document.querySelector('#shopDesc');
-  const shopRating = document.querySelector('#shopRating');
   const shopAddress = document.querySelector('#shopAddress');
   const shopContact = document.querySelector('#shopContact');
 
   shopName.innerText = store.store_name;
   shopImg.setAttribute('src', store.store_img);
   shopDesc.innerText = store.store_description;
-  shopRating.innerText = store.store_rating;
   shopAddress.innerText =
     store.store_address != ', ' ? store.store_address : 'Not yet set';
   shopContact.innerText =
