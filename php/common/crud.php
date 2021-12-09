@@ -4,18 +4,10 @@
 
   $request = $_REQUEST['type'];
 
-  if(isset($_REQUEST['id'])) {
-    $category_id = $_REQUEST['id'];
-  }
-
-  if(isset($_REQUEST['category'])) {
-    $category = $_REQUEST['category'];
-  }
-
   switch($request) {
     case('retrieve'): echo json_encode(retrieveCategories()); break;
-    case('title'): echo retrieveTitle($category_id); break;
-    case('products-results'): echo json_encode(retrieveProducts($category)); break;
+    case('title'): echo retrieveTitle(); break;
+    case('products-results'): echo json_encode(retrieveProducts()); break;
   }
 
   function retrieveCategories() {
@@ -33,8 +25,9 @@
     return $categories;
   }
 
-  function retrieveTitle($category_id) {
+  function retrieveTitle() {
     include_once('../connect.php');
+    $category_id = $_REQUEST['id'];
 
     $query = "SELECT category_name
               FROM product_category
@@ -47,9 +40,10 @@
     }
   }
 
-  function retrieveProducts($category) {
+  function retrieveProducts() {
     include_once('../connect.php');
     include_once('../products/product.php');
+    $category = $_REQUEST['category'];
 
     $products = array();
     $result = array();
