@@ -26,3 +26,26 @@ export function insertPartnerApplication(application) {
     },
   });
 }
+
+export function checkoutItems(order) {
+  $.ajax({
+    type: 'POST',
+    url: '/tindahan.ph/php/orders/crud.php',
+    data: {
+      type: 'checkout-cart-items',
+      order: JSON.stringify(order),
+    },
+    success: (result) => {
+      result = JSON.parse(result);
+
+      if (result == true) {
+        window.location.href =
+          '/tindahan.ph/src/user/user-checkout-process.php';
+      } else {
+        const modal = new StatusModal(result.error + '\n' + result.error_msg);
+        modal.show();
+        modal.dismissAfter(2000);
+      }
+    },
+  });
+}

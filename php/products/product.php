@@ -43,8 +43,8 @@
                 JOIN products p ON p.product_store = ps.store_id
                 WHERE p.product_id = $product_id;";
 
-      $result = mysqli_fetch_assoc(mysqli_query($conn, $query));
-
+      $result = mysqli_fetch_assoc(mysqli_query($conn, $query));   
+     
       return $result;
     }
 
@@ -190,6 +190,24 @@
       $data = get_object_vars($this);
   
       return $data;
+    }
+
+    static function fetchByCategoryID($category_id) {
+      include('../connect.php');
+      $products = array();
+      $query = "SELECT product_id
+                FROM product_category_list
+                WHERE category_id = '$category_id'";
+      $result = mysqli_query($conn, $query);
+
+      if(mysqli_num_rows($result) > 0 ){
+        $i = 0;
+        while($data = mysqli_fetch_assoc($result)){
+          $products[$i] = (int)$data['product_id'];
+          $i++;
+        }
+      }
+      return $products;
     }
 
   }

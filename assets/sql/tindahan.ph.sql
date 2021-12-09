@@ -99,8 +99,21 @@ CREATE TABLE listing_variations(
 CREATE TABLE product_category(
   category_id     INT(1)              AUTO_INCREMENT,
   category_name   VARCHAR(30)         NOT NULL,
+  category_img    VARCHAR(260)        NOT NULL,
   CONSTRAINT Product_Category_PK PRIMARY KEY(category_id)
 );
+
+-- CATEGORY ENTRIES
+INSERT INTO product_category(category_name, category_img) VALUES
+("Food", "../../assets/images/categories/category-food.jpg"),
+("Cosmetics", "../../assets/images/categories/category-cosmetics.jpg"),
+("Furniture", "../../assets/images/categories/category-furniture.jpg"),
+("Women's","../../assets/images/categories/category-womens.jpg"),
+("Men's","../../assets/images/categories/category-mens.jpg"),
+("Accessories","../../assets/images/categories/category-accessories.jpg"),
+("Electronics","../../assets/images/categories/category-electronics.jpg"),
+("Kids","../../assets/images/categories/category-kids.jpg"),
+("Stationery","../../assets/images/categories/category-stationery.jpg");
 
 CREATE TABLE products(
   product_id              INT(5)              AUTO_INCREMENT,
@@ -173,6 +186,33 @@ CREATE TABLE cart_items(
   CONSTRAINT Cart_Product_FK FOREIGN KEY(product_id) REFERENCES products(product_id),
   CONSTRAINT Cart_Variation_FK FOREIGN KEY(variation_id) REFERENCES product_variation(variation_id)
 );
+
+CREATE TABLE orders(
+  order_id                INT(7)              AUTO_INCREMENT,
+  order_date_placed       DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  order_recipient         VARCHAR(255)        NOT NULL,
+  order_recipient_contact BIGINT(10)          NOT NULL,
+  order_recipient_address VARCHAR(360)        NOT NULL,                        
+  order_date_shipped      DATETIME                    ,
+  order_date_fulfilled    DATETIME                    ,
+  order_total_price       DECIMAL(7, 2)       NOT NULL,
+  order_status            ENUM('processing', 'shipped', 'transit', 'fulfilled', 'cancelled') DEFAULT 'processing',
+  order_status_msg        VARCHAR(100)                ,
+  CONSTRAINT Order_PK PRIMARY KEY(order_id)
+);
+
+CREATE TABLE order_details(
+  cart_item_id            INT(7)              NOT NULL,
+  order_id                INT(7)              NOT NULL,           
+  order_quantity          INT(3)              NOT NULL,
+  order_price             DECIMAL(7, 2)       NOT NULL,
+  review_id               INT(7)                      ,
+  CONSTRAINT Order_Details_PK PRIMARY KEY(cart_item_id),
+  CONSTRAINT Order_Cart_FK FOREIGN KEY(cart_item_id) REFERENCES cart_items(cart_item_id),
+  CONSTRAINT Order_FK FOREIGN KEY(order_id) REFERENCES orders(order_id),
+  CONSTRAINT Order_Review_FK FOREIGN KEY(review_id) REFERENCES product_review(review_id)
+);
+
 
 -- CREATE TABLE review_list(
 --     review_list_id          INT(7)              NOT NULL,
@@ -267,19 +307,6 @@ CREATE TABLE cart_items(
 --     CONSTRAINT Invoice_PK PRIMARY KEY(invoice_id)
 -- );
 
--- CREATE TABLE ORDERS(
---     order_id                INT(10)             AUTO_INCREMENT,
---     product_id              INT(5)              NOT NULL,
---     order_status            INT(1)              NOT NULL,
---     product_quantity        INT(3)              NOT NULL,
---     order_date_placed       DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
---     order_date_fulfilled    DATETIME                    ,
---     order_delivery_fee      DECIMAL(5, 2)       NOT NULL,
---     CONSTRAINT Order_PK PRIMARY KEY(order_id, product_id),
---     CONSTRAINT Product_Order_FK FOREIGN KEY(product_id) REFERENCES PRODUCT(product_id)
---     CONSTRAINT Order_Status_FK FOREIGN KEY(order_status) REFERENCES PRODUCT(status_id)
--- );
-
 -- CREATE TABLE ORDER_STATUS(
 --   status_id                 INT(1)              AUTO_INCREMENT,
 --   status                    VARCHAR(10)         NOT NULL,
@@ -298,3 +325,5 @@ CREATE TABLE cart_items(
 --     CONSTRAINT Transaction_PK PRIMARY KEY(transaction_id),
 --     CONSTRAINT User_Logs_FK FOREIGN KEY(user_id) REFERENCES USERS(user_id)
 -- );
+
+
