@@ -40,10 +40,28 @@
 }
 
 .cart-form-titles {
-  width: 50%;
+  width: 45%;
   height: 20px;
   display: inline-flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.cart-form-titles > span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-form-titles > span:nth-child(2) {
+  width: 81px;
+}
+
+.cart-form-delete {
+  width: 5%;
+  height: 20px;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
