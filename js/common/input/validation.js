@@ -28,7 +28,7 @@ export function redirectUser(utype) {
   // window.setTimeout(() => {
   window.location.href =
     utype == 'admin'
-      ? '/tindahan.ph/src/admin/admin-dashboard.html'
+      ? '/tindahan.ph/src/admin/admin-dashboard.php'
       : utype === 'partner'
       ? '/tindahan.ph/index.php?u=partner'
       : '/tindahan.ph/index.php?u=user';

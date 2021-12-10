@@ -67,7 +67,7 @@
         </div>
 
         <div class="sidenav-links">
-          <a href="../../index.html" class="sidenav-link">
+          <a href="/tindahan.ph/index.php" class="sidenav-link">
             <i class="fa-solid fa-house-chimney sidenav-link-icon"></i>
             <div class="sidenav-link-text">Home</div>
           </a>

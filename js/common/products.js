@@ -12,18 +12,6 @@ class Product {
     this.productPrice = productPrice;
     this.productDesc = productDesc;
   }
-
-  // async fetchRandomProduct() {
-  //   $.ajax({});
-  // }
-
-  // fetchSpecificProduct() {
-
-  // }
-
-  // fetchStoreProducts() {
-
-  // }
 }
 
 class FeedProduct extends Product {
