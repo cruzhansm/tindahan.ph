@@ -35,7 +35,6 @@
     else {
       echo json_encode(new CustomError('exists', 'You have already applied for a partnership.'));
     }
-  }
 
   function createPendingPartners() {
     include('../connect.php');
@@ -95,5 +94,4 @@
 
     return $query ? true : new CustomError("Update Error: ", "Role not changed");
   }
-
 ?>

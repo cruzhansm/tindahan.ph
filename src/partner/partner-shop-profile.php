@@ -34,30 +34,15 @@
     <link rel="stylesheet" href="../../css/utilities/utilities.css" />
     <link rel="stylesheet" href="../../css/partner/partner.css" />
 
-<<<<<<< Updated upstream
-<<<<<<< HEAD:src/partner/partner-shop-profile.php
     <!-- <script src="../../js/common/pagination.js"></script> -->
     <!-- <script src="../../js/common/products.js"></script> -->
     <script src="../../js/common/auth/logout.js"></script>
-    <script type="module" src="../../js/common/modal/modal.js"></script>
-    <script type="module" src="../../js/common/input/form.js"></script>
+    <!-- <script type="module" src="../../js/common/input/form.js"></script> -->
+    <script type="module" src="../../js/partner/shop-profile/modal.js"></script>
     <script
       type="module"
       src="../../js/partner/shop-profile/shop-profile.js"
     ></script>
-=======
-=======
->>>>>>> Stashed changes
-    <script src="../../js/common/input.js"></script>
-    <script type="module" src="../../js/common/modal/modal.js"></script>
-    <script src="../../js/common/pagination.js"></script>
-    <script src="../../js/common/products.js"></script>
-    <script src="../../js/partner/shop-profile/shop-profile.js"></script>
-    <script src="../../js/common/user-logout.js"></script>
-<<<<<<< Updated upstream
->>>>>>> master:src/partner/partner-shop-profile.html
-=======
->>>>>>> Stashed changes
   </head>
 
   <body class="bg-primary">
@@ -77,75 +62,94 @@
           >
             <i class="fa-solid fa-x"></i>
           </div>
-          <form onsubmit="attemptEditProfile(event)">
+          <form onsubmit="attemptEditProfile(window.event)">
             <div class="modal-body shop-modal-body">
               <div class="shop-modal-body-form mx-auto">
                 <div class="shop-modal-form-title">edit profile</div>
-                <div class="shop-modal-form-upload">
-                  <div class="shop-modal-form-img"></div>
+                <div class="shop-modal-form-upload for-validation">
+                  <img id="previewImg" class="shop-modal-form-img" />
                   <label class="shop-modal-form-icon">
                     <i class="fa-solid fa-plus"></i>
-                    <input id="partnerImg" accept="image/*" type="file" />
+                    <input
+                      id="partnerImg"
+                      accept="image/*"
+                      type="file"
+                      class="not-required"
+                    />
                   </label>
                 </div>
                 <div class="shop-modal-form">
-                  <!-- <div class="for-validation"> -->
-                  <label for="partnerName" class="form-control"
-                    >store name</label
-                  >
-                  <input id="partnerName" type="text" class="form-control" />
-                  <!-- </div> -->
                   <div class="for-validation">
-                    <div class="shop-modal-form-desc">
-                      <label for="editProfileMsg" class="form-control"
-                        >short description</label
-                      >
-                      <textarea
-                        id="editProfileMsg"
-                        cols="30"
-                        rows="9"
-                        class="form-control"
-                        maxlength="200"
-                      ></textarea>
-                      <div class="character-count-area">
-                        <span id="editProfileMsgCount">0</span>
-                        <span> / </span>
-                        <span class="charLimit">200</span>
-                      </div>
+                    <label for="partnerName" class="form-control"
+                      >store name</label
+                    >
+                    <input
+                      id="partnerName"
+                      type="text"
+                      class="form-control no-success"
+                    />
+                  </div>
+
+                  <div class="shop-modal-form-desc for-validation">
+                    <label
+                      for="editProfileMsg"
+                      class="form-control"
+                      style="
+                        color: var(--tph-text-secondary);
+                        margin-bottom: 20px;
+                      "
+                      >short description</label
+                    >
+                    <textarea
+                      id="editProfileMsg"
+                      cols="30"
+                      rows="9"
+                      class="form-control no-success"
+                      maxlength="200"
+                    ></textarea>
+                    <div class="character-count-area">
+                      <span id="editProfileMsgCount">0</span>
+                      <span> / </span>
+                      <span class="charLimit">200</span>
                     </div>
                   </div>
-                  <!-- <div class="for-validation"> -->
-                  <label for="partnerCity" class="form-control">city</label>
-                  <input id="partnerCity" type="text" class="form-control" />
-                  <!-- </div> -->
-                  <!-- <div class="for-validation"> -->
-                  <label for="partnerBarangay" class="form-control">
-                    barangay
-                  </label>
-                  <input
-                    id="partnerBarangay"
-                    type="text"
-                    class="form-control"
-                  />
-                  <!-- </div> -->
-                  <!-- <div class="for-validation"> -->
+                  <div class="for-validation">
+                    <label for="partnerCity" class="form-control">city</label>
+                    <input
+                      id="partnerCity"
+                      type="text"
+                      class="form-control no-success"
+                    />
+                  </div>
+                  <div class="for-validation">
+                    <label for="partnerBarangay" class="form-control">
+                      barangay
+                    </label>
+                    <input
+                      id="partnerBarangay"
+                      type="text"
+                      class="form-control no-success"
+                    />
+                  </div>
                   <label for="partnerContact" class="form-control">
                     contact number (10 digits)
                   </label>
-                  <div class="form-contact-number">
+                  <div class="form-contact-number for-validation">
                     <input
                       id="partnerContact"
                       type="number"
                       maxlength="10"
                       minlength="10"
-                      class="form-control"
+                      class="form-control no-success"
                     />
                     <span class="form-control-number prefix">+63</span>
                   </div>
-                  <!-- </div> -->
                   <!-- <div class="for-validation">
                     <label for="" class="form-control">email</label>
-                    <input type="email" class="form-control" />
+                    <input
+                      type="email"
+                      class="form-control no-success not-required"
+                    />
                   </div> -->
                 </div>
                 <div class="shop-modal-button-group">
@@ -157,13 +161,7 @@
                   >
                     Cancel
                   </button>
-                  <button
-                    type="submit"
-                    class="btn btn-primary"
-                    onclick="showModal(editProfile)"
-                  >
-                    Save
-                  </button>
+                  <button type="submit" class="btn btn-primary">Save</button>
                 </div>
               </div>
             </div>
@@ -261,10 +259,6 @@
               </div>
               <div id="shopDesc" class="shop-banner-description"></div>
               <div class="shop-banner-actions">
-                <div class="shop-banner-action">
-                  <i class="fa-solid fa-star"></i>
-                  <span id="shopRating"></span>
-                </div>
                 <div class="shop-banner-action">
                   <i class="fa-solid fa-location-dot"></i>
                   <span id="shopAddress"></span>
