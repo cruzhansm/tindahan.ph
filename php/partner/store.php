@@ -70,6 +70,26 @@
 
       return $data;
     }
-  } 
 
+    static function createStore($details) {
+      include('../connect.php');
+
+      $user_id = $details['user_id'];
+      $store_name = $details['store_name'];
+      $store_img = $details['store_img'];
+      $store_desc = $details['store_desc'];
+
+
+      $insertStore = "INSERT INTO 
+                      partner_store(user_id, store_name,
+                                    store_img, store_description)
+                      VALUES ($user_id, '$store_name', 
+                              '$store_img', '$store_desc')";
+                          
+      $query = mysqli_query($conn, $insertStore);
+
+      return $query ? true : new CustomError("Insert Error: ", "Not inserted"); 
+    }
+  }
+  
 ?>
