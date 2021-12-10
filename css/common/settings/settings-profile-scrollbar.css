@@ -1,0 +1,14 @@
+.profile-modal-dialog ::-webkit-scrollbar {
+  width: 10px;
+}
+
+.profile-modal-dialog ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.profile-modal-dialog ::-webkit-scrollbar-thumb,
+.profile-modal-dialog ::-webkit-scrollbar-thumb:hover {
+  background: var(--tph-tertiary);
+  border-radius: 10px;
+  background-clip: padding-box;
+} 

@@ -25,7 +25,7 @@
 }
 
 .shop-modal-header > i {
-  color: #64798B;
+  color: #64798b;
   font-size: 13px;
 }
 
@@ -39,7 +39,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
   width: 324px;
   height: inherit;
 }
@@ -85,27 +85,34 @@
   color: var(--tph-text-primary) !important;
 }
 
-.shop-modal-form-icon > input[type=file] {
+.shop-modal-form-icon > input[type='file'] {
   display: none;
 }
 
 .shop-modal-form {
   display: flex;
   flex-direction: column;
+  gap: 20px;
   align-items: flex-start;
+  width: 325px;
+}
+
+.shop-modal-form > .for-validation > input.form-control {
+  height: 45px;
 }
 
 .shop-modal-form-desc {
-  color: #64798B;
-  display: inline-flex;
-  width: 100%;
+  color: #64798b;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .shop-modal-form-desc > label,
-.shop-modal-form > label {
-  color: #64798B;
+.shop-modal-form > .for-validation > label {
+  color: #64798b;
   width: max-content;
   margin-left: 13px;
   margin-bottom: 5px;
@@ -122,7 +129,7 @@
 }
 
 .shop-modal-form-count > span {
-  color: #64798B;
+  color: #64798b;
   font-size: 12px;
 }
 
@@ -137,4 +144,12 @@
 .shop-modal-button-group > button:hover {
   color: var(--tph-text-primary);
   width: 172px;
+}
+
+.shop-modal-form > .for-validation {
+  width: 100%;
+}
+
+.shop-modal-form > .for-validation > .form-contact-number > input {
+  height: 45px;
 }

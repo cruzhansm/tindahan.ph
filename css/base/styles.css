@@ -32,3 +32,13 @@ i:hover,
   color: var(--tph-text-highlight);
   cursor: pointer;
 }
+
+a,
+a:visited {
+  text-decoration: none;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 75%;
+}
