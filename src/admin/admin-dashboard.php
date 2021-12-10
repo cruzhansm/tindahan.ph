@@ -46,7 +46,7 @@
     <script src="../../js/common/search.js"></script>
     <script src="../../js/common/auth/logout.js"></script>
     <script src="../../js/common/messaging.js"></script>
-    <script src="../../js/admin/dashboard-update-numbers.js"></script>
+    <script src="../../js/admin/dashboard-update-numbers.js" type="module"></script>
   </head>
 
   <body class="bg-primary">
