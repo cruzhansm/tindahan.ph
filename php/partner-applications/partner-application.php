@@ -58,6 +58,20 @@
       $result = mysqli_query($conn, $query);
 
       return mysqli_num_rows($result) > 0 ? true : false;
-    } 
-  }
+    }
+
+    static function changeStatus($application_id, $status) {
+      include('../connect.php');
+      include('../error.php');
+
+      $changeStatus = "UPDATE partner_applications pa
+                       SET pa.application_status = '$status'
+                       WHERE pa.application_id = $application_id";
+              
+      $query = mysqli_query($conn, $changeStatus);
+
+      return $query ? true : new CustomError("Update Error: ", "Status not changed");
+    }
+    
+  } 
 ?>
