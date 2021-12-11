@@ -1,0 +1,14 @@
+.modal-dialog.remove-product {
+  padding-top: 350px;
+  gap: 20px;
+}
+
+.modal-content.remove-product {
+  padding: 30px 25px;
+}
+
+.modal-body.remove-product {
+  margin: 0;
+
+  text-align: center;
+}

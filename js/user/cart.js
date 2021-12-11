@@ -1,166 +1,276 @@
-var USER_CART;
+export class Cart {
+  cartOwner;
+  cartItems;
+  byStore;
+  totalPrice;
 
-function initCart() {
+  constructor(cartOwnerID, cartItems) {
+    this.cartOwner = cartOwnerID;
+    this.cartItems = cartItems;
+    this.byStore = this.sortByStore();
 
-  // DO BACKEND, GET USER_ID
-  USER_CART = new Cart(1);
-  USER_CART.createCart();
+    this.attachStoreCheckListener();
+  }
 
-  // GRAB SELECT ALL CHECKBOX AND DEFINE BEHAVIOR
-  let selectAll = document.querySelector('#selectAll');
-  initSelectAll(selectAll);
+  sortByStore() {
+    const cartByStores = new Array();
+    const cartStores = new Array();
+    const stores = [...new Set(this.cartItems.map((p) => p.store_name))];
 
-  // GRAB ALL STORE LEVEL CHECKBOXES AND DEFINE BEHAVIOR
-  let selectStores = Array.from(document.querySelectorAll('.form-check'))
-                     .map((form) => { return form.firstElementChild; });
-  selectStores.splice(0, 1);
-  initSelectStores(selectStores);
+    let idx = 0;
 
-  // GRAB ALL PRODUCT LEVEL CHECKBOXES AND DEFINE BEHAVIOR
-  let selectProducts = document.querySelectorAll('.form-check-input:not([id])');
-  initSelectProducts(selectProducts);
-
-  // // GRAB ALL TOTAL PRICES, SUM IT, THEN INITIALIZE TOTAL CHECKOUT PRICE
-  
-
-  // console.log(totalPrice);
-
-  // initTotalCheckoutPrice(totalPrice);
-}
-
-function initSelectAll(checkbox) {
-
-  checkbox.addEventListener('change', () => {
-    let allCheckboxes = document.querySelectorAll('.form-check-input');
-    let label = checkbox.nextElementSibling;
-
-    allCheckboxes = Array.from(allCheckboxes);
-    allCheckboxes.splice(0, 1);
-
-    allCheckboxes.forEach((checkboxes) => { 
-      modifyCurrentState(checkbox, checkboxes);
+    stores.forEach((c) => {
+      cartByStores[idx] = this.cartItems.filter(
+        (p) => p.store_name.localeCompare(c) == 0
+      );
+      idx++;
     });
 
-    label.innerText = (label.innerText == 'Select all') ? 'Unselect all' :
-                                                          'Select all';
+    cartByStores.forEach((store, index) => {
+      let storeContainer = document.createElement('div');
+      let productArea = document.createElement('div');
 
-    USER_CART.updateTotalPrice(USER_CART.getTotalPrice());
-  });
-}
+      storeContainer.classList.add('cart-form-group');
+      productArea.classList.add('cart-product-area');
 
-function initSelectStores(storeCheckboxes) {
+      storeContainer.innerHTML = `
+        <div class="cart-form-header">
+          <div class="cart-form-checkbox">
+            <div class="form-check">
+              <input
+                id="s${store[0].product_store}"
+                value="${store[0].store_name}"
+                type="checkbox"
+                class="form-check-input"
+              />
+              <label for="s${store[0].product_store}" class="form-check-label"
+                >${store[0].store_name}</label
+              >
+            </div>
+          </div>
+          <div class="cart-form-titles"></div>
+        </div>
+      `;
 
-  let selectAll = document.querySelector('#selectAll');
-
-  storeCheckboxes.forEach((storeCheckbox) => {
-    storeCheckbox.addEventListener('change', () => {
-      let productCheckboxes = storeCheckbox.parentElement.parentElement
-                              .parentElement.nextElementSibling
-                              .querySelectorAll('.form-check-input');
-
-      if(storeCheckbox.checked == false && selectAll.checked == true) {
-        selectAll.checked = false;
-        selectAll.nextElementSibling.innerText = 'Select all';
-      }
-      
-      if(storeCheckbox.checked == true && selectAll.checked == false) {
-        if(storeCheckboxes.every((checkbox) => { return checkbox.checked; })) {
-          selectAll.click();
-        }
-      }
-
-      productCheckboxes.forEach((checkbox) => {
-        modifyCurrentState(storeCheckbox, checkbox);
+      store.forEach((product) => {
+        productArea.append(new CartProduct(product));
       });
 
-      USER_CART.updateTotalPrice(USER_CART.getTotalPrice());
-    });
-  });
-}
+      storeContainer.append(productArea);
 
-function initSelectProducts(productCheckboxes) {
-
-  let selectAll = document.querySelector('#selectAll');
-
-  productCheckboxes.forEach((productCheckbox) => {
-    productCheckbox.addEventListener('change', () => {
-      let storeCheckbox = productCheckbox.parentElement.parentElement
-                          .parentElement.parentElement.previousElementSibling
-                          .querySelector('.form-check-input');
-      
-      // IF A PRODUCT IS UNCHECKED, UNCHECK THE STORE
-      if(productCheckbox.checked == false && storeCheckbox.checked == true) {
-        storeCheckbox.checked = false;
-        selectAll.checked = false;
-        selectAll.nextElementSibling.innerText = 'Select all';
-      }
-      // IF ALL PRODUCTS ARE INDIVIDUALLY CHECKED, CHECK THE STORE
-      if(productCheckbox.checked == true && storeCheckbox.checked == false) {
-        let recheck = Array.from(productCheckbox.parentElement
-                                 .parentElement.parentElement.parentElement
-                                 .querySelectorAll('.form-check-input'));
-
-        if(recheck.every((checkbox) => { return checkbox.checked })) {
-          storeCheckbox.click();
-        }
-      }
-
-      USER_CART.updateTotalPrice(USER_CART.getTotalPrice());
-    });
-  })
-}
-
-function setTotalCheckoutPrice(price) {
-
-  let priceArea = document.querySelector('.cart-checkout-total')
-                          .lastElementChild;
-
-  priceArea.innerText = `P ${price}`;
-  
-  USER_CART.checkoutPrice = parseInt(price);
-}
-
-// PRESERVE CHECKBOX STATE IF ALREADY CHECKED, ELSE CHECK IT
-function modifyCurrentState(origin, target) {
-
-  if(origin.checked === true && target.checked === false ||
-     origin.checked === false && target.checked === true) {
-    target.click();
-  }
-}
-
-function checkoutCart() {
-
-  USER_CART.checkout();
-
-  let checkout = document.querySelector('.checkout-area');
-  checkout.innerHTML = `<div>Temporary Checkout Area</div>`;
-
-  if(USER_CART.checkoutProducts.length > 0) {
-    let currentStore = USER_CART.checkoutProducts[0].store;
-    
-    USER_CART.checkoutProducts.forEach((product, index) => {
-      if(currentStore == product.store) {
-        checkout.innerHTML += `
-          <br>
-          <span>Store ${product.store}<span>
-          <div>
-        `
-        currentStore = product.store + 1;
-      }
-      
-      checkout.innerHTML += `
-        <br>
-        <div>
-          <div>Product: ${product.name}</div>
-          <div>Quantity: ${product.quantity}</div>
-          <div>Total: ${product.quantity * product.price}</div>
+      storeContainer.innerHTML += `
         </div>
-      `
+      `;
+
+      cartStores[index] = storeContainer;
+    });
+
+    return cartStores;
+  }
+
+  attachStoreCheckListener() {
+    this.byStore.forEach((store) => {
+      const checkbox = store.querySelector('.form-check').firstElementChild;
+      const children = store
+        .querySelector('.cart-product-area')
+        .querySelectorAll('input[type=checkbox]');
+      const selectAll = document.getElementById('selectAll');
+
+      children.forEach((child) => {
+        child.addEventListener('change', () => {
+          const siblings = Array.from(
+            store
+              .querySelector('.cart-product-area')
+              .querySelectorAll('input[type=checkbox')
+          );
+
+          if (!child.checked) {
+            checkbox.checked = false;
+          } else {
+            checkbox.checked = siblings.every((s) => s.checked)
+              ? true
+              : checkbox.checked;
+          }
+          Cart.updateTotalPrice();
+        });
+      });
+
+      checkbox.addEventListener('change', () => {
+        const siblings = Array.from(
+          document.querySelectorAll('.form-check > input[type=checkbox]')
+        ).filter((c) => c.id != 'selectAll');
+
+        children.forEach((child) => {
+          checkbox.checked
+            ? child.checked
+              ? ''
+              : child.click()
+            : (child.checked = false);
+        });
+
+        if (!checkbox.checked) {
+          selectAll.checked = false;
+          selectAll.nextElementSibling.innerText = 'Select All';
+        } else {
+          selectAll.checked = siblings.every((s) => s.checked)
+            ? true
+            : selectAll.checked;
+
+          selectAll.nextElementSibling.innerText = selectAll.checked
+            ? 'Unselect All'
+            : 'Select All';
+        }
+
+        Cart.updateTotalPrice();
+      });
     });
   }
 
-  window.setTimeout(() => {
-    window.location.href = '../../src/user/user-checkout-process.html';
-  }, 1000);
+  static updateTotalPrice() {
+    const total = document.getElementById('totalCart');
+
+    let checkoutItems = Array.from(
+      document.querySelectorAll('.cart-product-group')
+    );
+
+    this.totalPrice = checkoutItems.map((p) => {
+      const selected = p.querySelector(
+        '.cart-product-select > input[type=checkbox]'
+      ).checked;
+
+      if (selected) {
+        const price =
+          p.querySelector('.cart-product-misc').lastElementChild.innerText;
+
+        return parseInt(price.slice(1));
+      } else {
+        return 0;
+      }
+    });
+
+    this.totalPrice = this.totalPrice.reduce((x, y) => (x += y));
+
+    total.innerText = `P${this.totalPrice}`;
+  }
+
+  static async removeFromCart(productID) {
+    console.log(productID);
+
+    return new Promise(function (resolve, reject) {
+      $.ajax({
+        type: 'POST',
+        url: '/tindahan.ph/php/cart/crud.php',
+        data: {
+          type: 'remove-from-cart',
+          cartItemID: productID,
+        },
+        success: (result) => {
+          result = JSON.parse(result);
+
+          resolve(result);
+        },
+      });
+    });
+  }
+}
+
+export class CartProduct {
+  productID;
+  productStore;
+  productName;
+  productImg;
+  productVariation;
+  productQuantity;
+  productBasePrice;
+  productTotalPrice;
+
+  constructor(product) {
+    this.productID = product.cart_item_id;
+    this.productStore = product.product_store;
+    this.productName = product.product_name;
+    this.productImg = product.product_img;
+    this.productVariation = product.variation;
+    this.productQuantity = product.quantity;
+    this.productBasePrice = product.product_price;
+    this.productTotalPrice = product.product_price * product.quantity;
+
+    const ret = this.createCartProduct();
+
+    return ret;
+  }
+
+  createCartProduct() {
+    let product = document.createElement('div');
+    product.classList.add('cart-product-group');
+    product.setAttribute('id', `prod${this.productID}`);
+
+    product.innerHTML += `
+      <div class="cart-product">
+        <div class="cart-product-select">
+          <input
+            id="p${this.productID}"
+            value="${this.productID}"
+            type="checkbox"
+            class="form-check-input"
+          />
+          <img
+            src="${this.productImg}"
+            alt="${this.productName}"
+            class="cart-product-img"
+          />
+        </div>
+        <div class="cart-product-info">
+          <label for="p${this.productID}" class="cart-product-name"
+            >${this.productName}</label
+          >
+          <span class="cart-product-variation"
+            >${this.productVariation}</span>
+        </div>
+      </div>
+      <div class="cart-product-misc">
+        <div>P${this.productBasePrice}</div>
+        <div class="cart-product-quantity">
+          <i class="fa-solid fa-circle-minus"></i>
+          <span id="q${this.productID}">${this.productQuantity}</span>
+          <i class="fa-solid fa-circle-plus"></i>
+        </div>
+        <div>P${this.productTotalPrice}</div>
+      </div>
+      <div class="cart-form-delete" onclick="showModal(productRemove, ${this.productID})">
+        <i class="fa-solid fa-trash"></i>
+      </div>
+    </div>
+    `;
+
+    return product;
+  }
+
+  static attachQuantityChangeListeners(product) {
+    const plus = product.querySelector('.fa-circle-plus');
+    const minus = product.querySelector('.fa-circle-minus');
+    const quantity = product
+      .querySelector('.cart-product-quantity')
+      .querySelector('span');
+    const base = product
+      .querySelector('.cart-product-misc')
+      .firstElementChild.innerText.slice(1);
+    const total = product.querySelector('.cart-product-misc').lastElementChild;
+
+    plus.addEventListener('click', () => {
+      let old = parseInt(quantity.innerText);
+      quantity.innerText = ++old;
+
+      total.innerText = `P${parseInt(base) * parseInt(quantity.innerText)}`;
+      Cart.updateTotalPrice();
+    });
+
+    minus.addEventListener('click', () => {
+      let old = parseInt(quantity.innerText);
+
+      quantity.innerText = old - 1 > 0 ? --old : old;
+
+      total.innerText = `P${parseInt(base) * parseInt(quantity.innerText)}`;
+      Cart.updateTotalPrice();
+    });
+  }
 }

@@ -1,0 +1,38 @@
+/* .partner-modal-body p {
+  color: green;
+} */
+
+.listing-modal-content {
+  width: 531px;
+  height: 652px;
+  overflow-x: none;
+}
+
+.partner-modal-body {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.partner-modal-top-image {
+  width: 121px;
+  height: 121px;
+  background-color: var(--placeholder);
+  border-radius: 70px;
+}
+
+.partner-modal-top-title {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.partner-names {
+  display: block;
+  width: max-content;
+}
+
+.store-name {
+  color: green;
+}

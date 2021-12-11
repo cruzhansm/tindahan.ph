@@ -187,6 +187,33 @@ CREATE TABLE cart_items(
   CONSTRAINT Cart_Variation_FK FOREIGN KEY(variation_id) REFERENCES product_variation(variation_id)
 );
 
+CREATE TABLE orders(
+  order_id                INT(7)              AUTO_INCREMENT,
+  order_date_placed       DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  order_recipient         VARCHAR(255)        NOT NULL,
+  order_recipient_contact BIGINT(10)          NOT NULL,
+  order_recipient_address VARCHAR(360)        NOT NULL,                        
+  order_date_shipped      DATETIME                    ,
+  order_date_fulfilled    DATETIME                    ,
+  order_total_price       DECIMAL(7, 2)       NOT NULL,
+  order_status            ENUM('processing', 'shipped', 'transit', 'fulfilled', 'cancelled') DEFAULT 'processing',
+  order_status_msg        VARCHAR(100)                ,
+  CONSTRAINT Order_PK PRIMARY KEY(order_id)
+);
+
+CREATE TABLE order_details(
+  cart_item_id            INT(7)              NOT NULL,
+  order_id                INT(7)              NOT NULL,           
+  order_quantity          INT(3)              NOT NULL,
+  order_price             DECIMAL(7, 2)       NOT NULL,
+  review_id               INT(7)                      ,
+  CONSTRAINT Order_Details_PK PRIMARY KEY(cart_item_id),
+  CONSTRAINT Order_Cart_FK FOREIGN KEY(cart_item_id) REFERENCES cart_items(cart_item_id),
+  CONSTRAINT Order_FK FOREIGN KEY(order_id) REFERENCES orders(order_id),
+  CONSTRAINT Order_Review_FK FOREIGN KEY(review_id) REFERENCES product_review(review_id)
+);
+
+
 -- CREATE TABLE review_list(
 --     review_list_id          INT(7)              NOT NULL,
 --     product_id              INT(5)              NOT NULL,
@@ -278,19 +305,6 @@ CREATE TABLE cart_items(
 --     invoice_voucher         VARCHAR(10)                 ,
 --     invoice_submit_date     DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
 --     CONSTRAINT Invoice_PK PRIMARY KEY(invoice_id)
--- );
-
--- CREATE TABLE ORDERS(
---     order_id                INT(10)             AUTO_INCREMENT,
---     product_id              INT(5)              NOT NULL,
---     order_status            INT(1)              NOT NULL,
---     product_quantity        INT(3)              NOT NULL,
---     order_date_placed       DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
---     order_date_fulfilled    DATETIME                    ,
---     order_delivery_fee      DECIMAL(5, 2)       NOT NULL,
---     CONSTRAINT Order_PK PRIMARY KEY(order_id, product_id),
---     CONSTRAINT Product_Order_FK FOREIGN KEY(product_id) REFERENCES PRODUCT(product_id)
---     CONSTRAINT Order_Status_FK FOREIGN KEY(order_status) REFERENCES PRODUCT(status_id)
 -- );
 
 -- CREATE TABLE ORDER_STATUS(

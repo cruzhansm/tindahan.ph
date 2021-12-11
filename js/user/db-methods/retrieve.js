@@ -14,3 +14,19 @@ export async function userHasApplied() {
     });
   });
 }
+
+export async function retrieveCartItems() {
+  return await $.ajax({
+    type: 'GET',
+    url: '/tindahan.ph/php/cart/crud.php',
+    data: {
+      type: 'get-cart-items',
+    },
+    success: (result) => {
+      result = JSON.parse(result);
+      console.log(result);
+
+      return result;
+    },
+  });
+}

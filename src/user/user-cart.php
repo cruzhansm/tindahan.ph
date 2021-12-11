@@ -1,3 +1,9 @@
+<?php
+
+  session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -34,19 +40,9 @@
     <link rel="stylesheet" href="../../css/utilities/utilities.css" />
     <link rel="stylesheet" href="../../css/user/user.css" />
 
-    <script src="../../js/common/auto-resizer.js"></script>
     <script src="../../js/common/auth/logout.js"></script>
-    <script src="../../js/common/products.js"></script>
-    <script src="../../js/user/cart-product.js"></script>
-    <script src="../../js/user/cart.js"></script>
-    <script src="../../js/user/cart-product-methods.js"></script>
+    <script type="module" src="/tindahan.ph/js/user/user-cart.js"></script>
   </head>
-
-  <script>
-    window.onload = () => {
-      initCart();
-    };
-  </script>
 
   <body class="bg-primary">
     <div
@@ -56,26 +52,21 @@
       tabindex="-1"
       aria-hidden="true"
     >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-body">
+      <div class="modal-dialog remove-product">
+        <div class="modal-content remove-product">
+          <div class="modal-body remove-product">
             Are you sure you want to delete this item from your shopping cart?
           </div>
-          <div class="modal-footer">
-            <button
-              id="delete"
-              type="button"
-              class="btn btn-highlight"
-              onclick="removeProduct()"
-            >
+          <div class="modal-footer remove-product">
+            <button id="delete" type="button" class="btn btn-highlight">
               Delete
             </button>
             <button
               id="cancel"
               type="button"
-              class="btn modal-cancel-btn"
+              class="btn modal-cancel-btn remove-product"
               data-bs-dismiss="modal"
-              onclick="cancelRemoval()"
+              onclick="dismissModal(productRemove)"
             >
               Cancel
             </button>
@@ -97,7 +88,7 @@
             </div>
           </div>
           <div class="sidenav-links">
-            <a href="../../index.php" class="sidenav-link">
+            <a href="/tindahan.ph/index.php" class="sidenav-link">
               <i class="fa-solid fa-house-chimney sidenav-link-icon"></i>
               <div class="sidenav-link-text">Home</div>
             </a>
@@ -144,16 +135,17 @@
                 <div class="user-image-actions visually-hidden">
                   <div class="user-image-action no-hover">
                     <i class="fa-solid fa-user"></i>
-                    <div>userFirstName</div>
+                    <div><?php echo $_SESSION['fname'] ?></div>
                   </div>
                   <div class="user-image-action">
                     <i class="fa-solid fa-right-from-bracket"></i>
-                    <a href="../common/login.html">LOG OUT</a>
+                    <span onclick="logout()">LOG OUT</span>
                   </div>
                 </div>
               </div>
             </div>
           </header>
+
           <div class="container-cart">
             <div class="container-form">
               <div class="cart-form-group cart-select">
@@ -175,28 +167,23 @@
                     <span>Quantity</span>
                     <span>Total Price</span>
                   </div>
+                  <div class="cart-form-delete"></div>
                 </div>
               </div>
-
-              <!-- STORES SHOULD BE HERE -->
             </div>
 
             <div class="checkout">
               <div class="container-checkout">
                 <div class="cart-checkout-total">
                   <span>Total</span>
-                  <span class="text-highlight fw-bold">P0</span>
+                  <span class="text-highlight fw-bold" id="totalCart">P0</span>
                 </div>
                 <button
                   class="btn btn-primary cart-checkout-btn"
-                  onclick="checkoutCart()"
+                  onclick="attemptCheckout()"
                 >
                   Check out
                 </button>
-              </div>
-
-              <div class="checkout-area">
-                <div>Temporary Checkout Area</div>
               </div>
             </div>
           </div>
