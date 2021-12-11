@@ -72,6 +72,5 @@
 
       return $query ? true : new CustomError("Update Error: ", "Status not changed");
     }
-    
   } 
 ?>

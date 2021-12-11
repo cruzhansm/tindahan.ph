@@ -16,7 +16,7 @@ window.onload = async function () {
       navbar.innerHTML =
         utype == 'user' ? createUserNavbar() : createPartnerNavbar();
 
-      fetchMultipleProducts();
+      // fetchMultipleProducts();
       // attachMessagingEventListener();
     }
   });
@@ -65,7 +65,7 @@ function createPartnerNavbar() {
             <i class="fa-solid fa-shop sidenav-link-icon"></i>
             <div class="sidenav-link-text">Shop Profile</div>
           </a>
-          <a href="src/partner/partner-add-listing.html" class="sidenav-link">
+          <a href="src/partner/partner-add-listing.php" class="sidenav-link">
             <i class="fa-solid fa-circle-plus sidenav-link-icon"></i>
             <div class="sidenav-link-text">Add Listing</div>
           </a>

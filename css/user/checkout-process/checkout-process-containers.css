@@ -37,6 +37,10 @@
   height: max-content;
 }
 
+.container-button-group.information {
+  margin-top: 120px;
+}
+
 .container-button-group > button {
   width: 173px !important;
 }

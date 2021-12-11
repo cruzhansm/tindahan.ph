@@ -1,5 +1,6 @@
+import { StatusModal } from '../common/modal/status-modal.js';
 import { Cart, CartProduct } from './cart.js';
-import { checkoutItems } from './db-methods/insert.js';
+import { fakeCheckoutItems } from './db-methods/insert.js';
 import { retrieveCartItems } from './db-methods/retrieve.js';
 
 window.onload = async () => {
@@ -117,5 +118,14 @@ window.attemptCheckout = function attemptCheckout() {
   });
 
   console.log(order);
-  checkoutItems(order);
+
+  if (order.products.length == 0) {
+    const status = new StatusModal(
+      `You can't proceed to checkout without selecting items to checkout.`
+    );
+    status.show();
+    status.dismissAfter(1000);
+  } else {
+    fakeCheckoutItems(order);
+  }
 };

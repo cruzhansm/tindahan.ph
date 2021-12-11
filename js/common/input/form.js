@@ -130,7 +130,9 @@ export function attachEmptyFieldListeners(watch) {
     (input) => !input.parentElement.classList.contains('disabled')
   );
 
-  if (FORM_INPUTS.every((input) => input.value != null)) {
+  if (
+    FORM_INPUTS.every((input) => input.value != null && input.value.length != 0)
+  ) {
     FORM_HAS_EMPTY = FORM_HAS_INVALID = false;
     updateButtonState();
   }
@@ -152,7 +154,7 @@ export function attachEmptyFieldListeners(watch) {
         // true -> empty / invalid
       }
 
-      // console.log(inputs);
+      // console.log(inputs, state);
 
       inputs.forEach((input, index) => {
         input.addEventListener('input', () => {
