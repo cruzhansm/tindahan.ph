@@ -126,7 +126,7 @@ CREATE TABLE products(
   product_quantity        INT(5)              NOT NULL,
   product_brand           VARCHAR(20)         NOT NULL,
   CONSTRAINT Product_PK PRIMARY KEY(product_id),
-  CONSTRAINT Product_FK FOREIGN KEY(product_store) REFERENCES partner_store(store_id);
+  CONSTRAINT Product_FK FOREIGN KEY(product_store) REFERENCES partner_store(store_id)
 );
 
 CREATE TABLE product_category_list(

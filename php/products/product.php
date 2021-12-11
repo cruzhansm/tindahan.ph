@@ -1,4 +1,4 @@
-<?php
+  <?php
   class Product implements JsonSerializable {
     private $product_id;
     private $product_store;

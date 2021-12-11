@@ -1,4 +1,7 @@
-import { navigateToHome } from './common/navigation/nav.js';
+import { navigateToHome } from '/tindahan.ph/js/common/navigation/nav.js';
+import { fetchUserDetails } from '/tindahan.ph/js/common/db-methods/retrieve.js';
+
+export var USER_DETAILS = new Object();
 
 window.onload = async function () {
   const view = new URLSearchParams(window.location.search);
@@ -16,10 +19,14 @@ window.onload = async function () {
       navbar.innerHTML =
         utype == 'user' ? createUserNavbar() : createPartnerNavbar();
 
-      fetchMultipleProducts();
+      // fetchMultipleProducts();
       // attachMessagingEventListener();
     }
   });
+
+  fetchUserDetails().then((data) => {
+    USER_DETAILS = data;
+  })
 };
 
 function createUserNavbar() {

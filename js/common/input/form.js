@@ -28,6 +28,7 @@ export function noSubmit(event) {
 // (call this function, then make the other form appear and init validation).
 // PARAMS: none
 export function resetFlags() {
+  // console.log(SELECTED_FORM, FORM_HAS_EMPTY, FORM_HAS_INVALID, FORM_HAS_REQUIRED, FORM_INPUTS);
   SELECTED_FORM = null;
   FORM_HAS_EMPTY = FORM_HAS_INVALID = true;
   FORM_INPUTS = [];
@@ -152,7 +153,7 @@ export function attachEmptyFieldListeners(watch) {
         // true -> empty / invalid
       }
 
-      // console.log(inputs);
+      console.log(inputs);
 
       inputs.forEach((input, index) => {
         input.addEventListener('input', () => {
@@ -161,6 +162,7 @@ export function attachEmptyFieldListeners(watch) {
           const upload = inputs.filter((i) => i.type == 'file')[0];
 
           state[index] = inputIsEmpty(input);
+          // console.log(state);
 
           FORM_HAS_EMPTY = state.some((s) => s === true);
 
@@ -258,7 +260,7 @@ function showPreviewImage(image) {
 // to true, then disable the submit button; else, enable it.
 // WHEN: Call this function when all inputs have been verified.
 function updateButtonState() {
-  // console.log(FORM_HAS_EMPTY, FORM_HAS_INVALID, FORM_HAS_REQUIRED);
+  console.log(FORM_HAS_EMPTY, FORM_HAS_INVALID, FORM_HAS_REQUIRED);
 
   FORM_HAS_EMPTY
     ? FORM_HAS_REQUIRED
