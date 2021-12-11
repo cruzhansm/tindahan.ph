@@ -145,18 +145,243 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="copyright mx-auto">
-      <div class="text-highlight">about tindahan.ph</div>
-      <div class="text-secondary">
-        &copy 2021 tindahan.ph. All Rights Reserved.
+
+  <!-- 1. Convert to Object -->
+  <!-- 2. Define JS that automatically appends the messages object to page -->
+  <div class="container-messages visually-hidden">
+    <div class="messages-header">
+      <div class="messages-header-title">messages</div>
+      <button class="btn btn-primary" style="width: max-content; height: max-content; padding: 5px; line-height: 10px; font-size: 10px;" onclick="noConvos()">Click for no active convo</button>
+      <button class="btn btn-primary" style="width: max-content; height: max-content; padding: 5px; line-height: 10px; font-size: 10px;" onclick="normalConvos()">Click for normal convo</button>
+      <button class="btn btn-primary" style="width: max-content; height: max-content; padding: 5px; line-height: 10px; font-size: 10px;" onclick="attachmentSentZ()">Click for attachment sent only</button>
+      <i class="fa-solid fa-x messages-header-close" onclick="hideMessages()"></i>
+    </div>
+    <div class="container-messages-content">
+      <div class="container-messages-chat">
+        <div id="chatNoActive" class="d-flex justify-content-center align-items-center h-100 w-100 flex-column gap-3">
+          <i class="fa-solid fa-comments text-secondary" style="font-size: 100px;"></i>
+          <div class="fs-18 text-secondary">Start a conversation</div>
+        </div>
+
+        <div id="chatHide" class="message-chat-input-area visually-hidden">
+          <div class="message-chat-actions">
+            <i class="fa-solid fa-paperclip"></i>
+            <textarea rows="1" class="form-control message-chat-msg-input" placeholder="Type a message here"></textarea>
+            <i class="fa-solid fa-reply"></i>
+          </div>
+          <div class="visually-hidden attachmentSent">
+          </div>
+          <div class="message-chat-attachments visually-hidden normalConvo">
+            <div class="message-chat-attachment"></div>
+            <div class="message-chat-attachment"></div>
+            <div class="message-chat-attachment"></div>
+            <div class="message-chat-attachment"></div>
+            <div class="message-chat-attachment"></div>
+            <div class="message-chat-attachment"></div>
+            <div class="message-chat-attachment"></div>
+            <div class="message-chat-attachment"></div>
+            <div class="message-chat-attachment"></div>
+          </div>
+        </div>
+
+        <div class="message-chat-area visually-hidden attachmentSent">
+          <div class="message-chat-sent">
+            <div></div>
+          </div>
+          <div class="message-chat-sent">
+            <div></div>
+          </div>
+        </div>
+        <div class="message-chat-area visually-hidden normalConvo">
+          <div class="message-chat-received">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</div>
+          <div class="message-chat-sent">labore et dolore magna aliqua. </div>
+          <div class="message-chat-received">Ut enim ad minim veniam, quis nostrud exercitation ullamco</div>
+          <div class="message-chat-sent">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla </div>
+        </div>
+      </div>
+
+      <div class="container-messages-conversations">
+        <div class="message-conversation-search-area">
+          <input type="search" class="form-control form-search message-conversation-search" placeholder="Search">
+          <!-- TODO -->
+          <!-- 1. Implement real-time search results. -->
+          <div class="message-conversation-search-results"></div>
+        </div>
+        <div class="messages-conversation-area">
+          <div class="messages-conversation">
+            <div class="message-conversation-user"></div>
+
+            <div class="message-conversation-formal">
+              <div class="message-conversation-user-info">
+                <div class="message-conversation-username">User Name</div>
+                <div class="message-conversation-user-status online"></div>
+              </div>
+              <div class="message-conversation-msg-info">
+                <div class="message-conversation-sneakpeek">
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate, nostrum.
+                </div>
+                <div class="message-conversation-timestamp">3 Nov</div>
+              </div>
+            </div>
+          </div>
+          <div class="messages-conversation">
+            <div class="message-conversation-user"></div>
+
+            <div class="message-conversation-formal">
+              <div class="message-conversation-user-info">
+                <div class="message-conversation-username">User Name</div>
+                <div class="message-conversation-user-status online"></div>
+              </div>
+              <div class="message-conversation-msg-info">
+                <div class="message-conversation-sneakpeek">
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate, nostrum.
+                </div>
+                <div class="message-conversation-timestamp">2 Nov</div>
+              </div>
+            </div>
+          </div>
+          <div class="messages-conversation">
+            <div class="message-conversation-user"></div>
+
+            <div class="message-conversation-formal">
+              <div class="message-conversation-user-info">
+                <div class="message-conversation-username">User Name</div>
+                <div class="message-conversation-user-status"></div>
+              </div>
+              <div class="message-conversation-msg-info">
+                <div class="message-conversation-sneakpeek">
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate, nostrum.
+                </div>
+                <div class="message-conversation-timestamp">25 Oct</div>
+              </div>
+            </div>
+          </div>
+          <div class="messages-conversation">
+            <div class="message-conversation-user"></div>
+
+            <div class="message-conversation-formal">
+              <div class="message-conversation-user-info">
+                <div class="message-conversation-username">User Name</div>
+                <div class="message-conversation-user-status"></div>
+              </div>
+              <div class="message-conversation-msg-info">
+                <div class="message-conversation-sneakpeek">
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate, nostrum.
+                </div>
+                <div class="message-conversation-timestamp">10 Oct</div>
+              </div>
+            </div>
+          </div>
+          <div class="messages-conversation">
+            <div class="message-conversation-user"></div>
+
+            <div class="message-conversation-formal">
+              <div class="message-conversation-user-info">
+                <div class="message-conversation-username">User Name</div>
+                <div class="message-conversation-user-status online"></div>
+              </div>
+              <div class="message-conversation-msg-info">
+                <div class="message-conversation-sneakpeek">
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate, nostrum.
+                </div>
+                <div class="message-conversation-timestamp">Dec 2020</div>
+              </div>
+            </div>
+          </div>
+          <div class="messages-conversation">
+            <div class="message-conversation-user"></div>
+
+            <div class="message-conversation-formal">
+              <div class="message-conversation-user-info">
+                <div class="message-conversation-username">User Name</div>
+                <div class="message-conversation-user-status"></div>
+              </div>
+              <div class="message-conversation-msg-info">
+                <div class="message-conversation-sneakpeek">
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate, nostrum.
+                </div>
+                <div class="message-conversation-timestamp">10 Oct</div>
+              </div>
+            </div>
+          </div>
+          <div class="messages-conversation">
+            <div class="message-conversation-user"></div>
+
+            <div class="message-conversation-formal">
+              <div class="message-conversation-user-info">
+                <div class="message-conversation-username">User Name</div>
+                <div class="message-conversation-user-status"></div>
+              </div>
+              <div class="message-conversation-msg-info">
+                <div class="message-conversation-sneakpeek">
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate, nostrum.
+                </div>
+                <div class="message-conversation-timestamp">21 Dec 2020</div>
+              </div>
+            </div>
+          </div>
+          <div class="messages-conversation">
+            <div class="message-conversation-user"></div>
+
+            <div class="message-conversation-formal">
+              <div class="message-conversation-user-info">
+                <div class="message-conversation-username">User Name</div>
+                <div class="message-conversation-user-status online"></div>
+              </div>
+              <div class="message-conversation-msg-info">
+                <div class="message-conversation-sneakpeek">
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate, nostrum.
+                </div>
+                <div class="message-conversation-timestamp">3 Nov</div>
+              </div>
+            </div>
+          </div>
+          <div class="messages-conversation">
+            <div class="message-conversation-user"></div>
+
+            <div class="message-conversation-formal">
+              <div class="message-conversation-user-info">
+                <div class="message-conversation-username">User Name</div>
+                <div class="message-conversation-user-status online"></div>
+              </div>
+              <div class="message-conversation-msg-info">
+                <div class="message-conversation-sneakpeek">
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate, nostrum.
+                </div>
+                <div class="message-conversation-timestamp">3 Nov</div>
+              </div>
+            </div>
+          </div>
+          <div class="messages-conversation">
+            <div class="message-conversation-user"></div>
+
+            <div class="message-conversation-formal">
+              <div class="message-conversation-user-info">
+                <div class="message-conversation-username">User Name</div>
+                <div class="message-conversation-user-status online"></div>
+              </div>
+              <div class="message-conversation-msg-info">
+                <div class="message-conversation-sneakpeek">
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate, nostrum.
+                </div>
+                <div class="message-conversation-timestamp">3 Nov</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+
+
+  <div class="copyright mx-auto">
+    <div class="text-highlight">about tindahan.ph</div>
+    <div class="text-secondary">&copy 2021 tindahan.ph. All Rights Reserved.</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
 </html>
