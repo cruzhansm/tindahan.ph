@@ -1,0 +1,16 @@
+.verify-settings-modal {
+  max-width: 500px;
+  min-width: 500px;
+  margin-top: 75px !important;
+  justify-content: center !important;
+  margin-left: 710px !important;
+} 
+
+.verify-settings-modal > form > button{
+  margin-left: 37px;
+  margin-bottom: 10px !important;
+}
+
+.verify-settings-modal-header > i {
+  margin-left: 390px !important;
+}

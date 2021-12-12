@@ -128,7 +128,7 @@ CREATE TABLE products(
   active                  ENUM('true', 'false') DEFAULT 'true',
   suspended               ENUM('true', 'false') DEFAULT 'false',
   CONSTRAINT Product_PK PRIMARY KEY(product_id),
-  CONSTRAINT Product_FK FOREIGN KEY(product_store) REFERENCES partner_store(store_id);
+  CONSTRAINT Product_FK FOREIGN KEY(product_store) REFERENCES partner_store(store_id)
 );
 
 CREATE TABLE product_category_list(
