@@ -61,6 +61,7 @@
     $_SESSION['image'] = $data['image'];
     $_SESSION['phone'] = $data['phone'];
     $_SESSION['role'] = $data['role'];
+    $_SESSION['email'] = $GLOBALS['email'];
 
     return $user == false ? new CustomError('user', 'User does not exist.') : $data['role'];
   }

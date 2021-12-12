@@ -53,6 +53,35 @@
 
       return $result;
     }
+
+    static function updateUserAddress($updateInfo, $user_id) {
+      include('../connect.php');
+
+      $query = "UPDATE users_address
+                SET street = ?, city = ?, barangay = ?, zipcode = ?, landmark = ?
+                WHERE user_id = $user_id";
+
+      $stmt = mysqli_prepare($conn, $query);
+
+      mysqli_stmt_bind_param($stmt, 'sssis',
+                             $user_street,
+                             $user_city,
+                             $user_barangay,
+                             $user_zipcode,
+                             $user_landmark);
+
+      $user_street = $updateInfo['userStreet'] == "" ? NULL : $updateInfo['userStreet'];
+      $user_city = $updateInfo['userCity'] == "select a city" ? NULL : $updateInfo['userCity'];
+      $user_barangay = $updateInfo['userBarangay'] == "" ? NULL : $updateInfo['userBarangay'];
+      $user_zipcode = $updateInfo['userZipcode'] == "" || $updateInfo['userZipcode'] == 0 ? NULL : $updateInfo['userZipcode'];
+      $user_landmark = $updateInfo['userLandmark'] == "" ? NULL : $updateInfo['userLandmark'];
+
+      $result = mysqli_stmt_execute($stmt);
+
+      mysqli_close($conn);
+
+      return $result;
+    }
   }
 
 ?>

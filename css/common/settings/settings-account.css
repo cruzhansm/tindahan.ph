@@ -23,28 +23,49 @@
   margin-bottom: 5px;
 }
 
-.form-control:disabled {
+.account-data {
+  display: flex;
+  flex-direction: column;
+  margin-left: 62px;
+  margin-top: 25px;
+}
+
+.account-item:first-of-type {
+  border-bottom: 0 !important;
+}
+
+.account-item {
+  display: flex;
+  width: 379px;
+  height: 76px;
+  border-top: 2px solid var(--tph-tertiary);
+  border-bottom: 2px solid var(--tph-tertiary);
+  justify-content: space-between;
+  padding: 23px 17px; 
+  align-items: center;
+}
+
+.account-item:hover {
   background-color: var(--tph-tertiary);
-  color: var(--tph-text-secondary);
-}
-
-.account-data-email > input,
-.account-data-password > input {
-  display: inline-block;
-}
-
-.account-data-email > span,
-.account-data-password > span {
-  display: inline-block;
-  color: var(--tph-text-highlight) !important;
-  font-size: 18px;
-  font-weight:800;
-  margin-left: 13px;
-}
-
-.account-data-email > span:hover,
-.account-data-password > span:hover {
   cursor: pointer;
+}
+
+.account-item-detail > p:first-of-type {
+  color: var(--tph-text-highlight);
+  font-weight: bold;
+  font-size: 18px;
+  margin-top:5px;
+}
+
+.account-email {
+  color: var(--tph-text-secondary);
+  font-size: 14px;
+  margin-top: -19px;
+}
+
+.account-redirect > i {
+  color: var(--tph-text-secondary);
+  font-weight: bold;
 }
 
 .account-forms {
@@ -53,10 +74,7 @@
   align-items: center;
 }
 
-.account-data {
-  margin-left: 44px;
-}
-
-.account-data-password > input {
-  width: 324px !important;
+.account-new-email > form > button,
+.account-new-password > form > button {
+  width: 316px;
 }
