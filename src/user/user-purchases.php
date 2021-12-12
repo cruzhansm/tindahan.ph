@@ -45,6 +45,7 @@
       rel="stylesheet"
       href="../../css/common/help-center/help-center-modal.css"
     />
+    <link rel="stylesheet" href="../../css/common/common.css">
 
     <script src="../../js/common/auth/logout.js"></script>
     <script type="module" src="../../js/user/user-purchases.js"></script>
@@ -58,7 +59,7 @@
       tabindex="-1"
       aria-hidden="true"
     >
-      <div class="modal-dialog remove-product">
+      <div class="modal-dialog">
         <div class="modal-content remove-product">
           <div class="modal-body remove-product">
             Are you sure you want to cancel this order?
@@ -212,75 +213,10 @@
 
           <div class="container-orders">
             <div class="container-orders-list">
-              <!-- <div class="orders-group">
-                <div class="order-header">
-                  <div class="order-header-details">
-                    <div class="fs-18">Partner Name</div>
-                  </div>
-                  <div class="order-header-price">P0</div>
-                </div>
-                <div class="order-product-group">
-                  <div class="order-product purchases">
-                    <div class="order-product-details">
-                      <i class="fa-solid fa-comment-dots"></i>
-                      <img src="../../assets/images/fries.jpg" class="order-product-img"></img>
-                      <div class="order-product-info">
-                        <div class="order-product-name">Product Name</div>
-                        <div class="order-product-variation">Variation#1</div>
-                        <div class="order-product-quantity">x0</div>
-                      </div>
-                    </div>
-                    <div>P0</div>
-                  </div>
-                  <div class="order-product">
-                    <div class="order-product-details">
-                      <img src="../../assets/images/fries.jpg" class="order-product-img"></img>
-                      <div class="order-product-info">
-                        <div class="order-product-name">Product Name</div>
-                        <div class="order-product-variation">Variation#1</div>
-                        <div class="order-product-quantity">x0</div>
-                      </div>
-                    </div>
-                    <div>P0</div>
-                  </div>
-                </div>
-                <div class="order-status-list">
-                  <div class="order-product-status deliver visually-hidden">
-                    Parcel is out for delivery.
-                  </div>
-                  <div class="order-product-status cancelled visually-hidden">
-                    CANCELLED
-                  </div>
-                  <div class="order-product-status rate">
-                    Rate
-                  </div>
-                  <div class="order-product-status active">Buy Again</div>
-                </div>
-              </div> -->
 
-              <!-- <nav> -->
-              <!-- Convert to dynamically created page number -->
-              <!-- creates N number of links depending on number of store -->
-              <!-- products, where N = no. of products / 12-> max display -->
-              <!-- per page. -->
-              <!-- <ul class="pagination">
-                <li class="page-item" onclick="goToPredecessor()">
-                  <a class="page-link" href="#aproducts">Previous</a>
-                </li>
-                <li class="page-item" onclick="goToNextPage(1)">
-                  <a class="page-link current" href="#aproducts">1</a>
-                </li>
-                <li class="page-item" onclick="goToNextPage(2)">
-                  <a class="page-link" href="#aproducts">2</a>
-                </li>
-                <li class="page-item" onclick="goToNextPage(3)">
-                  <a class="page-link" href="#aproducts">3</a>
-                </li>
-                <li class="page-item" onclick="goToSuccessor()">
-                  <a class="page-link" href="#aproducts">Next</a>
-                </li>
-              </ul>
-            </nav> -->
+              <div id="paginationPages" class="product-page-review-list"></div>
+              <nav id="paginationContainer" class="pagination-container"></nav>
+              
             </div>
 
             <div class="container-orders-filter">
