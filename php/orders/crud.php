@@ -15,6 +15,10 @@
       echo json_encode(retrieveActiveVouchers()); break;
     case 'create-order-invoice':
       echo json_encode(createOrderInvoice()); break;
+    case 'retrieve-all-purchases':
+      echo json_encode(retrieveValidPurchases()); break;
+    case 'cancel-order':
+      echo json_encode(cancelSpecifiedOrder()); break;
   }
 
   function fakeCheckoutCart() {
@@ -80,5 +84,20 @@
     $vouchers = Voucher::fetchAllActiveVouchers();
 
     return $vouchers != false ? $vouchers : false;
+  }
+
+  function retrieveValidPurchases() {
+    include('invoice.php');
+
+    return Invoice::fetchAllValidOrders($_SESSION['user_id']);
+  }
+
+  function cancelSpecifiedOrder() {
+    include('order.php');
+    $order_id = $_REQUEST['orderID'];
+
+    $order = new Order($order_id);
+
+    return $order->cancel();
   }
 ?>

@@ -63,7 +63,7 @@
             </div>
           </div>
           <div class="sidenav-links visually-hidden" id="user1">
-            <a href="../../index.php" class="sidenav-link">
+            <a href="/tindahan.ph/index.php" class="sidenav-link">
               <i class="fa-solid fa-house-chimney sidenav-link-icon"></i>
               <div class="sidenav-link-text">Home</div>
             </a>
@@ -75,7 +75,7 @@
               <i class="fa-solid fa-cart-shopping sidenav-link-icon"></i>
               <div class="sidenav-link-text">Cart</div>
             </a>
-            <a href="../../src/user/user-purchases.html" class="sidenav-link">
+            <a href="../../src/user/user-purchases.php" class="sidenav-link">
               <i class="fa-solid fa-bag-shopping sidenav-link-icon"></i>
               <div class="sidenav-link-text">My Purchases</div>
             </a>
@@ -92,7 +92,7 @@
             </a>
           </div>
           <div class="sidenav-links visually-hidden" id="partner1">
-            <a href="../../index.php" class="sidenav-link">
+            <a href="/tindahan.ph/index.php" class="sidenav-link">
               <i class="fa-solid fa-house-chimney sidenav-link-icon"></i>
               <div class="sidenav-link-text">Home</div>
             </a>

@@ -82,17 +82,21 @@ CREATE TABLE listing_application(
 );
 
 CREATE TABLE listing_categories(
+  listing_category_id     INT(7)                AUTO_INCREMENT,
   application_id          INT(7)                NOT NULL,
   category_id             INT(1)                NOT NULL,
-  CONSTRAINT Listing_Category_PK PRIMARY KEY(application_id),
-  CONSTRAINT Listing_Category_FK FOREIGN KEY(application_id) REFERENCES listing_application(application_id)
+  CONSTRAINT Listing_Category_PK PRIMARY KEY(listing_category_id),
+  CONSTRAINT Listing_Application_FK FOREIGN KEY(application_id) REFERENCES listing_application(application_id),
+  CONSTRAINT Listing_Category_FK FOREIGN KEY(category_id) REFERENCES product_category(category_id)
 );
 
 CREATE TABLE listing_variations(
+  listing_variation_id    INT(7)                AUTO_INCREMENT,
   application_id          INT(7)                NOT NULL,
-  price                   DECIMAL(7, 2)     NOT NULL,
-  quantity                INT(5)            NOT NULL,
-  CONSTRAINT Listing_Variation_PK PRIMARY KEY(application_id),
+  variation               VARCHAR(100)          NOT NULL,
+  price                   DECIMAL(7, 2)         NOT NULL,
+  quantity                INT(5)                NOT NULL,
+  CONSTRAINT Listing_Variation_PK PRIMARY KEY(listing_variation_id),
   CONSTRAINT Listing_Variation_FK FOREIGN KEY(application_id) REFERENCES listing_application(application_id)  
 );
 
@@ -199,11 +203,24 @@ CREATE TABLE orders(
   order_date_shipped      DATETIME                    ,
   order_date_fulfilled    DATETIME                    ,
   order_total_price       DECIMAL(7, 2)       NOT NULL,
-  order_status            ENUM('processing', 'shipped', 'transit', 'fulfilled', 'cancelled') DEFAULT 'processing',
-  order_status_msg        VARCHAR(100)                ,
+  order_status            ENUM('processing', 'shipped', 'transit', 'delivered', 'cancelled') DEFAULT 'processing',
   CONSTRAINT Orders_PK PRIMARY KEY(order_id),
   CONSTRAINT Orders_FK FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
+
+CREATE TABLE order_status(
+  order_status            VARCHAR(20)         NOT NULL,
+  order_status_msg        VARCHAR(100)                ,
+  CONSTRAINT Order_Status_PK PRIMARY KEY(order_status)
+);
+
+INSERT INTO order_status(order_status, order_status_msg)
+VALUES
+('processing', 'Your order is being prepared.'),
+('shipped', 'Your order has arrived in our sort center.'),
+('transit', 'Your order is on the way. Be on the lookout for our courier.'),
+('delivered', 'Your order has been delivered. Please leave a review for us to improve our services.'),
+('cancelled', 'You cancelled your order.');
 
 CREATE TABLE order_details(
   order_product_id        INT(7)              AUTO_INCREMENT,

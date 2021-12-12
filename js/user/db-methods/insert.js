@@ -79,3 +79,22 @@ export async function createOrderInvoice(invoice) {
     },
   });
 }
+
+export function createProductReview(review) {
+  $.ajax({
+    type: 'POST',
+    url: '/tindahan.ph/php/products/crud.php',
+    data: {
+      type: 'create-product-review',
+      review: JSON.stringify(review),
+    },
+    success: (result) => {
+      result = JSON.parse(result);
+      console.log(result);
+
+      if (result) {
+        window.location.reload();
+      }
+    },
+  });
+}
