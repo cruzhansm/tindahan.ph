@@ -34,8 +34,9 @@
 
     private function fetchOrderDetails($order_id) {
       include('../connect.php');
-      $query = "SELECT *
-                FROM orders
+      $query = "SELECT o.*, os.order_status_msg
+                FROM orders o
+                JOIN order_status os ON os.order_status = o.order_status
                 WHERE order_id = $order_id;";
 
       $result = mysqli_fetch_assoc(mysqli_query($conn, $query));
@@ -97,6 +98,12 @@
           $query2 = "INSERT INTO order_details (cart_item_id, order_id, order_quantity, order_price)
                    VALUES ($order_cart_id, $last_id, $order_quantity, $order_price);";
           
+          $query3 = "UPDATE products
+                     SET product_quantity = product_quantity - $order_quantity
+                     WHERE product_id = (SELECT product_id
+                                         FROM cart_items
+                                         WHERE cart_item_id = $order_cart_id)";
+
           $result = mysqli_query($conn, $query2);
         }
       }
@@ -133,6 +140,20 @@
                 WHERE ci.cart_item_id = $cart_item_id;";
 
       $result = mysqli_fetch_assoc(mysqli_query($conn, $query));
+
+      return $result;
+    }
+
+    public function cancel() {
+      include('../connect.php');
+
+      $order_id = $this->order_id;
+
+      $query = "UPDATE orders
+                SET order_status = 'cancelled'
+                WHERE order_id = $order_id;";
+      
+      $result = mysqli_query($conn, $query);
 
       return $result;
     }

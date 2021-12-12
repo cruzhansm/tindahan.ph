@@ -29,6 +29,7 @@
 }
 
 .order-product {
+  FONT-VARIANT: JIS04;
   display: flex;
   justify-content: space-between;
   align-items: center;

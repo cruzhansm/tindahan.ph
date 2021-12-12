@@ -82,17 +82,21 @@ CREATE TABLE listing_application(
 );
 
 CREATE TABLE listing_categories(
+  listing_category_id     INT(7)                AUTO_INCREMENT,
   application_id          INT(7)                NOT NULL,
   category_id             INT(1)                NOT NULL,
-  CONSTRAINT Listing_Category_PK PRIMARY KEY(application_id),
-  CONSTRAINT Listing_Category_FK FOREIGN KEY(application_id) REFERENCES listing_application(application_id)
+  CONSTRAINT Listing_Category_PK PRIMARY KEY(listing_category_id),
+  CONSTRAINT Listing_Application_FK FOREIGN KEY(application_id) REFERENCES listing_application(application_id),
+  CONSTRAINT Listing_Category_FK FOREIGN KEY(category_id) REFERENCES product_category(category_id)
 );
 
 CREATE TABLE listing_variations(
+  listing_variation_id    INT(7)                AUTO_INCREMENT,
   application_id          INT(7)                NOT NULL,
-  price                   DECIMAL(7, 2)     NOT NULL,
-  quantity                INT(5)            NOT NULL,
-  CONSTRAINT Listing_Variation_PK PRIMARY KEY(application_id),
+  variation               VARCHAR(100)          NOT NULL,
+  price                   DECIMAL(7, 2)         NOT NULL,
+  quantity                INT(5)                NOT NULL,
+  CONSTRAINT Listing_Variation_PK PRIMARY KEY(listing_variation_id),
   CONSTRAINT Listing_Variation_FK FOREIGN KEY(application_id) REFERENCES listing_application(application_id)  
 );
 
@@ -199,11 +203,24 @@ CREATE TABLE orders(
   order_date_shipped      DATETIME                    ,
   order_date_fulfilled    DATETIME                    ,
   order_total_price       DECIMAL(7, 2)       NOT NULL,
-  order_status            ENUM('processing', 'shipped', 'transit', 'fulfilled', 'cancelled') DEFAULT 'processing',
-  order_status_msg        VARCHAR(100)                ,
+  order_status            ENUM('processing', 'shipped', 'transit', 'delivered', 'cancelled') DEFAULT 'processing',
   CONSTRAINT Orders_PK PRIMARY KEY(order_id),
   CONSTRAINT Orders_FK FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
+
+CREATE TABLE order_status(
+  order_status            VARCHAR(20)         NOT NULL,
+  order_status_msg        VARCHAR(100)                ,
+  CONSTRAINT Order_Status_PK PRIMARY KEY(order_status)
+);
+
+INSERT INTO order_status(order_status, order_status_msg)
+VALUES
+('processing', 'Your order is being prepared.'),
+('shipped', 'Your order has arrived in our sort center.'),
+('transit', 'Your order is on the way. Be on the lookout for our courier.'),
+('delivered', 'Your order has been delivered. Please leave a review for us to improve our services.'),
+('cancelled', 'You cancelled your order.');
 
 CREATE TABLE order_details(
   order_product_id        INT(7)              AUTO_INCREMENT,
@@ -246,17 +263,6 @@ CREATE TABLE invoice(
   CONSTRAINT Invoice_FK FOREIGN KEY(order_id) REFERENCES orders(order_id)
 );
 
-
--- CREATE TABLE review_list(
---     review_list_id          INT(7)              NOT NULL,
---     product_id              INT(5)              NOT NULL,
---     product_review_id       INT(7)              NOT NULL,
---     CONSTRAINT Review_List_PK PRIMARY KEY(review_list_id),
---     CONSTRAINT Review_List_FK FOREIGN KEY(product_id) REFERENCES products(product_id),
---     CONSTRAINT Review_List_Product_FK FOREIGN KEY(product_review_id) REFERENCES product_review(review_id)
--- );
-
-
 -- CREATE TABLE support_inbox(
 --   ticket_id         INT(7)            AUTO_INCREMENT,
 --   user_id           INT(5)            NOT NULL,
@@ -286,69 +292,6 @@ CREATE TABLE invoice(
 --   CONSTRAINT Suspensions_Img_FK FOREIGN KEY(img_collection_id) REFERENCES image_collection(img_collection_id),
 --   CONSTRAINT Suspensions_Report_FK FOREIGN KEY(report_id) REFERENCES user_reports(report_id),
 -- );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--- CREATE TABLE product_variation_list(
---   product_id          INT(5)            NOT NULL,
---   variation_id        INT(7)            NOT NULL,
---   CONSTRAINT Variation_List_PK PRIMARY KEY(product_id),
---   CONSTRAINT Variation_List_FK PRIMARY KEY(product_id) REFERENCES products(product_id),
---   CONSTRAINT Variation_FK FOREIGN KEY(variation_id) REFERENCES product_variation(variation_id)
--- );
-
--- CREATE TABLE PAYMENT(
---     payment_id              INT(10)             AUTO_INCREMENT,
---     invoice_id              INT(10)             NOT NULL,
---     user_id                 INT(5)              NOT NULL,
---     payment_method_id       INT(1)              NOT NULL,
---     payment_sum_total       DECIMAL(7, 2)       NOT NULL,
---     payment_status          ENUM('pending', 'cancelled', 'paid'),
---     payment_date            DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
---     CONSTRAINT Payment_PK PRIMARY KEY(payment_id),
---     CONSTRAINT User_Address_FK FOREIGN KEY(user_id) REFERENCES USER_ADDRESS(user_id)
--- );
-
--- CREATE TABLE PAYMENT_METHOD(
---     payment_method_id       INT(1)              AUTO_INCREMENT,
---     payment_type            VARCHAR(20)         NOT NULL,
---     CONSTRAINT Payment_Method_PK PRIMARY KEY(payment_method_id)
--- );
-
--- CREATE TABLE INVOICE(
---     invoice_id              INT(10)             AUTO_INCREMENT,
---     order_id                INT(10)             NOT NULL,
---     invoice_voucher         VARCHAR(10)                 ,
---     invoice_submit_date     DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
---     CONSTRAINT Invoice_PK PRIMARY KEY(invoice_id)
--- );
-
--- CREATE TABLE ORDER_STATUS(
---   status_id                 INT(1)              AUTO_INCREMENT,
---   status                    VARCHAR(10)         NOT NULL,
---   CONSTRAINT Order_Status_PK PRIMARY KEY(status_id)
--- );
-
--- ALTER TABLE INVOICE
--- ADD CONSTRAINT Order_Invoice_FK FOREIGN KEY(order_id) REFERENCES ORDERS(order_id);
-
 
 -- CREATE TABLE USER_LOGS(
 --     transaction_id          INT(10)             AUTO_INCREMENT,
