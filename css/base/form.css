@@ -13,7 +13,11 @@ label.form-control {
 }
 
 input.form-control,
-input.form-control:focus {
+input.form-control:focus,
+input.form-control:active,
+select.form-control,
+select.form-control:focus,
+select.form-control:active {
   background-color: var(--tph-tertiary);
   border-radius: 73px;
   color: var(--input);

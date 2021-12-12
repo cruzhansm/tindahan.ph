@@ -35,7 +35,7 @@ CREATE TABLE users_address(
   street            VARCHAR(150)                    ,
   city              VARCHAR(50)                     ,
   barangay          VARCHAR(50)                     ,
-  region            VARCHAR(20)                     ,
+landmark            VARCHAR(20)                     ,
   zipcode           INT(4)                          ,
 
   CONSTRAINT Users_Address_PK PRIMARY KEY(user_id),
@@ -125,8 +125,10 @@ CREATE TABLE products(
   product_rating          DECIMAL(2,1)        NOT NULL DEFAULT 0.0,
   product_quantity        INT(5)              NOT NULL,
   product_brand           VARCHAR(20)         NOT NULL,
+  active                  ENUM('true', 'false') DEFAULT 'true',
+  suspended               ENUM('true', 'false') DEFAULT 'false',
   CONSTRAINT Product_PK PRIMARY KEY(product_id),
-  CONSTRAINT Product_FK FOREIGN KEY(product_store) REFERENCES partner_store(store_id);
+  CONSTRAINT Product_FK FOREIGN KEY(product_store) REFERENCES partner_store(store_id)
 );
 
 CREATE TABLE product_category_list(
@@ -189,6 +191,7 @@ CREATE TABLE cart_items(
 
 CREATE TABLE orders(
   order_id                INT(7)              AUTO_INCREMENT,
+  user_id                 INT(5)              NOT NULL,
   order_date_placed       DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
   order_recipient         VARCHAR(255)        NOT NULL,
   order_recipient_contact BIGINT(10)          NOT NULL,
@@ -198,19 +201,49 @@ CREATE TABLE orders(
   order_total_price       DECIMAL(7, 2)       NOT NULL,
   order_status            ENUM('processing', 'shipped', 'transit', 'fulfilled', 'cancelled') DEFAULT 'processing',
   order_status_msg        VARCHAR(100)                ,
-  CONSTRAINT Order_PK PRIMARY KEY(order_id)
+  CONSTRAINT Orders_PK PRIMARY KEY(order_id),
+  CONSTRAINT Orders_FK FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
 
 CREATE TABLE order_details(
+  order_product_id        INT(7)              AUTO_INCREMENT,
   cart_item_id            INT(7)              NOT NULL,
   order_id                INT(7)              NOT NULL,           
   order_quantity          INT(3)              NOT NULL,
   order_price             DECIMAL(7, 2)       NOT NULL,
   review_id               INT(7)                      ,
-  CONSTRAINT Order_Details_PK PRIMARY KEY(cart_item_id),
+  CONSTRAINT Order_Details_PK PRIMARY KEY(order_product_id),
   CONSTRAINT Order_Cart_FK FOREIGN KEY(cart_item_id) REFERENCES cart_items(cart_item_id),
   CONSTRAINT Order_FK FOREIGN KEY(order_id) REFERENCES orders(order_id),
   CONSTRAINT Order_Review_FK FOREIGN KEY(review_id) REFERENCES product_review(review_id)
+);
+
+CREATE TABLE vouchers(
+  voucher_id              INT(5)              AUTO_INCREMENT,
+  voucher_code            VARCHAR(15)         NOT NULL,
+  voucher_type            ENUM('direct', 'percent') NOT NULL,
+  voucher_discount        DECIMAL(6, 2)       NOT NULL,
+  voucher_start           DATETIME            NOT NULL,
+  voucher_end             DATETIME            NOT NULL,
+  CONSTRAINT Vouchers_PK PRIMARY KEY(voucher_id)
+);
+
+INSERT INTO vouchers(voucher_code, voucher_type, voucher_discount, voucher_start, voucher_end)
+VALUES
+('FIRSTPURCHASE', 'direct', 100, NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY)),
+('TINDAHANFRIENDS', 'percent', 10, NOW(), DATE_ADD(NOW(), INTERVAL 3 DAY)),
+('HAPPYHOLIDAYS', 'direct', 300, NOW(), DATE_ADD(NOW(), INTERVAL 1 MONTH));
+
+
+CREATE TABLE invoice(
+  invoice_id              INT(7)              AUTO_INCREMENT,
+  order_id                INT(7)              NOT NULL,
+  payment_method          ENUM('cod', 'card')         ,
+  date_of_payment         DATETIME            DEFAULT NOW(),
+  amount_to_pay           DECIMAL(7, 2)       NOT NULL,
+  amount_paid             DECIMAL(7, 2)               ,
+  CONSTRAINT Invoice_PK PRIMARY KEY(invoice_id),
+  CONSTRAINT Invoice_FK FOREIGN KEY(order_id) REFERENCES orders(order_id)
 );
 
 

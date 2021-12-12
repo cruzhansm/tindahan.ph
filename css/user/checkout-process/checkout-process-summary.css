@@ -33,6 +33,23 @@
   margin-left: auto;
 }
 
+.checkout-voucher-area {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  height: max-content;
+}
+
+.checkout-voucher-area > .for-validation > input {
+  width: 225px;
+  height: 45px;
+}
+
+.checkout-voucher-area > button {
+  width: 90px;
+  height: 45px;
+}
+
 #voucher {
   width: 305px;
   height: 45px;
@@ -86,9 +103,8 @@
   width: 100%;
 }
 
-#totalPrice {
+#orderTotalPrice {
   color: var(--tph-text-highlight);
   font-size: 24px;
   font-weight: 700;
 }
-

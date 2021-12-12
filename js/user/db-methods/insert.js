@@ -27,25 +27,55 @@ export function insertPartnerApplication(application) {
   });
 }
 
-export function checkoutItems(order) {
+export function fakeCheckoutItems(order) {
   $.ajax({
     type: 'POST',
     url: '/tindahan.ph/php/orders/crud.php',
     data: {
-      type: 'checkout-cart-items',
+      type: 'fake-checkout-cart',
       order: JSON.stringify(order),
     },
     success: (result) => {
       result = JSON.parse(result);
 
-      if (result == true) {
-        window.location.href =
-          '/tindahan.ph/src/user/user-checkout-process.php';
-      } else {
-        const modal = new StatusModal(result.error + '\n' + result.error_msg);
-        modal.show();
-        modal.dismissAfter(2000);
-      }
+      window.location.href = '/tindahan.ph/src/user/user-checkout-process.php';
+    },
+  });
+}
+
+export async function checkoutItems(order, recipient) {
+  return await $.ajax({
+    type: 'POST',
+    url: '/tindahan.ph/php/orders/crud.php',
+    data: {
+      type: 'checkout-cart-items',
+      order: JSON.stringify(order),
+      recipient: JSON.stringify(recipient),
+    },
+    success: (result) => {
+      result = JSON.parse(result);
+
+      return result;
+    },
+  });
+}
+
+export async function createOrderInvoice(invoice) {
+  console.log(invoice);
+
+  return await $.ajax({
+    type: 'POST',
+    url: '/tindahan.ph/php/orders/crud.php',
+    data: {
+      type: 'create-order-invoice',
+      invoice: JSON.stringify(invoice),
+    },
+    success: (result) => {
+      console.log(result);
+
+      result = JSON.parse(result);
+
+      return result;
     },
   });
 }

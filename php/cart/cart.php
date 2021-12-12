@@ -69,6 +69,20 @@
       return $result;
     }
 
+    public function order($cart_items) {
+      include('../connect.php');
+
+      foreach($cart_items as $cart_item_id) {
+        $query = "UPDATE cart_items
+                  SET status = 'ordered'
+                  WHERE cart_item_id = $cart_item_id;";
+
+        $result = mysqli_query($conn, $query);
+      }
+      
+      return $result != null ? $result : false;
+    }
+
     function jsonSerialize() {
       $data = get_object_vars($this);
   
