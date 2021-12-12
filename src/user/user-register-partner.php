@@ -61,7 +61,7 @@
               <i class="fa-solid fa-cubes sidenav-link-icon"></i>
               <div class="sidenav-link-text">Categories</div>
             </a>
-            <a href="../../src/user/user-cart.html" class="sidenav-link">
+            <a href="../../src/user/user-cart.php" class="sidenav-link">
               <i class="fa-solid fa-cart-shopping sidenav-link-icon"></i>
               <div class="sidenav-link-text">Cart</div>
             </a>

@@ -35,6 +35,7 @@
     else {
       echo json_encode(new CustomError('exists', 'You have already applied for a partnership.'));
     }
+  }
 
   function createPendingPartners() {
     include('../connect.php');

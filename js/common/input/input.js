@@ -48,7 +48,7 @@ export function isCorrectFormat(input) {
   let error = new String();
 
   switch (type) {
-    case 'name':
+    case 'text':
       error = isValidAlphabetic(input.value) ? '' : 'alpha';
       break;
     case 'email':
@@ -91,7 +91,8 @@ export function isWithinMaxCharCount(text) {
 }
 
 function isValidAlphabetic(input) {
-  const regExp = /^[a-zA-Z\s]*$/;
+  // const regExp = /^[a-zA-Z\s]*$/;
+  const regExp = /^[a-zA-Z0-9,. ]*$/;
   return regExp.test(input);
 }
 

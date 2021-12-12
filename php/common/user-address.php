@@ -1,22 +1,24 @@
 <?php
 
-  class UserAddress {
+  class UserAddress implements JsonSerializable {
     private $user_id;
     private $user_street;
     private $user_city;
     private $user_barangay;
-    private $user_region;
+    private $user_landmark;
     private $user_zipcode;
 
-    function __construct($user_id) {
+    public function __construct($user_id) {
       $user_address = $this->fetchUserAddress($user_id);
 
-      $this->user_id = $user_address['user_id'];
-      $this->user_street = $user_address['street'];
-      $this->user_city = $user_address['city'];
-      $this->user_barangay = $user_address['barangay'];
-      $this->user_region = $user_address['region'];
-      $this->user_zipcode = $user_address['zipcode'];
+      if($user_address != false) {
+        $this->user_id = intval($user_address['user_id']);
+        $this->user_street = $user_address['street'];
+        $this->user_city = $user_address['city'];
+        $this->user_barangay = $user_address['barangay'];
+        $this->user_landmark = $user_address['landmark'];
+        $this->user_zipcode = intval($user_address['zipcode']);
+      }
     }
 
     private function fetchUserAddress($user_id) {
@@ -53,8 +55,8 @@
 
       return $result;
     }
-
-    static function updateUserAddress($updateInfo, $user_id) {
+    
+    public static function updateUserAddress($updateInfo, $user_id) {
       include('../connect.php');
 
       $query = "UPDATE users_address
@@ -81,6 +83,12 @@
       mysqli_close($conn);
 
       return $result;
+    }
+
+    public function jsonSerialize() {
+      $data = get_object_vars($this);
+
+      return $data;
     }
   }
 

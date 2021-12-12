@@ -5,7 +5,7 @@
   margin-left: 23px;
 }
 
-.checkout-process-form > input.form-control {
+.checkout-process-form > .for-validation > input.form-control {
   border-radius: 73px;
   width: 389px;
   height: 45px;
@@ -22,13 +22,31 @@
   gap: 20px;
 }
 
-.inline-form > input.form-control {
+.inline-form > .for-validation {
+  width: 324px;
+  height: 45px;
+}
+
+.inline-form > .for-validation > input.form-control,
+.inline-form > select {
   border-radius: 73px;
   width: 324px;
   height: 45px;
+}
+
+.inline-form > select {
+  text-overflow: ellipsis;
 }
 
 #street {
   width: 668px;
 }
 
+.form-contact-number.checkout {
+  width: max-content;
+}
+
+.form-contact-number.checkout > input {
+  width: 389px;
+  height: 45px;
+}
