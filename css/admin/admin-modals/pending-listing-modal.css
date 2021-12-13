@@ -1,0 +1,77 @@
+/* .partner-modal-body p {
+  color: green;
+} */
+
+.listing-modal-content {
+  width: 531px;
+  height: 652px;
+  padding: 26px 30px 53px 58px;
+  margin-top: 130px !important;
+  overflow-x: hidden;
+}
+
+.listing-modal-header {
+  width: 100%;
+  height: max-content;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.listing-modal-body {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  overflow-x: hidden;
+  min-height: 300px;
+}
+
+.listing-modal-top-image, 
+.listing-modal-top-image > img {
+  width: 121px;
+  height: 121px;
+  background-color: var(--placeholder);
+  border-radius: 0;
+  object-fit: fill;
+}
+
+.listing-modal-top-title {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  height: 121px;
+}
+
+.listing-names {
+  display: flex;
+  width: max-content;
+  height: 100%;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding-bottom: 20px;
+}
+
+.store-name {
+  color: green;
+  margin: 0;
+  padding: 0;
+}
+
+.listing-modal-btn-group {
+  display: inline-flex;
+  justify-content: space-between;
+  gap: 35px;
+}
+
+.listing-modal-btn-group > button {
+  width: 172px;
+  height: 45px;
+}
+
+.text-answer {
+  margin-left: 40px;
+  margin-bottom: 15px;
+  color: var(--tph-text-secondary);
+}
