@@ -262,7 +262,7 @@ function showPreviewImage(image) {
 // to true, then disable the submit button; else, enable it.
 // WHEN: Call this function when all inputs have been verified.
 function updateButtonState() {
-  console.log(FORM_HAS_EMPTY, FORM_HAS_INVALID, FORM_HAS_REQUIRED);
+  // console.log(FORM_HAS_EMPTY, FORM_HAS_INVALID, FORM_HAS_REQUIRED);
 
   FORM_HAS_EMPTY
     ? FORM_HAS_REQUIRED

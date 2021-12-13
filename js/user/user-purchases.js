@@ -107,7 +107,7 @@ function appendAllPurchases(ordered) {
             : 'cancelled'
         }">${order.orders.orderStatus}</div>
         ${
-          order.orders.orderStatus == 'processing'
+          ['confirmation', 'processing'].includes(order.orders.orderStatus)
             ? `<button class="btn btn-tertiary order-product-status" onclick="attemptCancelOrder(orderCancel, ${order.orderID})"> Cancel </button>`
             : ''
         }

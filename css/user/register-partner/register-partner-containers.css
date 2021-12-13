@@ -24,3 +24,11 @@
   justify-content: center;
   align-items: center;
 }
+
+.register-form > form > .for-validation {
+  width: max-content;
+}
+
+.register-form > form > .for-validation > #storeName {
+  height: 45px;
+}
