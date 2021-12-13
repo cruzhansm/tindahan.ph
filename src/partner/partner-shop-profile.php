@@ -34,10 +34,7 @@
     <link rel="stylesheet" href="../../css/utilities/utilities.css" />
     <link rel="stylesheet" href="../../css/partner/partner.css" />
 
-    <!-- <script src="../../js/common/pagination.js"></script> -->
-    <!-- <script src="../../js/common/products.js"></script> -->
     <script src="../../js/common/auth/logout.js"></script>
-    <!-- <script type="module" src="../../js/common/input/form.js"></script> -->
     <script type="module" src="../../js/partner/shop-profile/modal.js"></script>
     <script
       type="module"
@@ -144,13 +141,6 @@
                     />
                     <span class="form-control-number prefix">+63</span>
                   </div>
-                  <!-- <div class="for-validation">
-                    <label for="" class="form-control">email</label>
-                    <input
-                      type="email"
-                      class="form-control no-success not-required"
-                    />
-                  </div> -->
                 </div>
                 <div class="shop-modal-button-group">
                   <button
@@ -184,11 +174,11 @@
             </div>
           </div>
           <div class="sidenav-links">
-            <a href="../../index.php" class="sidenav-link">
+            <a href="/tindahan.ph/index.php" class="sidenav-link">
               <i class="fa-solid fa-house-chimney sidenav-link-icon"></i>
               <div class="sidenav-link-text">Home</div>
             </a>
-            <a href="../../src/common/categories.html" class="sidenav-link">
+            <a href="../../src/common/categories.php" class="sidenav-link">
               <i class="fa-solid fa-cubes sidenav-link-icon"></i>
               <div class="sidenav-link-text">Categories</div>
             </a>
@@ -204,7 +194,7 @@
               <div class="sidenav-link-text">Add Listing</div>
             </a>
             <a
-              href="../../src/partner/partner-orders.html"
+              href="../../src/partner/partner-orders.php"
               class="sidenav-link"
             >
               <i class="fa-solid fa-receipt sidenav-link-icon"></i>

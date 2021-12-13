@@ -15,6 +15,16 @@
       echo json_encode(retrieveActiveVouchers()); break;
     case 'create-order-invoice':
       echo json_encode(createOrderInvoice()); break;
+    case 'retrieve-all-purchases':
+      echo json_encode(retrieveValidPurchases()); break;
+    case 'cancel-order':
+      echo json_encode(cancelSpecifiedOrder()); break;
+    case 'retrieve-store-orders':
+      echo json_encode(retrieveAllStoreOrders()); break;
+    case 'confirm-order':
+      echo json_encode(confirmSpecifiedOrder()); break;
+    case 'ship-order':
+      echo json_encode(shipSpecifiedOrder()); break;
   }
 
   function fakeCheckoutCart() {
@@ -80,5 +90,46 @@
     $vouchers = Voucher::fetchAllActiveVouchers();
 
     return $vouchers != false ? $vouchers : false;
+  }
+
+  function retrieveValidPurchases() {
+    include('invoice.php');
+
+    return Invoice::fetchAllValidOrders($_SESSION['user_id']);
+  }
+
+  function cancelSpecifiedOrder() {
+    include('order.php');
+    $order_id = $_REQUEST['orderID'];
+
+    $order = new Order($order_id);
+
+    return $order->cancel();
+  }
+
+  function retrieveAllStoreOrders() {
+    include('../partner/store.php');
+
+    $store = new PartnerStore($_SESSION['user_id']);
+
+    return $store->retrieveOrders();
+  }
+
+  function confirmSpecifiedOrder() {
+    include('order.php');
+
+    $order_id = $_REQUEST['orderID'];
+    $order = new Order($order_id);
+
+    return $order->confirm();
+  }
+
+  function shipSpecifiedOrder() {
+    include('order.php');
+
+    $order_id = $_REQUEST['orderID'];
+    $order = new Order($order_id);
+
+    return $order->ship();
   }
 ?>

@@ -26,6 +26,35 @@
 
       return $result;
     }
+
+    public static function fetchAllValidOrders($user_id) {
+      include('../connect.php');
+      include('order.php');
+
+      $query = "SELECT i.invoice_id, i.order_id, i.amount_to_pay, i.amount_paid, i.order_id
+                FROM invoice i
+                WHERE i.order_id IN(SELECT order_id 
+                                    FROM orders 
+                                    WHERE user_id = $user_id);";
+      
+      $purchases = array();
+
+      $result = mysqli_query($conn, $query);
+
+      if(mysqli_num_rows($result) > 0) {
+        while($invoice = mysqli_fetch_assoc($result)) {
+          $order = new Order($invoice['order_id']);
+          
+          $purchase = array();
+          $purchase['invoice'] = $invoice;
+          $purchase['order'] = $order;
+
+          array_push($purchases, $purchase);
+        }
+      }
+
+      return $purchases;
+    }
   }
 
 ?>

@@ -70,3 +70,16 @@ export async function retrieveActiveVouchers() {
     },
   });
 }
+
+export async function retrieveAllPurchases() {
+  return await $.ajax({
+    type: 'GET',
+    url: '/tindahan.ph/php/orders/crud.php',
+    data: {
+      type: 'retrieve-all-purchases',
+    },
+    success: (result) => {
+      return JSON.parse(result);
+    },
+  });
+}

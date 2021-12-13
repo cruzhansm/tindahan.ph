@@ -10,7 +10,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tindahan.ph - My Cart</title>
+    <title>tindahan.ph - Orders</title>
 
     <link
       rel="icon"
@@ -38,43 +38,16 @@
     <link rel="stylesheet" href="../../css/base/base.css" />
     <link rel="stylesheet" href="../../css/components/components.css" />
     <link rel="stylesheet" href="../../css/utilities/utilities.css" />
-    <link rel="stylesheet" href="../../css/user/user.css" />
+    <link rel="stylesheet" href="../../css/partner/partner.css" />
 
     <script src="../../js/common/auth/logout.js"></script>
-    <script type="module" src="/tindahan.ph/js/user/user-cart.js"></script>
+    <script
+      type="module"
+      src="../../js/partner/orders/partner-orders.js"
+    ></script>
   </head>
 
   <body class="bg-primary">
-    <div
-      class="modal fade"
-      id="productRemove"
-      data-bs-backdrop="static"
-      tabindex="-1"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog remove-product">
-        <div class="modal-content remove-product">
-          <div class="modal-body remove-product">
-            Are you sure you want to delete this item from your shopping cart?
-          </div>
-          <div class="modal-footer remove-product">
-            <button id="delete" type="button" class="btn btn-highlight">
-              Delete
-            </button>
-            <button
-              id="cancel"
-              type="button"
-              class="btn modal-cancel-btn remove-product"
-              data-bs-dismiss="modal"
-              onclick="dismissModal(productRemove)"
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="row m-0">
       <div class="col left">
         <div class="sidenav">
@@ -85,6 +58,7 @@
             />
             <div class="sidenav-header-text">
               <div>tindahan.ph</div>
+              <div>PARTNER</div>
             </div>
           </div>
           <div class="sidenav-links">
@@ -96,38 +70,35 @@
               <i class="fa-solid fa-cubes sidenav-link-icon"></i>
               <div class="sidenav-link-text">Categories</div>
             </a>
-            <a href="#" class="sidenav-link active">
-              <i class="fa-solid fa-cart-shopping sidenav-link-icon"></i>
-              <div class="sidenav-link-text">Cart</div>
+            <a
+              href="../../src/partner/partner-shop-profile.php"
+              class="sidenav-link"
+            >
+              <i class="fa-solid fa-shop sidenav-link-icon"></i>
+              <div class="sidenav-link-text">Shop Profile</div>
             </a>
-            <a href="../../src/user/user-purchases.php" class="sidenav-link">
-              <i class="fa-solid fa-bag-shopping sidenav-link-icon"></i>
-              <div class="sidenav-link-text">My Purchases</div>
+            <a
+              href="../../src/partner/partner-add-listing.html"
+              class="sidenav-link"
+            >
+              <i class="fa-solid fa-circle-plus sidenav-link-icon"></i>
+              <div class="sidenav-link-text">Add Listing</div>
+            </a>
+            <a href="#" class="sidenav-link active">
+              <i class="fa-solid fa-receipt sidenav-link-icon"></i>
+              <div class="sidenav-link-text">Orders</div>
             </a>
             <a href="../../src/common/help-center.html" class="sidenav-link">
               <i class="fa-solid fa-headset sidenav-link-icon"></i>
               <div class="sidenav-link-text">Help Center</div>
             </a>
-            <a
-              href="../../src/user/user-register-partner.php"
-              class="sidenav-link"
-            >
-              <i class="fa-solid fa-handshake sidenav-link-icon"></i>
-              <div class="sidenav-link-text">Be a Partner</div>
-            </a>
           </div>
         </div>
       </div>
       <div class="col right">
-        <div class="container-display cart">
-          <header class="header">
-            <form action="noSubmit(event)">
-              <input
-                type="search"
-                class="form-control form-search border-input"
-                placeholder="Search products"
-              />
-            </form>
+        <div class="container-display">
+          <header class="header product">
+            <div class="text-highlight fw-bold">Orders</div>
             <div class="header-icons">
               <i class="fa-solid fa-inbox"></i>
               <i class="fa-solid fa-gear"></i>
@@ -146,45 +117,71 @@
             </div>
           </header>
 
-          <div class="container-cart">
-            <div class="container-form">
-              <div class="cart-form-group cart-select">
-                <div class="cart-form-header">
-                  <div class="cart-form-checkbox">
-                    <div class="form-check">
-                      <input
-                        type="checkbox"
-                        class="form-check-input"
-                        id="selectAll"
-                      />
-                      <label for="selectAll" class="form-check-label">
-                        Select all
-                      </label>
-                    </div>
-                  </div>
-                  <div class="cart-form-titles">
-                    <span>Unit Price</span>
-                    <span>Quantity</span>
-                    <span>Total Price</span>
-                  </div>
-                  <div class="cart-form-delete"></div>
-                </div>
-              </div>
+          <div class="container-orders">
+            <div class="container-orders-list">
+              <div id="paginationPages" class="product-page-review-list"></div>
+              <nav id="paginationContainer" class="pagination-container"></nav>
             </div>
 
-            <div class="checkout">
-              <div class="container-checkout">
-                <div class="cart-checkout-total">
-                  <span>Total</span>
-                  <span class="text-highlight fw-bold" id="totalCart">P0</span>
+            <div class="container-orders-filter">
+              <div class="fs-24 text-highlight fw-bold">Filters</div>
+              <form class="orders-filters">
+                <div class="order-filter-type">
+                  <input
+                    value="all"
+                    type="radio"
+                    name="filter"
+                    class="form-check-input"
+                    checked
+                  />
+                  <label for="" class="form-check-label">All</label>
                 </div>
-                <button
-                  class="btn btn-primary cart-checkout-btn"
-                  onclick="attemptCheckout()"
-                >
-                  Check out
-                </button>
-              </div>
+                <div class="order-filter-type">
+                  <input
+                    value="confirmation"
+                    type="radio"
+                    name="filter"
+                    class="form-check-input"
+                  />
+                  <label for="" class="form-check-label">To Confirm</label>
+                </div>
+                <div class="order-filter-type">
+                  <input
+                    value="processing"
+                    type="radio"
+                    name="filter"
+                    class="form-check-input"
+                  />
+                  <label for="" class="form-check-label">To Ship</label>
+                </div>
+                <div class="order-filter-type">
+                  <input
+                    value="shipped"
+                    type="radio"
+                    name="filter"
+                    class="form-check-input"
+                  />
+                  <label for="" class="form-check-label">To Deliver</label>
+                </div>
+                <div class="order-filter-type">
+                  <input
+                    value="delivered"
+                    type="radio"
+                    name="filter"
+                    class="form-check-input"
+                  />
+                  <label for="" class="form-check-label">Delivered</label>
+                </div>
+                <div class="order-filter-type">
+                  <input
+                    value="cancelled"
+                    type="radio"
+                    name="filter"
+                    class="form-check-input"
+                  />
+                  <label for="" class="form-check-label">Cancelled</label>
+                </div>
+              </form>
             </div>
           </div>
         </div>

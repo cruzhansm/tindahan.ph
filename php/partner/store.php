@@ -39,7 +39,7 @@
       return $store;
     }
 
-    function updateStoreDetails($details) {
+    public function updateStoreDetails($details) {
       include('../connect.php');
 
       $user = $this->store_owner;
@@ -65,13 +65,35 @@
       return $result;
     }
 
-    function jsonSerialize() {
-      $data = get_object_vars($this);
+    public function retrieveOrders() {
+      include('../connect.php');
 
-      return $data;
+      $store_id = $this->store_id;
+
+      $query = "SELECT CONCAT(u.fname, ' ', u.lname) AS `customer`, p.product_name, p.product_img, pr.variation, od.order_quantity, od.order_price, o.order_id, o.order_status
+                FROM order_details od
+                JOIN orders o ON o.order_id = od.order_id
+                JOIN users u ON u.user_id = o.user_id
+                JOIN cart_items ci ON ci.cart_item_id = od.cart_item_id
+                JOIN product_variation pr ON pr.variation_id = ci.variation_id
+                JOIN products p ON p.product_id = ci.product_id
+                WHERE p.product_store = $store_id
+                ORDER BY od.order_id DESC;";
+
+      $result = mysqli_query($conn, $query);
+
+      $orders = array();
+
+      if(mysqli_num_rows($result) > 0 ) {
+        while($order = mysqli_fetch_assoc($result)) {
+          array_push($orders, $order);
+        }
+      }
+
+      return $orders;
     }
 
-    static function createStore($details) {
+    public static function createStore($details) {
       include('../connect.php');
 
       $user_id = $details['user_id'];
@@ -90,6 +112,14 @@
 
       return $query ? true : new CustomError("Insert Error: ", "Not inserted"); 
     }
+
+    function jsonSerialize() {
+      $data = get_object_vars($this);
+
+      return $data;
+    }
+
   }
   
 ?>
+
