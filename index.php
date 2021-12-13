@@ -38,6 +38,7 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 
 <body class="bg-primary">
+
   <div class="modal fade" id="verifySettings" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
     <div class="verify-settings-modal modal-content modal-dialog">
       <div class="verify-settings-modal-header" data-bs-dismiss="modal" onclick="dismissModal(verifySettings)">
@@ -96,15 +97,9 @@ if (!isset($_SESSION['user_id'])) {
                   <label for="" class="form-control">city</label>
                   <select name="city" id="user-city" class="form-select form-control">
                     <option selected>select a city</option>
-                    <option value="Bogo City">Bogo City</option>
-                    <option value="Carcar City">Carcar City</option>
                     <option value="Cebu City">Cebu City</option>
-                    <option value="Danao City">Danao City</option>
                     <option value="Lapu-Lapu City">Lapu-Lapu City</option>
                     <option value="Mandaue City">Mandaue City</option>
-                    <option value="Naga City">Naga City</option>
-                    <option value="Talisay City">Talisay City</option>
-                    <option value="Toledo City">Toledo City</option>
                   </select>
 
                   <div class="for-validation">
@@ -190,8 +185,9 @@ if (!isset($_SESSION['user_id'])) {
       </div>
     </div>
   </div>
-  </div>
   <!-- MODAL CONTENT ENDS -->
+
+  
   <div class="row m-0">
     <div class="col left">
       <div class="sidenav">

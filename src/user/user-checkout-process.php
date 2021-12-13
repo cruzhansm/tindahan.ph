@@ -63,7 +63,7 @@
               <i class="fa-solid fa-house-chimney sidenav-link-icon"></i>
               <div class="sidenav-link-text">Home</div>
             </a>
-            <a href="../../src/common/categories.html" class="sidenav-link">
+            <a href="../../src/common/categories.php" class="sidenav-link">
               <i class="fa-solid fa-cubes sidenav-link-icon"></i>
               <div class="sidenav-link-text">Categories</div>
             </a>
@@ -175,15 +175,9 @@
               </div>
               <div class="inline-form">
                 <select name="" id="recipientCity" class="form-select">
-                  <option value="Bogo City">Bogo City</option>
-                  <option value="Carcar City">Carcar City</option>
                   <option value="Cebu City">Cebu City</option>
-                  <option value="Danao City">Danao City</option>
                   <option value="Lapu-Lapu CLapu-Lapu">City</option>
                   <option value="Mandaue City">Mandaue City</option>
-                  <option value="Naga City">Naga City</option>
-                  <option value="Talisay City">Talisay City</option>
-                  <option value="Toledo City">Toledo City</option>
                 </select>
                 <div class="for-validation">
                   <input
@@ -406,7 +400,9 @@
               />
               <div class="checkout-process-done-status">
                 <div class="fs-24 text-highlight fw-bold">order successful</div>
-                <div class="fs-18 text-secondary fw-bold">Your order is being processed.</div>
+                <div class="fs-18 text-secondary fw-bold">
+                  Your order is being processed.
+                </div>
               </div>
               <div class="checkout-process-done-msg">
                 head over to My Purchases for updates on your order

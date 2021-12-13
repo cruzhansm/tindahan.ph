@@ -97,7 +97,7 @@
               <div class="sidenav-link-text">Home</div>
             </a>
             <a
-              href="../../src/common/categories.html"
+              href="../../src/common/categories.php"
               class="sidenav-link active"
             >
               <i class="fa-solid fa-cubes sidenav-link-icon"></i>
@@ -118,7 +118,7 @@
               <div class="sidenav-link-text">Add Listing</div>
             </a>
             <a
-              href="../../src/partner/partner-orders.html"
+              href="../../src/partner/partner-orders.php"
               class="sidenav-link"
             >
               <i class="fa-solid fa-receipt sidenav-link-icon"></i>

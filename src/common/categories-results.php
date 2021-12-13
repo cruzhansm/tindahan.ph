@@ -74,7 +74,7 @@ if (!isset($_SESSION['user_id'])) {
             <i class="fa-solid fa-house-chimney sidenav-link-icon"></i>
             <div class="sidenav-link-text">Home</div>
           </a>
-          <a href="../../src/common/categories.html" class="sidenav-link active">
+          <a href="../../src/common/categories.php" class="sidenav-link active">
             <i class="fa-solid fa-cubes sidenav-link-icon"></i>
             <div class="sidenav-link-text">Categories</div>
           </a>
@@ -86,7 +86,7 @@ if (!isset($_SESSION['user_id'])) {
             <i class="fa-solid fa-circle-plus sidenav-link-icon"></i>
             <div class="sidenav-link-text">Add Listing</div>
           </a>
-          <a href="../../src/partner/partner-orders.html" class="sidenav-link">
+          <a href="../../src/partner/partner-orders.php" class="sidenav-link">
             <i class="fa-solid fa-receipt sidenav-link-icon"></i>
             <div class="sidenav-link-text">Orders</div>
           </a>

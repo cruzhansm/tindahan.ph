@@ -14,3 +14,18 @@ export function fetchStoreDetails() {
     });
   });
 }
+
+export async function retrieveAllStoreOrders() {
+  return await $.ajax({
+    type: 'GET',
+    url: '/tindahan.ph/php/orders/crud.php',
+    data: {
+      type: 'retrieve-store-orders',
+    },
+    success: (result) => {
+      result = JSON.parse(result);
+
+      return result;
+    },
+  });
+}

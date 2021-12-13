@@ -45,7 +45,7 @@
       rel="stylesheet"
       href="../../css/common/help-center/help-center-modal.css"
     />
-    <link rel="stylesheet" href="../../css/common/common.css">
+    <link rel="stylesheet" href="../../css/common/common.css" />
 
     <script src="../../js/common/auth/logout.js"></script>
     <script type="module" src="../../js/user/user-purchases.js"></script>
@@ -196,11 +196,11 @@
                 <div class="user-image-actions visually-hidden">
                   <div class="user-image-action no-hover">
                     <i class="fa-solid fa-user"></i>
-                    <div>userFirstName</div>
+                    <div><?php echo $_SESSION['fname'] ?></div>
                   </div>
                   <div class="user-image-action">
                     <i class="fa-solid fa-right-from-bracket"></i>
-                    <a href="../../src/common/login.html">LOG OUT</a>
+                    <span onclick="logout()">LOG OUT</span>
                   </div>
                 </div>
               </div>
@@ -213,10 +213,8 @@
 
           <div class="container-orders">
             <div class="container-orders-list">
-
               <div id="paginationPages" class="product-page-review-list"></div>
               <nav id="paginationContainer" class="pagination-container"></nav>
-              
             </div>
 
             <div class="container-orders-filter">

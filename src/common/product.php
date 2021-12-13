@@ -71,7 +71,7 @@
             <i class="fa-solid fa-house-chimney sidenav-link-icon"></i>
             <div class="sidenav-link-text">Home</div>
           </a>
-          <a href="../../src/common/categories.html" class="sidenav-link">
+          <a href="../../src/common/categories.php" class="sidenav-link">
             <i class="fa-solid fa-cubes sidenav-link-icon"></i>
             <div class="sidenav-link-text">Categories</div>
           </a>

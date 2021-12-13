@@ -184,7 +184,7 @@ CREATE TABLE cart_items(
   cart_item_id            INT(7)              AUTO_INCREMENT,
   user_id                 INT(5)              NOT NULL,
   product_id              INT(5)              NOT NULL,
-  variation_id            INT(7)              NOT NULL,
+  variation_id            INT(7)                      ,
   quantity                INT(3)              NOT NULL,
   status                  ENUM('cart', 'ordered', 'removed') DEFAULT 'cart',
   CONSTRAINT Cart_PK PRIMARY KEY(cart_item_id),
@@ -203,7 +203,7 @@ CREATE TABLE orders(
   order_date_shipped      DATETIME                    ,
   order_date_fulfilled    DATETIME                    ,
   order_total_price       DECIMAL(7, 2)       NOT NULL,
-  order_status            ENUM('processing', 'shipped', 'transit', 'delivered', 'cancelled') DEFAULT 'processing',
+  order_status            ENUM('confirmation', 'processing', 'shipped', 'transit', 'delivered', 'cancelled') DEFAULT 'confirmation',
   CONSTRAINT Orders_PK PRIMARY KEY(order_id),
   CONSTRAINT Orders_FK FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
@@ -216,6 +216,7 @@ CREATE TABLE order_status(
 
 INSERT INTO order_status(order_status, order_status_msg)
 VALUES
+('confirmation', 'Awaiting confirmation from seller.'),
 ('processing', 'Your order is being prepared.'),
 ('shipped', 'Your order has arrived in our sort center.'),
 ('transit', 'Your order is on the way. Be on the lookout for our courier.'),
@@ -263,6 +264,18 @@ CREATE TABLE invoice(
   CONSTRAINT Invoice_FK FOREIGN KEY(order_id) REFERENCES orders(order_id)
 );
 
+CREATE TABLE suspensions(
+  suspension_id     INT(7)            AUTO_INCREMENT,
+  user_id           INT(5)                    ,
+  product_id        INT(5)                    ,
+  start_date        DATETIME          DEFAULT NOW(),
+  end_date          DATETIME          NOT NULL,
+  message           VARCHAR(500)      NOT NULL,
+  CONSTRAINT User_Suspensions_PK PRIMARY KEY(suspension_id),
+  CONSTRAINT Suspensions_User_FK FOREIGN KEY(user_id) REFERENCES users(user_id)
+  CONSTRAINT Suspensions_Product_FK FOREIGN KEY(product_id) REFERENCES products(product_id)
+);
+
 -- CREATE TABLE support_inbox(
 --   ticket_id         INT(7)            AUTO_INCREMENT,
 --   user_id           INT(5)            NOT NULL,
@@ -281,17 +294,6 @@ CREATE TABLE invoice(
 --   CONSTRAINT User_Reports_FK FOREIGN KEY(ticket_id) REFERENCES support_inbox(ticket_id)
 -- );
 
--- CREATE TABLE user_suspensions(
---   suspension_id     INT(7)            AUTO_INCREMENT,
---   img_collection_id INT(7)            NOT NULL
---   report_id         INT(7)            NOT NULL,
---   start_date        DATETIME          NOT NULL,
---   end_date          DATETIME          NOT NULL,
---   message           VARCHAR(500)      NOT NULL,
---   CONSTRAINT User_Suspensions_PK PRIMARY KEY(suspension_id),
---   CONSTRAINT Suspensions_Img_FK FOREIGN KEY(img_collection_id) REFERENCES image_collection(img_collection_id),
---   CONSTRAINT Suspensions_Report_FK FOREIGN KEY(report_id) REFERENCES user_reports(report_id),
--- );
 
 -- CREATE TABLE USER_LOGS(
 --     transaction_id          INT(10)             AUTO_INCREMENT,

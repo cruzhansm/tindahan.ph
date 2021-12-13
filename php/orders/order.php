@@ -144,6 +144,34 @@
       return $result;
     }
 
+    public function confirm() {
+      include('../connect.php');
+
+      $order_id = $this->order_id;
+
+      $query = "UPDATE orders
+                SET order_status = 'processing'
+                WHERE order_id = $order_id;";
+      
+      $result = mysqli_query($conn, $query);
+
+      return $result;
+    }
+
+    public function ship() {
+      include('../connect.php');
+
+      $order_id = $this->order_id;
+
+      $query = "UPDATE orders
+                SET order_status = 'shipped'
+                WHERE order_id = $order_id;";
+      
+      $result = mysqli_query($conn, $query);
+
+      return $result;
+    }
+
     public function cancel() {
       include('../connect.php');
 
