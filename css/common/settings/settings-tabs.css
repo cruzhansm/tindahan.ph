@@ -2,6 +2,9 @@
 .nav-tabs {
   background-color: transparent !important;
   border-bottom: transparent;
+  width: 503px;
+  display: flex;
+  justify-content: flex-start !important;
 }
 
 .nav-item,
@@ -41,6 +44,6 @@
 }
 
 .modal-dialog {
-  padding-top: 0 !important;
-  align-items: center !important;
+  padding-top: 0;
+  align-items: center;
 }

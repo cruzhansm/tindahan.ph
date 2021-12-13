@@ -5,9 +5,9 @@
 .register-form > form {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 30px;
   width: inherit;
-  height: 1089px;
+  height: max-content;
 }
 
 #platforms,
@@ -76,6 +76,14 @@
   margin-top: 22px;
 }
 
+.register-form-textarea > textarea::-webkit-scrollbar {
+  width: 7px;
+}
+
+.register-form-textarea > textarea::-webkit-scrollbar-thumb {
+  background-color: var(--tph-text-secondary);
+}
+
 .character-count-area {
   font-size: 12px;
   position: absolute;
@@ -94,8 +102,8 @@
 .register-form-custom-upload {
   background-color: var(--placeholder);
   border-radius: 12px;
-  width: inherit;
-  height: 220px;
+  width: 440px;
+  height: 440px;
   margin-left: 22px;
   margin-top: 22px;
 }
@@ -105,7 +113,7 @@
   width: 172px !important;
   height: 45px;
   position: absolute;
-  right: 0px;
+  left: 290px;
   bottom: 0px;
   display: flex;
   justify-content: center;
@@ -113,5 +121,5 @@
 }
 
 .custom-upload > input {
-  display: none;
+  display: none !important;
 }

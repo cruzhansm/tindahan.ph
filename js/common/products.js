@@ -1,23 +1,22 @@
 class Product {
-  pid;
-  pname;
-  pprice;
-  pstore;
-  pimg;
+  productID;
+  productName;
+  productImg;
+  productPrice;
+  productDesc;
 
-  constructor(pid, pname, pprice, pstore, pimg) {
-    this.pid = pid;
-    this.pname = pname;
-    this.pprice = pprice;
-    this.pstore = pstore;
-    this.pimg = pimg;
+  constructor(productID, productName, productImg, productPrice, productDesc) {
+    this.productID = productID;
+    this.productName = productName;
+    this.productImg = productImg;
+    this.productPrice = productPrice;
+    this.productDesc = productDesc;
   }
 }
 
 class FeedProduct extends Product {
-
-  constructor(pid, pname, pprice, pstore, pimg) {
-    super(pid, pname, pprice, pstore, pimg);
+  constructor(productID, productName, productImg, productPrice, productDesc) {
+    super(productID, productName, productImg, productPrice, productDesc);
 
     return this.#createFeedProduct();
   }
@@ -28,24 +27,24 @@ class FeedProduct extends Product {
     let feedInfo = document.createElement('div');
     let feedName = document.createElement('div');
     let feedPrice = document.createElement('div');
-    let feedStore = document.createElement('div');
+    // let feedStore = document.createElement('div');
 
     feedBlock.classList.add('product-feed-block');
     feedImg.classList.add('product-feed-img');
     feedInfo.classList.add('product-feed-info');
     feedPrice.classList.add('product-feed-price');
-    feedStore.classList.add('product-feed-store');
+    // feedStore.classList.add('product-feed-store');
 
-    feedName.innerText = this.pname;
-    feedPrice.innerText = `P ${this.pprice}`;
-    feedStore.innerText = this.pstore;
-    
+    feedName.innerText = this.productName;
+    feedPrice.innerText = `P ${this.productPrice}`;
+    // feedStore.innerText = this.pstore;
+
     feedInfo.appendChild(feedName);
     feedInfo.appendChild(feedPrice);
 
     feedBlock.appendChild(feedImg);
     feedBlock.appendChild(feedInfo);
-    feedBlock.appendChild(feedStore);
+    // feedBlock.appendChild(feedStore);
 
     return feedBlock;
   }

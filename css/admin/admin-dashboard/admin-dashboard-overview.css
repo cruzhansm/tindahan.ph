@@ -1,0 +1,29 @@
+.overview {
+  display: flex;
+  margin-left: 162px;
+}
+
+.overview-tab {
+  width: 285px;
+  height: 166px;
+  box-shadow: -4px -4px 47px rgba(0, 0, 0, 0.15);
+  background-color: var(--tph-secondary);
+  margin-right: 48px;
+}
+
+.overview-header{
+  color: var(--tph-highlight);
+  font-size: 24px;
+  font-weight: 700;
+  padding-left: 28px;
+  padding-top: 19px;  
+}
+
+.overview-statistics {
+  color: var(--tph-text-primary);
+  font-weight: 700;
+  font-style: normal;
+  font-size: 64px;
+  text-align: center;
+  margin-top: -4px;
+}

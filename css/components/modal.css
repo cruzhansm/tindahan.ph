@@ -4,10 +4,9 @@
   flex-direction: row;
   justify-content: center;
   margin: 0 !important;
-  padding-top: 363px;
-  min-width: inherit;
-  max-width: inherit;
-  height: inherit;
+  height: 100%;
+  max-width: 100%;
+  min-width: 100%;
 }
 
 .modal-content {
@@ -22,7 +21,7 @@
 }
 
 .modal-body {
-  text-align: center;
+  /* text-align: center; */
   font-size: 16px;
   font-weight: normal !important;
   width: 250px;

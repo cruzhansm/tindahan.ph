@@ -1,13 +1,11 @@
 // Attach a character count listener to a textarea
 // WHEN: Call this function when there's a textarea that needs to be watched.
 // PARAMS: id of textarea | id of char counter div/span | max char count
-function attachCharCountListener(listeningTo, countField, maxChar) {
+export function attachCharCountListener(listeningTo, countField) {
   listeningTo.addEventListener('input', () => {
     let charCount = listeningTo.value.length;
 
-    if (charCount <= maxChar) {
-      countField.innerText = charCount;
-    }
+    countField.innerText = charCount;
   });
 }
 
@@ -15,6 +13,12 @@ function attachCharCountListener(listeningTo, countField, maxChar) {
 // PARAMS: Array of input elements of type HTMLElement
 export function inputIsEmpty(input) {
   return input.value.length === 0 ? true : false;
+}
+
+export function fileHasNotBeenUploaded(upload) {
+  const limit = document.querySelector('#fileLimit');
+
+  return upload.files.length == 0 ? true : false;
 }
 
 // Returns true if at least one checkbox is checked
@@ -51,7 +55,13 @@ export function isCorrectFormat(input) {
       error = isValidEmail(input.value) ? '' : 'email';
       break;
     case 'number':
-      error = isValidNumber(input.value) ? '' : 'numner';
+      error = isValidNumber(input)
+        ? isWithinMinNumberCount(input)
+          ? isWithinMaxNumberCount(input)
+            ? ''
+            : 'numexceed'
+          : 'numbelow'
+        : 'number';
       break;
     case 'password':
       error = isMatchingPasswords(input) ? '' : 'passmatch';
@@ -61,8 +71,28 @@ export function isCorrectFormat(input) {
   return error;
 }
 
+// Checks if the given textarea's text length is within the maximum
+// character count specified. Note that the maximum count is not a parameter,
+// rather it is being searched within the DOM. Please wrap your textarea
+// inside a div with class="form-textarea", and attach a div with class
+// ="character-count-area" with three span children.
+// The first span child is the initial char count (0) and must have a unique
+// id in this format: modalIDMsgCount. The second span is just the /, while
+// the third span is the actual maximum character count; it must have a class
+// of "charLimit".
+// WHEN: When you want to validate a textarea's character length.
+// PARAMS: event (submit event)
+export function isWithinMaxCharCount(text) {
+  const limit = text.parentElement.querySelector('.charLimit').innerText;
+
+  console.log(limit);
+
+  return text.value.length <= limit ? '' : 'textover';
+}
+
 function isValidAlphabetic(input) {
-  const regExp = /^[a-zA-Z\s]*$/;
+  // const regExp = /^[a-zA-Z\s]*$/;
+  const regExp = /^[a-zA-Z0-9,. ]*$/;
   return regExp.test(input);
 }
 
@@ -73,8 +103,26 @@ function isValidEmail(email) {
 
 function isValidNumber(number) {
   const regExp = /^[0-9]+$/;
-  number = typeof number === 'string' ? number : number.toString();
+
+  number = number.value.toString();
+
   return regExp.test(number);
+}
+
+function isWithinMinNumberCount(number) {
+  const min = number.getAttribute('minlength');
+
+  number = number.value.toString();
+
+  return number.length >= min ? true : false;
+}
+
+function isWithinMaxNumberCount(number) {
+  const limit = number.getAttribute('maxlength');
+
+  number = number.value.toString();
+
+  return number.length <= limit ? true : false;
 }
 
 export function passwordMismatchError(password) {
@@ -97,6 +145,8 @@ function removePasswordMismatchErrors(password, password2) {
 export function isMatchingPasswords(password) {
   const passwords =
     password.parentElement.parentElement.querySelectorAll('.form-password');
+
+  console.log(passwords);
 
   if (passwords[1] == password && passwords.length == 2) {
     if (password.value.localeCompare(passwords[0].value) === 0) {
@@ -129,6 +179,10 @@ export function updateInputState(elem, state, check) {
 
   error != null ? error.remove() : '';
 
+  if (!parent.classList.contains('for-validation')) {
+    return;
+  }
+
   if (state) {
     let errorMsg = new String();
     const errorElem = document.createElement('div');
@@ -146,15 +200,38 @@ export function updateInputState(elem, state, check) {
       case 'passmatch':
         errorMsg = 'Passwords do not match.';
         break;
+      case 'textover':
+        errorMsg = 'Please limit your message to the maximum character count.';
+        break;
+      case 'number':
+        errorMsg = 'No letters allowed. Please enter numbers only.';
+        break;
+      case 'numexceed':
+        errorMsg = `Please don't exceed the max allowed digits.`;
+        break;
+      case 'numbelow':
+        errorMsg = `The number does not meet length requirement.`;
+        break;
     }
 
-    elem.classList.remove('is-valid');
-    elem.classList.add('is-invalid');
-    errorElem.classList.add('invalid-feedback');
-    errorElem.innerText = errorMsg;
-    parent.append(errorElem);
+    const showError =
+      check.localeCompare('empty') != 0
+        ? true
+        : elem.classList.contains('not-required')
+        ? false
+        : true;
+
+    if (showError) {
+      elem.classList.remove('is-valid');
+      elem.classList.add('is-invalid');
+      errorElem.classList.add('invalid-feedback');
+      errorElem.innerText = errorMsg;
+      parent.append(errorElem);
+    } else {
+      elem.classList.remove('is-invalid');
+    }
   } else {
     elem.classList.remove('is-invalid');
-    elem.classList.add('is-valid');
+    elem.classList.contains('no-success') ? '' : elem.classList.add('is-valid');
   }
 }

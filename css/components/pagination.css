@@ -2,6 +2,7 @@
   width: 1130px;
   margin-top: 57px;
   margin-bottom: 36px;
+  justify-content: center;
 }
 
 .pagination > li {
@@ -12,7 +13,7 @@
 .pagination > li > a {
   background-color: var(--tph-secondary);
   border: var(--tph-primary);
-  color: #64798B;
+  color: #64798b;
   font-size: 18px;
   outline: none;
   box-shadow: none;
@@ -21,7 +22,7 @@
 .pagination > li > a:hover,
 .pagination > li > a:focus {
   background-color: var(--tph-tertiary);
-  color: #64798B;
+  color: #64798b;
   outline: none;
   box-shadow: none;
 }
@@ -29,6 +30,6 @@
 .page-link.current,
 .page-link.current:hover {
   background-color: var(--tph-secondary);
+  pointer-events: none;
   color: var(--tph-text-highlight);
 }
-

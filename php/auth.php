@@ -33,9 +33,13 @@
         $user->fetchDetails();
         $user->updateLastLogin();
       }
-      else { return new CustomError('password', 'You entered the wrong password.'); }
+      else { 
+        return new CustomError('password', 'You entered the wrong password.'); 
+      }
     }
-    else { return new CustomError('email', 'That email is not associated with any account.'); }
+    else { 
+      return new CustomError('email', 'That email is not associated with any account.'); 
+    }
 
     if($user->verifyActive() == false) {
       $error = new CustomError('inactive', 'Account does not exist.');
@@ -57,23 +61,27 @@
     $_SESSION['image'] = $data['image'];
     $_SESSION['phone'] = $data['phone'];
     $_SESSION['role'] = $data['role'];
+    $_SESSION['email'] = $GLOBALS['email'];
 
     return $user == false ? new CustomError('user', 'User does not exist.') : $data['role'];
   }
 
   function register() {
-    include_once('./connect.php');
+    include_once('connect.php');
+    $query = "INSERT INTO users (fname, lname, password, email)
+              VALUES (?, ?, ?, ?);";
+
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, 'ssss', $fname, $lname, $password, $email);
 
     $email = $_REQUEST['email'];
-    $password = $_REQUEST['password'];
+    $password = password_hash($_REQUEST['password'], PASSWORD_BCRYPT);
     $fname = $_REQUEST['fname'];
     $lname = $_REQUEST['lname'];
-
-    $password = password_hash($password, PASSWORD_BCRYPT);
-    $query = "INSERT INTO users (fname, lname, password, email)
-              VALUES ('$fname', '$lname', '$password', '$email');";
     
-    return (mysqli_query($conn, $query) == false) ? new CustomError('signup', 'Could not complete operation.') : '';
+    $success = mysqli_stmt_execute($stmt);
+
+    return ($success == false) ? new CustomError('signup', 'Could not complete operation.') : '';
   }
   
   function logout() {

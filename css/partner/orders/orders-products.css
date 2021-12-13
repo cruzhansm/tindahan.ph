@@ -1,5 +1,5 @@
 .order-header {
-  border-bottom: 1px solid #21374A;
+  border-bottom: 1px solid #21374a;
   padding-left: 15px;
   display: flex;
   justify-content: space-between;
@@ -14,7 +14,7 @@
 
 .order-header-count {
   color: var(--tph-text-secondary);
-  margin-left: 8px; 
+  margin-left: 8px;
   font-style: 16px;
   line-height: 27px;
 }
@@ -25,15 +25,16 @@
 }
 
 .order-product-group {
-  border-bottom: 1px solid #21374A;
+  border-bottom: 1px solid #21374a;
 }
 
 .order-product {
+  font-variant: JIS04;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #21374A;
-  border-bottom: 1px solid #21374A;
+  border-top: 1px solid #21374a;
+  border-bottom: 1px solid #21374a;
   width: 100%;
   padding: 12px 40px 12px 75px;
 }
@@ -61,11 +62,11 @@
 .order-product-name,
 .order-product-variation,
 .order-product-quantity {
-  line-height: 16px;;
+  line-height: 16px;
 }
 
 .order-product-variation {
-  color: var(--tph-text-secondary)
+  color: var(--tph-text-secondary);
 }
 
 .order-status-list {
@@ -83,7 +84,7 @@
 }
 
 .order-product-status {
-  font-size: 18px;
+  font-size: 21px;
   width: max-content;
   padding: 10px;
 }

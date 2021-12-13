@@ -16,16 +16,17 @@
   justify-content: space-between;
   font-size: 20px !important;
   height: 26px;
+  margin-top: 10px;
   line-height: 30px;
 }
 
 .product-feed-price {
-  color: var(--tph-text-highlight) !important; 
-  font-weight: 700; 
+  color: var(--tph-text-highlight) !important;
+  font-weight: 700;
 }
 
 .product-feed-store {
+  color: var(--tph-text-secondary);
   font-size: 18px !important;
   line-height: 27px;
 }
-
