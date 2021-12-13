@@ -1,0 +1,23 @@
+.listing-modal-content {
+  width: 531px;
+  height: 652px;
+  overflow-x: none;
+}
+
+.delete-modal-body {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.delete-modal-top-title {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.delete-names {
+  display: block;
+  width: max-content;
+}
