@@ -60,6 +60,7 @@
       return mysqli_num_rows($result) > 0 ? true : false;
     }
 
+    // Updates status of partner application (complete)
     static function changeStatus($application_id, $status) {
       include('../connect.php');
       include('../error.php');

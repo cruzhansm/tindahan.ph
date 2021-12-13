@@ -12,8 +12,6 @@
     case 'count-users': echo countUsers(); break;
     case 'count-pending-partners': echo countPendingPartners(); break;
     case 'count-pending-listings': echo countPendingListings(); break;
-    case 'create-pending-listings-list': echo json_encode(createPendingListings()); break;
-    // case 'reject-pending-partners': break;
   }
 
   function countUsers() {
@@ -63,27 +61,6 @@
       $data = mysqli_fetch_assoc($query);
       return $data['pending_listings'];
     }
-  }
-
-  function createPendingListings() {
-    include('../connect.php');
-    include('../error.php');
-
-    $rows = array();
-
-    $pendingListingsInfo = "SELECT *
-                            FROM listing_application la
-                            WHERE la.application_status = 'pending'";
-
-    $query = mysqli_query($conn, $pendingListingsInfo);
-
-    if (mysqli_num_rows($query) > 0) {
-      while ($data = mysqli_fetch_assoc($query)) {
-        $rows[] = $data;
-      }
-    }
-
-    return $rows;
   }
 
 ?>

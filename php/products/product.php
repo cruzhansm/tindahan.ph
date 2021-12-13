@@ -210,6 +210,93 @@
       return $products;
     }
 
+    //  Inserts a product in the db (complete)
+    static function createProduct($application) {
+      include('../connect.php');
+
+      $product_store = $application['listing_store'];
+      $product_name = $application['listing_name'];
+      $product_img = $application['listing_img'];
+      $product_price = $application['listing_price'];
+      $product_desc = $application['listing_desc'];
+      $product_brand = $application['listing_brand'];
+
+      $insertProduct = "INSERT INTO
+                        products(product_store, product_name, product_img,
+                                 product_price, product_desc, product_brand)
+                        VALUES  ('$product_store', '$product_name', '$product_img',
+                                 $product_price, '$product_desc', '$product_brand')";
+
+      $query = mysqli_query($conn, $insertProduct);
+
+      return $query ? true : false; 
+    }
+
+    //  Updates status of listing app (complete)
+    static function updateApplicationStatus($applicationId, $status) {
+      include('../connect.php');
+
+      $updateRole = "UPDATE listing_application
+                     SET listing_status = '$status'
+                     WHERE application_id = $applicationId";
+
+      $query = mysqli_query($conn, $updateRole);
+
+      return $query ? true : false;
+    }
+
+    //  Inserts categories in db (productId problem)
+    public static function createCategory($applicationId, $productId) {
+      
+      include('../connect.php');
+      
+      $query = "SELECT category_id
+                       FROM listing_categories
+                       WHERE application_id = $applicationId";
+      
+      $result = mysqli_query($conn, $query);
+      
+      if(mysqli_num_rows($result) > 0) {
+          while($row = mysqli_fetch_assoc($result)) {
+              $categoryId = $row['category_id'];
+
+              $query2 = "INSERT INTO product_category_list (product_id, category_id)
+                                  VALUES($productId, $categoryId)";
+              
+              mysqli_query($conn, $query2);
+          }
+      }
+      
+      return $result;
+    }
+
+    //  Inserts variations in db (productId problem)
+    public static function createVariations($applicationId, $productId) {
+
+      include('../connect.php');
+      
+      $query = "SELECT variation, price, quantity
+                       FROM listing_variations
+                       WHERE application_id = $applicationId";
+      
+      $result = mysqli_query($conn, $query);
+      
+      if(mysqli_num_rows($result) > 0) {
+          while($row = mysqli_fetch_assoc($result)) {
+              $variation = $row['variation'];
+              $price = $row['price'];
+              $quantity = $row['quantity'];
+              
+              $query2 = "INSERT INTO product_variation (product_id, variation, price, quantity)
+                                  VALUES($productId, '$variation', $price, $quantity)";
+              
+              mysqli_query($conn, $query2);
+          }
+      }
+      
+      return $result;
+  }
+
   }
 
 ?>

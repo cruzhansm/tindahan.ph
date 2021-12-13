@@ -7,7 +7,8 @@
   switch($type) {
     case 'partner-application': insertPartnerApplication(); break;
     case 'create-pending-partners-list': echo json_encode(createPendingPartners()); break;
-    case 'show-pending-partners-details': echo json_encode(showPendingPartnersDetails($applicationId)); break;
+    case 'approve-pending-partner': echo json_encode(approvedApplication()); break;
+    case 'reject-pending-partner': echo json_encode(rejectedApplication()); break;
   }
 
   function insertPartnerApplication() {
@@ -35,7 +36,9 @@
     else {
       echo json_encode(new CustomError('exists', 'You have already applied for a partnership.'));
     }
+  }
 
+  //  Creates pending partners tabs (complete)
   function createPendingPartners() {
     include('../connect.php');
     include('../error.php');
@@ -50,49 +53,39 @@
 
     if (mysqli_num_rows($query) > 0) {
       while ($data = mysqli_fetch_assoc($query)) {
-        $rows[] = $data;
+        array_push($rows, $data);
       }
     }
     return $rows;
   }
 
-  function showPendingPartnersDetails($applicationId) {
+  //  Approval of Partner Application (complete)
+  function approvedApplication() {
     include('../connect.php');
+    include('../user.php');
+    include('partner-application.php');
+    include('../partner/store.php');
 
-    $ppModalInfo = "SELECT *
-                    FROM partner_applications pa
-                    WHERE pa.application_id = '$applicationId'";
+    $details = array();
+    $details = $_REQUEST['details'];
+    $result = User::changeRole($details['user_id'], 'partner');
+    $result = PartnerApplication::changeStatus($details['application_id'], 'approved');
+    $result = PartnerStore::createStore($details);
 
-    $query = mysqli_query($conn, $ppModalInfo);
-
-    if (mysqli_num_rows($query) > 0) {
-      $data = mysqli_fetch_assoc($query);
-    }
-    return $data;
+    return $result == true ? true : new CustomError("Insert Error: ", "Not inserted");
   }
 
-  function approvedApplication($details) {
+  //  Rejection of Partner Application (complete)
+  function rejectedApplication() {
     include('../connect.php');
     include('../user.php');
     include('partner-application.php');
 
-    User::changeRole($details['user_id'], 'partner');
-    PartnerApplication::changeStatus($details['application_id'], 'approved');
-    PartnerStore::createStore($details);
-    
+    $details = array();
+    $details = $_REQUEST['details'];
+    $result = PartnerApplication::changeStatus($details['application_id'], 'rejected');
 
-    return $query ? true : new CustomError("Insert Error: ", "Not inserted");
+    return $result == true ? true : new CustomError("Update Error: ", "Role not changed");
   }
 
-  function rejectedApplication($details) {
-    include('../connect.php');
-    include('../user.php');
-
-    PartnerApplication::changeStatus($details['application_id'], 'rejected');
-
-    $query = mysqli_query($conn, $reject);
-
-    return $query ? true : new CustomError("Update Error: ", "Role not changed");
-  }
-  
 ?>
