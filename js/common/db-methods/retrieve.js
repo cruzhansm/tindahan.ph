@@ -30,7 +30,8 @@ export function retrieveProducts(category) {
       let results = JSON.parse(data);
 
       results.forEach((x) => {
-        productFeed.innerHTML += `<a href='/tindahan.ph/src/common/product-page.php?id=${x.product_id}' class="product-feed-block">
+        productFeed.innerHTML += 
+        `<a href='/tindahan.ph/src/common/product-page.php?id=${x.product_id}' class="product-feed-block">
         <img src="${x.product_img}" class="product-feed-img" />
         <div class="product-feed-info">
           <div>${x.product_name}</div>
@@ -53,7 +54,6 @@ export function retrieveCategories() {
       type: 'retrieve-categories',
     },
     success: (data) => {
-      console.log('hello');
       let resultData = JSON.parse(data);
       console.log(resultData);
       resultData.forEach((x) => {
@@ -147,5 +147,44 @@ export function fetchUserDetails() {
         resolve(data);
       },
     });
+  });
+}
+
+export async function fetchSearchResults(query) {
+  const result = document.querySelector('#sq');
+  return await 
+  $.ajax({
+    type: 'POST',
+    url: '/tindahan.ph/php/common/crud.php',
+    data: {
+      type: 'search',
+      search_query: query
+    },
+    success: (data) => {
+      // console.log(data);
+      data = JSON.parse(data);
+      
+      result.innerHTML = query;
+      return data;
+    }
+  });
+}
+
+var PRODUCT_TOTAL_NUM = 60;
+
+export async function fetchMultipleProducts() {
+  return await
+  $.ajax({
+    type: 'GET',
+    url: '/tindahan.ph/php/products/retrieve.php',
+    data: {
+      type: 'multiple-random',
+      num: PRODUCT_TOTAL_NUM,
+    },
+    success: (result) => {
+      console.log(result);
+      result = JSON.parse(result);
+      return result;
+    },
   });
 }

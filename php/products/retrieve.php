@@ -18,13 +18,13 @@
     include_once('../connect.php');
     include_once('./product.php');
 
-    $retrieve = "SELECT * FROM products ORDER BY RAND() LIMIT $num;";
+    $retrieve = "SELECT product_id FROM products ORDER BY RAND() LIMIT $num;";
     $products = mysqli_fetch_all(mysqli_query($conn, $retrieve), MYSQLI_ASSOC);
     
     $resultSet = [];
 
     foreach($products as $product) {
-      $data = new Product($product['product_id'], $product['product_name'], $product['product_img'], $product['product_price'], $product['product_desc']);
+      $data = new Product((int)$product['product_id']);
 
       array_push($resultSet, $data);
     }

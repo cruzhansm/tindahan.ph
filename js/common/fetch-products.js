@@ -4,21 +4,7 @@ var PRODUCT_TOTAL_NUM = 60;
 var PRODUCT_FETCH_MAX = false;
 var PRODUCTS = [];
 
-function fetchMultipleProducts() {
-  $.ajax({
-    type: 'GET',
-    url: '/tindahan.ph/php/products/retrieve.php',
-    data: {
-      type: 'multiple-random',
-      num: PRODUCT_TOTAL_NUM,
-    },
-    success: (result) => {
-      result = JSON.parse(result);
-      PRODUCTS = [...result];
-      fetchProductsIncrementally();
-    },
-  });
-}
+
 
 function fetchProductsIncrementally() {
   const productFeed = document.querySelector('.container-product-feed');
