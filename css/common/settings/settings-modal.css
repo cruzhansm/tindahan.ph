@@ -1,23 +1,25 @@
 .settings-modal-content {
-  display: block;
+  padding: 0px !important;
+  display: flex;
+  justify-content: center;
   width: 503px;
-  height: 760px;
-  padding: 0px;
+  height: 703px ;
 }
 
-.modal-content {
-  background-color: transparent;
+.settings-modal-content {
+  background-color: transparent !important;
 }
 
-.modal-dialog {
-  margin: 1.75rem auto;
+.settings {
+  margin: 1.75rem auto !important;
 }
 
 .tab-content {
   background: var(--tph-secondary) !important;
+
 }
 
-.tab-content {
+.settings-tab-content {
   border-radius: 0px 12px 12px 12px !important;
   border-collapse: separate !important;
   width: 503px;

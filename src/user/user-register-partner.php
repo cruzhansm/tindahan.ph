@@ -1,3 +1,9 @@
+<?php
+ 
+  session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -39,7 +45,6 @@
   </head>
 
   <body class="bg-primary">
-
     <div class="row m-0">
       <div class="col left">
         <div class="sidenav">
@@ -53,19 +58,19 @@
             </div>
           </div>
           <div class="sidenav-links">
-            <a href="../../index.php" class="sidenav-link">
+            <a href="/tindahan.ph/index.php" class="sidenav-link">
               <i class="fa-solid fa-house-chimney sidenav-link-icon"></i>
               <div class="sidenav-link-text">Home</div>
             </a>
-            <a href="../../src/common/categories.html" class="sidenav-link">
+            <a href="../../src/common/categories.php" class="sidenav-link">
               <i class="fa-solid fa-cubes sidenav-link-icon"></i>
               <div class="sidenav-link-text">Categories</div>
             </a>
-            <a href="../../src/user/user-cart.html" class="sidenav-link">
+            <a href="../../src/user/user-cart.php" class="sidenav-link">
               <i class="fa-solid fa-cart-shopping sidenav-link-icon"></i>
               <div class="sidenav-link-text">Cart</div>
             </a>
-            <a href="../../src/user/user-purchases.html" class="sidenav-link">
+            <a href="../../src/user/user-purchases.php" class="sidenav-link">
               <i class="fa-solid fa-bag-shopping sidenav-link-icon"></i>
               <div class="sidenav-link-text">My Purchases</div>
             </a>
@@ -97,11 +102,11 @@
                 <div class="user-image-actions visually-hidden">
                   <div class="user-image-action no-hover">
                     <i class="fa-solid fa-user"></i>
-                    <div>userFirstName</div>
+                    <div><?php echo $_SESSION['fname'] ?></div>
                   </div>
                   <div class="user-image-action">
                     <i class="fa-solid fa-right-from-bracket"></i>
-                    <a href="../../src/common/login.html">LOG OUT</a>
+                    <span onclick="logout()">LOG OUT</span>
                   </div>
                 </div>
               </div>

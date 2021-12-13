@@ -2,6 +2,9 @@
 .nav-tabs {
   background-color: transparent !important;
   border-bottom: transparent;
+  width: 503px;
+  display: flex;
+  justify-content: flex-start !important;
 }
 
 .nav-item,

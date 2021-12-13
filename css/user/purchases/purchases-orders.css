@@ -1,0 +1,16 @@
+.order-product.purchases {
+  padding-left: 20px;
+}
+
+.order-product-details > i {
+  color: var(--tph-text-primary);
+  font-size: 24px;
+}
+
+.order-product-details {
+  gap: 22px;
+}
+
+.order-product-details > .order-product-info {
+  margin-left: 0;
+}
