@@ -1,0 +1,20 @@
+.purchase-product-rating {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.purchase-product-rating > i {
+  color: var(--tph-highlight);
+  font-size: 30px;
+}
+
+.purchase-product-rating > select {
+  border-radius: 73px;
+  width: 130px;
+  height: 45px;
+}
+
+.register-form-upload.purchases {
+  margin-top: 20px;
+}

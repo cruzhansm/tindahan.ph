@@ -87,15 +87,15 @@
     include('../connect.php');
     include('../products/product.php');
 
-    $details = $_REQUEST['applicationDetails'];
-    $application = $details['application'];
-    $result = Product::updateApplicationStatus($application['application_id'], 'approved');
-    $result = Product::createProduct($application);
-    $product_id = mysqli_insert_id($conn);
-    $result = Product::createCategory($application['application_id'], $product_id);
-    $result = Product::createVariations($application['application_id'], $product_id);
+    $application_id = $_REQUEST['applicationID'];
+    $result = Product::updateApplicationStatus($application_id, 'approved');
+    
+    $product_id = Product::createProduct($application_id);
 
-    return $result == true ? true : false;
+    $result = Product::createCategory($application_id, $product_id);
+    $result = Product::createVariations($application_id, $product_id);
+
+    return $result;
   }
 
   //  REJECTION OF LISTING (complete)

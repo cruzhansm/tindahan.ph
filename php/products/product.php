@@ -1,4 +1,4 @@
-<?php
+  <?php
   class Product implements JsonSerializable {
     private $product_id;
     private $product_store;
@@ -104,7 +104,6 @@
 
       if(mysqli_num_rows($result) > 0) {
         $i = 0;
-        $j = 0;
         while($row = mysqli_fetch_assoc($result)) {
           // GET THE REVIEW IMAGES, IF ANY and 
           // APPEND THE REVIEW TO THE RESULT SET
@@ -115,11 +114,12 @@
                       WHERE ic.uploaded = '$timestamp';";
 
           $res = mysqli_query($conn, $rimages);
-          
+
+          $row['images'] = array();
+
           if(mysqli_num_rows($res) > 0) {
             while($image = mysqli_fetch_assoc($res)) {
-              $row['images'][$j] = $image['img_path'];
-              $j++;
+              array_push($row['images'], $image['img_path']);
             }
           }
           else {
@@ -131,7 +131,6 @@
         }
       }
 
-      
       return $reviews;
     }
 
@@ -186,13 +185,7 @@
       return mysqli_num_rows($result) > 0 ? true : false;
     }
 
-    function jsonSerialize() {
-      $data = get_object_vars($this);
-  
-      return $data;
-    }
-
-    static function fetchByCategoryID($category_id) {
+    public static function fetchByCategoryID($category_id) {
       include('../connect.php');
       $products = array();
       $query = "SELECT product_id
@@ -211,8 +204,14 @@
     }
 
     //  Inserts a product in the db (complete)
-    static function createProduct($application) {
+    static function createProduct($applicationID) {
       include('../connect.php');
+
+      $query1 = "SELECT * 
+                 FROM listing_application
+                 WHERE application_id = $applicationID;";
+
+      $application = mysqli_fetch_assoc(mysqli_query($conn, $query1));
 
       $product_store = $application['listing_store'];
       $product_name = $application['listing_name'];
@@ -229,7 +228,7 @@
 
       $query = mysqli_query($conn, $insertProduct);
 
-      return $query ? true : false; 
+      return mysqli_insert_id($conn);
     }
 
     //  Updates status of listing app (complete)
@@ -251,20 +250,20 @@
       include('../connect.php');
       
       $query = "SELECT category_id
-                       FROM listing_categories
-                       WHERE application_id = $applicationId";
+                FROM listing_categories
+                WHERE application_id = $applicationId";
       
       $result = mysqli_query($conn, $query);
       
       if(mysqli_num_rows($result) > 0) {
-          while($row = mysqli_fetch_assoc($result)) {
-              $categoryId = $row['category_id'];
+        while($row = mysqli_fetch_assoc($result)) {
+          $categoryId = $row['category_id'];
 
-              $query2 = "INSERT INTO product_category_list (product_id, category_id)
-                                  VALUES($productId, $categoryId)";
-              
-              mysqli_query($conn, $query2);
-          }
+          $query2 = "INSERT INTO product_category_list (product_id, category_id)
+                     VALUES($productId, $categoryId)";
+
+          mysqli_query($conn, $query2);
+        }
       }
       
       return $result;
@@ -297,6 +296,62 @@
       return $result;
   }
 
+    public function addReview($review, $user_id) {
+      include('../connect.php');
+
+      $order_product_id = intval($review['orderProduct']);
+      $imgs = $review['reviewImgs'];
+
+      $query = "INSERT INTO product_review (product_id, user_id, rating, timestamp, review_msg)
+                VALUES(?, ?, ?, ?, ?);";
+
+      $stmt = mysqli_prepare($conn, $query);
+      mysqli_stmt_bind_param($stmt, 'iiiss', 
+                             $product_id,
+                             $user,
+                             $rating, 
+                             $currentTimestamp,
+                             $review_msg);
+
+      $product_id = $this->product_id;
+      $user = $user_id;
+      $rating = intval($review['rating']);
+      $gmt7 = 7*60*60;
+      $currentTimestamp = date("Y-m-d H:i:s", time() + $gmt7);
+      $review_msg = $review['review'];
+
+      $result = mysqli_stmt_execute($stmt);
+
+      $review_id = mysqli_insert_id($conn);
+
+      if($result == true) {
+        foreach($imgs as $img) {
+          $query2 = "INSERT INTO uploaded_img (img_path) VALUES('$img');";
+          mysqli_query($conn, $query2);
+          
+          $uploaded_img_id = mysqli_insert_id($conn);
+
+          $query3 = "INSERT INTO image_collection (uploaded, uploaded_img_id)
+                     VALUES('$currentTimestamp', $uploaded_img_id);";
+
+          mysqli_query($conn, $query3);
+        }
+
+        $query4 = "UPDATE order_details
+                   SET review_id = $review_id
+                   WHERE order_product_id = $order_product_id;";
+        
+        mysqli_query($conn, $query4);
+      }
+
+      return $result; 
+    }
+
+    function jsonSerialize() {
+      $data = get_object_vars($this);
+  
+      return $data;
+    }
   }
 
 ?>

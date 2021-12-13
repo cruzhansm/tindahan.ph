@@ -73,6 +73,28 @@
 
       return $query ? true : new CustomError("Update Error: ", "Status not changed");
     }
-    
+
+    public static function getApplications($count) {
+      include('../connect.php');
+
+      $query = "SELECT pa.application_id, pa.store_name, CONCAT(u.fname, ' ', u.lname) AS `name`
+                FROM partner_applications pa
+                JOIN users u ON u.user_id = pa.user_id
+                WHERE pa.application_status = 'pending'
+                ORDER BY pa.application_id DESC
+                LIMIT $count";
+
+      $result = mysqli_query($conn, $query);
+
+      $applications = array();
+
+      if(mysqli_num_rows($result) > 0) {
+        while($application = mysqli_fetch_assoc($result)) {
+          array_push($applications, $application);
+        }
+      }
+
+      return $applications;
+    }
   } 
 ?>

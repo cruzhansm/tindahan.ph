@@ -44,7 +44,7 @@ if (!isset($_SESSION['user_id'])) {
           </div>
         </div>
         <div class="sidenav-links visually-hidden" id="user1">
-          <a href="../../index.php" class="sidenav-link">
+          <a href="/tindahan.ph/index.php" class="sidenav-link">
             <i class="fa-solid fa-house-chimney sidenav-link-icon"></i>
             <div class="sidenav-link-text">Home</div>
           </a>
@@ -52,11 +52,11 @@ if (!isset($_SESSION['user_id'])) {
             <i class="fa-solid fa-cubes sidenav-link-icon"></i>
             <div class="sidenav-link-text">Categories</div>
           </a>
-          <a href="../../src/user/user-cart.html" class="sidenav-link">
+          <a href="../../src/user/user-cart.php" class="sidenav-link">
             <i class="fa-solid fa-cart-shopping sidenav-link-icon"></i>
             <div class="sidenav-link-text">Cart</div>
           </a>
-          <a href="../../src/user/user-purchases.html" class="sidenav-link">
+          <a href="../../src/user/user-purchases.php" class="sidenav-link">
             <i class="fa-solid fa-bag-shopping sidenav-link-icon"></i>
             <div class="sidenav-link-text">My Purchases</div>
           </a>
@@ -70,11 +70,11 @@ if (!isset($_SESSION['user_id'])) {
           </a>
         </div>
         <div class="sidenav-links visually-hidden" id="partner1">
-          <a href="../../index.php" class="sidenav-link">
+          <a href="/tindahan.ph/index.php" class="sidenav-link">
             <i class="fa-solid fa-house-chimney sidenav-link-icon"></i>
             <div class="sidenav-link-text">Home</div>
           </a>
-          <a href="../../src/common/categories.html" class="sidenav-link active">
+          <a href="../../src/common/categories.php" class="sidenav-link active">
             <i class="fa-solid fa-cubes sidenav-link-icon"></i>
             <div class="sidenav-link-text">Categories</div>
           </a>
@@ -86,7 +86,7 @@ if (!isset($_SESSION['user_id'])) {
             <i class="fa-solid fa-circle-plus sidenav-link-icon"></i>
             <div class="sidenav-link-text">Add Listing</div>
           </a>
-          <a href="../../src/partner/partner-orders.html" class="sidenav-link">
+          <a href="../../src/partner/partner-orders.php" class="sidenav-link">
             <i class="fa-solid fa-receipt sidenav-link-icon"></i>
             <div class="sidenav-link-text">Orders</div>
           </a>

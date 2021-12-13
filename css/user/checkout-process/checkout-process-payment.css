@@ -9,7 +9,7 @@
 }
 
 .checkout-process-payment > label {
-  color: #B9C7D3;
+  color: #b9c7d3;
   padding: 0;
   margin-left: 12px;
 }
@@ -41,7 +41,7 @@
 
 .checkout-process-payment-inline input,
 .checkout-process-payment-inline * input:focus {
-  width: 71px;
+  width: 85px;
   padding-left: 15px;
 }
 
@@ -60,4 +60,16 @@
 #ccdetails::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.cod {
+  margin-top: 410px;
+}
+
+.cc {
+  margin-top: 137px;
+}
+
+#ccform > .for-validation {
+  margin-bottom: 20px;
 }

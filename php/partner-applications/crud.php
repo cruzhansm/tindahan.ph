@@ -66,7 +66,6 @@
     include('partner-application.php');
     include('../partner/store.php');
 
-    $details = array();
     $details = $_REQUEST['details'];
     $result = User::changeRole($details['user_id'], 'partner');
     $result = PartnerApplication::changeStatus($details['application_id'], 'approved');

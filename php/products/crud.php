@@ -9,6 +9,8 @@
       echo json_encode(getSpecificProduct()); break;
     case 'add-to-cart':
       echo json_encode(addProductToCart()); break;
+    case 'create-product-review':
+      echo json_encode(createProductReview()); break;
   }
 
   function getSpecificProduct() {
@@ -32,5 +34,16 @@
     $cart = new Cart($_SESSION['user_id']);
     
     return $cart->add($product) == true ? true : new CustomError('Add to cart', 'Could not add product to cart.');
+  }
+
+  function createProductReview() {
+    include('product.php');
+
+    $review = json_decode($_REQUEST['review'], MYSQLI_ASSOC);
+
+    $product = new Product($review['productID']);
+    $success = $product->addReview($review, $_SESSION['user_id']);
+
+    return $success;
   }
 ?>

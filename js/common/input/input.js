@@ -48,7 +48,7 @@ export function isCorrectFormat(input) {
   let error = new String();
 
   switch (type) {
-    case 'name':
+    case 'text':
       error = isValidAlphabetic(input.value) ? '' : 'alpha';
       break;
     case 'email':
@@ -91,7 +91,8 @@ export function isWithinMaxCharCount(text) {
 }
 
 function isValidAlphabetic(input) {
-  const regExp = /^[a-zA-Z\s]*$/;
+  // const regExp = /^[a-zA-Z\s]*$/;
+  const regExp = /^[a-zA-Z0-9,. ]*$/;
   return regExp.test(input);
 }
 
@@ -144,6 +145,8 @@ function removePasswordMismatchErrors(password, password2) {
 export function isMatchingPasswords(password) {
   const passwords =
     password.parentElement.parentElement.querySelectorAll('.form-password');
+
+  console.log(passwords);
 
   if (passwords[1] == password && passwords.length == 2) {
     if (password.value.localeCompare(passwords[0].value) === 0) {
