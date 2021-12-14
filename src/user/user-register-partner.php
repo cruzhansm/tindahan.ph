@@ -96,7 +96,7 @@
               />
             </form>
             <div class="header-icons">
-              <i class="fa-solid fa-inbox"></i>
+              
               <i class="fa-solid fa-gear"></i>
               <div class="user-image-icon" onclick="displayUserActions()">
                 <div class="user-image-actions visually-hidden">

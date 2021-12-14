@@ -140,7 +140,7 @@
       <header class="header">
         <div class="text-highlight fw-bold">Edit Listing</div>
         <div class="header-icons">
-          <i class="fa-solid fa-inbox"></i>
+          
           <i class="fa-solid fa-gear"></i>
           <div class="user-image-icon"></div>
         </div>
