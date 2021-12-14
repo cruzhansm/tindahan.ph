@@ -1,7 +1,7 @@
 .listing-modal-content {
   width: 531px;
   height: 652px;
-  overflow-x: none;
+  overflow-x: hidden;
 }
 
 .delete-modal-body {

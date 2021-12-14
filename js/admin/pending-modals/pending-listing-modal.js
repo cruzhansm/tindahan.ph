@@ -44,7 +44,7 @@ window.listingRejectedModal = function listingRejectedModal(
 ) {
   const modal = bootstrap.Modal.getInstance(selectedModal);
 
-  rejectListing(modal, index);
+  rejectListing(index, modal);
 };
 
 window.listingRejectedTab = function listingRejectedTab(index) {
