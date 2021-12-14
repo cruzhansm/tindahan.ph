@@ -13,7 +13,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tindahan.ph - User Management</title>
+    <title>tindahan.ph - Live Listings</title>
 
     <link
       rel="icon"
@@ -43,12 +43,9 @@
     <link rel="stylesheet" href="../../css/utilities/utilities.css" />
     <link rel="stylesheet" href="../../css/admin/admin.css" />
 
-    <script src="/tindahan.ph/js/admin/user-management.js" type="module"></script>
-    <script src="/tindahan.ph/js/admin/admin-modals/user-modals/suspend-user-modal.js" type="module"></script>
-    <script src="/tindahan.ph/js/admin/admin-modals/user-modals/delete-user-modal.js" type="module"></script>
+    <script src="../../js/admin/live-listing.js" type="module"></script>
+    <script src="../../js/admin/admin-modals/product-modals/suspend-product-modal.js" type="module"></script>
   </head>
-
-  <body class="bg-primary">
 
   <div
       class="modal fade"
@@ -62,7 +59,7 @@
           <div
             class="shop-modal-header"
             data-bs-dismiss="modal"
-            onclick="dismissSuspendModal(suspendModal)"
+            onclick="dismissProdModal(suspendModal)"
           >
             <i class="fa-solid fa-x"></i>
           </div>
@@ -98,6 +95,7 @@
       </div>
     </div>
 
+  <body class="bg-primary">
     <div class="row m-0">
       <div class="col left">
         <div class="sidenav">
@@ -116,7 +114,7 @@
               <i class="fa-solid fa-tachometer-alt sidenav-link-icon"></i>
               <div class="sidenav-link-text">Dashboard</div>
             </a>
-            <a href="#" class="sidenav-link active">
+            <a href="./admin-users.html" class="sidenav-link">
               <i class="fa-solid fa-users-cog sidenav-link-icon"></i>
               <div class="sidenav-link-text">Users</div>
             </a>
@@ -124,7 +122,7 @@
               <i class="fa-solid fa-hands-helping sidenav-link-icon"></i>
               <div class="sidenav-link-text">Partners</div>
             </a>
-            <a href="./admin-live-listings.html" class="sidenav-link">
+            <a href="#" class="sidenav-link active">
               <i class="fa-solid fa-list-alt sidenav-link-icon"></i>
               <div class="sidenav-link-text">Live Listings</div>
             </a>
@@ -138,7 +136,7 @@
       <div class="col right">
         <div class="container-display">
           <header class="header">
-            <div class="text-highlight fw-bold">User Management</div>
+            <div class="text-highlight fw-bold">Live Listings</div>
             <div class="header-icons">
               <i class="fa-solid fa-inbox"></i>
               <i class="fa-solid fa-gear"></i>
@@ -165,48 +163,23 @@
               class="form-control form-search admin-user-search"
               placeholder="Search"
             />
-            <div class="admin-user-inline-search">
+            <div
+              class="admin-user-inline-search"
+              style="width: 285px; padding: 10px 40px"
+            >
               <span>Filters:</span>
               <div class="input-group">
                 <input
-                  name="filterUser"
-                  id="partners"
-                  type="checkbox"
-                  class="form-check-input"
-                />
-                <label for="partners" class="form-check">Partners</label>
-              </div>
-              <div class="input-group">
-                <input
-                  name="filterUser"
-                  id="users"
-                  type="checkbox"
-                  class="form-check-input"
-                />
-                <label for="users" class="form-check">Users</label>
-              </div>
-              <div class="input-group">
-                <input
-                  name="filterUser"
                   id="suspended"
                   type="checkbox"
                   class="form-check-input"
                 />
-                <label for="suspended" class="form-check">Suspended</label>
-              </div>
-              <div class="input-group">
-                <input
-                  name="filterUser"
-                  id="banned"
-                  type="checkbox"
-                  class="form-check-input"
-                />
-                <label for="banned" class="form-check">Banned</label>
+                <label for="partners" class="form-check">Suspended</label>
               </div>
             </div>
           </form>
 
-          <div class="container-admin-user-list" id="admin-user-list">
+          <div class="container-admin-user-list" id="admin-listings-list">
             <!--  INSERT DATA HERE  -->
           </div>
 

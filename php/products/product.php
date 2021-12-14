@@ -376,5 +376,17 @@
       
       return $products;
     }
+
+    static function changeSuspensionStatus($prodId, $status) {
+      include('../connect.php');
+
+      $changeStatus = "UPDATE products
+                       SET suspended = '$status'
+                       WHERE product_id = $prodId";
+
+      $query = mysqli_query($conn, $changeStatus);
+
+      return $query ? true : false;
+    }
   }
 ?>

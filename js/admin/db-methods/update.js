@@ -157,3 +157,30 @@ export function deleteUser(user, modal) {   // Deleting user
     }
   })
 }
+
+export function suspendListing(listing, modal) {  // Suspending listing
+  $.ajax({
+    url: '/tindahan.ph/php/products/crud.php',
+    data: {
+      type: 'suspend-listing',
+      listing: listing
+    },
+    success: (data) => {
+      let result = JSON.parse(data);
+      console.log(result);
+      if (result == true) {
+        const statusModal = new StatusModal("User is suspended!");
+        statusModal.show();
+        statusModal.dismissAfter(1000);
+        modal.hide();
+        window.location.reload();
+      } else {
+        const statusModal = new StatusModal(result.error_msg);
+        statusModal.show();
+        statusModal.dismissAfter(1000);
+        modal.hide();
+        window.location.reload();
+      }
+    }
+  })
+}
