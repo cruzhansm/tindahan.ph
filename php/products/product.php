@@ -352,6 +352,29 @@
   
       return $data;
     }
-  }
 
+    static function fetchBySearchQuery($user_query) {
+      include('../connect.php');
+      
+      $products = array();
+      $query = "SELECT product_id
+                FROM products
+                WHERE product_name LIKE ?";
+      $stmt = mysqli_prepare($conn, $query);
+
+      mysqli_stmt_bind_param($stmt, 's', $product_search);
+      $product_search = "%$user_query%";
+
+      mysqli_stmt_execute($stmt);
+      $result = mysqli_stmt_get_result($stmt);
+
+      $i = 0;
+      while($data = mysqli_fetch_assoc($result)) {
+        $products[$i] = (int)$data['product_id'];
+        $i++;
+      }
+      
+      return $products;
+    }
+  }
 ?>

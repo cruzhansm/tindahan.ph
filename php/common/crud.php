@@ -34,6 +34,10 @@ switch ($request) {
     break;
   case ('update-password'):
     echo json_encode(updatePassword());
+    break;
+  case ('search'):
+    echo json_encode(searchQuery());
+    break;
 }
 
 function retrieveCategories()
@@ -173,4 +177,23 @@ function updatePassword()
   $result = User::updatePassword($user_id, $pass);
 
   return $result ? true : new CustomError(error: 'Input', error_msg: 'Invalid input.');
+}
+
+function searchQuery() 
+{
+  include_once('../connect.php');
+  include_once('../products/product.php');
+
+  $user_query = $_REQUEST['search_query'];
+
+  $products = array();
+  $result = array();
+  
+  $products = Product::fetchBySearchQuery($user_query);
+
+  foreach ($products as $x) {
+    $data = new Product($x);
+    array_push($result, $data);
+  }
+  return $result;
 }
