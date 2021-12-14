@@ -211,6 +211,44 @@
       mysqli_close($conn);
       return $result;
     }
+
+    static function createUserSuspension($userId) {
+      include('../connect.php');
+
+      $message = "You have been suspended!";
+      $insertSuspension = "INSERT INTO 
+                        suspensions(user_id, end_date, message)
+                        VALUES ($userId, DATE_ADD(NOW(), INTERVAL 7 DAY), '$message')";
+                      
+      $query = mysqli_query($conn, $insertSuspension);
+
+      return $query ? true : false;
+
+    }
+
+    static function changeSuspension($userId, $status) {
+      include('../connect.php');
+
+      $changeStatus = "UPDATE users u
+                       SET u.suspended = '$status'
+                       WHERE u.user_id = $userId";
+
+      $query = mysqli_query($conn, $changeStatus);
+
+      return $query ? true : false;
+    }
+
+    static function changeActive($userId, $status) {
+      include('../connect.php');
+
+      $changeActive = "UPDATE users u
+                       SET u.active = '$status'
+                       WHERE u.user_id = $userId";
+
+      $query = mysqli_query($conn, $changeActive);
+
+      return $query ? true : false;
+    }
     
     static function changeRole($userId, $role) {
       include('../connect.php');
@@ -221,7 +259,7 @@
   
       $query = mysqli_query($conn, $changeRole);
 
-      return $query ? true : new CustomError("Update Error: ", "Role not changed");
+      return $query ? true : false;
     }
 
     public static function getUsers($count) {

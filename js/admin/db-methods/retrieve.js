@@ -171,7 +171,8 @@ export function getPendingListingDetails(application, modalBody, index) {
           application.application.listing_brand
         }</span></span>
       </div>
-      <div class="listing-variations">
+
+<div class="listing-variations">
         <span>Variations: <span class="text-secondary fs-18">${application.variation.join(
           ', '
         )}</span></span>
@@ -201,4 +202,96 @@ export function getPendingListingDetails(application, modalBody, index) {
         </button>
       </div>
   `;
+}
+
+export function createUserList() {
+    return $.ajax({
+      type: 'GET',
+      url: '/tindahan.ph/php/user/crud.php',
+      data: {
+        type: 'create-user-tabs'
+      },
+      success: (data) => {
+        let result = JSON.parse(data);
+        return result;
+      }
+    })
+}
+
+export function suspendModalInfo(user, modalBody) {
+  modalBody.innerHTML = ""
+  modalBody.innerHTML +=
+    `<div class="listing-modal-body mx-auto">
+      <div class="listing-modal-top">
+        <div class="listing-modal-top-title">
+          <div class="listing-names">
+            <span class="store-name fw-bold fs-24 text-center">Are you sure?</span>
+          </div>
+        </div>
+      </div>
+      <div class="listing-modal-details text-center">
+        <div class="listing-details">
+          <span>
+          Suspending <span class="modal-name">${user.fname} ${user.lname}</span> will mean they will be unable to use tindahan.ph's services for 7 days.
+          </span>
+        </div>
+        
+      </div>
+      
+    </div>
+    <div class="shop-modal-button-group listing-modal-btn-group">
+          <button
+            type="button"
+            class="btn btn-tertiary"
+            onclick="dismissSuspendModal(suspendModal)"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            // onclick="suspendedModal(suspendModal, ${user.user_id})"
+          >
+            Suspend
+          </button>
+        </div>`
+}
+
+export function deleteModalInfo(user, modalBody) {
+  modalBody.innerHTML = ""
+  modalBody.innerHTML +=
+    `<div class="listing-modal-body mx-auto">
+      <div class="listing-modal-top">
+        <div class="listing-modal-top-title">
+          <div class="listing-names">
+            <span class="store-name fw-bold fs-24 text-center">Are you sure?</span>
+          </div>
+        </div>
+      </div>
+      <div class="listing-modal-details text-center">
+        <div class="listing-details">
+          <span>
+          Deleting <span class="modal-name">${user.fname} ${user.lname}</span> will mean they will not be able to access tindahan.ph indefinitely.
+          </span>
+        </div>
+        
+      </div>
+      
+    </div>
+    <div class="shop-modal-button-group listing-modal-btn-group">
+          <button
+            type="button"
+            class="btn btn-tertiary"
+            onclick="dismissDeleteModal(deleteModal)"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            // onclick="deletedModal(deleteModal, ${user.user_id})"
+          >
+            Delete
+          </button>
+        </div>`
 }
