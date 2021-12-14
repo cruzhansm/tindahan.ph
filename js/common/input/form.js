@@ -89,7 +89,7 @@ export function disableSubmitBtn(form) {
     : Promise.resolve();
 }
 
-function enableSubmitBtn() {
+export function enableSubmitBtn() {
   const submit = SELECTED_FORM.querySelector('button[type=submit]');
 
   if (submit.classList.contains('tph-disabled')) {
@@ -158,6 +158,7 @@ export function attachEmptyFieldListeners(watch) {
       }
 
       // console.log(inputs, state);
+      // console.log(FORM_HAS_EMPTY, FORM_HAS_INVALID, FORM_HAS_REQUIRED);
 
       inputs.forEach((input, index) => {
         input.addEventListener('input', () => {

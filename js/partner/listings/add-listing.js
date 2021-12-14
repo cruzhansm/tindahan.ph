@@ -21,6 +21,10 @@ window.toggleVariations = function toggleVariations(event) {
   const variations = document.querySelector('#variationList');
   const addVariation = document.querySelector('#addVariation');
 
+  if (event.target.checked) {
+    variations.innerHTML = ``;
+  }
+
   variations.classList.toggle('tph-disabled');
   addVariation.classList.toggle('tph-disabled');
 };
@@ -28,7 +32,9 @@ window.toggleVariations = function toggleVariations(event) {
 window.addNewVariation = function addNewVariation() {
   const target = document.querySelector('#variationList');
   const append = document.createElement('div');
+  let id = document.querySelectorAll('.variation-row').length;
   append.classList.add('row', 'variation-row');
+  append.setAttribute(`id`, `v${id}`);
 
   append.innerHTML += `
     <div class="col-auto p-0">
@@ -79,6 +85,10 @@ window.addNewVariation = function addNewVariation() {
         placeholder="Stock"
       />
     </div>
+
+    <div class="col-auto p-2 my-auto">
+      <i class="fa-solid fa-trash-can" onclick="deleteVariation(${id})"></i>
+    </div>
   `;
 
   target.append(append);
@@ -116,11 +126,15 @@ window.attemptNewListing = async function attemptNewListing(event) {
 
   console.log(listing);
 
-  const success = await insertListingApplication(listing);
+  const success = JSON.parse(await insertListingApplication(listing));
 
   if (success) {
     const modal = new StatusModal('Application sent!');
     modal.show();
     window.location.reload();
   }
+};
+
+window.deleteVariation = function deleteVariation(variationID) {
+  document.querySelector(`#v${variationID}`).remove();
 };

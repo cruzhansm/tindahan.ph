@@ -59,7 +59,11 @@
             />
             <div class="sidenav-header-text">
               <div>tindahan.ph</div>
-              <div class="visually-hidden" id="partner2">PARTNER</div>
+              <?php
+              if (strcmp($_SESSION['role'], 'user') != 0) {
+                echo '<div>' . strtoupper($_SESSION['role']) . '</div>';
+              }
+              ?>
             </div>
           </div>
           <div class="sidenav-links visually-hidden" id="user1">

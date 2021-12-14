@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Listing</title>
 
+    <link rel="icon" type="image/png" href="assets/images/tph-logo-128px.png" />
+
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -174,56 +177,6 @@
                   </div>
 
                   <div class="col-var-inputs" id="variationList">
-                    <div class="row variation-row">
-                      <div class="col-auto p-0">
-                        <input
-                          class="
-                            form-control
-                            border-input
-                            not-required
-                            variation-name
-                          "
-                          type="text"
-                          placeholder="Variation"
-                        />
-                      </div>
-
-                      <div class="col-auto p-0">
-                        <input
-                          class="
-                            form-control
-                            stock-input
-                            border-input
-                            not-required
-                            variation-price
-                          "
-                          type="number"
-                          min="1"
-                          max="9999"
-                          minlength="1"
-                          maxlength="4"
-                          placeholder="Price"
-                        />
-                      </div>
-
-                      <div class="col-auto p-0">
-                        <input
-                          class="
-                            form-control
-                            stock-input
-                            border-input
-                            not-required
-                            variation-stock
-                          "
-                          type="number"
-                          min="1"
-                          max="9999"
-                          minlength="1"
-                          maxlength="4"
-                          placeholder="Stock"
-                        />
-                      </div>
-                    </div>
                   </div>
 
                   <div id="addVariation" class="container-fluid col-add-var">

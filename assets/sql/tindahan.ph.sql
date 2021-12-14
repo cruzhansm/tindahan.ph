@@ -190,7 +190,7 @@ CREATE TABLE cart_items(
   CONSTRAINT Cart_PK PRIMARY KEY(cart_item_id),
   CONSTRAINT Cart_User_FK FOREIGN KEY(user_id) REFERENCES users(user_id),
   CONSTRAINT Cart_Product_FK FOREIGN KEY(product_id) REFERENCES products(product_id),
-  CONSTRAINT Cart_Variation_FK FOREIGN KEY(variation_id) REFERENCES product_variation(variation_id)
+  CONSTRAINT Cart_Variation_FK FOREIGN KEY(variation_id) REFERENCES product_variation(variation_id) ON DELETE SET NULL
 );
 
 CREATE TABLE orders(
@@ -272,7 +272,7 @@ CREATE TABLE suspensions(
   end_date          DATETIME          NOT NULL,
   message           VARCHAR(500)      NOT NULL,
   CONSTRAINT User_Suspensions_PK PRIMARY KEY(suspension_id),
-  CONSTRAINT Suspensions_User_FK FOREIGN KEY(user_id) REFERENCES users(user_id)
+  CONSTRAINT Suspensions_User_FK FOREIGN KEY(user_id) REFERENCES users(user_id),
   CONSTRAINT Suspensions_Product_FK FOREIGN KEY(product_id) REFERENCES products(product_id)
 );
 

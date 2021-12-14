@@ -26,7 +26,7 @@
   display: inline-flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 45px;
+  /* gap: 10px; */
   width: 100%;
 }
 
@@ -36,10 +36,16 @@
   color: var(--tph-text-highlight);
   font-size: 30px;
   font-weight: 700;
-  padding-right: 20px;
+  padding: 3px 10px;
   width: 165px;
   height: 45px;
   text-align: right;
+}
+
+#productName {
+  width: 435px;
+  max-width: 435px;
+  height: max-content;
 }
 
 .product-info-rating {

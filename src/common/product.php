@@ -87,7 +87,7 @@
                 <div class="sidenav-link-text">Shop Profile</div>
               </a>
               <a
-                href="../../src/partner/partner-add-listing.html"
+                href="../../src/partner/partner-add-listing.php"
                 class="sidenav-link"
               >
                 <i class="fa-solid fa-circle-plus sidenav-link-icon"></i>

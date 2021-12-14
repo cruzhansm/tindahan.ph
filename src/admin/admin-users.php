@@ -131,7 +131,7 @@
                   </div>
                   <div class="user-image-action">
                     <i class="fa-solid fa-right-from-bracket"></i>
-                    <span onclick="logout">LOG OUT</span>
+                    <span onclick="logout()">LOG OUT</span>
                   </div>
                 </div>
               </div>

@@ -256,10 +256,9 @@ if (!isset($_SESSION['user_id'])) {
     </div>
   </div>
 
-  <!-- TODO -->
-  <!-- 1. Convert to Object -->
-  <!-- 2. Define JS that automatically appends the messages object to page -->
-  <div class="container-messages visually-hidden">
+
+  <!-- DISCARDED MESSAGING -->
+  <!-- <div class="container-messages visually-hidden">
     <div class="messages-header">
       <div class="messages-header-title">messages</div>
       <button class="btn btn-primary" style="width: max-content; height: max-content; padding: 5px; line-height: 10px; font-size: 10px;" onclick="noConvos()">Click for no active convo</button>
@@ -316,7 +315,7 @@ if (!isset($_SESSION['user_id'])) {
           <input type="search" class="form-control form-search message-conversation-search" placeholder="Search">
           <!-- TODO -->
           <!-- 1. Implement real-time search results. -->
-          <div class="message-conversation-search-results"></div>
+          <!-- <div class="message-conversation-search-results"></div>
         </div>
         <div class="messages-conversation-area">
           <div class="messages-conversation">
@@ -482,7 +481,7 @@ if (!isset($_SESSION['user_id'])) {
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div class="copyright mx-auto">
     <a href="src/common/about-us.html">about tindahan.ph</a>
