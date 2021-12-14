@@ -1,26 +1,29 @@
 .container-upload {
-  width: 379px;
-  height: 379px;
-  margin-left: 217px;
-  margin-top: 31px;
-
-  background: #C4C4C4;
-  border-radius: 10px;
+  position: relative;
 }
 
-.upload-caption {
-  width: 206px;
-  height: 20px;
-  margin-left: 217px;
-  margin-top: 8px;
+.container-upload-custom {
+  background-color: var(--placeholder);
+  border-radius: 12px;
+  width: 379px;
+  height: 379px;
+  margin-left: 417px;
+}
 
-  font-family: Poppins-Regular;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 21px;
+.custom-upload {
+  border-radius: 6px;
+  width: 172px !important;
+  height: 45px;
+  position: absolute;
+  left: 624px;
+  bottom: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  color: #2CAD69;
+.custom-upload > input {
+  display: none !important;
 }
 
 .form-row {
