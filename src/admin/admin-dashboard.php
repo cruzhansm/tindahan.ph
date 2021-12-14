@@ -45,8 +45,7 @@
 
     <script src="../../js/common/search.js"></script>
     <script src="../../js/common/auth/logout.js"></script>
-    <script src="../../js/common/messaging.js"></script>
-    <script src="../../js/admin/dashboard-update-numbers.js" type="module"></script>
+    <script src="../../js/admin/dashboard.js" type="module"></script>
   </head>
 
   <body class="bg-primary">
@@ -124,33 +123,34 @@
             </div>
           </div>
           <div class="text-highlight fw-bold trending-title">
-            Trending Items
+            New Users
           </div>
-          <div class="trending">
+          <div class="trending" id="users">
             <div class="trending-header">
-              <span>Item</span>
-              <span>Sales over 24hrs</span>
+              <span>User</span>
+              <span>Date Created</span>
             </div>
-            <div class="trending-tab rounded">
-              <div class="trending-tab-product">
-                <div class="trending-tab-product-img"></div>
-                <div class="trending-tab-product-data">
-                  <div>Product Name</div>
-                  <div>Partner Name</div>
-                </div>
-              </div>
-              <div class="trending-tab-sales">0</div>
+            
+          </div>
+          <div class="text-highlight fw-bold trending-title">
+            New Applications
+          </div>
+          <div class="trending" id="applications">
+            <div class="trending-header">
+              <span>Application</span>
+              <span>Applicant</span>
             </div>
-            <div class="trending-tab rounded">
-              <div class="trending-tab-product">
-                <div class="trending-tab-product-img"></div>
-                <div class="trending-tab-product-data">
-                  <div>Product Name</div>
-                  <div>Partner Name</div>
-                </div>
-              </div>
-              <div class="trending-tab-sales">0</div>
+
+          </div>
+          <div class="text-highlight fw-bold trending-title">
+            New Listings
+          </div>
+          <div class="trending" id="listings">
+            <div class="trending-header">
+              <span>Application</span>
+              <span>Applicant</span>
             </div>
+         
           </div>
         </div>
       </div>

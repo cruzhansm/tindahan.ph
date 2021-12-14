@@ -1,31 +1,70 @@
-window.onload = () => {
-  if (window.location.href.includes('search.html')) {
-    const search = new URLSearchParams(window.location.search).get('q');
-    const searchTitle = document.querySelector('#sq');
+import { Pagination } from '/tindahan.ph/js/common/pagination.js';
+import { noSubmit } from '/tindahan.ph/js/common/input/form.js';
+import { fetchSearchResults } from "/tindahan.ph/js/common/db-methods/retrieve.js";
 
-    // REFACTOR
-    // Once backend is done, revert to false and do a search query
-    // If search string is found, assign true and update query title
-    const validSearch = search != null ? true : false;
+window.onload = async () => {
 
-    // Should be true or false depending if there are products found
-    let searchFound = true;
+  if (window.location.href.includes('search.php')) {
+    const data = new URLSearchParams(window.location.search);
+    let query = data.get('q');
 
-    // REFACTOR
-    // Change to another appropriate function that appends select products only
-    if (validSearch && searchFound) {
-      searchTitle.innerText = `"${search}"`;
-    } else {
-      searchTitle.parentElement.innerHTML = 'Results';
-    }
+    let products = JSON.parse(await fetchSearchResults(query));
+    console.log(products);
+    appendAllProducts(products);
   }
 };
 
-function search(event) {
+window.search = function search(event) {
+  noSubmit(event);
   const query = event.target.firstElementChild.value;
-  let redirect = '/tindahan.ph/src/common/search.html';
-
-  event.preventDefault();
+  let redirect = '/tindahan.ph/src/common/search.php';
 
   window.location.href = query.length > 0 ? `${redirect}?q=${query}` : redirect;
+}
+
+function appendAllProducts(products) {
+  const pagination = new Pagination(
+    'paginationContainer',
+    products.length / 12,
+    products.length > 0 ? true : false
+  );
+
+  let limit = 12;
+  let idx = 0;
+
+  const paginationPages = Array.from(
+    document.querySelectorAll('.pagination-page')
+  );
+
+  paginationPages.forEach((page) => {
+    page.classList.add(
+      'container-product-feed',
+      'row',
+      'row-cols-4',
+      'row-cols-md-4',
+      'g-4'
+    );
+  });
+
+  for (let currentPage = 0; currentPage < pagination.pageTotal; currentPage++) {
+    let target = document.querySelector(`#page${currentPage + 1}`);
+
+    for (let num = 1; num <= limit && idx < products.length; num++) {
+      let product = products[idx++];
+      let productContainer = document.createElement('div');
+      productContainer.classList.add('product-feed-block');
+
+      productContainer.innerHTML =
+      `<a href='/tindahan.ph/src/common/product-page.php?id=${product.product_id}' class="product-feed-block">
+        <img src="${product.product_img}" class="product-feed-img" />
+        <div class="product-feed-info">
+          <div>${product.product_name}</div>
+          <div class="product-feed-price">${product.product_price}</div>
+        </div>
+        <div class="product-feed-store">${product.product_store.store_name}</div>
+      </a>`;
+
+      target.append(productContainer);
+    }
+  }
 }

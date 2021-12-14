@@ -261,6 +261,28 @@
 
       return $query ? true : false;
     }
+
+    public static function getUsers($count) {
+      include('connect.php');
+
+      $query = "SELECT user_id, CONCAT(fname, ' ', lname) as `name`, last_login
+                FROM users
+                WHERE role = 'user'
+                ORDER BY user_id DESC
+                LIMIT $count;";
+        
+      $result = mysqli_query($conn, $query);
+      
+      $users = array();
+
+      if(mysqli_num_rows($result) > 0) {
+        while($user = mysqli_fetch_assoc($result)) {
+          array_push($users, $user);
+        }
+      }
+
+      return $users;
+    }
   }
 
 ?>
