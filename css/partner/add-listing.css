@@ -1,13 +1,10 @@
 .container-upload {
-<<<<<<< Updated upstream
-=======
   width: 380px;
   height: 380px;
   margin-left: 325px;
   margin-top: 31px;
   background: #c4c4c4;
   border-radius: 10px;
->>>>>>> Stashed changes
   position: relative;
 }
 
@@ -29,14 +26,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-<<<<<<< Updated upstream
-.custom-upload > input {
-  display: none !important;
-=======
   color: #2cad69;
->>>>>>> Stashed changes
 }
 
 .form-row {
