@@ -1,4 +1,10 @@
 .container-upload {
+  width: 380px;
+  height: 380px;
+  margin-left: 325px;
+  margin-top: 31px;
+  background: #c4c4c4;
+  border-radius: 10px;
   position: relative;
 }
 
@@ -20,10 +26,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.custom-upload > input {
-  display: none !important;
+  color: #2cad69;
 }
 
 .form-row {
@@ -116,7 +119,7 @@
 .row-btns {
   width: 609px;
   margin-left: 245px;
-  margin-top: 27px;
+  /* margin-top: 53px; */
 }
 
 .drafts-button {
