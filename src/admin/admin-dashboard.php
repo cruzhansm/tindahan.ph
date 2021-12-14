@@ -43,9 +43,10 @@
     <link rel="stylesheet" href="../../css/utilities/utilities.css" />
     <link rel="stylesheet" href="../../css/admin/admin.css" />
 
-    <script src="../../js/common/search.js"></script>
+    <script type="module" src="../../js/common/search.js"></script>
     <script src="../../js/common/auth/logout.js"></script>
     <script src="../../js/admin/dashboard.js" type="module"></script>
+    <script src="../../js/common/auth/logout.js"></script>
   </head>
 
   <body class="bg-primary">
@@ -67,22 +68,19 @@
               <i class="fa-solid fa-tachometer-alt sidenav-link-icon"></i>
               <div class="sidenav-link-text">Dashboard</div>
             </a>
-            <a href="./admin-users.html" class="sidenav-link">
+            <a href="./admin-users.php" class="sidenav-link">
               <i class="fa-solid fa-users-cog sidenav-link-icon"></i>
               <div class="sidenav-link-text">Users</div>
             </a>
-            <a href="./admin-partners.html" class="sidenav-link">
+            <a href="./admin-partners.php" class="sidenav-link">
               <i class="fa-solid fa-hands-helping sidenav-link-icon"></i>
               <div class="sidenav-link-text">Partners</div>
             </a>
-            <a href="./admin-live-listings.html" class="sidenav-link">
+            <a href="./admin-live-listings.php" class="sidenav-link">
               <i class="fa-solid fa-list-alt sidenav-link-icon"></i>
               <div class="sidenav-link-text">Live Listings</div>
             </a>
-            <a href="#" class="sidenav-link">
-              <i class="fa-solid fa-envelope-open-text sidenav-link-icon"></i>
-              <div class="sidenav-link-text">Support Inbox</div>
-            </a>
+            
           </div>
         </div>
       </div>
@@ -92,13 +90,13 @@
             <div class="text-highlight fw-bold">Overview</div>
 
             <div class="header-icons">
-              <i class="fa-solid fa-inbox"></i>
+              
               <i class="fa-solid fa-gear"></i>
               <div class="user-image-icon" onclick="displayUserActions()">
                 <div class="user-image-actions visually-hidden">
                   <div class="user-image-action no-hover">
                     <i class="fa-solid fa-user"></i>
-                    <div>userFirstName</div>
+                    <div><?php echo $_SESSION['fname'] ?></div>
                   </div>
                   <div class="user-image-action">
                     <i class="fa-solid fa-right-from-bracket"></i>

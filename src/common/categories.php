@@ -79,10 +79,7 @@
               <i class="fa-solid fa-bag-shopping sidenav-link-icon"></i>
               <div class="sidenav-link-text">My Purchases</div>
             </a>
-            <a href="../../src/common/help-center.html" class="sidenav-link">
-              <i class="fa-solid fa-headset sidenav-link-icon"></i>
-              <div class="sidenav-link-text">Help Center</div>
-            </a>
+            
             <a
               href="../../src/user/user-register-partner.php"
               class="sidenav-link"
@@ -124,10 +121,7 @@
               <i class="fa-solid fa-receipt sidenav-link-icon"></i>
               <div class="sidenav-link-text">Orders</div>
             </a>
-            <a href="../../src/common/help-center.html" class="sidenav-link">
-              <i class="fa-solid fa-headset sidenav-link-icon"></i>
-              <div class="sidenav-link-text">Help Center</div>
-            </a>
+            
           </div>
         </div>
       </div>
@@ -142,7 +136,7 @@
               />
             </form>
             <div class="header-icons">
-              <i class="fa-solid fa-inbox"></i>
+              
               <i class="fa-solid fa-gear"></i>
               <div class="user-image-icon" onclick="displayUserActions()">
                 <div class="user-image-actions visually-hidden">

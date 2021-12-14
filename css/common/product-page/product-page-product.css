@@ -121,3 +121,10 @@
   align-items: center;
   width: 315px;
 }
+
+.product-actions-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}

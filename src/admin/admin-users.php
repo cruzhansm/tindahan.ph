@@ -120,18 +120,15 @@
               <i class="fa-solid fa-users-cog sidenav-link-icon"></i>
               <div class="sidenav-link-text">Users</div>
             </a>
-            <a href="./admin-partners.html" class="sidenav-link">
+            <a href="./admin-partners.php" class="sidenav-link">
               <i class="fa-solid fa-hands-helping sidenav-link-icon"></i>
               <div class="sidenav-link-text">Partners</div>
             </a>
-            <a href="./admin-live-listings.html" class="sidenav-link">
+            <a href="./admin-live-listings.php" class="sidenav-link">
               <i class="fa-solid fa-list-alt sidenav-link-icon"></i>
               <div class="sidenav-link-text">Live Listings</div>
             </a>
-            <a href="#" class="sidenav-link">
-              <i class="fa-solid fa-envelope-open-text sidenav-link-icon"></i>
-              <div class="sidenav-link-text">Support Inbox</div>
-            </a>
+            
           </div>
         </div>
       </div>

@@ -11,10 +11,9 @@
 .header-icons {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  gap: 20px;
   align-items: center;
   font-size: 30px;
-  width: 167px;
   height: 41px;
 }
 

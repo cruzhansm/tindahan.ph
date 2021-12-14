@@ -1,12 +1,30 @@
-import { fetchStoreDetails } from '../db-methods/retrieve.js';
+import {
+  fetchStoreDetails,
+  retrieveStoreProducts,
+} from '../db-methods/retrieve.js';
+
+import { Pagination } from '../../common/pagination.js';
+import { getCurrentUser } from '../../common/products/db-methods/retrieve.js';
 
 export var STORE = new Object();
 
-window.onload = () => {
-  fetchStoreDetails().then((store) => {
-    STORE = store;
-    appendShopDetails(store);
-  });
+window.onload = async () => {
+  const store = JSON.parse(await fetchStoreDetails());
+  const user = JSON.parse(await getCurrentUser());
+
+  STORE = store;
+
+  console.log(store);
+
+  setVisibleEditButton(user);
+  appendShopDetails(store);
+  const products = JSON.parse(
+    await retrieveStoreProducts(parseInt(store.store_id))
+  );
+
+  console.log(products);
+
+  appendShopProducts(products);
 };
 
 function appendShopDetails(store) {
@@ -49,4 +67,67 @@ export function initializeModalData(store) {
       target.setAttribute('src', store.store_img);
     }
   });
+}
+
+function appendShopProducts(products) {
+  const pagination = new Pagination(
+    'paginationContainer',
+    products.length / 12,
+    products.length > 0 ? true : false
+  );
+
+  const paginationPages = Array.from(
+    document.querySelectorAll('.pagination-page')
+  );
+
+  paginationPages.forEach((page) => {
+    page.classList.add(
+      'container-product-feed',
+      'row',
+      'row-cols-4',
+      'row-cols-md-4',
+      'g-4'
+    );
+  });
+
+  let limit = 3;
+  let idx = 0;
+
+  for (let currentPage = 0; currentPage < pagination.pageTotal; currentPage++) {
+    let target = document.querySelector(`#page${currentPage + 1}`);
+
+    for (let num = 1; num <= limit && idx < products.length; num++) {
+      let product = products[idx++];
+
+      let productContainer = document.createElement('div');
+      productContainer.classList.add('product-feed-block');
+
+      productContainer.innerHTML = `
+        <a href="/tindahan.ph/src/common/product.php?id=${product.product_id}">
+          <img src='${product.product_img}' class="product-feed-img">
+            <div class="product-feed-info">
+              <div>${product.product_name}</div>
+              <div class="product-feed-price">P${product.product_price}</div>
+          </div>
+        </a>
+      `;
+
+      target.append(productContainer);
+    }
+  }
+}
+
+function setVisibleEditButton(user) {
+  const edit = document.querySelector('#edit');
+  const link = document.querySelector('#storeo');
+
+  if (user == parseInt(STORE.store_owner)) {
+    edit.classList.remove('visually-hidden');
+  } else {
+    storeo.classList.remove('active');
+    storeo.setAttribute(
+      'href',
+      '/tindahan.ph/src/partner/partner-shop-profile.php'
+    );
+  }
 }

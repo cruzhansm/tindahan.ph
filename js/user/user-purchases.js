@@ -1,5 +1,8 @@
 import { retrieveAllPurchases } from './db-methods/retrieve.js';
-import { cancelSpecifiedOrder } from './db-methods/update.js';
+import {
+  cancelSpecifiedOrder,
+  markedOrderAsReceived,
+} from './db-methods/update.js';
 import { noSubmit } from '../common/input/form.js';
 import { attachCharCountListener } from '../common/input/input.js';
 import { createProductReview } from './db-methods/insert.js';
@@ -99,13 +102,24 @@ function appendAllPurchases(ordered) {
               : order.orders.orderStatusMsg
           }
         </div>
-        <div class="order-product-status ${
-          order.orders.orderStatus != 'cancelled'
-            ? order.orders.orderStatus != 'delivered'
-              ? 'active'
-              : 'rate'
-            : 'cancelled'
-        }">${order.orders.orderStatus}</div>
+        ${
+          order.orders.orderStatus == 'transit'
+            ? `<button class="btn btn-primary order-product-status" onclick="attemptMarkAsReceived(${order.orderID})">Mark Received</button>`
+            : `
+            <div
+              class="order-product-status ${
+                order.orders.orderStatus != 'cancelled'
+                  ? order.orders.orderStatus != 'delivered'
+                    ? 'active'
+                    : 'rate'
+                  : 'cancelled'
+              }"
+            >
+              ${order.orders.orderStatus}
+            </div>
+          `
+        }
+        
         ${
           ['confirmation', 'processing'].includes(order.orders.orderStatus)
             ? `<button class="btn btn-tertiary order-product-status" onclick="attemptCancelOrder(orderCancel, ${order.orderID})"> Cancel </button>`
@@ -234,4 +248,12 @@ window.reviewProduct = async function reviewProduct(
   };
 
   createProductReview(review);
+};
+
+window.attemptMarkAsReceived = async function attemptMarkAsRecevied(orderID) {
+  const success = JSON.parse(await markedOrderAsReceived(orderID));
+
+  if (success) {
+    window.location.reload();
+  }
 };

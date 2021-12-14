@@ -67,10 +67,6 @@
               <i class="fa-solid fa-receipt sidenav-link-icon"></i>
               <div class="sidenav-link-text">Orders</div>
             </a>
-            <a href="../../src/common/help-center.html" class="sidenav-link">
-              <i class="fa-solid fa-headset sidenav-link-icon"></i>
-              <div class="sidenav-link-text">Help Center</div>
-            </a>
           </div>
         </div>
         
@@ -101,6 +97,15 @@
           </a>
         </div>
       </div>
+      <div class="col right">
+        <div class="container-display">
+          <header class="header">
+            <div class="text-highlight fw-bold">Edit Listing</div>
+            <div class="header-icons">
+              <i class="fa-solid fa-gear"></i>
+              <div class="user-image-icon"></div>
+            </div>
+          </header>
 
       <div class="sidenav-links">
         <a href="../../index.php" class="sidenav-link">

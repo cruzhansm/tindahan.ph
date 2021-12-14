@@ -213,7 +213,6 @@ if (!isset($_SESSION['user_id'])) {
             <input type="search" class="form-control form-search border-input" placeholder="Search products">
           </form>
           <div class="header-icons">
-            <i class="fa-solid fa-inbox" onclick="showMessages()"></i>
             <i class="fa-solid fa-gear" onclick="showSettings(verifySettings)"></i>
             <div class="user-image-icon" onclick="displayUserActions()">
               <div class="user-image-actions visually-hidden">

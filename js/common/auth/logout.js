@@ -9,7 +9,7 @@ function logout() {
     type: 'POST',
     url: '/tindahan.ph/php/auth.php',
     data: {
-      type: 'logout', 
+      type: 'logout',
     },
     success: () => {
       alert('logged out successfully.');

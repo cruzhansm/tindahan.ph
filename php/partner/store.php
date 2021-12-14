@@ -113,6 +113,26 @@
       return $query ? true : new CustomError("Insert Error: ", "Not inserted"); 
     }
 
+    public static function retrieveProducts($store_id) {
+      include('../connect.php');
+
+      $query = "SELECT *
+                FROM products
+                WHERE product_store = $store_id;";
+
+      $result = mysqli_query($conn, $query);
+
+      $products = array();
+
+      if(mysqli_num_rows($result) > 0) {
+        while($product = mysqli_fetch_assoc($result)) {
+          array_push($products, $product);
+        }
+      }
+
+      return $products;
+    }
+
     function jsonSerialize() {
       $data = get_object_vars($this);
 
