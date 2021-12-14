@@ -99,19 +99,10 @@ function validateSettings()
   include_once('../connect.php');
   include_once('../user.php');
 
-  $password = $_REQUEST['pass'];
+  $pass = $_REQUEST['pass'];
   $user_id  = $_SESSION['user_id'];
 
-  $query = "SELECT email
-            FROM users
-            WHERE user_id = $user_id";
-
-  $result = mysqli_query($conn, $query);
-  $data = mysqli_fetch_assoc($result);
-  $email = $data['email'];
-
-  $user = new User($email, $password);
-  return $user->verifyPassword();
+  return User::verifySettings($user_id, $pass);
 }
 
 function initializeInfo()
@@ -162,7 +153,7 @@ function updateEmail()
 
   $result = User::updateEmail($user_id, $email);
 
-  return $result ? true : new CustomError(error: 'Input', error_msg: 'Invalid input.');
+  return $result ? true : new CustomError(error: 'Input', error_msg: 'ERROR: Email is already in use.');
 }
 
 function updatePassword()
@@ -175,7 +166,7 @@ function updatePassword()
   $pass = $_REQUEST['newPass'];
 
   $result = User::updatePassword($user_id, $pass);
-
+  // return $result;
   return $result ? true : new CustomError(error: 'Input', error_msg: 'Invalid input.');
 }
 

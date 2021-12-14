@@ -137,21 +137,19 @@
           <header class="header">
             <div class="text-highlight fw-bold">User Management</div>
             <div class="header-icons">
-              <i class="fa-solid fa-inbox"></i>
-              <i class="fa-solid fa-gear"></i>
-              <div class="user-image-icon" onclick="displayUserActions()">
-                <div class="user-image-actions visually-hidden">
-                  <div class="user-image-action no-hover">
-                    <i class="fa-solid fa-user"></i>
-                    <div>userFirstName</div>
-                  </div>
-                  <div class="user-image-action">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    <a href="../../src/common/login.html">LOG OUT</a>
-                  </div>
+            <div class="user-image-icon" onclick="displayUserActions()">
+              <div class="user-image-actions visually-hidden">
+                <div class="user-image-action no-hover">
+                  <i class="fa-solid fa-user"></i>
+                  <div><?php echo $_SESSION['fname'] ?></div>
+                </div>
+                <div class="user-image-action">
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  <span onclick="logout()">LOG OUT</span>
                 </div>
               </div>
             </div>
+          </div>
           </header>
         </div>
 
