@@ -1,21 +1,18 @@
-import { createLiveListing } from "./db-methods/retrieve.js"
+import { createLiveListing } from './db-methods/retrieve.js';
 
-export var LISTINGS = new Array()
+export var LISTINGS = new Array();
 
 window.onload = async () => {
-
   const listingsCatcher = JSON.parse(await createLiveListing());
   appendListingTab(listingsCatcher);
-
-}
+};
 
 function appendListingTab(listingsCatcher) {
   let listingsList = document.getElementById('admin-listings-list');
   LISTINGS = listingsCatcher;
   console.log(LISTINGS);
   listingsCatcher.forEach((x, index) => {
-    listingsList.innerHTML +=
-      `<div class="admin-user">
+    listingsList.innerHTML += `<div class="admin-user">
         <div class="admin-user-info" style="width: 600px">
           <div class="admin-user-info-highlight">
             <img src='${x.products.product_img}' class="admin-user-img"></img>
@@ -28,6 +25,6 @@ function appendListingTab(listingsCatcher) {
           <button class="btn btn-tertiary" onclick="showProdModal(suspendModal, ${x.products.product_id}, ${index})">Suspend</button>
           <button class="btn btn-tertiary">Delete</button>
         </div>
-      </div>`
-  })
+      </div>`;
+  });
 }
