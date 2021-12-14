@@ -13,7 +13,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tindahan.ph - Partners</title>
+    <title>tindahan.ph - User Management</title>
 
     <link
       rel="icon"
@@ -42,58 +42,58 @@
     <link rel="stylesheet" href="../../css/components/components.css" />
     <link rel="stylesheet" href="../../css/utilities/utilities.css" />
     <link rel="stylesheet" href="../../css/admin/admin.css" />
-    
 
-    <script src="../../js/admin/pending-lists-functions.js" type="module"></script>
-    <script src="../../js/admin/pending-modals/pending-partner-modal.js" type="module"></script>
-    <script src="../../js/admin/pending-modals/pending-listing-modal.js" type="module"></script>
+    <script src="../../js/admin/user-management.js" type="module"></script>
+    <script src="/tindahan.ph/js/admin/admin-modals/user-modals/suspend-user-modal.js" type="module"></script>
+    <script src="/tindahan.ph/js/admin/admin-modals/user-modals/delete-user-modal.js" type="module"></script>
   </head>
 
   <body class="bg-primary">
+
   <div
       class="modal fade"
-      id="pendingPartnerProfile"
+      id="suspendModal"
       data-bs-backdrop="static"
       tabindex="-1"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-scrollable shop-modal-dialog partner-modal-dialog">
-        <div class="modal-content partner-modal-content">
+      <div class="modal-dialog modal-dialog-scrollable shop-modal-dialog">
+        <div class="modal-content listing-modal-content">
           <div
-            class="shop-modal-header partner-modal-header"
+            class="shop-modal-header"
             data-bs-dismiss="modal"
-            onclick="dismissModal(pendingPartnerProfile)"
+            onclick="dismissSuspendModal(suspendModal)"
           >
             <i class="fa-solid fa-x"></i>
           </div>
           
-            <div class="modal-body partner-modal-body">
-              <!--  INSERT DATA HERE  -->
-           </div>
+            <div class="modal-body suspend-modal-body">
+              <!--  DISPLAY DATA HERE -->
+           </div>  
         </div>
       </div>
     </div>
 
     <div
       class="modal fade"
-      id="pendingListingProfile"
+      id="deleteModal"
       data-bs-backdrop="static"
       tabindex="-1"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-scrollable shop-modal-dialog listing-modal-dialog">
+      <div class="modal-dialog modal-dialog-scrollable shop-modal-dialog">
         <div class="modal-content listing-modal-content">
           <div
-            class="shop-modal-header listing-modal-header"
+            class="shop-modal-header"
             data-bs-dismiss="modal"
-            onclick="dismissModal(pendingListingProfile)"
+            onclick="dismissDeleteModal(deleteModal)"
           >
             <i class="fa-solid fa-x"></i>
           </div>
           
-            <div class="modal-body listing-modal-body">
-              <!--  INSERT DATA HERE  -->
-           </div>
+            <div class="modal-body delete-modal-body">
+              <!--  DISPLAY DATA HERE -->
+           </div>  
         </div>
       </div>
     </div>
@@ -116,11 +116,11 @@
               <i class="fa-solid fa-tachometer-alt sidenav-link-icon"></i>
               <div class="sidenav-link-text">Dashboard</div>
             </a>
-            <a href="./admin-users.html" class="sidenav-link">
+            <a href="#" class="sidenav-link active">
               <i class="fa-solid fa-users-cog sidenav-link-icon"></i>
               <div class="sidenav-link-text">Users</div>
             </a>
-            <a href="#" class="sidenav-link active">
+            <a href="./admin-partners.html" class="sidenav-link">
               <i class="fa-solid fa-hands-helping sidenav-link-icon"></i>
               <div class="sidenav-link-text">Partners</div>
             </a>
@@ -138,7 +138,7 @@
       <div class="col right">
         <div class="container-display">
           <header class="header">
-            <div class="text-highlight fw-bold"></div>
+            <div class="text-highlight fw-bold">User Management</div>
             <div class="header-icons">
               <i class="fa-solid fa-inbox"></i>
               <i class="fa-solid fa-gear"></i>
@@ -158,24 +158,81 @@
           </header>
         </div>
 
-        <div class="container-admin-pending">
-          <div class="container-pending-half">
-            <div class="fw-bold fs-24 text-highlight">
-              Pending Partner Applications
-            </div>
-            <div class="container-pending-items-list">
-              <div class="admin-pending-items" id="pending-partners-list">
-                <!-- INSERT DATA HERE -->
+        <div class="container-admin-user">
+          <form class="container-admin-user-header">
+            <input
+              type="search"
+              class="form-control form-search admin-user-search"
+              placeholder="Search"
+            />
+            <div class="admin-user-inline-search">
+              <span>Filters:</span>
+              <div class="input-group">
+                <input
+                  name="filterUser"
+                  id="partners"
+                  type="checkbox"
+                  class="form-check-input"
+                />
+                <label for="partners" class="form-check">Partners</label>
+              </div>
+              <div class="input-group">
+                <input
+                  name="filterUser"
+                  id="users"
+                  type="checkbox"
+                  class="form-check-input"
+                />
+                <label for="users" class="form-check">Users</label>
+              </div>
+              <div class="input-group">
+                <input
+                  name="filterUser"
+                  id="suspended"
+                  type="checkbox"
+                  class="form-check-input"
+                />
+                <label for="suspended" class="form-check">Suspended</label>
+              </div>
+              <div class="input-group">
+                <input
+                  name="filterUser"
+                  id="banned"
+                  type="checkbox"
+                  class="form-check-input"
+                />
+                <label for="banned" class="form-check">Banned</label>
               </div>
             </div>
+          </form>
+
+          <div class="container-admin-user-list" id="admin-user-list">
+            <!--  INSERT DATA HERE  -->
           </div>
-          <div class="container-pending-half">
-            <div class="fw-bold fs-24 text-highlight">Pending Listings</div>
-            <div class="container-pending-items-list">
-              <div class="admin-pending-items" id="pending-listings-list">
-                <!-- INSERT DATA HERE -->
-              </div>
-            </div>
+
+            <nav>
+              <!-- Convert to dynamically created page number -->
+              <!-- creates N number of links depending on number of store -->
+              <!-- products, where N = no. of products / 12-> max display -->
+              <!-- per page. -->
+              <ul class="pagination justify-content-center shop-pagination">
+                <li class="page-item" onclick="">
+                  <a class="page-link" href="#">Previous</a>
+                </li>
+                <li class="page-item" onclick="">
+                  <a class="page-link current" href="#">1</a>
+                </li>
+                <li class="page-item" onclick="">
+                  <a class="page-link" href="#">2</a>
+                </li>
+                <li class="page-item" onclick="">
+                  <a class="page-link" href="#">3</a>
+                </li>
+                <li class="page-item" onclick="">
+                  <a class="page-link" href="#">Next</a>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>

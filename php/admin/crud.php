@@ -9,28 +9,22 @@
   }
 
   switch($type) {
-    case 'count-users': echo countUsers(); break;
-    case 'count-pending-partners': echo countPendingPartners(); break;
-    case 'count-pending-listings': echo countPendingListings(); break;
-    case 'create-pending-listings-list': echo json_encode(createPendingListings()); break;
-    // case 'reject-pending-partners': break;
+    case 'count-users': echo json_encode(countUsers()); break;
+    case 'count-pending-partners': echo json_encode(countPendingPartners()); break;
+    case 'count-pending-listings': echo json_encode(countPendingListings()); break;
+    case 'get-three-latest-various': echo json_encode(getLatestFromVarious()); break;
   }
 
   function countUsers() {
     include('../connect.php');
-    include('../error.php');
     
     $getUsers = "SELECT COUNT(*) AS active_users
                  FROM users u
                  WHERE u.role = 'user'";
 
-    $query = mysqli_query($conn, $getUsers);
-    
-    if (mysqli_num_rows($query) > 0) {
-      $data = mysqli_fetch_assoc($query);
-      return $data['active_users'];
-    }
+    $data = mysqli_fetch_assoc(mysqli_query($conn, $getUsers));
 
+    return $data['active_users'];
   }
 
   function countPendingPartners() {
@@ -41,12 +35,9 @@
                              FROM partner_applications pa
                              WHERE pa.application_status = 'pending'";
     
-    $query = mysqli_query($conn, $countPendingPartners);
+    $data =  mysqli_fetch_assoc(mysqli_query($conn, $countPendingPartners));
 
-    if (mysqli_num_rows($query) > 0) {
-      $data = mysqli_fetch_assoc($query);
-      return $data['pending_partners'];
-    }
+    return $data['pending_partners'];
   }
 
   function countPendingListings() {
@@ -57,33 +48,40 @@
                              FROM listing_application la
                              WHERE la.listing_status = 'pending'";
 
-    $query = mysqli_query($conn, $countPendingListings);
+    $data = mysqli_fetch_assoc(mysqli_query($conn, $countPendingListings));
 
-    if (mysqli_num_rows($query) > 0) {
-      $data = mysqli_fetch_assoc($query);
-      return $data['pending_listings'];
-    }
+    return $data['pending_listings'];
   }
-
-  function createPendingListings() {
+ 
+  function getLatestFromVarious() {
     include('../connect.php');
-    include('../error.php');
+    include('../user.php');
+    include('../partner-applications/partner-application.php');
 
-    $rows = array();
+    $query = "SELECT la.application_id, la.listing_name, ps.store_name
+              FROM listing_application la
+              JOIN partner_store ps ON ps.store_id = la.listing_store
+              WHERE la.listing_status = 'pending'
+              ORDER BY la.application_id DESC
+              LIMIT 3";
 
-    $pendingListingsInfo = "SELECT *
-                            FROM listing_application la
-                            WHERE la.application_status = 'pending'";
+    $result = mysqli_query($conn, $query);
 
-    $query = mysqli_query($conn, $pendingListingsInfo);
+    $latest = array();
 
-    if (mysqli_num_rows($query) > 0) {
-      while ($data = mysqli_fetch_assoc($query)) {
-        $rows[] = $data;
+    $latest['users'] = User::getUsers(3);
+    $latest['applications'] = PartnerApplication::getApplications(3);
+
+    $listings = array();
+
+    if(mysqli_num_rows($result) > 0) {
+      while($listing = mysqli_fetch_assoc($result)) {
+        array_push($listings, $listing);
       }
     }
 
-    return $rows;
-  }
+    $latest['listings'] = $listings;
 
+    return $latest;
+  }
 ?>

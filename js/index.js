@@ -1,12 +1,14 @@
 import { navigateToHome } from '/tindahan.ph/js/common/navigation/nav.js';
+import { fetchMultipleProducts } from "/tindahan.ph/js/common/db-methods/retrieve.js";
+import { Pagination } from '/tindahan.ph/js/common/pagination.js';
 import { fetchUserDetails } from '/tindahan.ph/js/common/db-methods/retrieve.js';
 
 export var USER_DETAILS = new Object();
 
-window.onload = async function () {
+window.onload = async () => {
   const view = new URLSearchParams(window.location.search);
 
-  navigateToHome().then((resolve) => {
+  navigateToHome().then( async(resolve) => {
     const utype = view.get('u');
 
     if (!view.has('u')) {
@@ -19,8 +21,9 @@ window.onload = async function () {
       navbar.innerHTML =
         utype == 'user' ? createUserNavbar() : createPartnerNavbar();
 
-      // fetchMultipleProducts();
-      // attachMessagingEventListener();
+      let products = JSON.parse(await fetchMultipleProducts());
+      console.log(products);
+      appendDiscoverProducts(products);
     }
   });
 
@@ -84,4 +87,53 @@ function createPartnerNavbar() {
             <i class="fa-solid fa-headset sidenav-link-icon"></i>
             <div class="sidenav-link-text">Help Center</div>
           </a>`;
+}
+
+function appendDiscoverProducts(products) {
+  const pagination = new Pagination(
+    'paginationContainer',
+    products.length / 12,
+    products.length > 0 ? true : false
+  );
+
+  console.log(products.length);
+
+  let limit = 12;
+  let idx = 0;
+
+  const paginationPages = Array.from(
+    document.querySelectorAll('.pagination-page')
+  );
+
+  paginationPages.forEach((page) => {
+    page.classList.add(
+      'container-product-feed',
+      'row',
+      'row-cols-4',
+      'row-cols-md-4',
+      'g-4'
+    );
+  });
+
+  for (let currentPage = 0; currentPage < pagination.pageTotal; currentPage++) {
+    let target = document.querySelector(`#page${currentPage + 1}`);
+
+    for (let num = 1; num <= limit && idx < products.length; num++) {
+      let product = products[idx++];
+      let productContainer = document.createElement('div');
+      productContainer.classList.add('product-feed-block');
+
+      productContainer.innerHTML =
+      `<a href='/tindahan.ph/src/common/product-page.php?id=${product.product_id}' class="product-feed-block">
+        <img src="${product.product_img}" class="product-feed-img" />
+        <div class="product-feed-info">
+          <div>${product.product_name}</div>
+          <div class="product-feed-price">${product.product_price}</div>
+        </div>
+        <div class="product-feed-store">${product.product_store.store_name}</div>
+      </a>`;
+
+      target.append(productContainer);
+    }
+  }
 }
