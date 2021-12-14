@@ -1,3 +1,9 @@
+<?php
+
+  session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -112,11 +118,21 @@
                   </div>
                   <div class="for-validation">
                     <label for="partnerCity" class="form-control">city</label>
-                    <input
+                    <select
+                      name="city"
+                      id="partnerCity"
+                      class="form-select form-control"
+                    >
+                      <option selected>select a city</option>
+                      <option value="Cebu City">Cebu City</option>
+                      <option value="Lapu-Lapu City">Lapu-Lapu City</option>
+                      <option value="Mandaue City">Mandaue City</option>
+                    </select>
+                    <!-- <input
                       id="partnerCity"
                       type="text"
                       class="form-control no-success"
-                    />
+                    /> -->
                   </div>
                   <div class="for-validation">
                     <label for="partnerBarangay" class="form-control">
@@ -182,7 +198,7 @@
               <i class="fa-solid fa-cubes sidenav-link-icon"></i>
               <div class="sidenav-link-text">Categories</div>
             </a>
-            <a href="#" class="sidenav-link active">
+            <a id="storeo" href="#" class="sidenav-link active">
               <i class="fa-solid fa-shop sidenav-link-icon"></i>
               <div class="sidenav-link-text">Shop Profile</div>
             </a>
@@ -193,16 +209,9 @@
               <i class="fa-solid fa-circle-plus sidenav-link-icon"></i>
               <div class="sidenav-link-text">Add Listing</div>
             </a>
-            <a
-              href="../../src/partner/partner-orders.php"
-              class="sidenav-link"
-            >
+            <a href="../../src/partner/partner-orders.php" class="sidenav-link">
               <i class="fa-solid fa-receipt sidenav-link-icon"></i>
               <div class="sidenav-link-text">Orders</div>
-            </a>
-            <a href="../../src/common/help-center.html" class="sidenav-link">
-              <i class="fa-solid fa-headset sidenav-link-icon"></i>
-              <div class="sidenav-link-text">Help Center</div>
             </a>
           </div>
         </div>
@@ -218,13 +227,12 @@
               />
             </form>
             <div class="header-icons">
-              <i class="fa-solid fa-inbox"></i>
               <i class="fa-solid fa-gear"></i>
               <div class="user-image-icon" onclick="displayUserActions()">
                 <div class="user-image-actions visually-hidden">
                   <div class="user-image-action no-hover">
                     <i class="fa-solid fa-user"></i>
-                    <div>userFirstName</div>
+                    <div><?php echo $_SESSION['fname']?></div>
                   </div>
                   <div class="user-image-action">
                     <i class="fa-solid fa-right-from-bracket"></i>
@@ -242,10 +250,6 @@
             <div class="shop-banner-info">
               <div class="shop-banner-header">
                 <div id="shopName" class="shop-banner-name fs-24"></div>
-                <div class="shop-banner-message">
-                  <i class="fa-solid fa-inbox"></i>
-                  <span>message</span>
-                </div>
               </div>
               <div id="shopDesc" class="shop-banner-description"></div>
               <div class="shop-banner-actions">
@@ -259,8 +263,9 @@
                 </div>
               </div>
               <button
+                id="edit"
                 type="button"
-                class="shop-banner-edit"
+                class="shop-banner-edit visually-hidden"
                 onclick="showModal(editProfile)"
               >
                 Edit Profile
@@ -269,254 +274,12 @@
           </div>
         </div>
 
-        <div class="product-title">Featured</div>
-
-        <div
-          id="featured"
-          class="container-product-feed row row-cols-4 row-cols-md-4 g-4"
-        >
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-        </div>
-
         <div id="aproducts" class="product-title title-sibling">
           All Products
         </div>
 
-        <div
-          id="pagination1"
-          class="container-product-feed row row-cols-4 row-cols-md-4 g-4"
-        >
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name1</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          id="pagination2"
-          class="
-            container-product-feed
-            row row-cols-4 row-cols-md-4
-            g-4
-            visually-hidden
-          "
-        >
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name2</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-          <div class="product-feed-block">
-            <div class="product-feed-img"></div>
-            <div class="product-feed-info">
-              <div>Product Name</div>
-              <div class="product-feed-price">P 0</div>
-            </div>
-          </div>
-        </div>
-
-        <nav>
-          <!-- Convert to dynamically created page number -->
-          <!-- creates N number of links depending on number of store -->
-          <!-- products, where N = no. of products / 12-> max display -->
-          <!-- per page. -->
-          <ul class="pagination justify-content-center shop-pagination">
-            <li class="page-item" onclick="goToPredecessor()">
-              <a class="page-link" href="#aproducts">Previous</a>
-            </li>
-            <li class="page-item" onclick="goToNextPage(1)">
-              <a class="page-link current" href="#aproducts">1</a>
-            </li>
-            <li class="page-item" onclick="goToNextPage(2)">
-              <a class="page-link" href="#aproducts">2</a>
-            </li>
-            <li class="page-item" onclick="goToNextPage(3)">
-              <a class="page-link" href="#aproducts">3</a>
-            </li>
-            <li class="page-item" onclick="goToSuccessor()">
-              <a class="page-link" href="#aproducts">Next</a>
-            </li>
-          </ul>
-        </nav>
+        <div id="paginationPages"></div>
+        <nav id="paginationContainer" class="pagination-container"></nav>
       </div>
     </div>
 

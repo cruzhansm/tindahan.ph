@@ -120,7 +120,7 @@
       $query = "SELECT order_id
                 FROM orders
                 WHERE user_id = $user_id
-                      AND order_status = 'processing'
+                      AND order_status = 'confirmation'
                 ORDER BY order_id DESC
                 LIMIT 1;";
 
@@ -165,6 +165,20 @@
 
       $query = "UPDATE orders
                 SET order_status = 'shipped'
+                WHERE order_id = $order_id;";
+      
+      $result = mysqli_query($conn, $query);
+
+      return $result;
+    }
+    
+    public function receive() {
+      include('../connect.php');
+
+      $order_id = $this->order_id;
+
+      $query = "UPDATE orders
+                SET order_status = 'delivered'
                 WHERE order_id = $order_id;";
       
       $result = mysqli_query($conn, $query);

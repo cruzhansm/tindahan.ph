@@ -205,23 +205,22 @@ export function getPendingListingDetails(application, modalBody, index) {
 }
 
 export function createUserList() {
-    return $.ajax({
-      type: 'GET',
-      url: '/tindahan.ph/php/user/crud.php',
-      data: {
-        type: 'create-user-tabs'
-      },
-      success: (data) => {
-        let result = JSON.parse(data);
-        return result;
-      }
-    })
+  return $.ajax({
+    type: 'GET',
+    url: '/tindahan.ph/php/user/crud.php',
+    data: {
+      type: 'create-user-tabs',
+    },
+    success: (data) => {
+      let result = JSON.parse(data);
+      return result;
+    },
+  });
 }
 
 export function suspendModalInfo(user, modalBody) {
-  modalBody.innerHTML = ""
-  modalBody.innerHTML +=
-    `<div class="listing-modal-body mx-auto">
+  modalBody.innerHTML = '';
+  modalBody.innerHTML += `<div class="listing-modal-body mx-auto">
       <div class="listing-modal-top">
         <div class="listing-modal-top-title">
           <div class="listing-names">
@@ -250,17 +249,16 @@ export function suspendModalInfo(user, modalBody) {
           <button
             type="submit"
             class="btn btn-primary"
-            // onclick="suspendedModal(suspendModal, ${user.user_id})"
+            onclick="suspendedModal(suspendModal, ${user.user_id})"
           >
             Suspend
           </button>
-        </div>`
+        </div>`;
 }
 
 export function deleteModalInfo(user, modalBody) {
-  modalBody.innerHTML = ""
-  modalBody.innerHTML +=
-    `<div class="listing-modal-body mx-auto">
+  modalBody.innerHTML = '';
+  modalBody.innerHTML += `<div class="listing-modal-body mx-auto">
       <div class="listing-modal-top">
         <div class="listing-modal-top-title">
           <div class="listing-names">
@@ -289,9 +287,9 @@ export function deleteModalInfo(user, modalBody) {
           <button
             type="submit"
             class="btn btn-primary"
-            // onclick="deletedModal(deleteModal, ${user.user_id})"
+            onclick="deletedModal(deleteModal, ${user.user_id})"
           >
             Delete
           </button>
-        </div>`
+        </div>`;
 }

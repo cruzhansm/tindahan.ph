@@ -35,7 +35,8 @@
                 FROM invoice i
                 WHERE i.order_id IN(SELECT order_id 
                                     FROM orders 
-                                    WHERE user_id = $user_id);";
+                                    WHERE user_id = $user_id)
+                ORDER BY i.order_id DESC;";
       
       $purchases = array();
 

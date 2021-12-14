@@ -43,6 +43,7 @@
 
     $product = new Product($review['productID']);
     $success = $product->addReview($review, $_SESSION['user_id']);
+    $success = $product->updateProductRating($review['productID']);
 
     return $success;
   }
