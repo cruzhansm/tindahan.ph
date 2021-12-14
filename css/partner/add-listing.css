@@ -1,26 +1,19 @@
 .container-upload {
-  width: 805px;
-  height: 255px;
-  margin-left: 217px;
+  width: 380px;
+  height: 380px;
+  margin-left: 325px;
   margin-top: 31px;
-
-  background: #C4C4C4;
+  background: #c4c4c4;
   border-radius: 10px;
+  position: relative;
 }
 
-.upload-caption {
-  width: 206px;
-  height: 20px;
-  margin-left: 217px;
-  margin-top: 8px;
-
-  font-family: Poppins-Regular;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 21px;
-
-  color: #2CAD69;
+.container-upload-custom {
+  background-color: var(--placeholder);
+  border-radius: 12px;
+  width: 379px;
+  height: 379px;
+  margin-left: 417px;
 }
 
 .form-row {
@@ -34,7 +27,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background: #21374A;
+  background: #21374a;
   width: 39px;
   height: 39px;
 }
@@ -70,7 +63,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background: #21374A;
+  background: #21374a;
   width: 26px;
   height: 26px;
 }
@@ -83,13 +76,13 @@
 
 .no-var-cap {
   font-size: 16px;
-  color: #64798B;
+  color: #64798b;
   margin-top: 2px;
 }
 
 .add-var-cap {
   font-size: 16px;
-  color: #64798B;
+  color: #64798b;
   margin-top: 2px;
   margin-left: 5px;
 }
@@ -101,7 +94,7 @@
 
 .ship-color {
   font-size: 16px;
-  color: #B9C7D3;
+  color: #b9c7d3;
 }
 
 .ship-div {
@@ -113,23 +106,48 @@
 .row-btns {
   width: 609px;
   margin-left: 245px;
-  margin-top: 53px;
+  /* margin-top: 53px; */
 }
 
 .drafts-button {
   width: 286px !important;
-  height: 45px !important; 
+  height: 45px !important;
   border-radius: 6px;
   font-size: 21px;
-  color: #B9C7D3;
+  color: #b9c7d3;
   margin-left: 7px;
 }
 
 .publish-button {
-  width: 286px !important;
+  width: max-content;
   height: 45px !important;
   border-radius: 6px;
   font-size: 21px;
-  color: #B9C7D3;
-  margin-left: 21px;
+  padding: 10px;
+  margin-left: 60px;
+}
+
+.img-custom-upload {
+  width: 100%;
+  height: 100%;
+}
+
+.add-listing.custom-upload {
+  bottom: 0;
+  right: 0;
+  position: absolute;
+}
+
+.variation-row {
+  margin-bottom: 20px;
+}
+
+#previewImg {
+  border-radius: 10px;
+}
+
+.bottom {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
 }

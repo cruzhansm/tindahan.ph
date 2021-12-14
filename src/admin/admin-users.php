@@ -43,9 +43,10 @@
     <link rel="stylesheet" href="../../css/utilities/utilities.css" />
     <link rel="stylesheet" href="../../css/admin/admin.css" />
 
-    <script src="/tindahan.ph/js/admin/user-management.js" type="module"></script>
-    <script src="/tindahan.ph/js/admin/admin-modals/user-modals/suspend-user-modal.js" type="module"></script>
-    <script src="/tindahan.ph/js/admin/admin-modals/user-modals/delete-user-modal.js" type="module"></script>
+    <script src="../../js/admin/admin-modals/user-modals/suspend-user-modal.js" type="module"></script>
+    <script src="../../js/admin/admin-modals/user-modals/delete-user-modal.js" type="module"></script>
+    <script src="../../js/admin/user-management.js" type="module"></script>
+    <script src="../../js/common/auth/logout.js"></script>
   </head>
 
   <body class="bg-primary">
@@ -58,18 +59,10 @@
       aria-hidden="true"
     >
       <div class="modal-dialog modal-dialog-scrollable shop-modal-dialog">
-        <div class="modal-content listing-modal-content">
-          <div
-            class="shop-modal-header"
-            data-bs-dismiss="modal"
-            onclick="dismissSuspendModal(suspendModal)"
-          >
-            <i class="fa-solid fa-x"></i>
-          </div>
-          
-            <div class="modal-body suspend-modal-body">
-              <!--  DISPLAY DATA HERE -->
-           </div>  
+        <div class="modal-content admin listing-modal-content ">
+          <div class="modal-body suspend-modal-body admin">
+            <!--  DISPLAY DATA HERE -->
+          </div>  
         </div>
       </div>
     </div>
@@ -82,18 +75,10 @@
       aria-hidden="true"
     >
       <div class="modal-dialog modal-dialog-scrollable shop-modal-dialog">
-        <div class="modal-content listing-modal-content">
-          <div
-            class="shop-modal-header"
-            data-bs-dismiss="modal"
-            onclick="dismissDeleteModal(deleteModal)"
-          >
-            <i class="fa-solid fa-x"></i>
-          </div>
-          
-            <div class="modal-body delete-modal-body">
-              <!--  DISPLAY DATA HERE -->
-           </div>  
+        <div class="modal-content listing-modal-content admin">
+          <div class="modal-body delete-modal-body admin">
+            <!--  DISPLAY DATA HERE -->
+          </div>  
         </div>
       </div>
     </div>
@@ -112,7 +97,7 @@
             </div>
           </div>
           <div class="sidenav-links">
-            <a href="./admin-dashboard.html" class="sidenav-link">
+            <a href="./admin-dashboard.php" class="sidenav-link">
               <i class="fa-solid fa-tachometer-alt sidenav-link-icon"></i>
               <div class="sidenav-link-text">Dashboard</div>
             </a>
@@ -120,18 +105,15 @@
               <i class="fa-solid fa-users-cog sidenav-link-icon"></i>
               <div class="sidenav-link-text">Users</div>
             </a>
-            <a href="./admin-partners.html" class="sidenav-link">
+            <a href="./admin-partners.php" class="sidenav-link">
               <i class="fa-solid fa-hands-helping sidenav-link-icon"></i>
               <div class="sidenav-link-text">Partners</div>
             </a>
-            <a href="./admin-live-listings.html" class="sidenav-link">
+            <a href="./admin-live-listings.php" class="sidenav-link">
               <i class="fa-solid fa-list-alt sidenav-link-icon"></i>
               <div class="sidenav-link-text">Live Listings</div>
             </a>
-            <a href="#" class="sidenav-link">
-              <i class="fa-solid fa-envelope-open-text sidenav-link-icon"></i>
-              <div class="sidenav-link-text">Support Inbox</div>
-            </a>
+            
           </div>
         </div>
       </div>
@@ -140,17 +122,16 @@
           <header class="header">
             <div class="text-highlight fw-bold">User Management</div>
             <div class="header-icons">
-              <i class="fa-solid fa-inbox"></i>
               <i class="fa-solid fa-gear"></i>
               <div class="user-image-icon" onclick="displayUserActions()">
                 <div class="user-image-actions visually-hidden">
                   <div class="user-image-action no-hover">
                     <i class="fa-solid fa-user"></i>
-                    <div>userFirstName</div>
+                    <div><?php echo $_SESSION['fname'] ?></div>
                   </div>
                   <div class="user-image-action">
                     <i class="fa-solid fa-right-from-bracket"></i>
-                    <a href="../../src/common/login.html">LOG OUT</a>
+                    <span onclick="logout">LOG OUT</span>
                   </div>
                 </div>
               </div>
@@ -159,7 +140,7 @@
         </div>
 
         <div class="container-admin-user">
-          <form class="container-admin-user-header">
+          <!-- <form class="container-admin-user-header">
             <input
               type="search"
               class="form-control form-search admin-user-search"
@@ -204,35 +185,12 @@
                 <label for="banned" class="form-check">Banned</label>
               </div>
             </div>
-          </form>
+          </form> -->
 
           <div class="container-admin-user-list" id="admin-user-list">
             <!--  INSERT DATA HERE  -->
           </div>
 
-            <nav>
-              <!-- Convert to dynamically created page number -->
-              <!-- creates N number of links depending on number of store -->
-              <!-- products, where N = no. of products / 12-> max display -->
-              <!-- per page. -->
-              <ul class="pagination justify-content-center shop-pagination">
-                <li class="page-item" onclick="">
-                  <a class="page-link" href="#">Previous</a>
-                </li>
-                <li class="page-item" onclick="">
-                  <a class="page-link current" href="#">1</a>
-                </li>
-                <li class="page-item" onclick="">
-                  <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item" onclick="">
-                  <a class="page-link" href="#">3</a>
-                </li>
-                <li class="page-item" onclick="">
-                  <a class="page-link" href="#">Next</a>
-                </li>
-              </ul>
-            </nav>
           </div>
         </div>
       </div>

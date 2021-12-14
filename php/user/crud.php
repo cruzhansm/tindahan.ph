@@ -15,6 +15,8 @@
       echo json_encode(suspendUser()); break;
     case 'delete-user':
       echo json_encode(deleteUser()); break;
+    case 'retrieve-user-id':
+      echo json_encode($_SESSION['user_id']); break;
   }
 
   function checkIfUserHasApplied() {
@@ -48,7 +50,8 @@
 
     $userInfo = "SELECT *
                  FROM users u
-                 WHERE u.active = 'true'";
+                 WHERE u.active = 'true'
+                       AND u.role != 'admin'";
 
     $query = mysqli_query($conn, $userInfo);
 

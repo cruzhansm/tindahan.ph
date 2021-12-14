@@ -47,6 +47,7 @@
 
     $product = new Product($review['productID']);
     $success = $product->addReview($review, $_SESSION['user_id']);
+    $success = $product->updateProductRating($review['productID']);
 
     return $success;
   }
@@ -56,7 +57,7 @@
 
     $listings = array();
 
-    $listingInfo = "SELECT *
+    $listingInfo = "SELECT p.*
                     FROM products p
                     WHERE p.active = 'true'";
 

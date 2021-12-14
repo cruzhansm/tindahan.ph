@@ -28,7 +28,10 @@
     <link rel="stylesheet" href="../../css/utilities/utilities.css" />
     <link rel="stylesheet" href="../../css/partner/partner.css" />
 
-    <script type="module" src="../../js/common/input/form.js"></script>
+    <script
+      type="module"
+      src="../../js/partner/listings/add-listing.js"
+    ></script>
   </head>
 
   <script>
@@ -75,10 +78,6 @@
               <i class="fa-solid fa-receipt sidenav-link-icon"></i>
               <div class="sidenav-link-text">Orders</div>
             </a>
-            <a href="../../src/common/help-center.html" class="sidenav-link">
-              <i class="fa-solid fa-headset sidenav-link-icon"></i>
-              <div class="sidenav-link-text">Help Center</div>
-            </a>
           </div>
         </div>
       </div>
@@ -87,65 +86,103 @@
           <header class="header">
             <div class="text-highlight fw-bold">Add Listing</div>
             <div class="header-icons">
-              <i class="fa-solid fa-inbox"></i>
               <i class="fa-solid fa-gear"></i>
               <div class="user-image-icon"></div>
             </div>
           </header>
 
           <div>
-            <div class="container-upload"></div>
-            <div class="upload-caption">You can add up to 10 photos</div>
-            <form class="container" action="">
-              <div class="row form-row">
-                <div class="col-auto circle star-button">
-                  <i class="fas fa-star"></i>
+            <form class="container" onsubmit="attemptNewListing(event)">
+              <div class="container-upload">
+                <div class="img-custom-upload">
+                  <img
+                    alt="preview"
+                    id="previewImg"
+                    class="preview-image visually-hidden"
+                  />
                 </div>
+                <label class="add-listing btn btn-primary custom-upload">
+                  Upload
+                  <input
+                    id="listingImg"
+                    type="file"
+                    accept="image/*"
+                    required
+                    class="visually-hidden"
+                  />
+                </label>
+              </div>
+              <div class="row form-row">
+                <!-- <div class="col-auto circle star-button">
+                  <i class="fas fa-star"></i>
+                </div> -->
 
                 <div class="col-auto p-0">
                   <div class="long-col">
-                    <input
-                      class="form-control long-input border-input"
-                      type="text"
-                      placeholder="Product Name"
-                    />
+                    <div class="for-validation">
+                      <input
+                        id="listingName"
+                        class="form-control long-input border-input"
+                        type="text"
+                        placeholder="Product Name"
+                      />
+                    </div>
                   </div>
 
                   <div class="long-col">
-                    <input
-                      class="form-control long-input border-input"
-                      type="text"
-                      placeholder="Price"
-                    />
+                    <div class="for-validation">
+                      <input
+                        class="form-control long-input border-input"
+                        type="number"
+                        id="listingPrice"
+                        min="1"
+                        max="99999"
+                        minlength="1"
+                        maxlength="5"
+                        placeholder="Price"
+                      />
+                    </div>
                   </div>
 
                   <div class="long-col">
                     <div class="input-group long-input">
-                      <select class="form-select border-input">
+                      <select
+                        id="listingCategory"
+                        class="form-select border-input"
+                      >
                         <option selected disabled>Category</option>
-                        <option>Food</option>
-                        <option>Cosmetics</option>
-                        <option>Furniture</option>
-                        <option>Women's</option>
-                        <option>Men's</option>
-                        <option>Jewelry</option>
-                        <option>Electronics</option>
-                        <option>Kids</option>
-                        <option>Stationery</option>
+                        <option value="1">Food</option>
+                        <option value="2">Cosmetics</option>
+                        <option value="3">Furniture</option>
+                        <option value="4">Women's</option>
+                        <option value="5">Men's</option>
+                        <option value="6">Accessories</option>
+                        <option value="7">Electronics</option>
+                        <option value="8">Kids</option>
+                        <option value="9">Stationery</option>
                       </select>
                     </div>
                   </div>
 
                   <div class="col-no-var">
-                    <input class="form-check-input" type="checkbox" />
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      onclick="toggleVariations(event)"
+                    />
                     <label class="no-var-cap">No variations</label>
                   </div>
 
-                  <div class="col-var-inputs">
-                    <div class="row">
+                  <div class="col-var-inputs" id="variationList">
+                    <div class="row variation-row">
                       <div class="col-auto p-0">
                         <input
-                          class="form-control variation-input border-input"
+                          class="
+                            form-control
+                            border-input
+                            not-required
+                            variation-name
+                          "
                           type="text"
                           placeholder="Variation"
                         />
@@ -153,16 +190,44 @@
 
                       <div class="col-auto p-0">
                         <input
-                          class="form-control stock-input border-input"
-                          type="text"
+                          class="
+                            form-control
+                            stock-input
+                            border-input
+                            not-required
+                            variation-price
+                          "
+                          type="number"
+                          min="1"
+                          max="9999"
+                          minlength="1"
+                          maxlength="4"
+                          placeholder="Price"
+                        />
+                      </div>
+
+                      <div class="col-auto p-0">
+                        <input
+                          class="
+                            form-control
+                            stock-input
+                            border-input
+                            not-required
+                            variation-stock
+                          "
+                          type="number"
+                          min="1"
+                          max="9999"
+                          minlength="1"
+                          maxlength="4"
                           placeholder="Stock"
                         />
                       </div>
                     </div>
                   </div>
 
-                  <div class="container-fluid col-add-var">
-                    <div class="row">
+                  <div id="addVariation" class="container-fluid col-add-var">
+                    <div class="row" onclick="addNewVariation()">
                       <div class="col-auto circle add-button">
                         <i class="fas fa-plus"></i>
                       </div>
@@ -174,21 +239,49 @@
                   </div>
 
                   <div class="long-col">
-                    <textarea
-                      class="form-control descript-input"
-                      placeholder="Description. Max 500 words"
-                    ></textarea>
+                    <div class="for-validation register-form-textarea">
+                      <textarea
+                        id="shdesc"
+                        cols="30"
+                        rows="10"
+                        class="form-control"
+                        maxlength="500"
+                      ></textarea>
+                      <div class="character-count-area">
+                        <span class="character-count" id="shdescMsgCount"
+                          >0</span
+                        >
+                        <span> / </span>
+                        <span class="charLimit">500</span>
+                      </div>
+                    </div>
                   </div>
 
-                  <div class="long-col">
-                    <input
-                      class="form-control long-input border-input"
-                      type="text"
-                      placeholder="Brand"
-                    />
+                  <div class="long-col bottom">
+                    <div class="for-validation">
+                      <input
+                        id="listingBrand"
+                        class="form-control border-input"
+                        type="text"
+                        placeholder="Brand"
+                        value="No brand"
+                      />
+                    </div>
+                    <div class="for-validation">
+                      <input
+                        id="listingStock"
+                        type="number"
+                        class="form-control border-input"
+                        min="1"
+                        max="9999"
+                        minlength="1"
+                        maxlength="4"
+                        placeholder="Stock"
+                      />
+                    </div>
                   </div>
 
-                  <div class="ship-cap">
+                  <!-- <div class="ship-cap">
                     <label class="ship-color">Ships from:</label>
                   </div>
 
@@ -199,56 +292,30 @@
                           class="form-select shipping-input-city border-input"
                         >
                           <option selected disabled>City</option>
-                          <option>Quezon City</option>
-                          <option>Manila</option>
-                          <option>Davao</option>
                           <option>Cebu City</option>
-                          <option>General Santos</option>
-                          <option>Makati City</option>
-                          <option>Cagayan de Oro</option>
                           <option>Lapu-Lapu City</option>
                           <option>Mandaue City</option>
-                          <option>Iligan City</option>
                         </select>
                       </div>
 
                       <div class="col-auto p-0">
-                        <select
-                          class="
-                            form-select
-                            shipping-input-barangay
-                            border-input
-                          "
-                        >
-                          <option selected disabled>Barangay</option>
-                          <option>The</option>
-                          <option>Barangays</option>
-                          <option>Are</option>
-                          <option>Dependent</option>
-                          <option>On</option>
-                          <option>Which</option>
-                          <option>City</option>
-                          <option>Was</option>
-                          <option>Selected</option>
-                        </select>
+                        <input type="text" class="shipping-input-barangay form-control" placeholder="Barangay">
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
 
-              <div class="row row-btns">
-                <div class="col-auto p-0">
+              <div class="row row-btns mx-auto">
+                <!-- <div class="col-auto p-0">
                   <button type="button" class="drafts-button btn btn-tertiary">
                     DRAFTS
                   </button>
-                </div>
+                </div> -->
 
-                <div class="col-auto p-0">
-                  <button type="button" class="publish-button btn btn-primary">
-                    PUBLISH
-                  </button>
-                </div>
+                <button type="submit" class="publish-button btn btn-primary">
+                  Send Listing Application
+                </button>
               </div>
             </form>
           </div>

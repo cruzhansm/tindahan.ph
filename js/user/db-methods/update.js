@@ -13,3 +13,19 @@ export async function cancelSpecifiedOrder(orderID) {
     },
   });
 }
+
+export async function markedOrderAsReceived(orderID) {
+  return await $.ajax({
+    type: 'POST',
+    url: '/tindahan.ph/php/orders/crud.php',
+    data: {
+      type: 'mark-received-order',
+      orderID: orderID,
+    },
+    success: (result) => {
+      result = JSON.parse(result);
+
+      return result;
+    },
+  });
+}

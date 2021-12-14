@@ -116,7 +116,7 @@
               <i class="fa-solid fa-tachometer-alt sidenav-link-icon"></i>
               <div class="sidenav-link-text">Dashboard</div>
             </a>
-            <a href="./admin-users.html" class="sidenav-link">
+            <a href="./admin-users.php" class="sidenav-link">
               <i class="fa-solid fa-users-cog sidenav-link-icon"></i>
               <div class="sidenav-link-text">Users</div>
             </a>
@@ -128,10 +128,7 @@
               <i class="fa-solid fa-list-alt sidenav-link-icon"></i>
               <div class="sidenav-link-text">Live Listings</div>
             </a>
-            <a href="#" class="sidenav-link">
-              <i class="fa-solid fa-envelope-open-text sidenav-link-icon"></i>
-              <div class="sidenav-link-text">Support Inbox</div>
-            </a>
+            
           </div>
         </div>
       </div>
@@ -140,7 +137,7 @@
           <header class="header">
             <div class="text-highlight fw-bold"></div>
             <div class="header-icons">
-              <i class="fa-solid fa-inbox"></i>
+              
               <i class="fa-solid fa-gear"></i>
               <div class="user-image-icon" onclick="displayUserActions()">
                 <div class="user-image-actions visually-hidden">

@@ -1,6 +1,21 @@
-export function fetchStoreDetails() {
-  return new Promise((resolve, reject) => {
-    $.ajax({
+export async function fetchStoreDetails() {
+  const id = new URLSearchParams(window.location.search).get('id');
+
+  if (id != null) {
+    return await $.ajax({
+      type: 'GET',
+      url: '/tindahan.ph/php/partner/crud.php',
+      data: {
+        type: 'retrieve-store-w-id',
+        storeID: id,
+      },
+      success: (result) => {
+        result = JSON.parse(result);
+        return result;
+      },
+    });
+  } else {
+    return await $.ajax({
       type: 'GET',
       url: '/tindahan.ph/php/partner/crud.php',
       data: {
@@ -8,11 +23,10 @@ export function fetchStoreDetails() {
       },
       success: (result) => {
         result = JSON.parse(result);
-        console.log(result);
-        resolve(result);
+        return result;
       },
     });
-  });
+  }
 }
 
 export async function retrieveAllStoreOrders() {
@@ -25,6 +39,21 @@ export async function retrieveAllStoreOrders() {
     success: (result) => {
       result = JSON.parse(result);
 
+      return result;
+    },
+  });
+}
+
+export async function retrieveStoreProducts(storeID) {
+  return await $.ajax({
+    type: 'GET',
+    url: '/tindahan.ph/php/partner/crud.php',
+    data: {
+      type: 'retrieve-store-products',
+      storeID: storeID,
+    },
+    success: (result) => {
+      result = JSON.parse(result);
       return result;
     },
   });
