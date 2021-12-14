@@ -245,6 +245,7 @@
                 <input type="file" accept="image/*" required />
               </label>
             </div>
+            
             <button type="submit" class="btn btn-primary mx-auto">
               Send application
             </button>

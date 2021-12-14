@@ -1,3 +1,5 @@
+import { StatusModal } from '../../modal/status-modal.js';
+
 export function addToCart(product) {
   $.ajax({
     type: 'POST',

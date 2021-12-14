@@ -1,5 +1,5 @@
 import { navigateToHome } from '/tindahan.ph/js/common/navigation/nav.js';
-import { fetchMultipleProducts } from "/tindahan.ph/js/common/db-methods/retrieve.js";
+import { fetchMultipleProducts } from '/tindahan.ph/js/common/db-methods/retrieve.js';
 import { Pagination } from '/tindahan.ph/js/common/pagination.js';
 import { fetchUserDetails } from '/tindahan.ph/js/common/db-methods/retrieve.js';
 
@@ -8,7 +8,7 @@ export var USER_DETAILS = new Object();
 window.onload = async () => {
   const view = new URLSearchParams(window.location.search);
 
-  navigateToHome().then( async(resolve) => {
+  navigateToHome().then(async (resolve) => {
     const utype = view.get('u');
 
     if (!view.has('u')) {
@@ -29,7 +29,7 @@ window.onload = async () => {
 
   fetchUserDetails().then((data) => {
     USER_DETAILS = data;
-  })
+  });
 };
 
 function createUserNavbar() {
@@ -41,22 +41,23 @@ function createUserNavbar() {
             <i class="fa-solid fa-cubes sidenav-link-icon"></i>
             <div class="sidenav-link-text">Categories</div>
           </a>
-          <a href="src/user/user-cart.html" class="sidenav-link">
+          <a href="src/user/user-cart.php" class="sidenav-link">
             <i class="fa-solid fa-cart-shopping sidenav-link-icon"></i>
             <div class="sidenav-link-text">Cart</div>
           </a>
-          <a href="src/user/user-purchases.html" class="sidenav-link">
+          <a href="src/user/user-purchases.php" class="sidenav-link">
             <i class="fa-solid fa-bag-shopping sidenav-link-icon"></i>
             <div class="sidenav-link-text">My Purchases</div>
-          </a>
-          <a href="src/common/help-center.html" class="sidenav-link">
-            <i class="fa-solid fa-headset sidenav-link-icon"></i>
-            <div class="sidenav-link-text">Help Center</div>
           </a>
           <a href="src/user/user-register-partner.php" class="sidenav-link">
             <i class="fa-solid fa-handshake sidenav-link-icon"></i>
             <div class="sidenav-link-text">Be a Partner</div>
           </a>`;
+
+  //           <a href="src/common/help-center.html" class="sidenav-link">
+  //   <i class="fa-solid fa-headset sidenav-link-icon"></i>
+  //   <div class="sidenav-link-text">Help Center</div>
+  // </a>
 }
 
 function createPartnerNavbar() {
@@ -79,13 +80,9 @@ function createPartnerNavbar() {
             <i class="fa-solid fa-circle-plus sidenav-link-icon"></i>
             <div class="sidenav-link-text">Add Listing</div>
           </a>
-          <a href="src/partner/partner-orders.html" class="sidenav-link">
+          <a href="src/partner/partner-orders.php" class="sidenav-link">
             <i class="fa-solid fa-receipt sidenav-link-icon"></i>
             <div class="sidenav-link-text">Orders</div>
-          </a>
-          <a href="src/common/help-center.html" class="sidenav-link">
-            <i class="fa-solid fa-headset sidenav-link-icon"></i>
-            <div class="sidenav-link-text">Help Center</div>
           </a>`;
 }
 
@@ -123,8 +120,7 @@ function appendDiscoverProducts(products) {
       let productContainer = document.createElement('div');
       productContainer.classList.add('product-feed-block');
 
-      productContainer.innerHTML =
-      `<a href='/tindahan.ph/src/common/product-page.php?id=${product.product_id}' class="product-feed-block">
+      productContainer.innerHTML = `<a href='/tindahan.ph/src/common/product.php?id=${product.product_id}' class="product-feed-block">
         <img src="${product.product_img}" class="product-feed-img" />
         <div class="product-feed-info">
           <div>${product.product_name}</div>

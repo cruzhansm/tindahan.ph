@@ -8,6 +8,7 @@
     case 'create-pending-listings-list': echo json_encode(createPendingListings()); break;
     case 'approve-pending-listing': echo json_encode(approvedListing()); break;
     case 'reject-pending-listing': echo json_encode(rejectedListing()); break;
+    case 'insert-new-listing': echo json_encode(newListing()); break;
   }
 
   //  CREATING A PENDING LISTING TAB
@@ -108,6 +109,73 @@
     $result = Product::updateApplicationStatus($application['application_id'], 'rejected');
 
     return $result == true ? true : false;
+  }
+
+  function newListing() {
+    include('../connect.php');
+    include('../partner/store.php');
+
+    $application = json_decode($_REQUEST['application'], MYSQLI_ASSOC);
+    
+    $user = $_SESSION['user_id'];
+
+    $store = new PartnerStore($user);
+    $vibes = $store->jsonSerialize();
+
+    $query = "INSERT INTO listing_application(listing_store, listing_name, listing_img, listing_price, listing_desc, listing_brand, listing_quantity)
+              VALUES(?, ?, ?, ?, ?, ?, ?);";
+
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, 'ississi', 
+                           $listing_store,
+                           $listing_name,
+                           $listing_img,
+                           $listing_price,
+                           $listing_desc,
+                           $listing_brand,
+                           $listing_quantity);
+                           
+    $listing_store = $vibes['store_id'];
+    $listing_name = $application['listingName'];
+    $listing_img = $application['listingImg'];
+    $listing_price = $application['listingPrice'];
+    $listing_desc = $application['listingDesc'];
+    $listing_brand = $application['listingBrand'];
+    $listing_quantity = $application['listingQuantity'];
+
+    $result = mysqli_stmt_execute($stmt);
+
+    $application_id = mysqli_insert_id($conn);
+    
+    $listing_categ = $application['listingCateg'];
+
+    $query = "INSERT INTO listing_categories (application_id, category_id)
+              VALUES($application_id, $listing_categ);";
+
+    $result = mysqli_query($conn, $query);
+
+    $listing_variations = $application['listingVariations'];
+
+    foreach($listing_variations as $variation) {
+      $query2 = "INSERT INTO listing_variations(application_id, variation, price, quantity)
+                 VALUES(?, ?, ?, ?);";
+
+      $stmt2 = mysqli_prepare($conn, $query2);
+
+      mysqli_stmt_bind_param($stmt2, 'isii',
+                             $application,
+                             $variation_name,
+                             $variation_price,
+                             $variation_quantity);
+      $application = $application_id;
+      $variation_name = $variation['name'];
+      $variation_price = $variation['price'];
+      $variation_quantity = $variation['stock'];
+
+      $result = mysqli_stmt_execute($stmt2);
+    }
+
+    return $result;
   }
 
 ?>

@@ -64,7 +64,7 @@ window.attemptEditProfile = function attemptEditProfile(event) {
   let img = null;
 
   try {
-    img = `/tindahan.ph/assets/images/${
+    img = `/tindahan.ph/assets/mock/partner/${
       document.querySelector('#partnerImg').files[0].name
     }`;
   } catch (err) {
@@ -78,6 +78,8 @@ window.attemptEditProfile = function attemptEditProfile(event) {
     storeAddress: address,
     storeContact: parseInt(document.querySelector('#partnerContact').value),
   };
+
+  console.log(editDetails);
 
   dismissModal(editProfile);
   updatePartnerStoreDetails(editDetails);

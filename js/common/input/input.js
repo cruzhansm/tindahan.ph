@@ -146,7 +146,7 @@ export function isMatchingPasswords(password) {
   const passwords =
     password.parentElement.parentElement.querySelectorAll('.form-password');
 
-  console.log(passwords);
+  // console.log(passwords);
 
   if (passwords[1] == password && passwords.length == 2) {
     if (password.value.localeCompare(passwords[0].value) === 0) {

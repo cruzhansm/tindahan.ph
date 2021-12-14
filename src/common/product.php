@@ -67,33 +67,83 @@
         </div>
 
         <div class="sidenav-links">
-          <a href="/tindahan.ph/index.php" class="sidenav-link">
-            <i class="fa-solid fa-house-chimney sidenav-link-icon"></i>
-            <div class="sidenav-link-text">Home</div>
-          </a>
-          <a href="../../src/common/categories.php" class="sidenav-link">
-            <i class="fa-solid fa-cubes sidenav-link-icon"></i>
-            <div class="sidenav-link-text">Categories</div>
-          </a>
-          <a href="../../src/user/user-cart.php" class="sidenav-link">
-            <i class="fa-solid fa-cart-shopping sidenav-link-icon"></i>
-            <div class="sidenav-link-text">Cart</div>
-          </a>
-          <a href="../../src/user/user-purchases.php" class="sidenav-link">
-            <i class="fa-solid fa-bag-shopping sidenav-link-icon"></i>
-            <div class="sidenav-link-text">My Purchases</div>
-          </a>
-          <a href="../../src/common/help-center.html" class="sidenav-link">
-            <i class="fa-solid fa-headset sidenav-link-icon"></i>
-            <div class="sidenav-link-text">Help Center</div>
-          </a>
-          <a
-            href="../../src/user/user-register-partner.php"
-            class="sidenav-link"
-          >
-            <i class="fa-solid fa-handshake sidenav-link-icon"></i>
-            <div class="sidenav-link-text">Be a Partner</div>
-          </a>
+          <?php
+
+          if($_SESSION['role'] == 'partner') {
+            echo '
+              <a href="/tindahan.ph/index.php" class="sidenav-link">
+                <i class="fa-solid fa-house-chimney sidenav-link-icon"></i>
+                <div class="sidenav-link-text">Home</div>
+              </a>
+              <a href="../../src/common/categories.php" class="sidenav-link">
+                <i class="fa-solid fa-cubes sidenav-link-icon"></i>
+                <div class="sidenav-link-text">Categories</div>
+              </a>
+              <a
+                href="../../src/partner/partner-shop-profile.php"
+                class="sidenav-link"
+              >
+                <i class="fa-solid fa-shop sidenav-link-icon"></i>
+                <div class="sidenav-link-text">Shop Profile</div>
+              </a>
+              <a
+                href="../../src/partner/partner-add-listing.html"
+                class="sidenav-link"
+              >
+                <i class="fa-solid fa-circle-plus sidenav-link-icon"></i>
+                <div class="sidenav-link-text">Add Listing</div>
+              </a>
+              <a href="../../src/partner/partner-orders.php" class="sidenav-link">
+                <i class="fa-solid fa-receipt sidenav-link-icon"></i>
+                <div class="sidenav-link-text">Orders</div>
+              </a>
+            ';
+          }
+          else if($_SESSION['role'] == 'user') {
+            echo '<a href="/tindahan.ph/index.php" class="sidenav-link">
+              <i class="fa-solid fa-house-chimney sidenav-link-icon"></i>
+              <div class="sidenav-link-text">Home</div>
+            </a>
+            <a href="../../src/common/categories.php" class="sidenav-link">
+              <i class="fa-solid fa-cubes sidenav-link-icon"></i>
+              <div class="sidenav-link-text">Categories</div>
+            </a>
+            <a href="../../src/user/user-cart.php" class="sidenav-link">
+              <i class="fa-solid fa-cart-shopping sidenav-link-icon"></i>
+              <div class="sidenav-link-text">Cart</div>
+            </a>
+            <a href="../../src/user/user-purchases.php" class="sidenav-link">
+              <i class="fa-solid fa-bag-shopping sidenav-link-icon"></i>
+              <div class="sidenav-link-text">My Purchases</div>
+            </a>
+            <a
+              href="../../src/user/user-register-partner.php"
+              class="sidenav-link"
+            >
+              <i class="fa-solid fa-handshake sidenav-link-icon"></i>
+              <div class="sidenav-link-text">Be a Partner</div>
+            </a>';
+          }
+          else {
+            echo '<div class="sidenav-links">
+              <a href="/tindahan.ph/src/admin/admin-dashboard.php" class="sidenav-link active">
+                <i class="fa-solid fa-tachometer-alt sidenav-link-icon"></i>
+                <div class="sidenav-link-text">Dashboard</div>
+              </a>
+              <a href="/tindahan.ph/src/admin/admin-users.php" class="sidenav-link">
+                <i class="fa-solid fa-users-cog sidenav-link-icon"></i>
+                <div class="sidenav-link-text">Users</div>
+              </a>
+              <a href="/tindahan.ph/src/admin/admin-partners.php" class="sidenav-link">
+                <i class="fa-solid fa-hands-helping sidenav-link-icon"></i>
+                <div class="sidenav-link-text">Partners</div>
+              </a>
+              <a href="/tindahan.ph/src/admin/admin-live-listings.php" class="sidenav-link">
+                <i class="fa-solid fa-list-alt sidenav-link-icon"></i>
+                <div class="sidenav-link-text">Live Listings</div>
+              </a>';
+          }
+          ?>
         </div>
       </div>
     </div>
@@ -109,7 +159,7 @@
             />
           </form>
           <div class="header-icons">
-            <i class="fa-solid fa-inbox"></i>
+            
             <i class="fa-solid fa-gear"></i>
             <div class="user-image-icon" onclick="displayUserActions()">
               <div class="user-image-actions visually-hidden">
@@ -154,7 +204,9 @@
                 name="variation"
                 id="productVariation"
                 class="form-select"
-              ></select>
+                >
+                <option value="NULL" selected>No variation</option>
+            </select>
             </div>
             <div id="inStock" class="product-purchase-area visually-hidden">
               <div class="product-purchase-quantity">
@@ -169,8 +221,11 @@
                   class="product-purchase-quantity quantity-stock"
                 ></span>
               </div>
-              <div class="btn btn-primary product-purchase-button" onclick="attemptAddToCart()">
-                Add to Cart
+              <div class="product-actions-row">
+                <button class="btn btn-primary product-purchase-button " onclick="attemptAddToCart()">
+                  Add to Cart
+                </button>
+                <button class="btn btn-tertiary edit visually-hidden" onclick="redirectToEdit()">Edit</button>
               </div>
             </div>
             <div
@@ -192,8 +247,11 @@
                   >0 pieces left</span
                 >
               </div>
-              <div class="btn btn-tertiary disabled product-purchase-button">
-                Out of Stock
+              <div class="product-actions-row">
+                <button class="btn btn-tertiary disabled product-purchase-button ">
+                  Out of Stock
+                </button>
+                <button class="btn btn-tertiary edit visually-hidden" onclick="redirectToEdit()">Edit</button>
               </div>
             </div>
           </div>

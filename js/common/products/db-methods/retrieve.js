@@ -13,3 +13,18 @@ export async function getProductDetails(productID) {
     },
   });
 }
+
+export async function getCurrentUser() {
+  return await $.ajax({
+    type: 'GET',
+    url: '/tindahan.ph/php/user/crud.php',
+    data: {
+      type: 'retrieve-user-id',
+    },
+    success: (result) => {
+      result = JSON.parse(result);
+
+      return result;
+    },
+  });
+}

@@ -147,7 +147,9 @@ export function attachEmptyFieldListeners(watch) {
       let state = new Array();
 
       const inputs = FORM_INPUTS.filter((input) =>
-        ['file', 'radio', 'checkbox'].every((s) => s != input.type)
+        ['file', 'radio', 'checkbox'].every(
+          (s) => s != input.type && !input.classList.contains('not-required')
+        )
       );
 
       for (let i = 0; i < inputs.length; i++) {

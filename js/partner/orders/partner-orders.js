@@ -158,7 +158,8 @@ function attachFilterListeners() {
 }
 
 function filter(status) {
-  const target = document.querySelector('.container-orders-list');
+  const paginationPages = document.querySelector('#paginationPages');
+  const paginationController = document.querySelector('#paginationContainer');
 
   let filtered =
     status != 'all'
@@ -167,7 +168,8 @@ function filter(status) {
         )
       : ORDERS;
 
-  target.innerHTML = '';
+  paginationPages.innerHTML = '';
+  paginationController.innerHTML = '';
   appendAllOrders(filtered);
 }
 

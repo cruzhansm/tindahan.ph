@@ -130,7 +130,7 @@
       $data = get_object_vars($this);
 
       return $data;
-    }
+    } 
 
     static function getUserInfo($user_id) {
       include('connect.php');

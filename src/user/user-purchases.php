@@ -165,10 +165,7 @@
               <i class="fa-solid fa-bag-shopping sidenav-link-icon"></i>
               <div class="sidenav-link-text">My Purchases</div>
             </a>
-            <a href="../../src/common/help-center.html" class="sidenav-link">
-              <i class="fa-solid fa-headset sidenav-link-icon"></i>
-              <div class="sidenav-link-text">Help Center</div>
-            </a>
+
             <a
               href="../../src/user/user-register-partner.php"
               class="sidenav-link"
@@ -190,7 +187,6 @@
               />
             </form>
             <div class="header-icons">
-              <i class="fa-solid fa-inbox"></i>
               <i class="fa-solid fa-gear"></i>
               <div class="user-image-icon" onclick="displayUserActions()">
                 <div class="user-image-actions visually-hidden">
@@ -232,6 +228,17 @@
                 </div>
                 <div class="order-filter-type">
                   <input
+                    id="confirmation"
+                    type="radio"
+                    name="filter"
+                    class="form-check-input"
+                  />
+                  <label for="confirmation" class="form-check-label"
+                    >To Confirm</label
+                  >
+                </div>
+                <div class="order-filter-type">
+                  <input
                     id="processing"
                     type="radio"
                     name="filter"
@@ -260,7 +267,7 @@
                     class="form-check-input"
                   />
                   <label for="delivered" class="form-check-label"
-                    >Completed</label
+                    >Delivered</label
                   >
                 </div>
                 <div class="order-filter-type">
