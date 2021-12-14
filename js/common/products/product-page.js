@@ -1,6 +1,5 @@
 import { Pagination } from '../pagination.js';
-import { getProductDetails } from './db-methods/retrieve.js';
-import { StatusModal } from '../modal/status-modal.js';
+import { getCurrentUser, getProductDetails } from './db-methods/retrieve.js';
 import { addToCart } from './db-methods/insert.js';
 
 var PRODUCT = new Object();
@@ -33,8 +32,15 @@ window.onload = async () => {
       product.product_reviews.length > 0 ? true : false
     );
     appendProductDetails(product);
+    initializeEditButton(product.store_owner);
     appendVariations(product.product_variations);
-    updateAddToCart(product.product_variations[0].quantity > 0 ? true : false);
+    updateAddToCart(
+      product.product_variations.length > 0
+        ? product.product_variations[0].quantity > 0
+          ? true
+          : false
+        : true
+    );
     attachQuantityChangeListeners();
     appendReviews(product.product_reviews);
   }
@@ -72,16 +78,26 @@ function appendProductDetails(product) {
   productDesc.innerText = product.product_desc;
 }
 
+async function initializeEditButton(storeOwner) {
+  const currentUser = JSON.parse(await getCurrentUser());
+  const buttons = document.querySelectorAll('.edit');
+
+  if (parseInt(currentUser) == parseInt(storeOwner)) {
+    buttons.forEach((button) => button.classList.remove('visually-hidden'));
+  }
+}
+
 function appendVariations(variations) {
   const select = document.querySelector('#productVariation');
 
-  variations.forEach((variation, index) => {
-    select.innerHTML += `
-      <option value="${variation.variation_id}">${variation.variation}</option>;
-    `;
-  });
-
-  attachVariationChangeListeners(select, variations);
+  if (variations.lengths != 0) {
+    variations.forEach((variation) => {
+      select.innerHTML += `
+        <option value="${variation.variation_id}">${variation.variation}</option>;
+      `;
+    });
+    attachVariationChangeListeners(select, variations);
+  }
 }
 
 function attachVariationChangeListeners(select, variations) {
@@ -91,10 +107,14 @@ function attachVariationChangeListeners(select, variations) {
   select.addEventListener('change', () => {
     let updated = variations.find((v) => v.variation_id == select.value);
 
-    price.innerText = `P${updated.price}`;
-    quantity.innerText = `${updated.quantity} pieces left.`;
-
-    updateAddToCart(updated.quantity > 0 ? true : false);
+    if (updated == null) {
+      price.innerText = `P${PRODUCT.product_price}`;
+      quantity.innerText = `${PRODUCT.product_quantity} pieces left.`;
+    } else {
+      price.innerText = `P${updated.price}`;
+      quantity.innerText = `${updated.quantity} pieces left.`;
+      updateAddToCart(updated.quantity > 0 ? true : false);
+    }
   });
 }
 
@@ -240,4 +260,8 @@ window.attemptAddToCart = function attemptAddToCart() {
   };
 
   addToCart(cartItem);
+};
+
+window.redirectToEdit = function redirectToEdit() {
+  window.location.href = `/tindahan.ph/src/partner/edit-listing.php?id=${PRODUCT.product_id}`;
 };

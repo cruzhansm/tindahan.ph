@@ -1,0 +1,34 @@
+.listing-modal-content {
+  width: 531px;
+  height: 652px;
+  overflow-x: hidden;
+}
+
+.suspend-modal-body {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.suspend-modal-top-image {
+  width: 121px;
+  height: 121px;
+  background-color: var(--placeholder);
+  border-radius: 70px;
+}
+
+.suspend-modal-top-title {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.suspend-names {
+  display: block;
+  width: max-content;
+}
+
+.modal-name {
+  color: green;
+}

@@ -2,6 +2,10 @@
   color: green;
 } */
 
+.listing-modal-details {
+  min-height: 300px;
+}
+
 .listing-modal-content {
   width: 531px;
   height: 652px;
@@ -27,7 +31,7 @@
   min-height: 300px;
 }
 
-.listing-modal-top-image, 
+.listing-modal-top-image,
 .listing-modal-top-image > img {
   width: 121px;
   height: 121px;

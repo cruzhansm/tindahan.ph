@@ -7,8 +7,12 @@
   switch($type) {
     case 'retrieve-store-details':
       echo json_encode(fetchStoreDetails()); break;
+    case 'retrieve-store-w-id':
+      echo json_encode(fetchStoreDetailsUsingID()); break;
     case 'update-store-profile':
       echo json_encode(updateStoreDetails()); break;
+    case 'retrieve-store-products':
+      echo json_encode(retrieveStoreProducts()); break;
   }
 
   function fetchStoreDetails() {
@@ -18,6 +22,22 @@
     
     $store = new PartnerStore($user_id);
      
+    return $store->jsonSerialize();
+  }
+
+  function fetchStoreDetailsUsingID() {
+    include('../connect.php');
+    include('store.php');
+
+
+    $store_id = $_REQUEST['storeID'];
+
+    $query = "SELECT user_id FROM partner_store WHERE store_id = $store_id;";
+
+    $result = mysqli_fetch_assoc(mysqli_query($conn, $query));
+
+    $store = new PartnerStore($result['user_id']);
+
     return $store->jsonSerialize();
   }
 
@@ -37,7 +57,15 @@
 
     $result = User::updateContact($_SESSION['user_id'], $editDetails['storeContact']);
     
-    return $result ? true : new CustomError(error: 'Input', error_msg: 'One or more fields has an invalid input.');
+    return $result;
+  }
+
+  function retrieveStoreProducts() {
+    include('store.php');
+
+    $store_id = $_REQUEST['storeID'];
+
+    return PartnerStore::retrieveProducts($store_id);
   }
 
 ?>

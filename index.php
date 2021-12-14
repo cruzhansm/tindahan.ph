@@ -28,13 +28,12 @@ if (!isset($_SESSION['user_id'])) {
   <link rel="stylesheet" href="css/common/common.css">
   <link rel="stylesheet" href="css/common/home/home.css">
 
-  <script src="js/common/fetch-products.js"></script>
-  <script src="js/common/search.js"></script>
+  <script type="module" src="js/common/search.js"></script>
   <script src="js/common/products.js"></script>
   <script src="js/common/messaging.js"></script>
   <script src="js/common/auth/logout.js"></script>
   <script type="module" src="js/index.js"></script>
-  <script type="module" src="js/common/settings/settings.js"></script> 
+  <script type="module" src="js/common/settings/settings.js"></script>
 </head>
 
 <body class="bg-primary">
@@ -187,7 +186,7 @@ if (!isset($_SESSION['user_id'])) {
   </div>
   <!-- MODAL CONTENT ENDS -->
 
-  
+
   <div class="row m-0">
     <div class="col left">
       <div class="sidenav">
@@ -214,7 +213,6 @@ if (!isset($_SESSION['user_id'])) {
             <input type="search" class="form-control form-search border-input" placeholder="Search products">
           </form>
           <div class="header-icons">
-            <i class="fa-solid fa-inbox" onclick="showMessages()"></i>
             <i class="fa-solid fa-gear" onclick="showSettings(verifySettings)"></i>
             <div class="user-image-icon" onclick="displayUserActions()">
               <div class="user-image-actions visually-hidden">
@@ -250,7 +248,9 @@ if (!isset($_SESSION['user_id'])) {
 
         <div class="product-title">Daily Discover</div>
 
-        <div class="container-product-feed row row-cols-4 row-cols-md-4 g-4">
+        <div class="product-container">
+          <div id="paginationPages" class="product-page-review-list"></div>
+          <nav id="paginationContainer" class="pagination-container"></nav>
         </div>
       </div>
     </div>

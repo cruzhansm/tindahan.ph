@@ -25,6 +25,8 @@
       echo json_encode(confirmSpecifiedOrder()); break;
     case 'ship-order':
       echo json_encode(shipSpecifiedOrder()); break;
+    case 'mark-received-order':
+      echo json_encode(markReceivedSpecifiedOrder()); break;
   }
 
   function fakeCheckoutCart() {
@@ -131,5 +133,14 @@
     $order = new Order($order_id);
 
     return $order->ship();
+  }
+
+  function markReceivedSpecifiedOrder() {
+    include('order.php');
+
+    $order_id = $_REQUEST['orderID'];
+    $order = new Order($order_id);
+
+    return $order->receive();
   }
 ?>

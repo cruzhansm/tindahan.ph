@@ -2,6 +2,7 @@
   class Product implements JsonSerializable {
     private $product_id;
     private $product_store;
+    private $store_owner;
     private $product_name;
     private $product_img;
     private $product_price;
@@ -26,6 +27,7 @@
       $this->product_rating = $product['product_rating'];
       $this->product_brand = $product['product_brand'];
       $this->product_quantity = $product['product_quantity'];
+      $this->store_owner = $product['user_id'];
       $this->product_store = $this->fetchProductStore();
       $this->product_categories = $this->fetchProductCategories();
       $this->product_variations = $this->fetchProductVariations();
@@ -53,8 +55,9 @@
 
       $product_id = $this->product_id;
 
-      $query = "SELECT *
-                FROM products
+      $query = "SELECT p.*, ps.user_id
+                FROM products p
+                JOIN partner_store ps ON p.product_store = ps.store_id
                 WHERE product_id = $product_id;";
 
       $product = mysqli_fetch_assoc(mysqli_query($conn, $query));
@@ -219,12 +222,13 @@
       $product_price = $application['listing_price'];
       $product_desc = $application['listing_desc'];
       $product_brand = $application['listing_brand'];
+      $product_quantity = $application['listing_quantity'];
 
       $insertProduct = "INSERT INTO
                         products(product_store, product_name, product_img,
-                                 product_price, product_desc, product_brand)
+                                 product_price, product_desc, product_brand, product_quantity)
                         VALUES  ('$product_store', '$product_name', '$product_img',
-                                 $product_price, '$product_desc', '$product_brand')";
+                                 $product_price, '$product_desc', '$product_brand', $product_quantity)";
 
       $query = mysqli_query($conn, $insertProduct);
 
@@ -347,11 +351,48 @@
       return $result; 
     }
 
+    public function updateProductRating($product_id) {
+      include('../connect.php');
+
+      $query ="UPDATE products
+               SET product_rating = (SELECT AVG(rating)
+                                     FROM product_review
+                                     WHERE product_id = $product_id)
+               WHERE product_id = $product_id;";
+
+      $result = mysqli_query($conn, $query);
+      
+      return $result;
+    }
+
     function jsonSerialize() {
       $data = get_object_vars($this);
   
       return $data;
     }
-  }
 
+    static function fetchBySearchQuery($user_query) {
+      include('../connect.php');
+      
+      $products = array();
+      $query = "SELECT product_id
+                FROM products
+                WHERE product_name LIKE ?";
+      $stmt = mysqli_prepare($conn, $query);
+
+      mysqli_stmt_bind_param($stmt, 's', $product_search);
+      $product_search = "%$user_query%";
+
+      mysqli_stmt_execute($stmt);
+      $result = mysqli_stmt_get_result($stmt);
+
+      $i = 0;
+      while($data = mysqli_fetch_assoc($result)) {
+        $products[$i] = (int)$data['product_id'];
+        $i++;
+      }
+      
+      return $products;
+    }
+  }
 ?>
