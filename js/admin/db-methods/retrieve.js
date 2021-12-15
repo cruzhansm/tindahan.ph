@@ -66,6 +66,7 @@ export async function createListingsList() {
       type: 'create-pending-listings-list',
     },
     success: (data) => {
+      // console.log(data);
       let result = JSON.parse(data);
       console.log(result);
       return result;

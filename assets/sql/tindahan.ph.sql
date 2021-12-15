@@ -1,14 +1,10 @@
-CREATE DATABASE `tindahan.ph`;
-
-USE `tindahan.ph`;
-
 CREATE TABLE users(
   user_id           INT(5)            AUTO_INCREMENT,
   fname             VARCHAR(50)       NOT NULL,
   lname             VARCHAR(50)       NOT NULL,
   password          VARCHAR(72)       NOT NULL,
   email             VARCHAR(320)      NOT NULL,
-  image             VARCHAR(260)              ,
+  image             VARCHAR(260)      DEFAULT '/tindahan.ph/assets/mock/users/placeholder.png',
   phone             BIGINT(10)                    ,
   role              ENUM('admin', 'user', 'partner') DEFAULT 'user',
   active            ENUM('true', 'false') DEFAULT 'true',
@@ -19,40 +15,64 @@ CREATE TABLE users(
 );
 
 -- USE THESE FOR THE ADMIN USERS 
-INSERT INTO `users` (`fname`, `lname`, `password`, `email`, `image`, `phone`, `role`, `active`, `suspended`, `last_login`) VALUES
-('Hans Maco', 'Cruz', '$2y$10$nFa3XOdT5LKlQ2FR53l/EuRDE5VfMJcSzgQS48oh3KMrdu8VFUsuC', '18103205@usc.edu.ph', NULL, NULL, 'admin', 'true', 'false', '2021-12-01 05:01:03'),
-('Roque', 'Gelacio', '$2y$10$LGOaYoqXlK7SJfw73w3S9uOrp4C2yoxNqe.OZuUQyYc.jbPlrYrAC', '20100987@usc.edu.ph', NULL, NULL, 'admin', 'true', 'false', '2021-11-30 23:23:12'),
-('Hannah Ruth', 'Labana', '$2y$10$LGOaYoqXlK7SJfw73w3S9uOrp4C2yoxNqe.OZuUQyYc.jbPlrYrAC', '20102712@usc.edu.ph', NULL, NULL, 'admin', 'true', 'false', '2021-11-30 23:23:12'),
-('Nicholai Julian', 'Oblina', '$2y$10$7rnCmYacPxaJrGV6eRuQJecIJGr18jXYzQqyfNZO9etWJU98bCBtO', '20102511@usc.edu.ph', NULL, NULL, 'admin', 'true', 'false', '2021-12-05 04:18:06');
-
--- USE THIS TO UPDATE THE AUTO_INCREMENT OF USERS, IF AUTO_INCREMENT FAILS
-ALTER TABLE `users`
-  MODIFY `user_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-COMMIT;
+INSERT INTO users (fname, lname, password, email, image, phone, role, active, suspended, last_login) VALUES
+('Hans Maco', 'Cruz', '$2y$10$nFa3XOdT5LKlQ2FR53l/EuRDE5VfMJcSzgQS48oh3KMrdu8VFUsuC', '18103205@usc.edu.ph', DEFAULT, NULL, 'admin', 'true', 'false', '2021-12-01 05:01:03'),
+('Roque', 'Gelacio', '$2y$10$LGOaYoqXlK7SJfw73w3S9uOrp4C2yoxNqe.OZuUQyYc.jbPlrYrAC', '20100987@usc.edu.ph', DEFAULT, NULL, 'admin', 'true', 'false', '2021-11-30 23:23:12'),
+('Hannah Ruth', 'Labana', '$2y$10$LGOaYoqXlK7SJfw73w3S9uOrp4C2yoxNqe.OZuUQyYc.jbPlrYrAC', '20102712@usc.edu.ph', DEFAULT, NULL, 'admin', 'true', 'false', '2021-11-30 23:23:12'),
+('Nicholai Julian', 'Oblina', '$2y$10$7rnCmYacPxaJrGV6eRuQJecIJGr18jXYzQqyfNZO9etWJU98bCBtO', '20102511@usc.edu.ph', DEFAULT, NULL, 'admin', 'true', 'false', '2021-12-05 04:18:06'),
+('Nina', 'Fowler', '$2y$10$SdKN06qTQ07K9aIGLGLupeZ2ef.zCk7XeHkaNFDWF.qk/tsm2q6vu', 'ninafowler@gmail.com', '/tindahan.ph/assets/mock/users/user001.jpg', 9667836032, 'user', 'true','false', '2021-12-12 16:18:04'),
+('Dillan','Butler', '$2y$10$mtgspqhDIPnPQr8dsQRVmeb9YnEGdb.ASQ/KjvISwPlAI1bnDUITC', 'dillanButler@gmail.com','/tindahan.ph/assets/mock/users/user002.jpg', 9382109377, 'user', 'true', 'false', '2021-11-31 08:49:43'),
+('Alma', 'Clarke', '$2y$10$f0.1fEX/j.IuH/26ds6HzOErn8UNWwQ.BB2Q4kkFn0b9N7OKRHPbu', 'almaccc@gmail.com', '/tindahan.ph/assets/mock/users/user003.jpg', 90038216746, 'user','true','false', '2021-12-01 13:34:27'),
+('Gustavo', 'Trevino', '$2y$10$xXydseThmRxqlmGB1LA9QO5tAofz2EJNAEqhTBwhfRQIGCeT/OLs2', 'gustavo@gmail.com', '/tindahan.ph/assets/mock/users/user004.jpg', 9361846332, 'user', 'true', 'false', '2021-12-05 18:03:48'),
+('Levi', 'Rowland', '$2y$10$yNiePE.YpugUtXJpnjEOLOlt3lvso2CgXHyaeooEG8Cw5yGyRjuW6', 'leviRow@gmail.com', '/tindahan.ph/assets/mock/users/user005.jpg', 9776498021, 'user', 'true', 'false', '2021-11-28 15:57:01'),
+('Henry', 'Sy', '$2y$10$gN3t3dSItITEPWBBgI1FDOsgkqZfSDvQ9E7PKOpzMD9P7.0aiqLVi', 'anyTopCebu@gmail.com', '/tindahan.ph/assets/mock/users/user006.jpg', 9438502184, 'partner', 'true', 'false', '2021-12-10 21:05:59'),
+('Arella', 'Bernales', '$2y$10$Bi336lERYV5uZtdV5UCOOeLQbdePd4y2ac3TKhe7NX4mhjP5SfmfW', 'WAISOph@gmail.com', '/tindahan.ph/assets/mock/users/user007.jpg', 9184776321, 'partner', 'true', 'false', '2021-12-11 14:23:43'),
+('Chanel', 'Siase', '$2y$10$Dd9sFOaZnkegmzihNY8Emu7T3mxpQSvUOqg71piXRQm.ppbN7a.8C', 'kidsKingdom@gmail.com', '/tindahan.ph/assets/mock/users/user008.jpg', 9477853221, 'partner', 'true', 'false', '2021-12-09 05:25:50'),
+('Melisa', 'Maranan', '$2y$10$pVGBW6ehEINuDO/3eEiENOHPruXpP7MoF/7pZTpBxAlEW6eI4gzi.', 'cebuFOAM@gmail.com', DEFAULT, 9574337744, 'partner', 'true', 'false', '2021-12-10 23:43:56'),
+('Bea', 'Lim', '$2y$10$en0GzK35IdpvUzbzaoTz.egsukmuh6kCrV1bePCyTc/50cHg4CE3i', 'corals.cebu@gmail.com', DEFAULT, 9137590085, 'partner', 'true', 'false', '2021-12-12 14:12:11');
 
 CREATE TABLE users_address(
   user_id           INT(5)            AUTO_INCREMENT,
   street            VARCHAR(150)                    ,
-  city              VARCHAR(50)                     ,
+  city              ENUM('Cebu City', 'Mandaue City', 'Lapu-Lapu City'),
   barangay          VARCHAR(50)                     ,
-landmark            VARCHAR(20)                     ,
+  landmark          VARCHAR(20)                     ,
   zipcode           INT(4)                          ,
 
   CONSTRAINT Users_Address_PK PRIMARY KEY(user_id),
   CONSTRAINT Users_Address_FK FOREIGN KEY(user_id) REFERENCES users(user_id)
-);  
+);
+
+INSERT INTO users_address(user_id, street, city, barangay, zipcode) VALUES
+(5, 'Blk 4, Lot 15 Eagles St.', 'Mandaue City', 'Bakilid', 6014),
+(6, 'Hummingbird Street', 'Mandaue City', 'Banilad', 6014),
+(7, 'Swift Street', 'Cebu City', 'Talamban', 6000),
+(8, 'Blk 10, Lot 21, Cuckoo St.', 'Lapu-Lapu City', 'Babag', 6016),
+(9, 'Blk 4, Lot 9, Heron Street', 'Cebu City', 'Apas', 6000),
+(10, 'M.L. Quezon Street', 'Mandaue City', 'Maguikay', 6014),
+(11, 'Archbishop Reyes Ave', 'Cebu City', 'Luz', 6000),
+(12, 'Juan Luna Ave Ext', 'Cebu City', 'Mabolo', 6000),
+(13, 'Hernan Cortes Street', 'Mandaue City', 'Tipolo', 6014),
+(14, 'Gen. Maxilom Ave Osmena Street', 'Cebu City', 'Carreta', 6000);
 
 CREATE TABLE partner_store(
   store_id                INT(5)              AUTO_INCREMENT,
   user_id                 INT(5)              NOT NULL,
   store_name              VARCHAR(100)        NOT NULL,
-  store_img               VARCHAR(260)        DEFAULT '/tindahan.ph/assets/partner/default-partner.jpg',
+  store_img               VARCHAR(260)        DEFAULT '/tindahan.ph/assets/mock/partner/placeholder.png',
   store_description       VARCHAR(200)        NOT NULL,
   active                  ENUM('true', 'false') DEFAULT 'true',
   suspended               ENUM('true', 'false') DEFAULT 'false',
   CONSTRAINT Store_PK PRIMARY KEY(store_id),
   CONSTRAINT Store_User_FK FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
+
+INSERT INTO partner_store(user_id, store_name, store_img, store_description, active, suspended) VALUES
+(10, 'AnyTop', '/tindahan.ph/assets/mock/partner/store001.jpg', 'All kinds of household items at the best affordable prices', 'true', 'false'),
+(11, 'WAISO', '/tindahan.ph/assets/mock/partner/store002.png', 'All you need is here, at the price you want, and we are everywhere', 'true', 'false'),
+(12, 'Kids Kingdom', '/tindahan.ph/assets/mock/partner/store003.png', 'Toys for all ages of imagination', 'true', 'false'),
+(13, 'Cebu Foam', DEFAULT, 'One-stop shop for all your foam and furniture needs', 'true', 'false'),
+(14, 'Corals', DEFAULT, 'Perfect wardrobe for everyone', 'true', 'false');
 
 CREATE TABLE partner_applications(
   application_id          INT(5)                AUTO_INCREMENT,
@@ -61,12 +81,19 @@ CREATE TABLE partner_applications(
   store_name              VARCHAR(100)          NOT NULL,
   store_main_categ        VARCHAR(20)           NOT NULL,
   store_desc              VARCHAR(200)          NOT NULL,
-  store_img               VARCHAR(260)          DEFAULT '/tindahan.ph/assets/partner/default-partner.jpg',
+  store_img               VARCHAR(260)          DEFAULT '/tindahan.ph/assets/mock/partner/placeholder.png',
   online_experience       ENUM('yes', 'no')     NOT NULL,
   online_platforms        VARCHAR(100)                  ,
   CONSTRAINT Application_PK PRIMARY KEY(application_id),
   CONSTRAINT Application_User_FK FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
+
+INSERT INTO partner_applications(user_id, application_status, store_name, store_main_categ, store_desc, store_img, online_experience, online_platforms) VALUES
+(10, 'approved', 'AnyTop', 'Furniture', 'All kinds of household items at the best affordable prices', '/tindahan.ph/assets/mock/partner/user010.jpg', 'no', NULL),
+(11, 'approved', 'WAISO', 'Stationery', 'All you need is here, at the price you want, and we are everywhere', '/tindahan.ph/assets/mock/partner/user011.jpg', 'yes', 'Shopee'),
+(12, 'approved', 'Kids Kingdom', 'Kids', 'Toys for all ages of imagination', '/tindahan.ph/assets/mock/partner/user012.jpg', 'yes', 'Shopee, Lazada'),
+(13, 'approved', 'Cebu Foam', 'Furniture', 'One-stop shop for all your foam and furniture needs', DEFAULT, 'no', NULL),
+(14, 'approved', 'Corals', "Women's", 'Perfet wardrobe for everyone', DEFAULT, 'yes', 'Carousell' );
 
 CREATE TABLE listing_application(
   application_id          INT(7)                AUTO_INCREMENT,
@@ -74,12 +101,82 @@ CREATE TABLE listing_application(
   listing_name            VARCHAR(255)          NOT NULL,
   listing_img             VARCHAR(260)          NOT NULL,
   listing_price           DECIMAL(7, 2)         NOT NULL,
+  listing_quantity        INT(5)                NOT NULL, 
   listing_desc            VARCHAR(500)          NOT NULL,
   listing_brand           VARCHAR(20)           NOT NULL,
   listing_status          ENUM('pending', 'approved', 'rejected') DEFAULT 'pending',
   CONSTRAINT Listings_Application_PK PRIMARY KEY(application_id),
   CONSTRAINT Listings_Application_FK FOREIGN KEY(listing_store) REFERENCES partner_store(store_id)
 );
+INSERT INTO listing_application(listing_store, listing_name, listing_img, listing_price, listing_desc, listing_brand, listing_status, listing_quantity) VALUES
+(3, 'Sesame Street Stuffed Toys', '/tindahan.ph/assets/mock/products/product001.jpg', 650.00, 'Characters from Sesame Street, comes with playable music.', 'Philips', 'approved', 38),
+
+(3, 'Banana Baby Teether', '/tindahan.ph/assets/mock/products/product002.jpg', 440.00, 'Banana teether for 8mos and above. Requires adult supervision.', 'Chicco', 'approved', 30),
+
+(2, 'Clear Acrylic Organizer', '/tindahan.ph/assets/mock/products/product003.jpg', 70.00, 'Organizer that can hold writing instruments.', 'WAISO', 'approved', 100),
+
+(2, 'Tokyo Mini Instant Chicken Ramen', '/tindahan.ph/assets/mock/products/product004.jpg', 99.00, 'Delicious ramen after 5 minutes of low-effort cooking', 'WAISO', 'approved', 50),
+
+(2, 'Cute Floral Beaded Bracelet', '/tindahan.ph/assets/mock/products/product005.jpg', 200.00, 'Beautiful handcrafted bracelet for friends and family', 'WAISO', 'approved', 20),
+
+(1, 'Touch Sensor Trash Bin', '/tindahan.ph/assets/mock/products/product006.jpg', 1200.00, 'Trash bin that opens and closes through a touch sensor', 'AnyTop', 'approved', 20),
+
+(1, 'Door Sticky Stopper', 'tindahan.ph/assets/mock/products/product007.jpg', 80.00, 'Door stopped to avoid floor and wall marks', 'AnyTop', 'approved', 100),
+
+(1, 'BTS Welcome Doormat', 'tindahan.ph/assets/mock/products/product008.jpg', 750.00, 'Be welcomed home with seven beautiful Korean men', 'AnyTop', 'approved', 10),
+
+(4, 'Solo Stool', '/tindahan.ph/assets/mock/products/product009.jpg', 1100.00, 'Stool best for the living room', 'Cebu Foam', 'approved', 10),
+
+(4, 'Lifetime Outdoor Table for Big Families', 'tindahan.ph/assets/mock/products/product010.jpg', 800.00, 'Best for gatherings outdoors with friends and family.', 'Lifetime', 'approved', 50),
+
+(5, 'Camilla Blouse', 'tindahan.ph/assets/mock/products/product011.jpg', 699.00, 'One size for all. For casual and semi-formal events', 'Corals', 'approved', 10),
+
+(5, 'Sunshine Midi Skirt', 'tindahan.ph/assets/mock/products/product012.jpg', 749.00, 'Skirt that fits the picnic and cottage vibes', 'Corals', 'approved', 15),
+
+(5, 'Kurt Polo Shirt', 'tindahan.ph/assets/mock/products/product013.jpg', 749.00, 'Closet staple for men', 'Corals', 'approved', 10);
+
+
+CREATE TABLE product_category(
+  category_id     INT(1)              AUTO_INCREMENT,
+  category_name   VARCHAR(30)         NOT NULL,
+  category_img    VARCHAR(260)        NOT NULL,
+  CONSTRAINT Product_Category_PK PRIMARY KEY(category_id)
+);
+ 
+INSERT INTO product_category(category_name, category_img) VALUES
+("Food", "../../assets/images/categories/category-food.jpg"),
+("Cosmetics", "../../assets/images/categories/category-cosmetics.jpg"),
+("Furniture", "../../assets/images/categories/category-furniture.jpg"),
+("Women's","../../assets/images/categories/category-womens.jpg"),
+("Men's","../../assets/images/categories/category-mens.jpg"),
+("Accessories","../../assets/images/categories/category-accessories.jpg"),
+("Electronics","../../assets/images/categories/category-electronics.jpg"),
+("Kids","../../assets/images/categories/category-kids.jpg"),
+("Stationery","../../assets/images/categories/category-stationery.jpg");
+
+CREATE TABLE listing_categories(
+  listing_category_id     INT(7)                AUTO_INCREMENT,
+  application_id          INT(7)                NOT NULL,
+  category_id             INT(1)                NOT NULL,
+  CONSTRAINT Listing_Category_PK PRIMARY KEY(listing_category_id),
+  CONSTRAINT Listing_Application_FK FOREIGN KEY(application_id) REFERENCES listing_application(application_id),
+  CONSTRAINT Listing_Category_FK FOREIGN KEY(category_id) REFERENCES product_category(category_id)
+);
+
+INSERT INTO listing_categories(application_id, category_id) VALUES
+(1, 8),
+(2, 8),
+(3, 9),
+(4, 1),
+(5, 6),
+(6, 7),
+(7, 3),
+(8, 3),
+(9, 3),
+(10, 3),
+(11, 4),
+(12, 4),
+(13, 5);
 
 CREATE TABLE listing_variations(
   listing_variation_id    INT(7)                AUTO_INCREMENT,
@@ -91,33 +188,33 @@ CREATE TABLE listing_variations(
   CONSTRAINT Listing_Variation_FK FOREIGN KEY(application_id) REFERENCES listing_application(application_id)  
 );
 
-CREATE TABLE product_category(
-  category_id     INT(1)              AUTO_INCREMENT,
-  category_name   VARCHAR(30)         NOT NULL,
-  category_img    VARCHAR(260)        NOT NULL,
-  CONSTRAINT Product_Category_PK PRIMARY KEY(category_id)
-);
-
-CREATE TABLE listing_categories(
-  listing_category_id     INT(7)                AUTO_INCREMENT,
-  application_id          INT(7)                NOT NULL,
-  category_id             INT(1)                NOT NULL,
-  CONSTRAINT Listing_Category_PK PRIMARY KEY(listing_category_id),
-  CONSTRAINT Listing_Application_FK FOREIGN KEY(application_id) REFERENCES listing_application(application_id),
-  CONSTRAINT Listing_Category_FK FOREIGN KEY(category_id) REFERENCES product_category(category_id)
-);
-
--- CATEGORY ENTRIES
-INSERT INTO product_category(category_name, category_img) VALUES
-("Food", "../../assets/images/categories/category-food.jpg"),
-("Cosmetics", "../../assets/images/categories/category-cosmetics.jpg"),
-("Furniture", "../../assets/images/categories/category-furniture.jpg"),
-("Women's","../../assets/images/categories/category-womens.jpg"),
-("Men's","../../assets/images/categories/category-mens.jpg"),
-("Accessories","../../assets/images/categories/category-accessories.jpg"),
-("Electronics","../../assets/images/categories/category-electronics.jpg"),
-("Kids","../../assets/images/categories/category-kids.jpg"),
-("Stationery","../../assets/images/categories/category-stationery.jpg");
+INSERT INTO listing_variations(application_id, variation, price, quantity) VALUES
+(1, 'Elmo', 650.00, 20),
+(1, 'Cookie Monster', 700.00, 20),
+(1, 'Big Bird', 650.00, 18),
+(2, 'Peelable Banana', 400.00, 30),
+(2, 'Un-Peelable Banana', 440.00, 30),
+(3, 'Small', 70.00, 50),
+(3, 'Medium', 70.00, 50),
+(3, 'Large', 700.00, 50),
+(5, 'Yellow Flowers', 200.00, 10),
+(5, 'Pink Flowers', 200.00, 10),
+(5, 'Purple Flowers', 200.00, 10),
+(6, 'Aluminum', 1200.00, 20),
+(6, 'Wooden Laminate', 1200.00, 20),
+(6, 'Plain White', 1200.00, 20),
+(8, 'Maknae Line', 750.00, 5),
+(8, 'Hyung Line', 750.00, 5),
+(8, 'OT7', 750.00, 3),
+(11, 'Small', 699.00, 3),
+(11, 'Medium', 699.99, 5),
+(11, 'Large', 699.00, 2),
+(12, 'Small', 749.00, 10),
+(12, 'Medium', 749.00, 5),
+(12, 'Large', 749.00, 10),
+(13, 'Small', 749.00, 2),
+(13, 'Medium', 749.00, 5),
+(13, 'Large', 749.00, 10);
 
 CREATE TABLE products(
   product_id              INT(5)              AUTO_INCREMENT,
@@ -135,6 +232,33 @@ CREATE TABLE products(
   CONSTRAINT Product_FK FOREIGN KEY(product_store) REFERENCES partner_store(store_id)
 );
 
+INSERT INTO products (product_store, product_name, product_img, product_price, product_desc, product_quantity, product_brand, active, suspended) VALUES
+(3, 'Sesame Street Stuffed Toys', '/tindahan.ph/assets/mock/products/product001.jpg', 650.00, 'Characters from Sesame Street, comes with playable music.', 38, 'Philips', 'true', 'false'),
+
+(3, 'Banana Baby Teether', '/tindahan.ph/assets/mock/products/product002.jpg', 440.00, 'Baana teether for 8mos and above. Requires adult supervision', 30, 'Chicco', 'true', 'false'),
+
+(2, 'Clear Acrylic Organizer', '/tindahan.ph/assets/mock/products/product003.jpg', 70.00, 'Organizer that can hold writing instruments.', 100, 'WAISO', 'true', 'false'),
+
+(2, 'Tokyo Mini Instant Chicken Ramen', '/tindahan.ph/assets/mock/products/product004.jpg', 99.00, 'Delicious ramen after 5 minutes of low-effort cooking', 50, 'WAISO', 'true', 'false'),
+
+(2, 'Cute Floral Beaded Bracelet', '/tindahan.ph/assets/mock/products/product005.jpg', 200.00, 'Beautiful handcrafted bracelet for friends and family', 20, 'WAISO', 'true', 'false'),
+
+(1, 'Touch Sensor Trash Bin', '/tindahan.ph/assets/mock/products/product006.jpg', 1200.00, 'Trash bin that opens and closes through a touch sensor', 20, 'AnyTop', 'true', 'false'),
+
+(1, 'Door Sticky Stopper', '/tindahan.ph/assets/mock/products/product007.jpg', 80.00, 'Door stopped to avoid floor and wall marks', 100, 'AnyTop', 'true', 'false'),
+
+(1, 'BTS Welcome Doormat', '/tindahan.ph/assets/mock/products/product008.jpg', 750.00, 'Be welcomed home with seven beautiful Korean men', 10, 'AnyTop', 'true', 'false'),
+
+(4, 'Solo Stool', '/tindahan.ph/assets/mock/products/product009.jpg', 1100.00, 'Stool best for the living room', 10, 'Cebu Foam', 'true', 'false'),
+
+(4, 'Lifetime Outdoor Table for Big Families', '/tindahan.ph/assets/mock/products/product010.jpg', 800.00, 'Best for gatherings outdoors with friends and family.', 50, 'Lifetime', 'true', 'false'),
+
+(5, 'Camilla Blouse', '/tindahan.ph/assets/mock/products/product011.jpg', 699.00, 'One size for all. For casual and semi-formal events', 10, 'Corals', 'true', 'false'),
+
+(5, 'Sunshine Midi Skirt', '/tindahan.ph/assets/mock/products/product012.jpg', 749.00, 'Skirt that fits the picnic and cottage vibes', 15, 'Corals', 'true', 'false'),
+
+(5, 'Kurt Polo Shirt', '/tindahan.ph/assets/mock/products/product013.jpg', 749.00, 'Closet staple for men', 10, 'Corals', 'true', 'false');
+
 CREATE TABLE product_category_list(
   product_category_id      INT(7)              AUTO_INCREMENT,
   product_id               INT(5)              NOT NULL,
@@ -143,6 +267,21 @@ CREATE TABLE product_category_list(
   CONSTRAINT Category_List_FK FOREIGN KEY(product_id) REFERENCES products(product_id),
   CONSTRAINT Category_Item_FK FOREIGN KEY(category_id) REFERENCES product_category(category_id)
 );
+
+INSERT INTO product_category_list(product_id, category_id) VALUES
+(1, 8),
+(2, 8),
+(3, 9),
+(4, 1),
+(5, 6),
+(6, 7),
+(7, 3),
+(8, 3),
+(9, 3),
+(10, 3),
+(11, 4),
+(12, 4),
+(13, 5);
 
 CREATE TABLE product_review(
     review_id           INT(7)              AUTO_INCREMENT,
@@ -179,6 +318,34 @@ CREATE TABLE product_variation(
   CONSTRAINT Product_Variation_PK PRIMARY KEY(variation_id),
   CONSTRAINT Product_Variation_FK FOREIGN KEY(product_id) REFERENCES products(product_id)
 );
+
+INSERT INTO product_variation(product_id, variation, price, quantity) VALUES
+(1, 'Elmo', 650.00, 20),
+(1, 'Cookie Monster', 700.00, 20),
+(1, 'Big Bird', 750.00, 18),
+(2, 'Peelable Banana', 400.00, 30),
+(2, 'Un-Peelable Banana', 440.00, 30),
+(3, 'Small', 70.00, 50),
+(3, 'Medium', 90.00, 50),
+(3, 'Large', 110.00, 50),
+(5, 'Yellow Flowers', 150.00, 10),
+(5, 'Pink Flowers', 170.00, 10),
+(5, 'Purple Flowers', 180.00, 10),
+(6, 'Aluminum', 1200.00, 20),
+(6, 'Wooden Laminate', 1400.00, 20),
+(6, 'Plain White', 1100.00, 20),
+(8, 'Maknae Line', 850.00, 5),
+(8, 'Hyung Line', 950.00, 5),
+(8, 'OT7', 1000.00, 3),
+(11, 'Small', 699.00, 3),
+(11, 'Medium', 799.99, 5),
+(11, 'Large', 899.00, 2),
+(12, 'Small', 749.00, 10),
+(12, 'Medium', 849.00, 5),
+(12, 'Large', 949.00, 10),
+(13, 'Small', 749.00, 2),
+(13, 'Medium', 849.00, 5),
+(13, 'Large', 949.00, 10);
 
 CREATE TABLE cart_items(
   cart_item_id            INT(7)              AUTO_INCREMENT,
@@ -303,5 +470,3 @@ CREATE TABLE suspensions(
 --     CONSTRAINT Transaction_PK PRIMARY KEY(transaction_id),
 --     CONSTRAINT User_Logs_FK FOREIGN KEY(user_id) REFERENCES USERS(user_id)
 -- );
-
-

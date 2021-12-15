@@ -27,7 +27,6 @@ if (!isset($_SESSION['user_id'])) {
   <link rel="stylesheet" href="../../css/utilities/utilities.css" />
   <link rel="stylesheet" href="../../css/common/common.css" />
 
-  <script src="../../js/common/auto-resizer.js"></script>
   <script src="../../js/common/auth/logout.js"></script>
   <script type="module" src="../../js/common/categories-results.js"></script>
 </head>

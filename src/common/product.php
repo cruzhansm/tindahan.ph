@@ -222,7 +222,7 @@
                 ></span>
               </div>
               <div class="product-actions-row">
-                <button class="btn btn-primary product-purchase-button " onclick="attemptAddToCart()">
+                <button class="btn btn-primary product-purchase-button visually-hidden" id="adduToCartu" onclick="attemptAddToCart()">
                   Add to Cart
                 </button>
                 <button class="btn btn-tertiary edit visually-hidden" onclick="redirectToEdit()">Edit</button>
@@ -269,7 +269,7 @@
             <div class="product-reviews-rating">
               <i class="fa-solid fa-star"></i>
               <div class="product-reviews-rating total-rating">
-                <span id="productRating" class="fs-36">0.0</span>
+                <span id="productRating2" class="fs-36">0.0</span>
                 <span>out of 5</span>
               </div>
             </div>
