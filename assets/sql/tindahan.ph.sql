@@ -81,15 +81,6 @@ CREATE TABLE listing_application(
   CONSTRAINT Listings_Application_FK FOREIGN KEY(listing_store) REFERENCES partner_store(store_id)
 );
 
-CREATE TABLE listing_categories(
-  listing_category_id     INT(7)                AUTO_INCREMENT,
-  application_id          INT(7)                NOT NULL,
-  category_id             INT(1)                NOT NULL,
-  CONSTRAINT Listing_Category_PK PRIMARY KEY(listing_category_id),
-  CONSTRAINT Listing_Application_FK FOREIGN KEY(application_id) REFERENCES listing_application(application_id),
-  CONSTRAINT Listing_Category_FK FOREIGN KEY(category_id) REFERENCES product_category(category_id)
-);
-
 CREATE TABLE listing_variations(
   listing_variation_id    INT(7)                AUTO_INCREMENT,
   application_id          INT(7)                NOT NULL,
@@ -105,6 +96,15 @@ CREATE TABLE product_category(
   category_name   VARCHAR(30)         NOT NULL,
   category_img    VARCHAR(260)        NOT NULL,
   CONSTRAINT Product_Category_PK PRIMARY KEY(category_id)
+);
+
+CREATE TABLE listing_categories(
+  listing_category_id     INT(7)                AUTO_INCREMENT,
+  application_id          INT(7)                NOT NULL,
+  category_id             INT(1)                NOT NULL,
+  CONSTRAINT Listing_Category_PK PRIMARY KEY(listing_category_id),
+  CONSTRAINT Listing_Application_FK FOREIGN KEY(application_id) REFERENCES listing_application(application_id),
+  CONSTRAINT Listing_Category_FK FOREIGN KEY(category_id) REFERENCES product_category(category_id)
 );
 
 -- CATEGORY ENTRIES
@@ -272,7 +272,7 @@ CREATE TABLE suspensions(
   end_date          DATETIME          NOT NULL,
   message           VARCHAR(500)      NOT NULL,
   CONSTRAINT User_Suspensions_PK PRIMARY KEY(suspension_id),
-  CONSTRAINT Suspensions_User_FK FOREIGN KEY(user_id) REFERENCES users(user_id)
+  CONSTRAINT Suspensions_User_FK FOREIGN KEY(user_id) REFERENCES users(user_id),
   CONSTRAINT Suspensions_Product_FK FOREIGN KEY(product_id) REFERENCES products(product_id)
 );
 

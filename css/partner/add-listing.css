@@ -16,19 +16,6 @@
   margin-left: 417px;
 }
 
-.custom-upload {
-  border-radius: 6px;
-  width: 172px !important;
-  height: 45px;
-  position: absolute;
-  left: 624px;
-  bottom: 0px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #2cad69;
-}
-
 .form-row {
   width: 609px;
   margin-left: 243px;
