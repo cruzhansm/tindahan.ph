@@ -34,7 +34,9 @@ export function updateEmail(email) {
       newEmail: email
     },
     success: (data) => {
+      
       data = JSON.parse(data);
+      console.log(data);
 
       if (data === true) {
         const status = new StatusModal('Updated!');

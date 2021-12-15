@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+  header('Location: /tindahan.ph/src/common/login.php?mode=login');
+  exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -74,16 +83,15 @@
           <header class="header">
             <div class="text-highlight fw-bold">Live Listings</div>
             <div class="header-icons">
-              <i class="fa-solid fa-gear"></i>
               <div class="user-image-icon" onclick="displayUserActions()">
                 <div class="user-image-actions visually-hidden">
                   <div class="user-image-action no-hover">
                     <i class="fa-solid fa-user"></i>
-                    <div>userFirstName</div>
+                    <div><?php echo $_SESSION['fname'] ?></div>
                   </div>
                   <div class="user-image-action">
                     <i class="fa-solid fa-right-from-bracket"></i>
-                    <a href="../../src/common/login.html">LOG OUT</a>
+                    <span onclick="logout()">LOG OUT</span>
                   </div>
                 </div>
               </div>
