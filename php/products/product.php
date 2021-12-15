@@ -394,5 +394,29 @@
       
       return $products;
     }
+
+    static function changeSuspensionStatus($prodId, $status) {
+      include('../connect.php');
+
+      $changeStatus = "UPDATE products
+                       SET suspended = '$status'
+                       WHERE product_id = $prodId";
+
+      $query = mysqli_query($conn, $changeStatus);
+
+      return $query ? true : false;
+    }
+
+    static function changeActive($prodId, $status) {
+      include('../connect.php');
+
+      $changeActive = "UPDATE products
+                       SET active = '$status'
+                       WHERE product_id = $prodId";
+
+      $query = mysqli_query($conn, $changeActive);
+
+      return $query ? true : false;
+    }
   }
 ?>
