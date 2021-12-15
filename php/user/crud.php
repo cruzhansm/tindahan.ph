@@ -50,7 +50,8 @@
 
     $userInfo = "SELECT *
                  FROM users u
-                 WHERE u.active = 'true'";
+                 WHERE u.active = 'true'
+                       AND u.role != 'admin'";
 
     $query = mysqli_query($conn, $userInfo);
 
