@@ -26,7 +26,8 @@ if (!isset($_SESSION['user_id'])) {
   <link rel="stylesheet" href="../../css/components/components.css" />
   <link rel="stylesheet" href="../../css/utilities/utilities.css" />
   <link rel="stylesheet" href="../../css/common/common.css" />
-  <link rel="stylesheet" href="/tindahan.ph/css/common/settings/settings.css"/>
+  <link rel="stylesheet" href="/tindahan.ph/css/common/settings/settings.css" />
+  <script type="module" src="/tindahan.ph/js/common/search.js"></script>
 
   <script src="../../js/common/auto-resizer.js"></script>
   <script src="../../js/common/auth/logout.js"></script>
@@ -250,12 +251,13 @@ if (!isset($_SESSION['user_id'])) {
     <div class="col right">
       <div class="container-display">
         <header class="header">
-          <form action="noSubmit(event)">
-            <input type="search" class="form-control form-search border-input" placeholder="Search products" />
+          <form onsubmit="search(event)">
+            <input type="search" class="form-control form-search border-input" placeholder="Search products">
           </form>
           <div class="header-icons">
             <i class="fa-solid fa-gear" onclick="showSettings(verifySettings)"></i>
             <div class="user-image-icon" onclick="displayUserActions()">
+              <img src="<?php echo $_SESSION['image'] ?>" class="user-image-icon" />
               <div class="user-image-actions visually-hidden">
                 <div class="user-image-action no-hover">
                   <i class="fa-solid fa-user"></i>

@@ -45,9 +45,9 @@
   border-radius: 12px;
   width: 210px;
   height: 100px;
-  top: 50px;
-  right: 170px; /* parent width: 40px, elem width: 210px; 210px - 40px */
-  position: relative;
+  top: 55px;
+  right: 0px; /* parent width: 40px, elem width: 210px; 210px - 40px */
+  position: absolute;
   padding: 20px;
   z-index: 99;
 }

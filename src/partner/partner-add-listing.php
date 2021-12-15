@@ -79,7 +79,7 @@ if (!isset($_SESSION['user_id'])) {
               <div class="profile-modal-form-title">edit info</div>
               <form onsubmit="attemptUpdateInfo(event)" class="not-required profile-modal-form" id="info-settings">
                 <div class="profile-modal-form-upload for-validation">
-                  <img style="border-radius: 50%;"id="previewImg" class="profile-modal-form-img" />
+                  <img style="border-radius: 50%;" id="previewImg" class="profile-modal-form-img" />
                   <label class="profile-modal-form-icon">
                     <i class="fa-solid fa-plus"></i>
                     <input id="partnerImg" accept="image/*" type="file" class="not-required" />
@@ -228,6 +228,7 @@ if (!isset($_SESSION['user_id'])) {
           <div class="header-icons">
             <i class="fa-solid fa-gear" onclick="showSettings(verifySettings)"></i>
             <div class="user-image-icon" onclick="displayUserActions()">
+              <img src="<?php echo $_SESSION['image'] ?>" class="user-image-icon" />
               <div class="user-image-actions visually-hidden">
                 <div class="user-image-action no-hover">
                   <i class="fa-solid fa-user"></i>

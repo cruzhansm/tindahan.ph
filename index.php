@@ -215,6 +215,7 @@ if (!isset($_SESSION['user_id'])) {
           <div class="header-icons">
             <i class="fa-solid fa-gear" onclick="showSettings(verifySettings)"></i>
             <div class="user-image-icon" onclick="displayUserActions()">
+              <img src="<?php echo $_SESSION['image']?>" class="user-image-icon" />
               <div class="user-image-actions visually-hidden">
                 <div class="user-image-action no-hover">
                   <i class="fa-solid fa-user"></i>
