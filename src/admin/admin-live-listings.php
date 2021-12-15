@@ -1,10 +1,19 @@
+<?php
+  session_start();
+
+  if(!isset($_SESSION['user_id'])) {
+    header('Location: /tindahan.ph/src/common/login.php?mode=login');
+    exit();
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tindahan.ph - User Management</title>
+    <title>tindahan.ph - Live Listings</title>
 
     <link
       rel="icon"
@@ -33,7 +42,58 @@
     <link rel="stylesheet" href="../../css/components/components.css" />
     <link rel="stylesheet" href="../../css/utilities/utilities.css" />
     <link rel="stylesheet" href="../../css/admin/admin.css" />
+
+    <script src="../../js/admin/live-listing.js" type="module"></script>
+    <script src="../../js/admin/admin-modals/product-modals/suspend-product-modal.js" type="module"></script>
   </head>
+
+  <div
+      class="modal fade"
+      id="suspendModal"
+      data-bs-backdrop="static"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable shop-modal-dialog">
+        <div class="modal-content listing-modal-content">
+          <div
+            class="shop-modal-header"
+            data-bs-dismiss="modal"
+            onclick="dismissProdModal(suspendModal)"
+          >
+            <i class="fa-solid fa-x"></i>
+          </div>
+          
+            <div class="modal-body suspend-modal-body">
+              <!--  DISPLAY DATA HERE -->
+           </div>  
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="deleteModal"
+      data-bs-backdrop="static"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable shop-modal-dialog">
+        <div class="modal-content listing-modal-content">
+          <div
+            class="shop-modal-header"
+            data-bs-dismiss="modal"
+            onclick="dismissDeleteModal(deleteModal)"
+          >
+            <i class="fa-solid fa-x"></i>
+          </div>
+          
+            <div class="modal-body delete-modal-body">
+              <!--  DISPLAY DATA HERE -->
+           </div>  
+        </div>
+      </div>
+    </div>
 
   <body class="bg-primary">
     <div class="row m-0">
@@ -54,7 +114,7 @@
               <i class="fa-solid fa-tachometer-alt sidenav-link-icon"></i>
               <div class="sidenav-link-text">Dashboard</div>
             </a>
-            <a href="#" class="sidenav-link active">
+            <a href="./admin-users.html" class="sidenav-link">
               <i class="fa-solid fa-users-cog sidenav-link-icon"></i>
               <div class="sidenav-link-text">Users</div>
             </a>
@@ -62,7 +122,7 @@
               <i class="fa-solid fa-hands-helping sidenav-link-icon"></i>
               <div class="sidenav-link-text">Partners</div>
             </a>
-            <a href="./admin-live-listings.html" class="sidenav-link">
+            <a href="#" class="sidenav-link active">
               <i class="fa-solid fa-list-alt sidenav-link-icon"></i>
               <div class="sidenav-link-text">Live Listings</div>
             </a>
@@ -76,8 +136,9 @@
       <div class="col right">
         <div class="container-display">
           <header class="header">
-            <div class="text-highlight fw-bold">User Management</div>
+            <div class="text-highlight fw-bold">Live Listings</div>
             <div class="header-icons">
+              <i class="fa-solid fa-inbox"></i>
               <i class="fa-solid fa-gear"></i>
               <div class="user-image-icon" onclick="displayUserActions()">
                 <div class="user-image-actions visually-hidden">
@@ -102,123 +163,25 @@
               class="form-control form-search admin-user-search"
               placeholder="Search"
             />
-            <div class="admin-user-inline-search">
+            <div
+              class="admin-user-inline-search"
+              style="width: 285px; padding: 10px 40px"
+            >
               <span>Filters:</span>
               <div class="input-group">
                 <input
-                  name="filterUser"
-                  id="partners"
-                  type="checkbox"
-                  class="form-check-input"
-                />
-                <label for="partners" class="form-check">Partners</label>
-              </div>
-              <div class="input-group">
-                <input
-                  name="filterUser"
-                  id="users"
-                  type="checkbox"
-                  class="form-check-input"
-                />
-                <label for="users" class="form-check">Users</label>
-              </div>
-              <div class="input-group">
-                <input
-                  name="filterUser"
                   id="suspended"
                   type="checkbox"
                   class="form-check-input"
                 />
-                <label for="suspended" class="form-check">Suspended</label>
-              </div>
-              <div class="input-group">
-                <input
-                  name="filterUser"
-                  id="banned"
-                  type="checkbox"
-                  class="form-check-input"
-                />
-                <label for="banned" class="form-check">Banned</label>
+                <label for="partners" class="form-check">Suspended</label>
               </div>
             </div>
           </form>
 
-          <div class="container-admin-user-list">
-            <div class="admin-user">
-              <div class="admin-user-info">
-                <div class="admin-user-info-highlight">
-                  <div class="admin-user-img"></div>
-                  <div class="admin-user-name">Juan dela Cruz</div>
-                </div>
-                <span class="admin-user-role">Role</span
-                ><span class="admin-user-id">ID Number</span>
-              </div>
-              <div class="admin-user-actions">
-                <button class="btn btn-tertiary">Suspend</button
-                ><button class="btn btn-tertiary">Ban</button
-                ><button class="btn btn-tertiary">Delete</button>
-              </div>
-            </div>
-            <div class="admin-user">
-              <div class="admin-user-info">
-                <div class="admin-user-info-highlight">
-                  <div class="admin-user-img"></div>
-                  <div class="admin-user-name">Juan dela Cruz</div>
-                </div>
-                <span class="admin-user-role">Role</span
-                ><span class="admin-user-id">ID Number</span>
-              </div>
-              <div class="admin-user-actions">
-                <button class="btn btn-tertiary">Suspend</button
-                ><button class="btn btn-tertiary">Ban</button
-                ><button class="btn btn-tertiary">Delete</button>
-              </div>
-            </div>
-            <div class="admin-user">
-              <div class="admin-user-info">
-                <div class="admin-user-info-highlight">
-                  <div class="admin-user-img"></div>
-                  <div class="admin-user-name">Juan dela Cruz</div>
-                </div>
-                <span class="admin-user-role">Role</span
-                ><span class="admin-user-id">ID Number</span>
-              </div>
-              <div class="admin-user-actions">
-                <button class="btn btn-tertiary">Suspend</button
-                ><button class="btn btn-tertiary">Ban</button
-                ><button class="btn btn-tertiary">Delete</button>
-              </div>
-            </div>
-            <div class="admin-user">
-              <div class="admin-user-info">
-                <div class="admin-user-info-highlight">
-                  <div class="admin-user-img"></div>
-                  <div class="admin-user-name">Juan dela Cruz</div>
-                </div>
-                <span class="admin-user-role">Role</span
-                ><span class="admin-user-id">ID Number</span>
-              </div>
-              <div class="admin-user-actions">
-                <button class="btn btn-tertiary">Suspend</button
-                ><button class="btn btn-tertiary">Ban</button
-                ><button class="btn btn-tertiary">Delete</button>
-              </div>
-            </div>
-            <div class="admin-user">
-              <div class="admin-user-info">
-                <div class="admin-user-info-highlight">
-                  <div class="admin-user-img"></div>
-                  <div class="admin-user-name">Juan dela Cruz</div>
-                </div>
-                <span class="admin-user-role">Role</span
-                ><span class="admin-user-id">ID Number</span>
-              </div>
-              <div class="admin-user-actions">
-                <button class="btn btn-tertiary">Suspend</button
-                ><button class="btn btn-tertiary">Ban</button
-                ><button class="btn btn-tertiary">Delete</button>
-              </div>
-            </div>
+          <div class="container-admin-user-list" id="admin-listings-list">
+            <!--  INSERT DATA HERE  -->
+          </div>
 
             <nav>
               <!-- Convert to dynamically created page number -->
