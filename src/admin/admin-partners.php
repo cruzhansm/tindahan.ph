@@ -42,22 +42,36 @@
     <link rel="stylesheet" href="../../css/components/components.css" />
     <link rel="stylesheet" href="../../css/utilities/utilities.css" />
     <link rel="stylesheet" href="../../css/admin/admin.css" />
-    
 
-    <script src="../../js/admin/pending-lists-functions.js" type="module"></script>
-    <script src="../../js/admin/pending-modals/pending-partner-modal.js" type="module"></script>
-    <script src="../../js/admin/pending-modals/pending-listing-modal.js" type="module"></script>
+    <script
+      src="../../js/admin/pending-lists-functions.js"
+      type="module"
+    ></script>
+    <script
+      src="../../js/admin/pending-modals/pending-partner-modal.js"
+      type="module"
+    ></script>
+    <script
+      src="../../js/admin/pending-modals/pending-listing-modal.js"
+      type="module"
+    ></script>
   </head>
 
   <body class="bg-primary">
-  <div
+    <div
       class="modal fade"
       id="pendingPartnerProfile"
       data-bs-backdrop="static"
       tabindex="-1"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-scrollable shop-modal-dialog partner-modal-dialog">
+      <div
+        class="
+          modal-dialog modal-dialog-scrollable
+          shop-modal-dialog
+          partner-modal-dialog
+        "
+      >
         <div class="modal-content partner-modal-content">
           <div
             class="shop-modal-header partner-modal-header"
@@ -66,10 +80,10 @@
           >
             <i class="fa-solid fa-x"></i>
           </div>
-          
-            <div class="modal-body partner-modal-body">
-              <!--  INSERT DATA HERE  -->
-           </div>
+
+          <div class="modal-body partner-modal-body">
+            <!--  INSERT DATA HERE  -->
+          </div>
         </div>
       </div>
     </div>
@@ -81,7 +95,13 @@
       tabindex="-1"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-scrollable shop-modal-dialog listing-modal-dialog">
+      <div
+        class="
+          modal-dialog modal-dialog-scrollable
+          shop-modal-dialog
+          listing-modal-dialog
+        "
+      >
         <div class="modal-content listing-modal-content">
           <div
             class="shop-modal-header listing-modal-header"
@@ -90,10 +110,10 @@
           >
             <i class="fa-solid fa-x"></i>
           </div>
-          
-            <div class="modal-body listing-modal-body">
-              <!--  INSERT DATA HERE  -->
-           </div>
+
+          <div class="modal-body listing-modal-body">
+            <!--  INSERT DATA HERE  -->
+          </div>
         </div>
       </div>
     </div>
@@ -128,7 +148,6 @@
               <i class="fa-solid fa-list-alt sidenav-link-icon"></i>
               <div class="sidenav-link-text">Live Listings</div>
             </a>
-            
           </div>
         </div>
       </div>
@@ -137,7 +156,6 @@
           <header class="header">
             <div class="text-highlight fw-bold"></div>
             <div class="header-icons">
-              
               <i class="fa-solid fa-gear"></i>
               <div class="user-image-icon" onclick="displayUserActions()">
                 <div class="user-image-actions visually-hidden">

@@ -18,6 +18,8 @@ window.onload = async () => {
 
   setVisibleEditButton(user);
   appendShopDetails(store);
+
+  console.log(store.store_id);
   const products = JSON.parse(
     await retrieveStoreProducts(parseInt(store.store_id))
   );

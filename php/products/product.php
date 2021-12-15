@@ -210,27 +210,26 @@
     static function createProduct($applicationID) {
       include('../connect.php');
 
+      $applicationID = intval($applicationID);
+
       $query1 = "SELECT * 
                  FROM listing_application
                  WHERE application_id = $applicationID;";
 
       $application = mysqli_fetch_assoc(mysqli_query($conn, $query1));
 
-      $product_store = $application['listing_store'];
+      $product_store = intval($application['listing_store']);
       $product_name = $application['listing_name'];
       $product_img = $application['listing_img'];
-      $product_price = $application['listing_price'];
+      $product_price = intval($application['listing_price']);
       $product_desc = $application['listing_desc'];
       $product_brand = $application['listing_brand'];
-      $product_quantity = $application['listing_quantity'];
+      $product_quantity = intval($application['listing_quantity']);
 
-      $insertProduct = "INSERT INTO
-                        products(product_store, product_name, product_img,
-                                 product_price, product_desc, product_brand, product_quantity)
-                        VALUES  ('$product_store', '$product_name', '$product_img',
-                                 $product_price, '$product_desc', '$product_brand', $product_quantity)";
+      $insertProduct = "INSERT INTO products (product_name, product_img, product_price, product_desc, product_quantity, product_brand, product_store)
+                        VALUES('$product_name', '$product_img', $product_price, '$product_desc', $product_quantity, '$product_brand', $product_store);";
 
-      $query = mysqli_query($conn, $insertProduct);
+      $result = mysqli_query($conn, $insertProduct);
 
       return mysqli_insert_id($conn);
     }
@@ -248,11 +247,12 @@
       return $query ? true : false;
     }
 
-    //  Inserts categories in db (productId problem)
     public static function createCategory($applicationId, $productId) {
       
       include('../connect.php');
       
+      $applicationId = intval($applicationId);
+
       $query = "SELECT category_id
                 FROM listing_categories
                 WHERE application_id = $applicationId";
