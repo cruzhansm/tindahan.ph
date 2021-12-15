@@ -180,6 +180,11 @@
     static function updateEmail($user_id, $email) {
       include('connect.php');
 
+      $double = User::checkDoubleEmail($email);
+      if($double == true) {
+        return false;
+      }
+
       $query = "UPDATE users
                 SET email = ?
                 WHERE user_id = $user_id";
@@ -192,10 +197,32 @@
 
       mysqli_close($conn);
       return $result;
-
     }
 
-    static function updatePassword($user_id, $pass) {
+    static function checkDoubleEmail($email) {
+      include('connect.php');
+
+      $query = "SELECT *
+                FROM users
+                WHERE email = ?";
+      $stmt = mysqli_prepare($conn, $query);
+
+      mysqli_stmt_bind_param($stmt, 's', $user_email);
+      $user_email = $email;
+
+      mysqli_stmt_execute($stmt);
+      mysqli_stmt_store_result($stmt);
+
+      $row_count = mysqli_stmt_num_rows($stmt);
+
+      if($row_count >= 1) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    static function updatePassword($user_id, $input_pass) {
       include('connect.php');
 
       $query = "UPDATE users
@@ -204,12 +231,12 @@
       $stmt = mysqli_prepare($conn, $query);
 
       mysqli_stmt_bind_param($stmt, 's', $user_password);
-      $user_password = password_hash($pass, PASSWORD_BCRYPT);
+      $user_password = password_hash($input_pass, PASSWORD_BCRYPT);
 
       $result = mysqli_stmt_execute($stmt);
 
       mysqli_close($conn);
-      return $result;
+      return $user_password;
     }
 
     static function createUserSuspension($userId) {
@@ -282,6 +309,20 @@
       }
 
       return $users;
+    }
+
+    public static function verifySettings($user_id, $input_pass) {
+      include('connect.php');
+      
+      $query = "SELECT password
+                FROM users
+                WHERE user_id = $user_id;";
+
+      $result = mysqli_query($conn, $query);
+
+      $row = mysqli_fetch_assoc($result);
+      $rpass = $row['password'];
+      return password_verify($input_pass, $rpass);
     }
   }
 

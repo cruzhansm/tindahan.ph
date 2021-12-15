@@ -120,8 +120,8 @@
 
 .for-validation > input,
 .for-validation > select {
-  margin-bottom: 20px !important;
-  height: auto !important;
+  /* margin-bottom: 20px; */
+  /* height: auto !important; */
 }
 
 .profile-modal-input-group > div > span {

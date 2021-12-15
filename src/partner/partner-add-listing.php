@@ -1,3 +1,9 @@
+<?php
+
+  session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,8 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Listing</title>
 
-    <link rel="icon" type="image/png" href="assets/images/tph-logo-128px.png" />
-
+    <link
+      rel="icon"
+      type="image/png"
+      href="../../assets/images/tph-logo-128px.png"
+    />
 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -31,18 +40,13 @@
     <link rel="stylesheet" href="../../css/utilities/utilities.css" />
     <link rel="stylesheet" href="../../css/partner/partner.css" />
 
+    <script type="module" src="/tindahan.ph/js/common/search.js"></script>
+    <script src="../../js/common/auth/logout.js"></script>
     <script
       type="module"
       src="../../js/partner/listings/add-listing.js"
     ></script>
   </head>
-
-  <script>
-    function noSubmit(e) {
-      e.preventDefault();
-    }
-  </script>
-
   <body class="bg-primary">
     <div class="row m-0">
       <div class="col left">
@@ -90,7 +94,19 @@
             <div class="text-highlight fw-bold">Add Listing</div>
             <div class="header-icons">
               <i class="fa-solid fa-gear"></i>
-              <div class="user-image-icon"></div>
+              <div onclick="displayUserActions()">
+              <img src="<?php echo $_SESSION['image']; ?>" class="user-image-icon" />
+              <div class="user-image-actions visually-hidden">
+                <div class="user-image-action no-hover">
+                  <i class="fa-solid fa-user"></i>
+                  <div><?php echo $_SESSION['fname']; ?></div>
+                </div>
+                <div class="user-image-action">
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  <span onclick="logout()">LOG OUT</span>
+                </div>
+              </div>
+            </div>
             </div>
           </header>
 
@@ -176,8 +192,7 @@
                     <label class="no-var-cap">No variations</label>
                   </div>
 
-                  <div class="col-var-inputs" id="variationList">
-                  </div>
+                  <div class="col-var-inputs" id="variationList"></div>
 
                   <div id="addVariation" class="container-fluid col-add-var">
                     <div class="row" onclick="addNewVariation()">

@@ -109,7 +109,7 @@
             <div class="text-highlight fw-bold">Add Listing</div>
             <div class="header-icons">
               <i class="fa-solid fa-gear"></i>
-              <div class="user-image-icon"></div>
+              <div ></div>
             </div>
           </header>
 

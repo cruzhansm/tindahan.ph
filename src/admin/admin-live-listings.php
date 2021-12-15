@@ -43,57 +43,46 @@
     <link rel="stylesheet" href="../../css/utilities/utilities.css" />
     <link rel="stylesheet" href="../../css/admin/admin.css" />
 
+    <script src="../../js/common/auth/logout.js"></script>
     <script src="../../js/admin/live-listing.js" type="module"></script>
-    <script src="../../js/admin/admin-modals/product-modals/suspend-product-modal.js" type="module"></script>
+    <script
+      src="../../js/admin/admin-modals/product-modals/suspend-product-modal.js"
+      type="module"
+    ></script>
   </head>
 
   <div
-      class="modal fade"
-      id="suspendModal"
-      data-bs-backdrop="static"
-      tabindex="-1"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-scrollable shop-modal-dialog">
-        <div class="modal-content listing-modal-content">
-          <div
-            class="shop-modal-header"
-            data-bs-dismiss="modal"
-            onclick="dismissProdModal(suspendModal)"
-          >
-            <i class="fa-solid fa-x"></i>
-          </div>
-          
-            <div class="modal-body suspend-modal-body">
-              <!--  DISPLAY DATA HERE -->
-           </div>  
-        </div>
-      </div>
-    </div>
+    class="modal fade"
+    id="suspendModal"
+    data-bs-backdrop="static"
+    tabindex="-1"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-scrollable shop-modal-dialog">
+      <div class="modal-content admin listing-modal-content">
 
-    <div
-      class="modal fade"
-      id="deleteModal"
-      data-bs-backdrop="static"
-      tabindex="-1"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-scrollable shop-modal-dialog">
-        <div class="modal-content listing-modal-content">
-          <div
-            class="shop-modal-header"
-            data-bs-dismiss="modal"
-            onclick="dismissDeleteModal(deleteModal)"
-          >
-            <i class="fa-solid fa-x"></i>
-          </div>
-          
-            <div class="modal-body delete-modal-body">
-              <!--  DISPLAY DATA HERE -->
-           </div>  
+        <div class="modal-body suspend-modal-body admin">
+          <!--  DISPLAY DATA HERE -->
         </div>
       </div>
     </div>
+  </div>
+
+  <div
+    class="modal fade"
+    id="deleteModal"
+    data-bs-backdrop="static"
+    tabindex="-1"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-scrollable shop-modal-dialog">
+      <div class="modal-content listing-modal-content admin">
+        <div class="modal-body delete-modal-body admin">
+          <!--  DISPLAY DATA HERE -->
+        </div>
+      </div>
+    </div>
+  </div>
 
   <body class="bg-primary">
     <div class="row m-0">
@@ -134,17 +123,20 @@
           <header class="header">
             <div class="text-highlight fw-bold">Live Listings</div>
             <div class="header-icons">
-              <i class="fa-solid fa-inbox"></i>
               <i class="fa-solid fa-gear"></i>
-              <div class="user-image-icon" onclick="displayUserActions()">
+              <div onclick="displayUserActions()">
+                <img
+                  src="<?php echo $_SESSION['image']?>"
+                  class="user-image-icon"
+                />
                 <div class="user-image-actions visually-hidden">
                   <div class="user-image-action no-hover">
                     <i class="fa-solid fa-user"></i>
-                    <div>userFirstName</div>
+                    <div><?php echo $_SESSION['fname'] ?></div>
                   </div>
                   <div class="user-image-action">
                     <i class="fa-solid fa-right-from-bracket"></i>
-                    <a href="../../src/common/login.html">LOG OUT</a>
+                    <span onclick="logout()">LOG OUT</span>
                   </div>
                 </div>
               </div>
@@ -153,55 +145,8 @@
         </div>
 
         <div class="container-admin-user">
-          <form class="container-admin-user-header">
-            <input
-              type="search"
-              class="form-control form-search admin-user-search"
-              placeholder="Search"
-            />
-            <div
-              class="admin-user-inline-search"
-              style="width: 285px; padding: 10px 40px"
-            >
-              <span>Filters:</span>
-              <div class="input-group">
-                <input
-                  id="suspended"
-                  type="checkbox"
-                  class="form-check-input"
-                />
-                <label for="partners" class="form-check">Suspended</label>
-              </div>
-            </div>
-          </form>
-
           <div class="container-admin-user-list" id="admin-listings-list">
             <!--  INSERT DATA HERE  -->
-          </div>
-
-            <nav>
-              <!-- Convert to dynamically created page number -->
-              <!-- creates N number of links depending on number of store -->
-              <!-- products, where N = no. of products / 12-> max display -->
-              <!-- per page. -->
-              <ul class="pagination justify-content-center shop-pagination">
-                <li class="page-item" onclick="">
-                  <a class="page-link" href="#">Previous</a>
-                </li>
-                <li class="page-item" onclick="">
-                  <a class="page-link current" href="#">1</a>
-                </li>
-                <li class="page-item" onclick="">
-                  <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item" onclick="">
-                  <a class="page-link" href="#">3</a>
-                </li>
-                <li class="page-item" onclick="">
-                  <a class="page-link" href="#">Next</a>
-                </li>
-              </ul>
-            </nav>
           </div>
         </div>
       </div>

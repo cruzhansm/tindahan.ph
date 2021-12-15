@@ -254,7 +254,7 @@ export function attachEmptyFieldListeners(watch) {
 
 function showPreviewImage(image) {
   const preview = URL.createObjectURL(image.files[0]);
-  console.log(image.files[0]);
+  console.log(image.files[0], preview);
   const target = document.querySelector('#previewImg');
 
   target.classList.remove('visually-hidden');

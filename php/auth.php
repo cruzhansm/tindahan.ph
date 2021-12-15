@@ -62,6 +62,7 @@
     $_SESSION['phone'] = $data['phone'];
     $_SESSION['role'] = $data['role'];
     $_SESSION['email'] = $GLOBALS['email'];
+    $_SESSION['suspended'] = $data['suspended'];
 
     return $user == false ? new CustomError('user', 'User does not exist.') : $data['role'];
   }

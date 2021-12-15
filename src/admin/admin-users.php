@@ -43,15 +43,20 @@
     <link rel="stylesheet" href="../../css/utilities/utilities.css" />
     <link rel="stylesheet" href="../../css/admin/admin.css" />
 
-    <script src="../../js/admin/admin-modals/user-modals/suspend-user-modal.js" type="module"></script>
-    <script src="../../js/admin/admin-modals/user-modals/delete-user-modal.js" type="module"></script>
+    <script
+      src="../../js/admin/admin-modals/user-modals/suspend-user-modal.js"
+      type="module"
+    ></script>
+    <script
+      src="../../js/admin/admin-modals/user-modals/delete-user-modal.js"
+      type="module"
+    ></script>
     <script src="../../js/admin/user-management.js" type="module"></script>
     <script src="../../js/common/auth/logout.js"></script>
   </head>
 
   <body class="bg-primary">
-
-  <div
+    <div
       class="modal fade"
       id="suspendModal"
       data-bs-backdrop="static"
@@ -59,10 +64,10 @@
       aria-hidden="true"
     >
       <div class="modal-dialog modal-dialog-scrollable shop-modal-dialog">
-        <div class="modal-content admin listing-modal-content ">
+        <div class="modal-content admin listing-modal-content">
           <div class="modal-body suspend-modal-body admin">
             <!--  DISPLAY DATA HERE -->
-          </div>  
+          </div>
         </div>
       </div>
     </div>
@@ -78,7 +83,7 @@
         <div class="modal-content listing-modal-content admin">
           <div class="modal-body delete-modal-body admin">
             <!--  DISPLAY DATA HERE -->
-          </div>  
+          </div>
         </div>
       </div>
     </div>
@@ -113,34 +118,33 @@
               <i class="fa-solid fa-list-alt sidenav-link-icon"></i>
               <div class="sidenav-link-text">Live Listings</div>
             </a>
-            
           </div>
         </div>
       </div>
       <div class="col right">
         <div class="container-display">
-          <header class="header">
-            <div class="text-highlight fw-bold">User Management</div>
-            <div class="header-icons">
-              <i class="fa-solid fa-gear"></i>
-              <div class="user-image-icon" onclick="displayUserActions()">
-                <div class="user-image-actions visually-hidden">
-                  <div class="user-image-action no-hover">
-                    <i class="fa-solid fa-user"></i>
-                    <div><?php echo $_SESSION['fname'] ?></div>
-                  </div>
-                  <div class="user-image-action">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    <span onclick="logout()">LOG OUT</span>
-                  </div>
+        <header class="header">
+          <div class="text-highlight fw-bold">Overview</div>
+          <div class="header-icons">
+          <i class="fa-solid fa-gear"></i>
+            <div  onclick="displayUserActions()">
+            <img src="<?php echo $_SESSION['image']?>" class="user-image-icon" />
+              <div class="user-image-actions visually-hidden">
+                <div class="user-image-action no-hover">
+                  <i class="fa-solid fa-user"></i>
+                  <div><?php echo $_SESSION['fname'] ?></div>
+                </div>
+                <div class="user-image-action">
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  <span onclick="logout()">LOG OUT</span>
                 </div>
               </div>
             </div>
-          </header>
-        </div>
+          </div>
+        </header>
 
-        <div class="container-admin-user">
-          <!-- <form class="container-admin-user-header">
+          <div class="container-admin-user">
+            <!-- <form class="container-admin-user-header">
             <input
               type="search"
               class="form-control form-search admin-user-search"
@@ -187,10 +191,9 @@
             </div>
           </form> -->
 
-          <div class="container-admin-user-list" id="admin-user-list">
-            <!--  INSERT DATA HERE  -->
-          </div>
-
+            <div class="container-admin-user-list" id="admin-user-list">
+              <!--  INSERT DATA HERE  -->
+            </div>
           </div>
         </div>
       </div>

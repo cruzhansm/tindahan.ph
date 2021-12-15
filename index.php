@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_id']) || $_SESSION['suspended'] == 'true') {
   header('Location: /tindahan.ph/src/common/login.php?mode=login');
   exit();
 }
@@ -33,11 +33,11 @@ if (!isset($_SESSION['user_id'])) {
   <script src="js/common/messaging.js"></script>
   <script src="js/common/auth/logout.js"></script>
   <script type="module" src="js/index.js"></script>
-  <script type="module" src="js/common/settings/settings.js"></script>
+  <script type="module" src="/tindahan.ph/js/common/settings/settings.js"></script>
 </head>
 
 <body class="bg-primary">
-
+  <!--SETTINGS MODAL-->
   <div class="modal fade" id="verifySettings" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
     <div class="verify-settings-modal modal-content modal-dialog">
       <div class="verify-settings-modal-header" data-bs-dismiss="modal" onclick="dismissModal(verifySettings)">
@@ -86,11 +86,11 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="profile-modal-input-group">
                   <div class="for-validation">
                     <label for="" class="form-control">first name</label>
-                    <input id="user-fName" type="text" class="no-success form-control">
+                    <input id="user-fName" type="text" class="no-success not-required form-control">
                   </div>
                   <div class="for-validation">
                     <label for="" class="form-control">last name</label>
-                    <input id="user-lName" type="text" class="no-success form-control">
+                    <input id="user-lName" type="text" class="no-success not-required form-control">
                   </div>
 
                   <label for="" class="form-control">city</label>
@@ -214,7 +214,8 @@ if (!isset($_SESSION['user_id'])) {
           </form>
           <div class="header-icons">
             <i class="fa-solid fa-gear" onclick="showSettings(verifySettings)"></i>
-            <div class="user-image-icon" onclick="displayUserActions()">
+            <div  onclick="displayUserActions()">
+              <img src="<?php echo $_SESSION['image']?>" class="user-image-icon" />
               <div class="user-image-actions visually-hidden">
                 <div class="user-image-action no-hover">
                   <i class="fa-solid fa-user"></i>

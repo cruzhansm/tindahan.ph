@@ -1,9 +1,7 @@
 import { navigateToHome } from '/tindahan.ph/js/common/navigation/nav.js';
 import { fetchMultipleProducts } from '/tindahan.ph/js/common/db-methods/retrieve.js';
 import { Pagination } from '/tindahan.ph/js/common/pagination.js';
-import { fetchUserDetails } from '/tindahan.ph/js/common/db-methods/retrieve.js';
 
-export var USER_DETAILS = new Object();
 
 window.onload = async () => {
   const view = new URLSearchParams(window.location.search);
@@ -25,10 +23,6 @@ window.onload = async () => {
       console.log(products);
       appendDiscoverProducts(products);
     }
-  });
-
-  fetchUserDetails().then((data) => {
-    USER_DETAILS = data;
   });
 };
 

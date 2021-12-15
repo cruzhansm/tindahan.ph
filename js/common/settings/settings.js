@@ -15,7 +15,9 @@ import {
   updateEmail,
   updatePassword
 } from '/tindahan.ph/js/common/db-methods/update.js';
-import { USER_DETAILS } from '/tindahan.ph/js/index.js';
+import { fetchUserDetails } from '/tindahan.ph/js/common/db-methods/retrieve.js';
+
+var USER_DETAILS = new Object();
 
 window.showModal = function showModal(selectedModal) {
   const modal = new bootstrap.Modal(selectedModal);
@@ -56,6 +58,10 @@ window.dismissSettingsModal = function dismissSettingsModal(selectedModal) {
 };
 
 window.showSettings = function showSettings(selectedModal) {
+  fetchUserDetails().then((data) => {
+    USER_DETAILS = data;
+  });
+
   const modal = new bootstrap.Modal(selectedModal);
   const form = selectedModal.querySelector('form');
 
