@@ -29,7 +29,6 @@
     include('../connect.php');
     include('store.php');
 
-
     $store_id = $_REQUEST['storeID'];
 
     $query = "SELECT user_id FROM partner_store WHERE store_id = $store_id;";

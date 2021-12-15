@@ -124,8 +124,8 @@ function setVisibleEditButton(user) {
   if (user == parseInt(STORE.store_owner)) {
     edit.classList.remove('visually-hidden');
   } else {
-    storeo.classList.remove('active');
-    storeo.setAttribute(
+    link.classList.remove('active');
+    link.setAttribute(
       'href',
       '/tindahan.ph/src/partner/partner-shop-profile.php'
     );

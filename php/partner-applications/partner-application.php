@@ -77,7 +77,7 @@
     public static function getApplications($count) {
       include('../connect.php');
 
-      $query = "SELECT pa.application_id, pa.store_name, CONCAT(u.fname, ' ', u.lname) AS `name`
+      $query = "SELECT pa.application_id, pa.store_img, pa.store_name, CONCAT(u.fname, ' ', u.lname) AS `name`
                 FROM partner_applications pa
                 JOIN users u ON u.user_id = pa.user_id
                 WHERE pa.application_status = 'pending'

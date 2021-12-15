@@ -46,12 +46,11 @@
 
     private function fetchOrderProducts($order_id) {
       include('../connect.php');
-      $query ="SELECT od.*, p.product_id, ps.store_name, p.product_img, p.product_name, pv.variation
+      $query ="SELECT od.*, p.product_id, ps.store_name, p.product_img, p.product_name, ci.variation_id
                FROM order_details od
                JOIN cart_items ci ON ci.cart_item_id = od.cart_item_id
                JOIN products p ON p.product_id = ci.product_id
                JOIN partner_store ps ON ps.store_id = p.product_store
-               JOIN product_variation pv ON pv.variation_id = ci.variation_id 
                WHERE od.order_id = $order_id;";
 
       $result = mysqli_query($conn, $query);
@@ -65,11 +64,24 @@
               $product[$x] = intval($val);
             }
           }
+          if(is_null($product['variation_id']) == false) {
+            $variation_id = $product['variation_id'];
+            $query2 = "SELECT variation 
+                       FROM product_variation 
+                       WHERE variation_id = $variation_id;";
+
+            $var = mysqli_fetch_assoc(mysqli_query($conn, $query2));
+
+            $product['variation'] = $var['variation'];
+          }
+          else {
+            $product['variation'] = 'No variation';
+          }
           array_push($products, $product);
         }
       }
 
-      return $result == true ? $products : false;
+      return $products;
     }
 
     public static function newOrder($user_id, $order, $recipient) {
@@ -132,14 +144,25 @@
     public static function fetchFakeOrderDetails($cart_item_id) {
       include('../connect.php');
 
-      $query = "SELECT ci.product_id, ps.store_name, p.product_img, p.product_name, pv.variation
+      $query = "SELECT ci.product_id, ci.variation_id, ps.store_name, p.product_img, p.product_name
                 FROM cart_items ci
                 JOIN products p ON p.product_id = ci.product_id
                 JOIN partner_store ps ON ps.store_id = p.product_store
-                JOIN product_variation pv ON pv.variation_id = ci.variation_id
                 WHERE ci.cart_item_id = $cart_item_id;";
 
       $result = mysqli_fetch_assoc(mysqli_query($conn, $query));
+
+      if(is_null($result['variation_id']) == false) {
+        $variation_id = $result['variation_id'];
+        $query2 = "SELECT variation FROM product_variation WHERE variation_id = $variation_id;";
+
+        $var = mysqli_fetch_assoc(mysqli_query($conn, $query2));
+
+        $result['variation'] = $var['variation'];
+      }
+      else {
+        $result['variation'] = 'No variation';
+      }
 
       return $result;
     }

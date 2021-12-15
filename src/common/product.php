@@ -273,14 +273,14 @@
                 <span>out of 5</span>
               </div>
             </div>
-            <div class="product-reviews-rating-filter">
+            <!-- <div class="product-reviews-rating-filter">
               <button
                 class="btn btn-tertiary product-reviews-rating filter-button"
               >
                 <i class="fa-solid fa-filter"></i>
                 Filter
               </button>
-            </div>
+            </div> -->
           </div>
 
           <div class="product-page-reviews populated">

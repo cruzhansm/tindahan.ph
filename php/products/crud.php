@@ -16,6 +16,12 @@
       echo json_encode(deleteVariation()); break;
     case 'update-product-details':
       echo json_encode(updateProduct()); break;
+    case 'create-listing-tabs':
+      echo json_encode(createListingTabs()); break;
+    case 'suspend-listing':
+      echo json_encode(suspendListing()); break;
+    case 'delete-listing':
+      echo json_encode(deleteListing()); break;
   }
 
   function getSpecificProduct() {
@@ -127,6 +133,7 @@
                              $variation_name,
                              $variation_price,
                              $variation_quantity);
+   
 
       $product = $product_id;
       $variation_name = $variation['name'];
@@ -138,4 +145,29 @@
 
     return $result;
   }
+
+  function suspendListing() {
+    include('../connect.php');
+    include('product.php');
+
+    $result = Product::changeSuspensionStatus(intval($product['product_id']), 'true');
+
+    return $result;
+  }
+
+  function deleteListing() {
+    include('../connect.php');
+    include('product.php');
+
+    $listings = array();
+    $product = array();
+    $listings = $_REQUEST['listing'];
+    $product = $listings['products'];
+
+    $result = Product::changeActive(intval($product['product_id']), 'false');
+
+    return $result == true ? true : false;
+  }
+
+
 ?>

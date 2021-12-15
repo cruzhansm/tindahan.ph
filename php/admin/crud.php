@@ -58,7 +58,7 @@
     include('../user.php');
     include('../partner-applications/partner-application.php');
 
-    $query = "SELECT la.application_id, la.listing_name, ps.store_name
+    $query = "SELECT la.listing_img, la.application_id, la.listing_name, ps.store_name
               FROM listing_application la
               JOIN partner_store ps ON ps.store_id = la.listing_store
               WHERE la.listing_status = 'pending'

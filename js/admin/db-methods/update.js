@@ -1,4 +1,6 @@
-import { APPLICATIONS } from '../pending-lists-functions.js';
+import { LISTINGS } from '/tindahan.ph/js/admin/live-listing.js';
+
+// import { APPLICATIONS } from '../pending-lists-functions.js';
 import { LISTING_APPLICATIONS } from '../pending-lists-functions.js';
 import { StatusModal } from '/tindahan.ph/js/common/modal/status-modal.js';
 

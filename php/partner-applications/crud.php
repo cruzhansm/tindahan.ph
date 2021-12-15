@@ -17,7 +17,7 @@
     include('./partner-application.php');
 
     $data = json_decode($_REQUEST['application'], true);
-    $img = '/tindahan.ph/assets/images/' . $_FILES['file']['name'];
+    $img = '/tindahan.ph/assets/mock/partner/' . $_FILES['file']['name'];
 
     $exists = PartnerApplication::userHasApplied($_SESSION['user_id']);
 

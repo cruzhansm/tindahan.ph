@@ -250,10 +250,12 @@ function appendReviewImages(images) {
 }
 
 window.attemptAddToCart = function attemptAddToCart() {
+  const variation = parseInt(document.querySelector('#productVariation').value);
+
   const cartItem = {
     productID: PRODUCT.product_id,
     storeID: PRODUCT.product_store.store_id,
-    variationID: parseInt(document.querySelector('#productVariation').value),
+    variationID: isNaN(variation) ? null : variation,
     quantity: parseInt(
       document.querySelector('#inStock').querySelector('#buyCount').innerText
     ),

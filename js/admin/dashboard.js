@@ -20,13 +20,12 @@ function appendAllLatest(latest) {
   const applicationContainer = document.querySelector('#applications');
   const listingContainer = document.querySelector('#listings');
 
-  let tab = document.createElement('div');
-  tab.classList.add('trending-tab', 'rounded');
-
   latest.users.forEach((user) => {
+    let tab = document.createElement('div');
+    tab.classList.add('trending-tab', 'rounded');
     tab.innerHTML += `
       <div class="trending-tab-product">
-        <div class="trending-tab-product-img"></div>
+        <img src="${user.image}" class="trending-tab-product-img" />
         <div class="trending-tab-product-data">
           <div>${user.name}</div>
           <div>User #${user.user_id}</div>
@@ -34,17 +33,15 @@ function appendAllLatest(latest) {
       </div>
       <div class="trending-tab-sales">${user.last_login.split(' ')[0]}</div>
     `;
+    userContainer.append(tab);
   });
 
-  userContainer.append(tab);
-
-  tab = document.createElement('div');
-  tab.classList.add('trending-tab', 'rounded');
-
   latest.applications.forEach((application) => {
+    let tab = document.createElement('div');
+    tab.classList.add('trending-tab', 'rounded');
     tab.innerHTML += `
     <div class="trending-tab-product">
-      <div class="trending-tab-product-img"></div>
+      <img src="${application.store_img}" class="trending-tab-product-img" />
       <div class="trending-tab-product-data">
         <div>${application.store_name}</div>
         <div>User #${application.application_id}</div>
@@ -52,17 +49,15 @@ function appendAllLatest(latest) {
     </div>
     <div class="trending-tab-sales">${application.name}</div>
     `;
+    applicationContainer.append(tab);
   });
 
-  applicationContainer.append(tab);
-
-  tab = document.createElement('div');
-  tab.classList.add('trending-tab', 'rounded');
-
   latest.listings.forEach((listing) => {
+    let tab = document.createElement('div');
+    tab.classList.add('trending-tab', 'rounded');
     tab.innerHTML += `
     <div class="trending-tab-product">
-      <div class="trending-tab-product-img"></div>
+      <img src="${listing.listing_img}" class="trending-tab-product-img">
       <div class="trending-tab-product-data">
         <div>${listing.listing_name}</div>
         <div>User #${listing.application_id}</div>
@@ -70,7 +65,6 @@ function appendAllLatest(latest) {
     </div>
     <div class="trending-tab-sales">${listing.store_name}</div>
     `;
+    listingContainer.append(tab);
   });
-
-  listingContainer.append(tab);
 }

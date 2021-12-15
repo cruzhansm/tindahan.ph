@@ -191,8 +191,8 @@ export class CartProduct {
     this.productImg = product.product_img;
     this.productVariation = product.variation;
     this.productQuantity = product.quantity;
-    this.productBasePrice = product.product_price;
-    this.productTotalPrice = product.product_price * product.quantity;
+    this.productBasePrice = product.price;
+    this.productTotalPrice = product.price * product.quantity;
 
     const ret = this.createCartProduct();
 

@@ -250,6 +250,17 @@
                 </div>
                 <div class="order-filter-type">
                   <input
+                    id="shipped"
+                    type="radio"
+                    name="filter"
+                    class="form-check-input"
+                  />
+                  <label for="processing" class="form-check-label"
+                    >To Deliver</label
+                  >
+                </div>
+                <div class="order-filter-type">
+                  <input
                     id="transit"
                     type="radio"
                     name="filter"

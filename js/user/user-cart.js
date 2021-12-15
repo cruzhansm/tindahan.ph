@@ -4,9 +4,11 @@ import { fakeCheckoutItems } from './db-methods/insert.js';
 import { retrieveCartItems } from './db-methods/retrieve.js';
 
 window.onload = async () => {
-  let data = await retrieveCartItems();
+  let data = JSON.parse(await retrieveCartItems());
 
-  const cart = new Cart(data.store_owner, JSON.parse(data).cart_items);
+  console.log(data);
+
+  const cart = new Cart(data.store_owner, data.cart_items);
   appendStores(cart.byStore);
   appendSelectAllListener();
   appendQuantityListeners();

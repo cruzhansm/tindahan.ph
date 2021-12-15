@@ -265,7 +265,7 @@
     public static function getUsers($count) {
       include('connect.php');
 
-      $query = "SELECT user_id, CONCAT(fname, ' ', lname) as `name`, last_login
+      $query = "SELECT user_id, CONCAT(fname, ' ', lname) as `name`, image, last_login
                 FROM users
                 WHERE role = 'user'
                 ORDER BY user_id DESC
