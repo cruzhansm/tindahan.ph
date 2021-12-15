@@ -59,7 +59,7 @@ CREATE TABLE partner_store(
   store_id                INT(5)              AUTO_INCREMENT,
   user_id                 INT(5)              NOT NULL,
   store_name              VARCHAR(100)        NOT NULL,
-  store_img               VARCHAR(260)        DEFAULT '/tindahan.ph/assets/partner/placeholder.png',
+  store_img               VARCHAR(260)        DEFAULT '/tindahan.ph/assets/mock/partner/placeholder.png',
   store_description       VARCHAR(200)        NOT NULL,
   active                  ENUM('true', 'false') DEFAULT 'true',
   suspended               ENUM('true', 'false') DEFAULT 'false',
@@ -81,7 +81,7 @@ CREATE TABLE partner_applications(
   store_name              VARCHAR(100)          NOT NULL,
   store_main_categ        VARCHAR(20)           NOT NULL,
   store_desc              VARCHAR(200)          NOT NULL,
-  store_img               VARCHAR(260)          DEFAULT '/tindahan.ph/assets/partner/placeholder.png',
+  store_img               VARCHAR(260)          DEFAULT '/tindahan.ph/assets/mock/partner/placeholder.png',
   online_experience       ENUM('yes', 'no')     NOT NULL,
   online_platforms        VARCHAR(100)                  ,
   CONSTRAINT Application_PK PRIMARY KEY(application_id),
@@ -92,8 +92,8 @@ INSERT INTO partner_applications(user_id, application_status, store_name, store_
 (10, 'approved', 'AnyTop', 'Furniture', 'All kinds of household items at the best affordable prices', '/tindahan.ph/assets/mock/partner/user010.jpg', 'no', NULL),
 (11, 'approved', 'WAISO', 'Stationery', 'All you need is here, at the price you want, and we are everywhere', '/tindahan.ph/assets/mock/partner/user011.jpg', 'yes', 'Shopee'),
 (12, 'approved', 'Kids Kingdom', 'Kids', 'Toys for all ages of imagination', '/tindahan.ph/assets/mock/partner/user012.jpg', 'yes', 'Shopee, Lazada'),
-(13, 'approved', 'Cebu Foam', 'Furniture', 'One-stop shop for all your foam and furniture needs', '/tindahan.ph/assets/partner/placeholder.png', 'no', NULL),
-(14, 'approved', 'Corals', "Women's", 'Perfet wardrobe for everyone', '/tindahan.ph/assets/partner/placeholder.png', 'yes', 'Carousell' );
+(13, 'approved', 'Cebu Foam', 'Furniture', 'One-stop shop for all your foam and furniture needs', DEFAULT, 'no', NULL),
+(14, 'approved', 'Corals', "Women's", 'Perfet wardrobe for everyone', DEFAULT, 'yes', 'Carousell' );
 
 CREATE TABLE listing_application(
   application_id          INT(7)                AUTO_INCREMENT,
