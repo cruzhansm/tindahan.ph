@@ -284,14 +284,13 @@ export async function createLiveListing() {
       type: 'create-listing-tabs',
     },
     success: (data) => {
-      console.log(data);
       let result = JSON.parse(data);
       return result;
     },
   });
 }
 
-export function suspendProdModal(product, modalBody) {
+export function suspendProdModal(product, modalBody, index) {
   modalBody.innerHTML = '';
   modalBody.innerHTML += `<div class="listing-modal-body mx-auto">
       <div class="listing-modal-top">
@@ -322,14 +321,14 @@ export function suspendProdModal(product, modalBody) {
           <button
             type="submit"
             class="btn btn-primary"
-            onclick="suspendedProdModal(suspendModal, ${product.products.product_id})"
+            onclick="suspendedProdModal(suspendModal, ${product.products.product_id}, ${index})"
           >
             Suspend
           </button>
         </div>`;
 }
 
-export function deleteProdModal(user, modalBody) {
+export function deleteProdModal(product, modalBody, index) {
   modalBody.innerHTML = '';
   modalBody.innerHTML += `<div class="listing-modal-body mx-auto">
       <div class="listing-modal-top">
@@ -342,7 +341,7 @@ export function deleteProdModal(user, modalBody) {
       <div class="listing-modal-details text-center">
         <div class="listing-details">
           <span>
-          Deleting <span class="modal-name">${user.fname} ${user.lname}</span> will mean they will not be able to access tindahan.ph indefinitely.
+          Deleting <span class="modal-name">${product.products.product_name}</span> will mean it will be removed from tindahan.ph indefinitely.
           </span>
         </div>
         
@@ -360,7 +359,7 @@ export function deleteProdModal(user, modalBody) {
           <button
             type="submit"
             class="btn btn-primary"
-            // onclick="deletedModal(deleteModal, ${user.user_id})"
+            // onclick="deletedProdModal(deleteModal, ${index})"
           >
             Delete
           </button>

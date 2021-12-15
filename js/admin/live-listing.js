@@ -22,8 +22,12 @@ function appendListingTab(listingsCatcher) {
           <span class="admin-user-id">${x.products.product_id}</span>
         </div>
         <div class="admin-user-actions" style="width: 375px">
-          <button class="btn btn-tertiary" onclick="showProdModal(suspendModal, ${x.products.product_id}, ${index})">Suspend</button>
-          <button class="btn btn-tertiary">Delete</button>
+          ${
+            x.products.suspended == 'false'
+            ? `<button class="btn btn-tertiary" onclick="showProdModal(suspendModal, ${x.products.product_id}, ${index})">Suspend</button>`
+            : `<span class="tph-disabled">SUSPENDED</span>`
+          }
+          <button class="btn btn-tertiary" onclick="showDeleteModal(deleteModal, ${x.products.product_id}, ${index})">Delete</button>
         </div>
       </div>`;
   });
