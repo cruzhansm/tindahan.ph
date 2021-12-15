@@ -146,13 +146,59 @@
     return $result;
   }
 
+  function createListingTabs() {
+    include('../connect.php');
+
+    $listings = array();
+
+    $listingInfo = "SELECT p.*
+                    FROM products p
+                    WHERE p.active = 'true'";
+
+    $query = mysqli_query($conn, $listingInfo);
+
+    if (mysqli_num_rows($query) > 0) {
+      while ($data = mysqli_fetch_assoc($query)) {
+        $listing_details = array();
+        $listing_details['products'] = $data;
+        $listing_details['store'] = getStoreInfo($data['product_store']);
+
+        array_push($listings, $listing_details);
+      }
+    }
+    return $listings;
+  }
+
+  function getStoreInfo($storeId) {
+    include('../connect.php');
+
+    $storeNames = array();
+    $selectStore = "SELECT store_name
+                    FROM partner_store
+                    WHERE store_id = $storeId";
+
+    $query = mysqli_query($conn, $selectStore);
+
+    if (mysqli_num_rows($query) > 0) {
+      while ($data = mysqli_fetch_assoc($query)) {
+        array_push($storeNames, $data['store_name']);
+      }
+    }
+    return $storeNames;
+  }
+
   function suspendListing() {
     include('../connect.php');
     include('product.php');
 
+    $listings = array();
+    $product = array();
+    $listings = $_REQUEST['listing'];
+    $product = $listings['products'];
+
     $result = Product::changeSuspensionStatus(intval($product['product_id']), 'true');
 
-    return $result;
+    return $result == true ? true : false;
   }
 
   function deleteListing() {

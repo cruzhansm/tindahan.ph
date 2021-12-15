@@ -85,6 +85,7 @@ export function rejectListing(index, modal) {
 
 export function rejectListingV2(index) {
   // Rejecting Listing in tab (works, but modal still shows up)
+
   $.ajax({
     url: '/tindahan.ph/php/listing-applications/crud.php',
     data: {
