@@ -101,27 +101,40 @@ CREATE TABLE listing_application(
   listing_name            VARCHAR(255)          NOT NULL,
   listing_img             VARCHAR(260)          NOT NULL,
   listing_price           DECIMAL(7, 2)         NOT NULL,
+  listing_quantity        INT(5)                NOT NULL, 
   listing_desc            VARCHAR(500)          NOT NULL,
   listing_brand           VARCHAR(20)           NOT NULL,
   listing_status          ENUM('pending', 'approved', 'rejected') DEFAULT 'pending',
   CONSTRAINT Listings_Application_PK PRIMARY KEY(application_id),
   CONSTRAINT Listings_Application_FK FOREIGN KEY(listing_store) REFERENCES partner_store(store_id)
 );
+INSERT INTO listing_application(listing_store, listing_name, listing_img, listing_price, listing_desc, listing_brand, listing_status, listing_quantity) VALUES
+(3, 'Sesame Street Stuffed Toys', '/tindahan.ph/assets/mock/products/product001.jpg', 650.00, 'Characters from Sesame Street, comes with playable music.', 'Philips', 'approved', 38),
 
-INSERT INTO listing_application(listing_store, listing_name, listing_img, listing_price, listing_desc, listing_brand, listing_status) VALUES
-(3, 'Sesame Street Stuffed Toys', '/tindahan.ph/assets/mock/products/product001.jpg', 650.00, 'Characters from Sesame Street, comes with playable music.', 'Philips', 'approved'),
-(3, 'Banana Baby Teether', '/tindahan.ph/assets/mock/products/product002.jpg', 440.00, 'Banana teether for 8mos and above. Requires adult supervision.', 'Chicco', 'approved'),
-(2, 'Clear Acrylic Organizer', '/tindahan.ph/assets/mock/products/product003.jpg', 70.00, 'Organizer that can hold writing instruments.', 'WAISO', 'approved'),
-(2, 'Tokyo Mini Instant Chicken Ramen', '/tindahan.ph/assets/mock/products/product004.jpg', 99.00, 'Delicious ramen after 5 minutes of low-effort cooking', 'WAISO', 'approved'),
-(2, 'Cute Floral Beaded Bracelet', '/tindahan.ph/assets/mock/products/product005.jpg', 200.00, 'Beautiful handcrafted bracelet for friends and family', 'WAISO', 'approved'),
-(1, 'Touch Sensor Trash Bin', '/tindahan.ph/assets/mock/products/product006.jpg', 1200.00, 'Trash bin that opens and closes through a touch sensor', 'AnyTop', 'approved'),
-(1, 'Door Sticky Stopper', 'tindahan.ph/assets/mock/products/product007.jpg', 80.00, 'Door stopped to avoid floor and wall marks', 'AnyTop', 'approved'),
-(1, 'BTS Welcome Doormat', 'tindahan.ph/assets/mock/products/product008.jpg', 750.00, 'Be welcomed home with seven beautiful Korean men', 'AnyTop', 'approved'),
-(4, 'Solo Stool', '/tindahan.ph/assets/mock/products/product009.jpg', 1100.00, 'Stool best for the living room', 'Cebu Foam', 'approved'),
-(4, 'Lifetime Outdoor Table for Big Families', 'tindahan.ph/assets/mock/products/product010.jpg', 800.00, 'Best for gatherings outdoors with friends and family.', 'Lifetime', 'approved'),
-(5, 'Camilla Blouse', 'tindahan.ph/assets/mock/products/product011.jpg', 699.00, 'One size for all. For casual and semi-formal events', 'Corals', 'approved'),
-(5, 'Sunshine Midi Skirt', 'tindahan.ph/assets/mock/products/product012.jpg', 749.00, 'Skirt that fits the picnic and cottage vibes', 'Corals', 'approved'),
-(5, 'Kurt Polo Shirt', 'tindahan.ph/assets/mock/products/product013.jpg', 749.00, 'Closet staple for men', 'Corals', 'approved');
+(3, 'Banana Baby Teether', '/tindahan.ph/assets/mock/products/product002.jpg', 440.00, 'Banana teether for 8mos and above. Requires adult supervision.', 'Chicco', 'approved', 30),
+
+(2, 'Clear Acrylic Organizer', '/tindahan.ph/assets/mock/products/product003.jpg', 70.00, 'Organizer that can hold writing instruments.', 'WAISO', 'approved', 100),
+
+(2, 'Tokyo Mini Instant Chicken Ramen', '/tindahan.ph/assets/mock/products/product004.jpg', 99.00, 'Delicious ramen after 5 minutes of low-effort cooking', 'WAISO', 'approved', 50),
+
+(2, 'Cute Floral Beaded Bracelet', '/tindahan.ph/assets/mock/products/product005.jpg', 200.00, 'Beautiful handcrafted bracelet for friends and family', 'WAISO', 'approved', 20),
+
+(1, 'Touch Sensor Trash Bin', '/tindahan.ph/assets/mock/products/product006.jpg', 1200.00, 'Trash bin that opens and closes through a touch sensor', 'AnyTop', 'approved', 20),
+
+(1, 'Door Sticky Stopper', 'tindahan.ph/assets/mock/products/product007.jpg', 80.00, 'Door stopped to avoid floor and wall marks', 'AnyTop', 'approved', 100),
+
+(1, 'BTS Welcome Doormat', 'tindahan.ph/assets/mock/products/product008.jpg', 750.00, 'Be welcomed home with seven beautiful Korean men', 'AnyTop', 'approved', 10),
+
+(4, 'Solo Stool', '/tindahan.ph/assets/mock/products/product009.jpg', 1100.00, 'Stool best for the living room', 'Cebu Foam', 'approved', 10),
+
+(4, 'Lifetime Outdoor Table for Big Families', 'tindahan.ph/assets/mock/products/product010.jpg', 800.00, 'Best for gatherings outdoors with friends and family.', 'Lifetime', 'approved', 50),
+
+(5, 'Camilla Blouse', 'tindahan.ph/assets/mock/products/product011.jpg', 699.00, 'One size for all. For casual and semi-formal events', 'Corals', 'approved', 10),
+
+(5, 'Sunshine Midi Skirt', 'tindahan.ph/assets/mock/products/product012.jpg', 749.00, 'Skirt that fits the picnic and cottage vibes', 'Corals', 'approved', 15),
+
+(5, 'Kurt Polo Shirt', 'tindahan.ph/assets/mock/products/product013.jpg', 749.00, 'Closet staple for men', 'Corals', 'approved', 10);
+
 
 CREATE TABLE product_category(
   category_id     INT(1)              AUTO_INCREMENT,
@@ -220,19 +233,31 @@ CREATE TABLE products(
 );
 
 INSERT INTO products (product_store, product_name, product_img, product_price, product_desc, product_quantity, product_brand, active, suspended) VALUES
-(3, 'Sesame Street Stuffed Toys', '/tindahan.ph/assets/mock/products/product001.jpg', 650.00, 'Characters from Sesame Street, comes with playable music.', 58, 'Philips', 'true', 'false'),
-(3, 'Banana Baby Teether', '/tindahan.ph/assets/mock/products/product002.jpg', 440.00, 'Baana teether for 8mos and above. Requires adult supervision', 60, 'Chicco', 'true', 'false'),
-(2, 'Clear Acrylic Organizer', '/tindahan.ph/assets/mock/products/product003.jpg', 70.00, 'Organizer that can hold writing instruments.', 150, 'WAISO', 'true', 'false'),
+(3, 'Sesame Street Stuffed Toys', '/tindahan.ph/assets/mock/products/product001.jpg', 650.00, 'Characters from Sesame Street, comes with playable music.', 38, 'Philips', 'true', 'false'),
+
+(3, 'Banana Baby Teether', '/tindahan.ph/assets/mock/products/product002.jpg', 440.00, 'Baana teether for 8mos and above. Requires adult supervision', 30, 'Chicco', 'true', 'false'),
+
+(2, 'Clear Acrylic Organizer', '/tindahan.ph/assets/mock/products/product003.jpg', 70.00, 'Organizer that can hold writing instruments.', 100, 'WAISO', 'true', 'false'),
+
 (2, 'Tokyo Mini Instant Chicken Ramen', '/tindahan.ph/assets/mock/products/product004.jpg', 99.00, 'Delicious ramen after 5 minutes of low-effort cooking', 50, 'WAISO', 'true', 'false'),
-(2, 'Cute Floral Beaded Bracelet', '/tindahan.ph/assets/mock/products/product005.jpg', 200.00, 'Beautiful handcrafted bracelet for friends and family', 30, 'WAISO', 'true', 'false'),
-(1, 'Touch Sensor Trash Bin', '/tindahan.ph/assets/mock/products/product006.jpg', 1200.00, 'Trash bin that opens and closes through a touch sensor', 60, 'AnyTop', 'true', 'false'),
+
+(2, 'Cute Floral Beaded Bracelet', '/tindahan.ph/assets/mock/products/product005.jpg', 200.00, 'Beautiful handcrafted bracelet for friends and family', 20, 'WAISO', 'true', 'false'),
+
+(1, 'Touch Sensor Trash Bin', '/tindahan.ph/assets/mock/products/product006.jpg', 1200.00, 'Trash bin that opens and closes through a touch sensor', 20, 'AnyTop', 'true', 'false'),
+
 (1, 'Door Sticky Stopper', '/tindahan.ph/assets/mock/products/product007.jpg', 80.00, 'Door stopped to avoid floor and wall marks', 100, 'AnyTop', 'true', 'false'),
-(1, 'BTS Welcome Doormat', '/tindahan.ph/assets/mock/products/product008.jpg', 750.00, 'Be welcomed home with seven beautiful Korean men', 13, 'AnyTop', 'true', 'false'),
+
+(1, 'BTS Welcome Doormat', '/tindahan.ph/assets/mock/products/product008.jpg', 750.00, 'Be welcomed home with seven beautiful Korean men', 10, 'AnyTop', 'true', 'false'),
+
 (4, 'Solo Stool', '/tindahan.ph/assets/mock/products/product009.jpg', 1100.00, 'Stool best for the living room', 10, 'Cebu Foam', 'true', 'false'),
+
 (4, 'Lifetime Outdoor Table for Big Families', '/tindahan.ph/assets/mock/products/product010.jpg', 800.00, 'Best for gatherings outdoors with friends and family.', 50, 'Lifetime', 'true', 'false'),
+
 (5, 'Camilla Blouse', '/tindahan.ph/assets/mock/products/product011.jpg', 699.00, 'One size for all. For casual and semi-formal events', 10, 'Corals', 'true', 'false'),
-(5, 'Sunshine Midi Skirt', '/tindahan.ph/assets/mock/products/product012.jpg', 749.00, 'Skirt that fits the picnic and cottage vibes', 25, 'Corals', 'true', 'false'),
-(5, 'Kurt Polo Shirt', '/tindahan.ph/assets/mock/products/product013.jpg', 749.00, 'Closet staple for men', 17, 'Corals', 'true', 'false');
+
+(5, 'Sunshine Midi Skirt', '/tindahan.ph/assets/mock/products/product012.jpg', 749.00, 'Skirt that fits the picnic and cottage vibes', 15, 'Corals', 'true', 'false'),
+
+(5, 'Kurt Polo Shirt', '/tindahan.ph/assets/mock/products/product013.jpg', 749.00, 'Closet staple for men', 10, 'Corals', 'true', 'false');
 
 CREATE TABLE product_category_list(
   product_category_id      INT(7)              AUTO_INCREMENT,
@@ -297,42 +322,42 @@ CREATE TABLE product_variation(
 INSERT INTO product_variation(product_id, variation, price, quantity) VALUES
 (1, 'Elmo', 650.00, 20),
 (1, 'Cookie Monster', 700.00, 20),
-(1, 'Big Bird', 650.00, 18),
+(1, 'Big Bird', 750.00, 18),
 (2, 'Peelable Banana', 400.00, 30),
 (2, 'Un-Peelable Banana', 440.00, 30),
 (3, 'Small', 70.00, 50),
-(3, 'Medium', 70.00, 50),
-(3, 'Large', 70.00, 50),
-(5, 'Yellow Flowers', 200.00, 10),
-(5, 'Pink Flowers', 200.00, 10),
-(5, 'Purple Flowers', 200.00, 10),
+(3, 'Medium', 90.00, 50),
+(3, 'Large', 110.00, 50),
+(5, 'Yellow Flowers', 150.00, 10),
+(5, 'Pink Flowers', 170.00, 10),
+(5, 'Purple Flowers', 180.00, 10),
 (6, 'Aluminum', 1200.00, 20),
-(6, 'Wooden Laminate', 1200.00, 20),
-(6, 'Plain White', 1200.00, 20),
-(8, 'Maknae Line', 750.00, 5),
-(8, 'Hyung Line', 750.00, 5),
-(8, 'OT7', 750.00, 3),
+(6, 'Wooden Laminate', 1400.00, 20),
+(6, 'Plain White', 1100.00, 20),
+(8, 'Maknae Line', 850.00, 5),
+(8, 'Hyung Line', 950.00, 5),
+(8, 'OT7', 1000.00, 3),
 (11, 'Small', 699.00, 3),
-(11, 'Medium', 699.99, 5),
-(11, 'Large', 699.00, 2),
+(11, 'Medium', 799.99, 5),
+(11, 'Large', 899.00, 2),
 (12, 'Small', 749.00, 10),
-(12, 'Medium', 749.00, 5),
-(12, 'Large', 749.00, 10),
+(12, 'Medium', 849.00, 5),
+(12, 'Large', 949.00, 10),
 (13, 'Small', 749.00, 2),
-(13, 'Medium', 749.00, 5),
-(13, 'Large', 749.00, 10);
+(13, 'Medium', 849.00, 5),
+(13, 'Large', 949.00, 10);
 
 CREATE TABLE cart_items(
   cart_item_id            INT(7)              AUTO_INCREMENT,
   user_id                 INT(5)              NOT NULL,
   product_id              INT(5)              NOT NULL,
-  variation_id            INT(7)              NOT NULL,
+  variation_id            INT(7)                      ,
   quantity                INT(3)              NOT NULL,
   status                  ENUM('cart', 'ordered', 'removed') DEFAULT 'cart',
   CONSTRAINT Cart_PK PRIMARY KEY(cart_item_id),
   CONSTRAINT Cart_User_FK FOREIGN KEY(user_id) REFERENCES users(user_id),
   CONSTRAINT Cart_Product_FK FOREIGN KEY(product_id) REFERENCES products(product_id),
-  CONSTRAINT Cart_Variation_FK FOREIGN KEY(variation_id) REFERENCES product_variation(variation_id)
+  CONSTRAINT Cart_Variation_FK FOREIGN KEY(variation_id) REFERENCES product_variation(variation_id) ON DELETE SET NULL
 );
 
 CREATE TABLE orders(
@@ -345,7 +370,7 @@ CREATE TABLE orders(
   order_date_shipped      DATETIME                    ,
   order_date_fulfilled    DATETIME                    ,
   order_total_price       DECIMAL(7, 2)       NOT NULL,
-  order_status            ENUM('processing', 'shipped', 'transit', 'delivered', 'cancelled') DEFAULT 'processing',
+  order_status            ENUM('confirmation', 'processing', 'shipped', 'transit', 'delivered', 'cancelled') DEFAULT 'confirmation',
   CONSTRAINT Orders_PK PRIMARY KEY(order_id),
   CONSTRAINT Orders_FK FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
@@ -358,6 +383,7 @@ CREATE TABLE order_status(
 
 INSERT INTO order_status(order_status, order_status_msg)
 VALUES
+('confirmation', 'Awaiting confirmation from seller.'),
 ('processing', 'Your order is being prepared.'),
 ('shipped', 'Your order has arrived in our sort center.'),
 ('transit', 'Your order is on the way. Be on the lookout for our courier.'),
@@ -404,3 +430,43 @@ CREATE TABLE invoice(
   CONSTRAINT Invoice_PK PRIMARY KEY(invoice_id),
   CONSTRAINT Invoice_FK FOREIGN KEY(order_id) REFERENCES orders(order_id)
 );
+
+CREATE TABLE suspensions(
+  suspension_id     INT(7)            AUTO_INCREMENT,
+  user_id           INT(5)                    ,
+  product_id        INT(5)                    ,
+  start_date        DATETIME          DEFAULT NOW(),
+  end_date          DATETIME          NOT NULL,
+  message           VARCHAR(500)      NOT NULL,
+  CONSTRAINT User_Suspensions_PK PRIMARY KEY(suspension_id),
+  CONSTRAINT Suspensions_User_FK FOREIGN KEY(user_id) REFERENCES users(user_id),
+  CONSTRAINT Suspensions_Product_FK FOREIGN KEY(product_id) REFERENCES products(product_id)
+);
+
+-- CREATE TABLE support_inbox(
+--   ticket_id         INT(7)            AUTO_INCREMENT,
+--   user_id           INT(5)            NOT NULL,
+--   ticket_type       ENUM('report', 'bug', 'feedback'),
+--   ticket_title      VARCHAR(50)       NOT NULL,
+--   ticket_message    VARCHAR(500)      NOT NULL,
+--   CONSTRAINT Support_Inbox_PK PRIMARY KEY(ticket_id),
+--   CONSTRAINT Support_Inbox_Fk FOREIGN KEY(user_id) REFERENCES users(user_id)
+-- );
+
+-- CREATE TABLE user_reports(
+--   report_id         INT(7)            AUTO_INCREMENT,
+--   ticket_id         INT(7)            NOT NULL,
+--   report_status     ENUM('approved', 'rejected', 'appealed')
+--   CONSTRAINT User_Reports_PK PRIMARY KEY(report_id),
+--   CONSTRAINT User_Reports_FK FOREIGN KEY(ticket_id) REFERENCES support_inbox(ticket_id)
+-- );
+
+
+-- CREATE TABLE USER_LOGS(
+--     transaction_id          INT(10)             AUTO_INCREMENT,
+--     user_id                 INT(5)              NOT NULL,
+--     transaction_type        VARCHAR(20)         NOT NULL,
+--     transaction_timestamp   DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
+--     CONSTRAINT Transaction_PK PRIMARY KEY(transaction_id),
+--     CONSTRAINT User_Logs_FK FOREIGN KEY(user_id) REFERENCES USERS(user_id)
+-- );

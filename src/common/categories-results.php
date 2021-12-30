@@ -29,7 +29,6 @@ if (!isset($_SESSION['user_id'])) {
   <link rel="stylesheet" href="/tindahan.ph/css/common/settings/settings.css" />
   <script type="module" src="/tindahan.ph/js/common/search.js"></script>
 
-  <script src="../../js/common/auto-resizer.js"></script>
   <script src="../../js/common/auth/logout.js"></script>
   <script type="module" src="../../js/common/categories-results.js"></script>
   <script type="module" src="/tindahan.ph/js/common/settings/settings.js"></script>
@@ -233,17 +232,13 @@ if (!isset($_SESSION['user_id'])) {
             <i class="fa-solid fa-shop sidenav-link-icon"></i>
             <div class="sidenav-link-text">Shop Profile</div>
           </a>
-          <a href="../../src/partner//partner-add-listing.html" class="sidenav-link">
+          <a href="../../src/partner//partner-add-listing.php" class="sidenav-link">
             <i class="fa-solid fa-circle-plus sidenav-link-icon"></i>
             <div class="sidenav-link-text">Add Listing</div>
           </a>
           <a href="../../src/partner/partner-orders.php" class="sidenav-link">
             <i class="fa-solid fa-receipt sidenav-link-icon"></i>
             <div class="sidenav-link-text">Orders</div>
-          </a>
-          <a href="../../src/common/help-center.html" class="sidenav-link">
-            <i class="fa-solid fa-headset sidenav-link-icon"></i>
-            <div class="sidenav-link-text">Help Center</div>
           </a>
         </div>
       </div>
@@ -256,7 +251,7 @@ if (!isset($_SESSION['user_id'])) {
           </form>
           <div class="header-icons">
             <i class="fa-solid fa-gear" onclick="showSettings(verifySettings)"></i>
-            <div class="user-image-icon" onclick="displayUserActions()">
+            <div  onclick="displayUserActions()">
               <img src="<?php echo $_SESSION['image'] ?>" class="user-image-icon" />
               <div class="user-image-actions visually-hidden">
                 <div class="user-image-action no-hover">

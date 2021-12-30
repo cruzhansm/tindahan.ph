@@ -220,7 +220,7 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="sidenav-link-text">Shop Profile</div>
               </a>
               <a
-                href="../../src/partner/partner-add-listing.html"
+                href="../../src/partner/partner-add-listing.php"
                 class="sidenav-link"
               >
                 <i class="fa-solid fa-circle-plus sidenav-link-icon"></i>
@@ -287,7 +287,7 @@ if (!isset($_SESSION['user_id'])) {
           </form>
           <div class="header-icons">
             <i class="fa-solid fa-gear" onclick="showSettings(verifySettings)"></i>
-            <div class="user-image-icon" onclick="displayUserActions()">
+            <div  onclick="displayUserActions()">
               <img src="<?php echo $_SESSION['image'] ?>" class="user-image-icon" />
               <div class="user-image-actions visually-hidden">
                 <div class="user-image-action no-hover">
@@ -342,7 +342,7 @@ if (!isset($_SESSION['user_id'])) {
                 <span id="productQuantity" class="product-purchase-quantity quantity-stock"></span>
               </div>
               <div class="product-actions-row">
-                <button class="btn btn-primary product-purchase-button " onclick="attemptAddToCart()">
+                <button class="btn btn-primary product-purchase-button visually-hidden" id="adduToCartu" onclick="attemptAddToCart()">
                   Add to Cart
                 </button>
                 <button class="btn btn-tertiary edit visually-hidden" onclick="redirectToEdit()">Edit</button>
@@ -380,16 +380,18 @@ if (!isset($_SESSION['user_id'])) {
             <div class="product-reviews-rating">
               <i class="fa-solid fa-star"></i>
               <div class="product-reviews-rating total-rating">
-                <span id="productRating" class="fs-36">0.0</span>
+                <span id="productRating2" class="fs-36">0.0</span>
                 <span>out of 5</span>
               </div>
             </div>
-            <div class="product-reviews-rating-filter">
-              <button class="btn btn-tertiary product-reviews-rating filter-button">
+            <!-- <div class="product-reviews-rating-filter">
+              <button
+                class="btn btn-tertiary product-reviews-rating filter-button"
+              >
                 <i class="fa-solid fa-filter"></i>
                 Filter
               </button>
-            </div>
+            </div> -->
           </div>
 
           <div class="product-page-reviews populated">

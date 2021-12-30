@@ -8,7 +8,7 @@
 .checkout-process-form > .for-validation > input.form-control {
   border-radius: 73px;
   width: 389px;
-  height: 45px;
+  height: 100% !important;
 }
 
 .checkout-process-form > button {
@@ -48,5 +48,14 @@
 
 .form-contact-number.checkout > input {
   width: 389px;
+  height: 45px !important;
+}
+
+#checkoutInfo > .for-validation {
   height: 45px;
+}
+
+#checkoutInfo > .for-validation > input {
+  height: 100%;
+  margin: 0;
 }

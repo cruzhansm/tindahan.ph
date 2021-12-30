@@ -6,6 +6,4 @@ window.search = function search(event) {
   let redirect = '/tindahan.ph/src/common/search.php';
 
   window.location.href = query.length > 0 ? `${redirect}?q=${query}` : redirect;
-}
-
-
+};

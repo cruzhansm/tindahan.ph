@@ -26,11 +26,22 @@ if (!isset($_SESSION['user_id'])) {
   <link rel="stylesheet" href="../../css/components/components.css" />
   <link rel="stylesheet" href="../../css/utilities/utilities.css" />
   <link rel="stylesheet" href="../../css/admin/admin.css" />
+  <link rel="stylesheet" href="../../css/admin/admin-modals/pending-listing-modal.css">
+  <link rel="stylesheet" href="../../css/admin/admin-modals/pending-partner-modal.css">
 
-
-  <script src="../../js/admin/pending-lists-functions.js" type="module"></script>
-  <script src="../../js/admin/pending-modals/pending-partner-modal.js" type="module"></script>
-  <script src="../../js/admin/pending-modals/pending-listing-modal.js" type="module"></script>
+  <script src="../../js/common/auth/logout.js"></script>
+  <script
+      src="../../js/admin/pending-lists-functions.js"
+      type="module"
+    ></script>
+    <script
+      src="../../js/admin/pending-modals/pending-partner-modal.js"
+      type="module"
+    ></script>
+    <script
+      src="../../js/admin/pending-modals/pending-listing-modal.js"
+      type="module"
+    ></script>
 </head>
 
 <body class="bg-primary">
@@ -48,15 +59,32 @@ if (!isset($_SESSION['user_id'])) {
     </div>
   </div>
 
-  <div class="modal fade" id="pendingListingProfile" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable shop-modal-dialog listing-modal-dialog">
-      <div class="modal-content listing-modal-content">
-        <div class="shop-modal-header listing-modal-header" data-bs-dismiss="modal" onclick="dismissModal(pendingListingProfile)">
-          <i class="fa-solid fa-x"></i>
-        </div>
+    <div
+      class="modal fade"
+      id="pendingListingProfile"
+      data-bs-backdrop="static"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div
+        class="
+          modal-dialog modal-dialog-scrollable
+          shop-modal-dialog
+          listing-modal-dialog
+        "
+      >
+        <div class="modal-content listing-modal-content">
+          <div
+            class="shop-modal-header listing-modal-header"
+            data-bs-dismiss="modal"
+            onclick="dismissModal(pendingListingProfile)"
+          >
+            <i class="fa-solid fa-x"></i>
+          </div>
 
-        <div class="modal-body listing-modal-body">
-          <!--  INSERT DATA HERE  -->
+          <div class="modal-body listing-modal-body">
+            <!--  INSERT DATA HERE  -->
+          </div>
         </div>
       </div>
     </div>
@@ -76,7 +104,7 @@ if (!isset($_SESSION['user_id'])) {
             </div>
           </div>
           <div class="sidenav-links">
-            <a href="./admin-dashboard.html" class="sidenav-link">
+            <a href="./admin-dashboard.php" class="sidenav-link">
               <i class="fa-solid fa-tachometer-alt sidenav-link-icon"></i>
               <div class="sidenav-link-text">Dashboard</div>
             </a>
@@ -88,40 +116,21 @@ if (!isset($_SESSION['user_id'])) {
               <i class="fa-solid fa-hands-helping sidenav-link-icon"></i>
               <div class="sidenav-link-text">Partners</div>
             </a>
-            <a href="./admin-live-listings.html" class="sidenav-link">
+            <a href="./admin-live-listings.php" class="sidenav-link">
               <i class="fa-solid fa-list-alt sidenav-link-icon"></i>
               <div class="sidenav-link-text">Live Listings</div>
             </a>
-            
           </div>
         </div>
-        <div class="sidenav-links">
-          <a href="./admin-dashboard.html" class="sidenav-link">
-            <i class="fa-solid fa-tachometer-alt sidenav-link-icon"></i>
-            <div class="sidenav-link-text">Dashboard</div>
-          </a>
-          <a href="./admin-users.php" class="sidenav-link">
-            <i class="fa-solid fa-users-cog sidenav-link-icon"></i>
-            <div class="sidenav-link-text">Users</div>
-          </a>
-          <a href="#" class="sidenav-link active">
-            <i class="fa-solid fa-hands-helping sidenav-link-icon"></i>
-            <div class="sidenav-link-text">Partners</div>
-          </a>
-          <a href="./admin-live-listings.php" class="sidenav-link">
-            <i class="fa-solid fa-list-alt sidenav-link-icon"></i>
-            <div class="sidenav-link-text">Live Listings</div>
-          </a>
-
-        </div>
       </div>
-    </div>
     <div class="col right">
       <div class="container-display">
-        <header class="header">
-          <div class="text-highlight fw-bold"></div>
+      <header class="header">
+          <div class="text-highlight fw-bold">Overview</div>
           <div class="header-icons">
-            <div class="user-image-icon" onclick="displayUserActions()">
+          <i class="fa-solid fa-gear"></i>
+            <div  onclick="displayUserActions()">
+            <img src="<?php echo $_SESSION['image']?>" class="user-image-icon" />
               <div class="user-image-actions visually-hidden">
                 <div class="user-image-action no-hover">
                   <i class="fa-solid fa-user"></i>

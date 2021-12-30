@@ -28,7 +28,6 @@ if (!isset($_SESSION['user_id'])) {
   <link rel="stylesheet" href="../../css/common/common.css" />
   <link rel="stylesheet" href="/tindahan.ph/css/common/settings/settings.css" />
 
-  <script src="../../js/common/auto-resizer.js"></script>
   <script src="../../js/common/auth/logout.js"></script>
   <script type="module" src="/tindahan.ph/js/common/categories.js"></script>
   <script type="module" src="/tindahan.ph/js/common/settings/settings.js"></script>
@@ -250,7 +249,7 @@ if (!isset($_SESSION['user_id'])) {
           </form>
           <div class="header-icons">
             <i class="fa-solid fa-gear" onclick="showSettings(verifySettings)"></i>
-            <div class="user-image-icon" onclick="displayUserActions()">
+            <div  onclick="displayUserActions()">
               <img src="<?php echo $_SESSION['image'] ?>" class="user-image-icon" />
               <div class="user-image-actions visually-hidden">
                 <div class="user-image-action no-hover">

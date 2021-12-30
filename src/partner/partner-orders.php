@@ -33,7 +33,7 @@ if (!isset($_SESSION['user_id'])) {
   <script type="module" src="../../js/partner/orders/partner-orders.js"></script>
   <script type="module" src="/tindahan.ph/js/common/settings/settings.js"></script>
 </head>
-
+  
 <body class="bg-primary">
   <!--SETTINGS MODAL-->
   <div class="modal fade" id="verifySettings" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
@@ -206,7 +206,7 @@ if (!isset($_SESSION['user_id'])) {
             <i class="fa-solid fa-shop sidenav-link-icon"></i>
             <div class="sidenav-link-text">Shop Profile</div>
           </a>
-          <a href="../../src/partner/partner-add-listing.html" class="sidenav-link">
+          <a href="../../src/partner/partner-add-listing.php" class="sidenav-link">
             <i class="fa-solid fa-circle-plus sidenav-link-icon"></i>
             <div class="sidenav-link-text">Add Listing</div>
           </a>
@@ -224,7 +224,7 @@ if (!isset($_SESSION['user_id'])) {
           <div class="text-highlight fw-bold">Orders</div>
           <div class="header-icons">
             <i class="fa-solid fa-gear" onclick="showSettings(verifySettings)"></i>
-            <div class="user-image-icon" onclick="displayUserActions()">
+            <div  onclick="displayUserActions()">
               <img src="<?php echo $_SESSION['image'] ?>" class="user-image-icon" />
               <div class="user-image-actions visually-hidden">
                 <div class="user-image-action no-hover">

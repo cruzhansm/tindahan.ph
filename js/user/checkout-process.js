@@ -177,6 +177,8 @@ async function initializeOrderSummary() {
 
   VOUCHERS = vouchers;
 
+  console.log(order);
+
   const stores = [
     ...new Set(
       order.products.map((products) => products.order_details.store_name)

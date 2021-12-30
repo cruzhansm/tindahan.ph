@@ -65,30 +65,25 @@ export function retrieveCategories() {
   });
 }
 
-export function validateSettings(password) {
-  return new Promise((resolve, reject) => {
-    $.ajax({
-      type: 'POST',
-      url: '/tindahan.ph/php/common/crud.php',
-      data: {
-        type: 'validate-settings',
-        pass: password,
-      },
-      success: (data) => {
-        data = JSON.parse(data);
-        console.log(data);
-        if (data == true) {
-          resolve(data);
-        } else {
-          reject(data);
-        }
-      },
-    });
+export async function validateSettings(password) {
+  return await $.ajax({
+    type: 'POST',
+    url: '/tindahan.ph/php/common/crud.php',
+    data: {
+      type: 'validate-settings',
+      pass: password,
+    },
+    success: (data) => {
+      data = JSON.parse(data);
+      console.log(data);
+
+      return data;
+    },
   });
 }
 
-export function initializeInfoSettings() {
-  $.ajax({
+export async function initializeInfoSettings() {
+  return await $.ajax({
     type: 'POST',
     url: '/tindahan.ph/php/common/crud.php',
     data: {
@@ -98,37 +93,7 @@ export function initializeInfoSettings() {
       data = JSON.parse(data);
       console.log(data);
 
-      const city = document.getElementById('user-city');
-      const barangay = document.getElementById('user-barangay');
-      const street = document.getElementById('user-street');
-      const zipcode = document.getElementById('user-zipcode');
-      const landmark = document.getElementById('user-landmark');
-      const phone = document.getElementById('user-contact');
-      const email = document.getElementById('accountUserEmail');
-
-      document.getElementById('previewImg').setAttribute('src', data.image);
-      document.getElementById('user-fName').value = data.fname;
-      document.getElementById('user-lName').value = data.lname;
-      data.city == null || data.city == ''
-        ? (city.placeholder = 'Not yet set')
-        : (city.value = data.city);
-      data.barangay == null || data.barangay == ''
-        ? (barangay.placeholder = 'Not yet set')
-        : (barangay.value = data.barangay);
-      data.street == null || data.street == ''
-        ? (street.placeholder = 'Not yet set')
-        : (street.value = data.street);
-      data.zipcode == null || data.zipcode == ''
-        ? (zipcode.placeholder = 'Not yet set')
-        : (zipcode.value = data.zipcode);
-      data.landmark == null || data.landmark == ''
-        ? (landmark.placeholder = 'Not yet set')
-        : (landmark.value = data.landmark);
-      data.phone == null || data.phone == 0
-        ? (phone.placeholder = 'Not yet set')
-        : (phone.value = data.phone);
-
-      email.innerHTML = `${data.email}`;
+      return data;
     },
   });
 }
@@ -168,15 +133,13 @@ export async function fetchSearchResults(query) {
   });
 }
 
-var PRODUCT_TOTAL_NUM = 60;
-
 export async function fetchMultipleProducts() {
   return await $.ajax({
     type: 'GET',
     url: '/tindahan.ph/php/products/retrieve.php',
     data: {
       type: 'multiple-random',
-      num: PRODUCT_TOTAL_NUM,
+      num: 60,
     },
     success: (result) => {
       // console.log(result);

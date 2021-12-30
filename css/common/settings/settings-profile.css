@@ -10,6 +10,7 @@
   border-radius: 50%;
   height: 148px;
   width: 148px;
+  object-fit: cover;
 }
 
 .profile-modal-form-icon {
@@ -59,7 +60,7 @@
 
 .profile-modal-header > i {
   font-size: 16px;
-  transform: scale(1.15,1);
+  transform: scale(1.15, 1);
 }
 
 .profile-modal-body {
@@ -75,7 +76,7 @@
   align-items: center;
   gap: 20px;
   width: 378px;
-  height:auto;
+  height: auto;
 }
 
 .profile-modal-form-title {
@@ -111,7 +112,7 @@
 
 .for-validation > label,
 .profile-modal-input-group > label {
-  color: #64798B;
+  color: #64798b;
   width: max-content;
   height: auto;
   margin-left: 13px;
@@ -120,8 +121,8 @@
 
 .for-validation > input,
 .for-validation > select {
-  margin-bottom: 20px !important;
-  height: auto !important;
+  /* margin-bottom: 20px; */
+  /* height: auto !important; */
 }
 
 .profile-modal-input-group > div > span {
@@ -134,7 +135,7 @@
 }
 
 .profile-modal-form-count > span {
-  color: #64798B;
+  color: #64798b;
   font-size: 12px;
 }
 

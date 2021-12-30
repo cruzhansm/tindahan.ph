@@ -22,13 +22,13 @@ if (!isset($_SESSION['user_id'])) {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://kit.fontawesome.com/056f419e6a.js" crossorigin="anonymous"></script>
 
+  <link rel="stylesheet" href="/tindahan.ph/css/common/common.css">
+  <link rel="stylesheet" href="/tindahan.ph/css/common/settings/settings.css" />
   <link rel="stylesheet" href="../../css/base/base.css" />
   <link rel="stylesheet" href="../../css/components/components.css" />
   <link rel="stylesheet" href="../../css/utilities/utilities.css" />
   <link rel="stylesheet" href="../../css/partner/orders/orders.css" />
   <link rel="stylesheet" href="../../css/user/user.css" />
-  <link rel="stylesheet" href="/tindahan.ph/css/common/common.css">
-  <link rel="stylesheet" href="/tindahan.ph/css/common/settings/settings.css" />
 
   <script src="../../js/common/auth/logout.js"></script>
   <script type="module" src="../../js/user/checkout-process.js"></script>
@@ -194,7 +194,7 @@ if (!isset($_SESSION['user_id'])) {
           </div>
         </div>
         <div class="sidenav-links">
-          <a href="/tindahan/ph/index.php" class="sidenav-link">
+          <a href="/tindahan.ph/index.php" class="sidenav-link">
             <i class="fa-solid fa-house-chimney sidenav-link-icon"></i>
             <div class="sidenav-link-text">Home</div>
           </a>
@@ -224,7 +224,7 @@ if (!isset($_SESSION['user_id'])) {
           <div class="text-highlight fw-bold">Checkout</div>
           <div class="header-icons">
             <i class="fa-solid fa-gear" onclick="showSettings(verifySettings)"></i>
-            <div class="user-image-icon" onclick="displayUserActions()">
+            <div  onclick="displayUserActions()">
               <img src="<?php echo $_SESSION['image'] ?>" class="user-image-icon" />
               <div class="user-image-actions visually-hidden">
                 <div class="user-image-action no-hover">

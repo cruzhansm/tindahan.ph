@@ -77,6 +77,7 @@ export class Cart {
       const selectAll = document.getElementById('selectAll');
 
       children.forEach((child) => {
+        const selectAll = document.querySelector('#selectAll');
         child.addEventListener('change', () => {
           const siblings = Array.from(
             store
@@ -85,11 +86,26 @@ export class Cart {
           );
 
           if (!child.checked) {
-            checkbox.checked = false;
+            selectAll.checked = checkbox.checked = false;
+            selectAll.nextElementSibling.innerText = 'Select All';
           } else {
             checkbox.checked = siblings.every((s) => s.checked)
               ? true
               : checkbox.checked;
+
+            if (checkbox.checked) {
+              const siblings = Array.from(
+                document.querySelectorAll('.form-check > input[type=checkbox]')
+              ).filter((c) => c.id != 'selectAll');
+
+              selectAll.checked = siblings.every((s) => s.checked)
+                ? true
+                : selectAll.checked;
+
+              if (selectAll.checked) {
+                selectAll.nextElementSibling.innerText = 'Unselect All';
+              }
+            }
           }
           Cart.updateTotalPrice();
         });
@@ -112,6 +128,7 @@ export class Cart {
           selectAll.checked = false;
           selectAll.nextElementSibling.innerText = 'Select All';
         } else {
+          console.log(siblings);
           selectAll.checked = siblings.every((s) => s.checked)
             ? true
             : selectAll.checked;
@@ -191,8 +208,8 @@ export class CartProduct {
     this.productImg = product.product_img;
     this.productVariation = product.variation;
     this.productQuantity = product.quantity;
-    this.productBasePrice = product.product_price;
-    this.productTotalPrice = product.product_price * product.quantity;
+    this.productBasePrice = product.price;
+    this.productTotalPrice = product.price * product.quantity;
 
     const ret = this.createCartProduct();
 

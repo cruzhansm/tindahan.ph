@@ -1,5 +1,9 @@
 import { Pagination } from '../pagination.js';
-import { getCurrentUser, getProductDetails } from './db-methods/retrieve.js';
+import {
+  getCurrentRole,
+  getCurrentUser,
+  getProductDetails,
+} from './db-methods/retrieve.js';
 import { addToCart } from './db-methods/insert.js';
 
 var PRODUCT = new Object();
@@ -32,6 +36,7 @@ window.onload = async () => {
       product.product_reviews.length > 0 ? true : false
     );
     appendProductDetails(product);
+    initializeAddToCart();
     initializeEditButton(product.store_owner);
     appendVariations(product.product_variations);
     updateAddToCart(
@@ -52,6 +57,7 @@ function appendProductDetails(product) {
   const productName = document.querySelector('#productName');
   const productPrice = document.querySelector('#productPrice');
   const productRating = document.querySelector('#productRating');
+  const productRating2 = document.querySelector('#productRating2');
   const productRatingCount = document.querySelector('#productRatingCount');
   const productStore = document.querySelector('#productStore');
   const productCategories = document.querySelector('#productCategories');
@@ -64,6 +70,7 @@ function appendProductDetails(product) {
   productName.innerText = product.product_name;
   productPrice.innerText = `P${product.product_price}`;
   productRating.innerText = product.product_rating;
+  productRating2.innerText = product.product_rating;
   productRatingCount.innerText = product.review_count;
   productStore.setAttribute(
     'href',
@@ -76,6 +83,16 @@ function appendProductDetails(product) {
   productBrand.innerText = `Brand: ${product.product_brand}`;
   productQuantity.innerText = `${product.product_quantity} pieces left`;
   productDesc.innerText = product.product_desc;
+}
+
+async function initializeAddToCart() {
+  const userType = JSON.parse(await getCurrentRole());
+
+  if (userType != 'partner') {
+    const btn = document.querySelector('#adduToCartu');
+
+    btn.classList.remove('visually-hidden');
+  }
 }
 
 async function initializeEditButton(storeOwner) {
@@ -250,10 +267,12 @@ function appendReviewImages(images) {
 }
 
 window.attemptAddToCart = function attemptAddToCart() {
+  const variation = parseInt(document.querySelector('#productVariation').value);
+
   const cartItem = {
     productID: PRODUCT.product_id,
     storeID: PRODUCT.product_store.store_id,
-    variationID: parseInt(document.querySelector('#productVariation').value),
+    variationID: isNaN(variation) ? null : variation,
     quantity: parseInt(
       document.querySelector('#inStock').querySelector('#buyCount').innerText
     ),

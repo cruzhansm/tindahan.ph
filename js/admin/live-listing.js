@@ -1,4 +1,4 @@
-import { createLiveListing } from './db-methods/retrieve.js';
+import { createLiveListing } from './db-methods/retrieve2.js';
 
 export var LISTINGS = new Array();
 
@@ -24,10 +24,12 @@ function appendListingTab(listingsCatcher) {
         <div class="admin-user-actions" style="width: 375px">
           ${
             x.products.suspended == 'false'
-            ? `<button class="btn btn-tertiary" onclick="showProdModal(suspendModal, ${x.products.product_id}, ${index})">Suspend</button>`
-            : `<span class="tph-disabled">SUSPENDED</span>`
+              ? `<button class="btn btn-tertiary" onclick="showProdModal(suspendModal, ${x.products.product_id}, ${index})">Suspend</button>`
+              : `<span class="tph-disabled">SUSPENDED</span>`
           }
-          <button class="btn btn-tertiary" onclick="showDeleteModal(deleteModal, ${x.products.product_id}, ${index})">Delete</button>
+          <button class="btn btn-tertiary" onclick="showDeleteModal(deleteModal, ${
+            x.products.product_id
+          }, ${index})">Delete</button>
         </div>
       </div>`;
   });

@@ -17,6 +17,8 @@
       echo json_encode(deleteUser()); break;
     case 'retrieve-user-id':
       echo json_encode($_SESSION['user_id']); break;
+    case 'retrieve-user-role':
+      echo json_encode($_SESSION['role']); break;
   }
 
   function checkIfUserHasApplied() {

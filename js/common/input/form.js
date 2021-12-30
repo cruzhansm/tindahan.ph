@@ -89,7 +89,7 @@ export function disableSubmitBtn(form) {
     : Promise.resolve();
 }
 
-function enableSubmitBtn() {
+export function enableSubmitBtn() {
   const submit = SELECTED_FORM.querySelector('button[type=submit]');
 
   if (submit.classList.contains('tph-disabled')) {
@@ -152,12 +152,18 @@ export function attachEmptyFieldListeners(watch) {
         )
       );
 
+      if (inputs.length == 0) {
+        FORM_HAS_EMPTY = FORM_HAS_INVALID = false;
+        updateButtonState();
+      }
+
       for (let i = 0; i < inputs.length; i++) {
         state.push(inputIsEmpty(inputs[i]));
         // true -> empty / invalid
       }
 
-      // console.log(inputs, state);
+      console.log(inputs, state);
+      // console.log(FORM_HAS_EMPTY, FORM_HAS_INVALID, FORM_HAS_REQUIRED);
 
       inputs.forEach((input, index) => {
         input.addEventListener('input', () => {
@@ -253,7 +259,7 @@ export function attachEmptyFieldListeners(watch) {
 
 function showPreviewImage(image) {
   const preview = URL.createObjectURL(image.files[0]);
-  console.log(image.files[0]);
+  console.log(image.files[0], preview);
   const target = document.querySelector('#previewImg');
 
   target.classList.remove('visually-hidden');

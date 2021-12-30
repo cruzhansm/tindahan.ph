@@ -14,7 +14,7 @@ if (!isset($_SESSION['user_id'])) {
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title>tindahan.ph - Dashboard</title>
 
   <link rel="icon" type="image/png" href="/assets/images/tph-logo-128px.png" />
 
@@ -69,9 +69,10 @@ if (!isset($_SESSION['user_id'])) {
       <div class="container-display">
         <header class="header">
           <div class="text-highlight fw-bold">Overview</div>
-
           <div class="header-icons">
-            <div class="user-image-icon" onclick="displayUserActions()">
+          <i class="fa-solid fa-gear"></i>
+            <div  onclick="displayUserActions()">
+            <img src="<?php echo $_SESSION['image']?>" class="user-image-icon" />
               <div class="user-image-actions visually-hidden">
                 <div class="user-image-action no-hover">
                   <i class="fa-solid fa-user"></i>
@@ -85,6 +86,7 @@ if (!isset($_SESSION['user_id'])) {
             </div>
           </div>
         </header>
+      </div>
         <div class="overview">
           <div class="overview-tab rounded">
             <div class="overview-header">Active Users</div>

@@ -42,7 +42,7 @@
 
     $categories = array();
 
-    $selectCategory = "SELECT listing_category_id
+    $selectCategory = "SELECT category_id
                        FROM listing_categories
                        WHERE application_id = $application_id";
     
@@ -50,7 +50,7 @@
 
     if (mysqli_num_rows($query) > 0) {
       while ($data = mysqli_fetch_assoc($query)) {
-        $category_id = $data['listing_category_id'];
+        $category_id = $data['category_id'];
         
         $selectProdCategory = "SELECT category_name
                                FROM product_category

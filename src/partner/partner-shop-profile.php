@@ -149,7 +149,7 @@ session_start();
           </form>
           <div class="header-icons">
             <i class="fa-solid fa-gear"></i>
-            <div class="user-image-icon" onclick="displayUserActions()">
+            <div  onclick="displayUserActions()">
               <img src="<?php echo $_SESSION['image'] ?>" class="user-image-icon" />
               <div class="user-image-actions visually-hidden">
                 <div class="user-image-action no-hover">

@@ -80,6 +80,8 @@ export function approveListing(applicationID, modal) {
 
 export function approveListingV2(index) {
   // Approval of Listing in tab (works, but modal still shows up)
+  console.log(LISTING_APPLICATIONS[index].application.application_id);
+
   $.ajax({
     url: '/tindahan.ph/php/listing-applications/crud.php',
     data: {
@@ -87,15 +89,14 @@ export function approveListingV2(index) {
       applicationID: LISTING_APPLICATIONS[index].application.application_id,
     },
     success: (data) => {
-      let result = data;
+      // console.log(data);
+      console.log(JSON.parse(data));
       let div = document.getElementById(
-        `b${LISTING_APPLICATIONS[index].appplication.application_id}`
+        `b${LISTING_APPLICATIONS[index].application.application_id}`
       );
-
       const statusModal = new StatusModal('Listing approved!');
       statusModal.show();
       statusModal.dismissAfter(1000);
-      modal.hide();
       div.remove();
     },
   });

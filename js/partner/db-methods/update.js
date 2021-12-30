@@ -68,3 +68,17 @@ export function shipOrder(orderID) {
     },
   });
 }
+
+export async function updateListingDetails(listing) {
+  return await $.ajax({
+    type: 'POST',
+    url: '/tindahan.ph/php/products/crud.php',
+    data: {
+      type: 'update-product-details',
+      listing: JSON.stringify(listing),
+    },
+    success: (result) => {
+      console.log(result);
+    },
+  });
+}

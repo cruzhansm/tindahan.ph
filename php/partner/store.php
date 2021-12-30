@@ -27,12 +27,12 @@
 
     private function fetchStoreDetails($user_id) {
       include('../connect.php');
-
-      $query = "SELECT p.*, u.phone, ua.barangay, ua.city
-                FROM partner_store p
-                JOIN users u ON u.user_id = p.user_id
-                JOIN users_address ua ON p.user_id = ua.user_id
-                WHERE p.user_id = $user_id;";
+      
+      $query = "SELECT ps.*, u.phone, ua.barangay, ua.city
+                FROM partner_store ps
+                JOIN users u ON u.user_id = ps.user_id
+                JOIN users_address ua ON ua.user_id = u.user_id
+                WHERE ps.user_id = $user_id;";
 
       $store = mysqli_fetch_assoc(mysqli_query($conn, $query));
 
@@ -70,12 +70,11 @@
 
       $store_id = $this->store_id;
 
-      $query = "SELECT CONCAT(u.fname, ' ', u.lname) AS `customer`, p.product_name, p.product_img, pr.variation, od.order_quantity, od.order_price, o.order_id, o.order_status
+      $query = "SELECT CONCAT(u.fname, ' ', u.lname) AS `customer`, p.product_name, p.product_img, ci.variation_id, od.order_quantity, od.order_price, o.order_id, o.order_status
                 FROM order_details od
                 JOIN orders o ON o.order_id = od.order_id
                 JOIN users u ON u.user_id = o.user_id
                 JOIN cart_items ci ON ci.cart_item_id = od.cart_item_id
-                JOIN product_variation pr ON pr.variation_id = ci.variation_id
                 JOIN products p ON p.product_id = ci.product_id
                 WHERE p.product_store = $store_id
                 ORDER BY od.order_id DESC;";
@@ -86,6 +85,20 @@
 
       if(mysqli_num_rows($result) > 0 ) {
         while($order = mysqli_fetch_assoc($result)) {
+          if(is_null($order['variation_id']) == false) {
+            $variation_id = $order['variation_id'];
+
+            $query2 = "SELECT variation
+                       FROM product_variation
+                       WHERE variation_id = $variation_id;";
+            
+            $var = mysqli_fetch_assoc(mysqli_query($conn, $query2));
+
+            $order['variation'] = $var['variation'];
+          }
+          else {
+            $order['variation'] = "No variation";
+          }
           array_push($orders, $order);
         }
       }
@@ -109,6 +122,10 @@
                               '$store_img', '$store_desc')";
                           
       $query = mysqli_query($conn, $insertStore);
+
+      $query2 = "INSERT INTO users_address (user_id) VALUES($user_id)";
+
+      mysqli_query($conn, $query2);
 
       return $query ? true : new CustomError("Insert Error: ", "Not inserted"); 
     }

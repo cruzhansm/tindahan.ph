@@ -12,13 +12,21 @@
     public function fetchAllItems() {
       include('../connect.php');
 
-      $query = "SELECT ci.*, p.*, pv.variation, ps.store_name
+      $query = "SELECT ci.*, p.*, pv.variation, pv.price, ps.store_name
                 FROM cart_items ci
                 JOIN product_variation pv ON pv.variation_id = ci.variation_id
                 JOIN products p ON p.product_id = ci.product_id
                 JOIN partner_store ps ON ps.store_id = p.product_store
                 WHERE ci.user_id = $this->cart_owner
-                      AND ci.status = 'cart';";
+                      AND ci.status = 'cart'
+                UNION 
+                SELECT ci.*, p.*, 'No variation', p.product_price, ps.store_name
+                FROM cart_items ci
+                JOIN products p ON p.product_id = ci.product_id
+                JOIN partner_store ps ON ps.store_id = p.product_store
+                WHERE ci.user_id = $this->cart_owner
+                      AND ci.status = 'cart'
+                      AND ci.variation_id IS NULL";
 
       $result = mysqli_query($conn, $query);
 
@@ -48,8 +56,14 @@
       $product_variation = $product['variationID'];
       $product_quantity = $product['quantity'];
 
-      $query = "INSERT INTO cart_items (user_id, product_id, variation_id, quantity)
+      if($product_variation == null) {
+        $query = "INSERT INTO cart_items (user_id, product_id, quantity)
+                VALUES ($this->cart_owner, $product_id, $product_quantity);";
+      }
+      else {
+        $query = "INSERT INTO cart_items (user_id, product_id, variation_id, quantity)
                 VALUES ($this->cart_owner, $product_id, $product_variation, $product_quantity);";
+      }
       
       $result = mysqli_query($conn, $query);
 

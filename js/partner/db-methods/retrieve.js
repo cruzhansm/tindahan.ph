@@ -58,3 +58,19 @@ export async function retrieveStoreProducts(storeID) {
     },
   });
 }
+
+export async function retrieveListingDetails(productID) {
+  return await $.ajax({
+    type: 'GET',
+    url: '/tindahan.ph/php/products/crud.php',
+    data: {
+      type: 'retrieve-single-listing',
+      productID: productID,
+    },
+    success: (result) => {
+      result = JSON.parse(result);
+
+      return result;
+    },
+  });
+}
