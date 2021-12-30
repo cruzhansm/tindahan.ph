@@ -6,7 +6,7 @@
 .right {
   margin-top: 72px;
   margin-left: 61px;
-  padding-right: 126px;
+  /* padding-right: 126px; */
   max-width: calc(100% - 435px) !important;
   min-height: 800px;
   margin-bottom: 64px;

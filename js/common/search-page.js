@@ -1,8 +1,7 @@
-import { fetchSearchResults } from "/tindahan.ph/js/common/db-methods/retrieve.js";
 import { Pagination } from '/tindahan.ph/js/common/pagination.js';
+import { fetchSearchResults } from '/tindahan.ph/js/common/db-methods/retrieve.js';
 
 window.onload = async () => {
-
   if (window.location.href.includes('search.php')) {
     const data = new URLSearchParams(window.location.search);
     let query = data.get('q');
@@ -45,8 +44,7 @@ function appendAllProducts(products) {
       let productContainer = document.createElement('div');
       productContainer.classList.add('product-feed-block');
 
-      productContainer.innerHTML =
-      `<a href='/tindahan.ph/src/common/product.php?id=${product.product_id}' class="product-feed-block">
+      productContainer.innerHTML = `<a href='/tindahan.ph/src/common/product.php?id=${product.product_id}' class="product-feed-block">
         <img src="${product.product_img}" class="product-feed-img" />
         <div class="product-feed-info">
           <div>${product.product_name}</div>

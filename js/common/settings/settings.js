@@ -13,7 +13,7 @@ import {
 import {
   updateUserInfo,
   updateEmail,
-  updatePassword
+  updatePassword,
 } from '/tindahan.ph/js/common/db-methods/update.js';
 import { fetchUserDetails } from '/tindahan.ph/js/common/db-methods/retrieve.js';
 
@@ -22,7 +22,7 @@ var USER_DETAILS = new Object();
 window.showModal = function showModal(selectedModal) {
   const modal = new bootstrap.Modal(selectedModal);
   modal.show();
-}
+};
 
 window.dismissModal = function dismissModal(selectedModal) {
   const modal = bootstrap.Modal.getInstance(selectedModal);
@@ -31,7 +31,7 @@ window.dismissModal = function dismissModal(selectedModal) {
   resetFlags().then(stripInputListeners(form)).then(removeAllValidation(form));
 
   modal.hide();
-}
+};
 
 window.dismissSettingsModal = function dismissSettingsModal(selectedModal) {
   const modal = bootstrap.Modal.getInstance(selectedModal);
@@ -43,12 +43,16 @@ window.dismissSettingsModal = function dismissSettingsModal(selectedModal) {
   console.log(account);
   if (account != null) {
     const accountForm = account.querySelector('form');
-    resetFlags().then(stripInputListeners(accountForm)).then(removeAllValidation(accountForm));
+    resetFlags()
+      .then(stripInputListeners(accountForm))
+      .then(removeAllValidation(accountForm));
     account.classList.remove('active-form');
   }
 
   const infoForm = info.querySelector('form');
-  resetFlags().then(stripInputListeners(infoForm)).then(removeAllValidation(infoForm));
+  resetFlags()
+    .then(stripInputListeners(infoForm))
+    .then(removeAllValidation(infoForm));
 
   newEmail.classList.add('visually-hidden');
   newPassword.classList.add('visually-hidden');
@@ -65,12 +69,11 @@ window.showSettings = function showSettings(selectedModal) {
   const modal = new bootstrap.Modal(selectedModal);
   const form = selectedModal.querySelector('form');
 
-  resetFlags().then(stripInputListeners(form)).then(removeAllValidation(form));
-
   modal.show();
+
   const verifyForm = document.querySelector('#verify-settings');
   disableSubmitBtn(verifyForm).then(attachEmptyFieldListeners('input'));
-}
+};
 
 window.attemptAccessSettings = async function attemptAccessSettings(event) {
   noSubmit(event);
@@ -84,30 +87,67 @@ window.attemptAccessSettings = async function attemptAccessSettings(event) {
     return;
   }
 
-  validateSettings(userPass)
-    .then((resolve) => {
-      dismissModal(verifySettings);
-      showSettingsModal(settingsModal);
-    })
-    .catch((reject) => {
-      alert("incorrect password");
-    });
-}
+  const correctPass = JSON.parse(await validateSettings(userPass));
 
-window.showSettingsModal = function showSettingsModal(selectedModal) {
+  if (correctPass) {
+    dismissModal(verifySettings);
+    showSettingsModal(settingsModal);
+  } else {
+    alert('Incorrect password.');
+  }
+};
+
+window.showSettingsModal = async function showSettingsModal(selectedModal) {
   const modal = new bootstrap.Modal(selectedModal);
   const form = selectedModal.querySelector('form');
   modal.show();
-  initializeInfoSettings();
 
-  disableSubmitBtn(form)
-    .then(attachEmptyFieldListeners('input'))
-    .then(attachEmptyFieldListeners('file'))
-    .then(attachEmptyFieldListeners('number'))
-    .catch((reject) => {
-      console.log(reject);
-    });
-}
+  const info = JSON.parse(await initializeInfoSettings());
+
+  const city = document.getElementById('user-city');
+  const barangay = document.getElementById('user-barangay');
+  const street = document.getElementById('user-street');
+  const zipcode = document.getElementById('user-zipcode');
+  const landmark = document.getElementById('user-landmark');
+  const phone = document.getElementById('user-contact');
+  const email = document.getElementById('accountUserEmail');
+
+  document.getElementById('previewImg').setAttribute('src', info.image);
+  document.getElementById('user-fName').value = info.fname;
+  document.getElementById('user-lName').value = info.lname;
+  info.city == null || info.city == ''
+    ? (city.placeholder = 'Not yet set')
+    : (city.value = info.city);
+  info.barangay == null || info.barangay == ''
+    ? (barangay.placeholder = 'Not yet set')
+    : (barangay.value = info.barangay);
+  info.street == null || info.street == ''
+    ? (street.placeholder = 'Not yet set')
+    : (street.value = info.street);
+  info.zipcode == null || info.zipcode == ''
+    ? (zipcode.placeholder = 'Not yet set')
+    : (zipcode.value = info.zipcode);
+  info.landmark == null || info.landmark == ''
+    ? (landmark.placeholder = 'Not yet set')
+    : (landmark.value = info.landmark);
+  info.phone == null || info.phone == 0
+    ? (phone.placeholder = 'Not yet set')
+    : (phone.value = info.phone);
+
+  email.innerHTML = `${info.email}`;
+
+  console.log(form);
+
+  if (info != null) {
+    disableSubmitBtn(form)
+      .then(attachEmptyFieldListeners('input'))
+      .then(attachEmptyFieldListeners('file'))
+      .then(attachEmptyFieldListeners('number'))
+      .catch((reject) => {
+        console.log(reject);
+      });
+  }
+};
 
 window.attemptUpdateInfo = function attemptUpdateInfo(event) {
   noSubmit(event);
@@ -123,8 +163,9 @@ window.attemptUpdateInfo = function attemptUpdateInfo(event) {
   let img = null;
 
   try {
-    img = `/tindahan.ph/assets/mock/users/${document.querySelector('#partnerImg').files[0].name
-      }`;
+    img = `/tindahan.ph/assets/mock/users/${
+      document.querySelector('#partnerImg').files[0].name
+    }`;
   } catch (err) {
     console.log('No new image uploaded.');
   }
@@ -143,7 +184,7 @@ window.attemptUpdateInfo = function attemptUpdateInfo(event) {
 
   dismissSettingsModal(settingsModal);
   updateUserInfo(updateInfo);
-}
+};
 
 window.openInfo = function openInfo() {
   const info = document.getElementById('infoSettings');
@@ -153,10 +194,11 @@ window.openInfo = function openInfo() {
 
   if (account != null) {
     const accountForm = account.querySelector('form');
-    resetFlags().then(stripInputListeners(accountForm)).then(removeAllValidation(accountForm));
+    resetFlags()
+      .then(stripInputListeners(accountForm))
+      .then(removeAllValidation(accountForm));
     account.classList.remove('active-form');
   }
-
 
   newEmail.classList.add('visually-hidden');
   newPassword.classList.add('visually-hidden');
@@ -172,15 +214,17 @@ window.openInfo = function openInfo() {
     .catch((reject) => {
       console.log(reject);
     });
-}
+};
 
 window.openAccount = function openAccount() {
   const info = document.getElementById('infoSettings');
   const infoForm = info.querySelector('form');
-  resetFlags().then(stripInputListeners(infoForm)).then(removeAllValidation(infoForm));
+  resetFlags()
+    .then(stripInputListeners(infoForm))
+    .then(removeAllValidation(infoForm));
 
   document.getElementById('accountData').classList.toggle('active-form');
-}
+};
 
 window.changeEmail = function changeEmail() {
   const emailTab = document.getElementById('newEmail');
@@ -198,7 +242,7 @@ window.changeEmail = function changeEmail() {
     .catch((reject) => {
       console.log(reject);
     });
-}
+};
 
 window.attemptUpdateEmail = function attemptUpdateEmail(event) {
   noSubmit(event);
@@ -215,7 +259,7 @@ window.attemptUpdateEmail = function attemptUpdateEmail(event) {
 
   dismissSettingsModal(settingsModal);
   updateEmail(email);
-}
+};
 
 window.changePassword = function changePassword() {
   const dataTab = document.getElementById('accountData');
@@ -234,7 +278,7 @@ window.changePassword = function changePassword() {
     .catch((reject) => {
       console.log(reject);
     });
-}
+};
 
 window.attemptUpdatePassword = function attemptUpdatePassword(event) {
   noSubmit(event);
@@ -251,4 +295,4 @@ window.attemptUpdatePassword = function attemptUpdatePassword(event) {
 
   dismissSettingsModal(settingsModal);
   updatePassword(password);
-}
+};

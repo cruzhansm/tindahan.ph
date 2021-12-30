@@ -152,12 +152,17 @@ export function attachEmptyFieldListeners(watch) {
         )
       );
 
+      if (inputs.length == 0) {
+        FORM_HAS_EMPTY = FORM_HAS_INVALID = false;
+        updateButtonState();
+      }
+
       for (let i = 0; i < inputs.length; i++) {
         state.push(inputIsEmpty(inputs[i]));
         // true -> empty / invalid
       }
 
-      // console.log(inputs, state);
+      console.log(inputs, state);
       // console.log(FORM_HAS_EMPTY, FORM_HAS_INVALID, FORM_HAS_REQUIRED);
 
       inputs.forEach((input, index) => {
