@@ -182,8 +182,8 @@ export class Cart {
           cartItemID: productID,
         },
         success: (result) => {
+          console.log(result);
           result = JSON.parse(result);
-
           resolve(result);
         },
       });

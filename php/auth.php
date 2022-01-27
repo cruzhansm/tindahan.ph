@@ -82,6 +82,13 @@
     
     $success = mysqli_stmt_execute($stmt);
 
+    $user_id = mysqli_insert_id($conn);
+
+    $query2 = "INSERT INTO users_address (user_id, street, city, barangay, landmark)
+               VALUES($user_id, '', '', '', '');";
+
+    $success = mysqli_query($conn, $query2);
+
     return ($success == false) ? new CustomError('signup', 'Could not complete operation.') : '';
   }
   

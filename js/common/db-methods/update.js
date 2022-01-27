@@ -21,7 +21,7 @@ export function updateUserInfo(updateInfo) {
         status.show();
         status.dismissAfter(2000);
       }
-    }
+    },
   });
 }
 
@@ -31,10 +31,9 @@ export function updateEmail(email) {
     url: '/tindahan.ph/php/common/crud.php',
     data: {
       type: 'update-email',
-      newEmail: email
+      newEmail: email,
     },
     success: (data) => {
-      
       data = JSON.parse(data);
       console.log(data);
 
@@ -48,8 +47,8 @@ export function updateEmail(email) {
         status.show();
         status.dismissAfter(2000);
       }
-    }
-  })
+    },
+  });
 }
 
 export function updatePassword(password) {
@@ -59,7 +58,7 @@ export function updatePassword(password) {
     url: '/tindahan.ph/php/common/crud.php',
     data: {
       type: 'update-password',
-      newPass: password
+      newPass: password,
     },
     success: (data) => {
       console.log(data);
@@ -75,6 +74,6 @@ export function updatePassword(password) {
         status.show();
         status.dismissAfter(2000);
       }
-    }
-  })
+    },
+  });
 }

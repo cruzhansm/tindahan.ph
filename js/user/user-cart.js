@@ -55,6 +55,7 @@ window.showModal = function showModal(selectedModal, productID) {
   const modal = new bootstrap.Modal(selectedModal);
   const del = modal._element.querySelector('#delete');
 
+  alert('hello, world');
   del.addEventListener('click', () => {
     Cart.removeFromCart(productID).then((resolve) => {
       if (resolve == true) {
@@ -84,9 +85,6 @@ window.showModal = function showModal(selectedModal, productID) {
 
 window.dismissModal = function dismissModal(selectedModal) {
   const modal = bootstrap.Modal.getInstance(selectedModal);
-  const del = modal._element.querySelector('#delete');
-
-  del.removeEventListener('click', showModal, true);
 
   modal.hide();
 };

@@ -33,7 +33,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['suspended'] == 'true') {
   <script src="js/common/messaging.js"></script>
   <script src="js/common/auth/logout.js"></script>
   <script type="module" src="js/index.js"></script>
-  <script type="module" src="/tindahan.ph/js/common/settings/settings.js"></script>
+  <script type="module" src="js/common/settings/settings.js"></script>
 </head>
 
 <body class="bg-primary">
